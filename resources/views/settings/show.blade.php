@@ -7,7 +7,6 @@
   {{-- Breadcrumbs --}}
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('setting.Dashboard')</a></li>
       <li class="breadcrumb-item"><a href="{{ route('settings.index') }}">@lang('setting.General Settings')</a></li>
       <li class="breadcrumb-item active" aria-current="page">@lang('setting.View')</li>
     </ol>

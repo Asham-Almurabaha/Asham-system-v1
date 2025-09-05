@@ -1,4 +1,4 @@
-@php
+﻿@php
   $logo    = $setting->logo ?? null;
   $name    = $setting->name ?? config('app.name', 'اسم الشركة');
   $homeUrl = url('/');
@@ -43,22 +43,22 @@
         <li>
           @if($locale === 'ar')
             <a class="dropdown-item d-flex align-items-center active disabled" href="#" aria-disabled="true">
-              <span class="me-2">🇸🇦</span> <span>{{ __('Arabic') }}</span>
+              <span class="me-2">AR</span> <span>@lang('app.arabic')</span>
             </a>
           @else
             <a class="dropdown-item d-flex align-items-center" href="{{ route('lang.switch', 'ar') }}">
-              <span class="me-2">🇸🇦</span> <span>{{ __('Arabic') }}</span>
+              <span class="me-2">AR</span> <span>@lang('app.arabic')</span>
             </a>
           @endif
         </li>
         <li>
           @if($locale === 'en')
             <a class="dropdown-item d-flex align-items-center active disabled" href="#" aria-disabled="true">
-              <span class="me-2">🇺🇸</span> <span>{{ __('English') }}</span>
+              <span class="me-2">EN</span> <span>@lang('app.english')</span>
             </a>
           @else
             <a class="dropdown-item d-flex align-items-center" href="{{ route('lang.switch', 'en') }}">
-              <span class="me-2">🇺🇸</span> <span>{{ __('English') }}</span>
+              <span class="me-2">EN</span> <span>@lang('app.english')</span>
             </a>
           @endif
         </li>
@@ -101,3 +101,5 @@
 
   </ul>
 </nav>
+
+

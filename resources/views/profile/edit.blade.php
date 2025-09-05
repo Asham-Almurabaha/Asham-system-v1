@@ -4,15 +4,8 @@
 
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
-  @if (session('status') === 'profile-updated')
-    <div class="alert alert-success">@lang('profile.Profile updated successfully')</div>
-  @elseif (session('status') === 'password-updated')
-    <div class="alert alert-success">@lang('profile.Password updated successfully')</div>
-  @endif
-
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('setting.Dashboard')</a></li>
       <li class="breadcrumb-item active" aria-current="page">@lang('profile.Profile')</li>
     </ol>
   </nav>
