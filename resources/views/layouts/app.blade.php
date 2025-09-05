@@ -5,6 +5,12 @@
 </head>
 <body>
 
+  @php
+    $isAr = app()->getLocale() === 'ar';
+    $brandBase = $setting?->name ?? config('app.name', '');
+    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : ($setting?->name_en ?? $brandBase);
+  @endphp
+
   <main>
     <div class="container">
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -32,16 +38,15 @@
 
                 {{-- زر تبديل اللغة --}}
                 <div class="ms-2">
-                  @php $isAr = app()->getLocale() === 'ar'; @endphp
-                  <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Switch language') }}">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('auth.ui.switch_language') }}">
                     <a href="{{ route('lang.switch', 'ar') }}"
                        class="btn btn-outline-primary {{ $isAr ? 'active disabled' : '' }}"
                        aria-disabled="{{ $isAr ? 'true' : 'false' }}"
-                       title="{{ __('Arabic') }}">AR</a>
+                       title="{{ __('auth.ui.arabic') }}">AR</a>
                     <a href="{{ route('lang.switch', 'en') }}"
                        class="btn btn-outline-primary {{ !$isAr ? 'active disabled' : '' }}"
                        aria-disabled="{{ !$isAr ? 'true' : 'false' }}"
-                       title="{{ __('English') }}">EN</a>
+                       title="{{ __('auth.ui.english') }}">EN</a>
                   </div>
                 </div>
               </div>
@@ -55,15 +60,13 @@
                     @hasSection('auth_title')
                       <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('auth_title')</h5>
                     @else
-                      <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('title', __('Welcome'))</h5>
+                      <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('title', __('auth.ui.welcome'))</h5>
                     @endif
 
                     @hasSection('auth_subtitle')
                       <p class="text-center small mb-0" id="auth-subtitle">@yield('auth_subtitle')</p>
                     @else
-                      <p class="text-center small mb-0" id="auth-subtitle">
-                        {{ __('Please enter your credentials to continue') }}
-                      </p>
+                      <p class="text-center small mb-0" id="auth-subtitle">{{ __('auth.ui.enter_credentials') }}</p>
                     @endif
                   </div>
 
@@ -71,7 +74,7 @@
                   @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert" aria-live="polite">
                       {{ session('success') }}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('Close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
                     </div>
                   @endif
 
@@ -79,7 +82,7 @@
                   @if (session('status'))
                     <div class="alert alert-info alert-dismissible fade show" role="alert" aria-live="polite">
                       {{ session('status') }}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('Close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
                     </div>
                   @endif
 
@@ -91,7 +94,7 @@
                           <li>{{ $error }}</li>
                         @endforeach
                       </ul>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('Close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
                     </div>
                   @endif
 

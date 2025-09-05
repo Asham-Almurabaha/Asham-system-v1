@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('Register'))
-@section('auth_subtitle', __('Fill the fields below to create your account'))
+@section('title', __('app.Register'))
+@section('auth_subtitle', __('auth.register.subtitle'))
 
 @section('form')
   <form method="POST" action="{{ route('register') }}" class="row g-3 needs-validation" novalidate>
@@ -9,7 +9,7 @@
 
     {{-- Name --}}
     <div class="col-12">
-      <label for="name" class="form-label">{{ __('Name') }}</label>
+      <label for="name" class="form-label">{{ __('auth.fields.name') }}</label>
       <input  id="name"
               type="text"
               name="name"
@@ -22,13 +22,13 @@
       @error('name')
         <div class="invalid-feedback d-block" id="nameHelp" aria-live="polite"><strong>{{ $message }}</strong></div>
       @else
-        <div class="invalid-feedback" id="nameHelp">{{ __('Please enter your name.') }}</div>
+        <div class="invalid-feedback" id="nameHelp">{{ __('auth.validation.name_required') }}</div>
       @enderror
     </div>
 
     {{-- Email --}}
     <div class="col-12">
-      <label for="email" class="form-label">{{ __('Email Address') }}</label>
+      <label for="email" class="form-label">{{ __('auth.fields.email') }}</label>
       <div class="input-group has-validation">
         <span class="input-group-text">@</span>
         <input  id="email"
@@ -46,14 +46,14 @@
         @error('email')
           <div class="invalid-feedback d-block" id="emailHelp" aria-live="polite"><strong>{{ $message }}</strong></div>
         @else
-          <div class="invalid-feedback" id="emailHelp">{{ __('Please enter a valid email address.') }}</div>
+          <div class="invalid-feedback" id="emailHelp">{{ __('auth.validation.email_valid') }}</div>
         @enderror
       </div>
     </div>
 
     {{-- Phone --}}
     <div class="col-12">
-      <label for="phone" class="form-label">{{ __('Phone Number') }}</label>
+      <label for="phone" class="form-label">{{ __('auth.fields.phone') }}</label>
       <input  id="phone"
               type="tel"
               name="phone"
@@ -69,13 +69,13 @@
       @error('phone')
         <div class="invalid-feedback d-block" id="phoneHelp" aria-live="polite"><strong>{{ $message }}</strong></div>
       @else
-        <div class="invalid-feedback" id="phoneHelp">{{ __('Please enter a valid phone number.') }}</div>
+        <div class="invalid-feedback" id="phoneHelp">{{ __('auth.validation.phone_valid') }}</div>
       @enderror
     </div>
 
     {{-- Password --}}
     <div class="col-12">
-      <label for="password" class="form-label">{{ __('Password') }}</label>
+      <label for="password" class="form-label">{{ __('auth.fields.password') }}</label>
       <div class="input-group has-validation">
         <input  id="password"
                 type="password"
@@ -89,20 +89,20 @@
                 type="button"
                 id="togglePassword"
                 tabindex="-1"
-                aria-label="{{ __('Show/Hide password') }}">
+                aria-label="{{ __('auth.ui.toggle_password') }}">
           <i class="bi bi-eye"></i>
         </button>
         @error('password')
           <div class="invalid-feedback d-block" id="pwdHelp" aria-live="polite"><strong>{{ $message }}</strong></div>
         @else
-          <div class="invalid-feedback" id="pwdHelp">{{ __('Password must be at least 8 characters.') }}</div>
+          <div class="invalid-feedback" id="pwdHelp">{{ __('auth.validation.password_min') }}</div>
         @enderror
       </div>
     </div>
 
     {{-- Confirm Password --}}
     <div class="col-12">
-      <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+      <label for="password-confirm" class="form-label">{{ __('auth.fields.password_confirmation') }}</label>
       <div class="input-group has-validation">
         <input  id="password-confirm"
                 type="password"
@@ -115,18 +115,18 @@
                 type="button"
                 id="togglePasswordConfirm"
                 tabindex="-1"
-                aria-label="{{ __('Show/Hide password') }}">
+                aria-label="{{ __('auth.ui.toggle_password') }}">
           <i class="bi bi-eye"></i>
         </button>
-        <div class="invalid-feedback" id="confirmFeedback">{{ __('Passwords do not match.') }}</div>
+        <div class="invalid-feedback" id="confirmFeedback">{{ __('auth.validation.password_mismatch') }}</div>
       </div>
     </div>
 
     {{-- Actions --}}
     <div class="col-12 d-flex flex-column gap-2">
-      <button class="btn btn-outline-primary w-100" type="submit">{{ __('Register') }}</button>
+      <button class="btn btn-outline-primary w-100" type="submit">{{ __('app.Register') }}</button>
       <p class="small mb-0 text-center">
-        {{ __('Already have an account?') }}
+        {{ __('auth.register.already') }}
         <a href="{{ route('login') }}">@lang('app.Login')</a>
       </p>
     </div>
