@@ -91,6 +91,17 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Assign Roles to Users')</span>
         </a>
       </li>
+      <li class="nav-heading">@lang('sidebar.Basic Data')</li>
+      <li>
+        <a class="{{ $active($isRoute('nationalities.*')) }}" href="{{ route('nationalities.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Nationalities')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('titles.*')) }}" href="{{ route('titles.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Job Titles')</span>
+        </a>
+      </li>
     </ul>
   </li>
   @endrole

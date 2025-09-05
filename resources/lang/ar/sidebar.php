@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 return [
     'Dashboard' => 'لوحة التحكم',
@@ -13,4 +13,8 @@ return [
     'Users and Permissions' => 'المستخدمون والصلاحيات',
     'Assign Roles to Users' => 'تعيين أدوار للمستخدمين',
     
+    'Basic Data' => 'البيانات الأساسية',
+    'Nationalities' => 'الجنسيات',
+    'Job Titles' => 'الوظائف',
 ];
+

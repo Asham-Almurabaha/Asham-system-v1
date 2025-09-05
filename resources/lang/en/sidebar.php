@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 return [
     'Dashboard' => 'Dashboard',
@@ -13,4 +13,8 @@ return [
     'Users and Permissions' => 'Users and Permissions',
     'Assign Roles to Users' => 'Assign Roles to Users',
     
+    'Basic Data' => 'Basic Data',
+    'Nationalities' => 'Nationalities',
+    'Job Titles' => 'Job Titles',
 ];
+

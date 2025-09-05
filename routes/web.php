@@ -3,10 +3,12 @@
 use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\Setting\SettingController;
 
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
@@ -31,6 +33,8 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('users', UserRoleController::class);
+        Route::resource('nationalities', NationalityController::class);
+        Route::resource('titles', TitleController::class);
 
     });
 
