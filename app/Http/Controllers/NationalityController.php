@@ -20,10 +20,11 @@ class NationalityController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
             'name' => ['required','string','max:100','unique:nationalities,name'],
             'name_ar' => ['required','string','max:100','unique:nationalities,name_ar'],
-            'is_active' => ['nullable','boolean'],
+            'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         Nationality::create($data);
@@ -43,10 +44,11 @@ class NationalityController extends Controller
 
     public function update(Request $request, Nationality $nationality)
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
             'name' => ['required','string','max:100','unique:nationalities,name,'.$nationality->id],
             'name_ar' => ['required','string','max:100','unique:nationalities,name_ar,'.$nationality->id],
-            'is_active' => ['nullable','boolean'],
+            'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $nationality->update($data);
