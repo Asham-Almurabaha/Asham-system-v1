@@ -17,5 +17,12 @@ return [
     'Choose roles then save.' => 'اختر الأدوار ثم احفظ.',
     'Save' => 'حفظ',
     'Cancel' => 'إلغاء',
+    'Add User' => 'إضافة مستخدم',
+    'Create User' => 'إنشاء مستخدم',
+    'Edit User' => 'تعديل مستخدم',
+    'Password' => 'كلمة المرور',
+    'Confirm Password' => 'تأكيد كلمة المرور',
+    'User created successfully' => 'تم إنشاء المستخدم بنجاح',
+    'User updated successfully' => 'تم تحديث المستخدم بنجاح',
+    'Leave password blank to keep current' => 'اترك كلمة المرور فارغة للإبقاء على الحالية',
 ];
-

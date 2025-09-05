@@ -9,8 +9,11 @@
     <div class="alert alert-success">{{ session('success') }}</div>
   @endif
 
-  <div class="d-flex align-items-center mb-3">
+  <div class="d-flex align-items-center justify-content-between mb-3">
     <h1 class="h4 mb-0">@lang('users.Users')</h1>
+    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">
+      @lang('users.Add User')
+    </a>
   </div>
 
   <div class="card border-0 shadow-sm">
@@ -39,9 +42,14 @@
                 @endforelse
               </td>
               <td class="text-end">
-                <a href="{{ route('users.roles.edit', $u) }}" class="btn btn-sm btn-outline-primary">
-                  @lang('users.Manage Roles')
-                </a>
+                <div class="btn-group" role="group">
+                  <a href="{{ route('users.edit', $u) }}" class="btn btn-sm btn-outline-secondary">
+                    @lang('users.Edit User')
+                  </a>
+                  <a href="{{ route('users.roles.edit', $u) }}" class="btn btn-sm btn-outline-primary">
+                    @lang('users.Manage Roles')
+                  </a>
+                </div>
               </td>
             </tr>
           @empty

@@ -17,5 +17,12 @@ return [
     'Choose roles then save.' => 'Choose roles then save.',
     'Save' => 'Save',
     'Cancel' => 'Cancel',
+    'Add User' => 'Add User',
+    'Create User' => 'Create User',
+    'Edit User' => 'Edit User',
+    'Password' => 'Password',
+    'Confirm Password' => 'Confirm Password',
+    'User created successfully' => 'User created successfully',
+    'User updated successfully' => 'User updated successfully',
+    'Leave password blank to keep current' => 'Leave blank to keep current password',
 ];
-

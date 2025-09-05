@@ -32,9 +32,15 @@ Route::middleware('auth')->group(function () {
 
     // ✅ إدارة أدوار المستخدمين (محمية بدور admin)
     Route::middleware(['role:admin'])->group(function () {
-        Route::get('/users',               [UserRoleController::class, 'index'])->name('users.index');
-        Route::get('/users/{user}/roles',  [UserRoleController::class, 'edit'])->name('users.roles.edit');
-        Route::put('/users/{user}/roles',  [UserRoleController::class, 'update'])->name('users.roles.update');
+        Route::prefix('users')->group(function () {
+            Route::get('/users',               [UserRoleController::class, 'index'])->name('users.index');
+            Route::get('/users/create',        [UserRoleController::class, 'create'])->name('users.create');
+            Route::post('/users',              [UserRoleController::class, 'store'])->name('users.store');
+            Route::get('/users/{user}/edit',   [UserRoleController::class, 'editUser'])->name('users.edit');
+            Route::put('/users/{user}',        [UserRoleController::class, 'updateUser'])->name('users.update');
+            Route::get('/users/{user}/roles',  [UserRoleController::class, 'edit'])->name('users.roles.edit');
+            Route::put('/users/{user}/roles',  [UserRoleController::class, 'update'])->name('users.roles.update');
+        });
     });
 });
 

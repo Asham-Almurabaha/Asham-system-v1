@@ -1,0 +1,93 @@
+*** Begin Patch
+*** Update File: app/Http/Controllers/UserRoleController.php
+@@
+ namespace App\Http\Controllers;
+ 
+ use App\Models\User;
+ use Illuminate\Http\Request;
+ use Spatie\Permission\Models\Role;
++use Illuminate\Support\Facades\Hash;
++use Illuminate\Validation\Rules;
++use Illuminate\Validation\Rule as UniqueRule;
+@@
+ class UserRoleController extends Controller
+ {
+     public function index()
+     {
+         // U?U+O1O?O\u0014 U?U, O\u0015U,U.O3O?OrO_U.USU+ U.O1 O?O_U^O\u0015O?U?U.
+          = User::with('roles')->orderBy('id','asc')->paginate(15);
+         return view('users.index', compact('users'));
+     }
++
++    public function create()
++    {
++        return view('users.create');
++    }
++
++    public function store(Request )
++    {
++         = ->validate([
++            'name' => ['required', 'string', 'max:255'],
++            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
++            'password' => ['required', 'confirmed', Rules\Password::defaults()],
++        ]);
++
++         = User::create([
++            'name' => ['name'],
++            'email' => ['email'],
++            'password' => Hash::make(['password']),
++        ]);
++
++        return redirect()->route('users.index')->with('success', __('users.User created successfully'));
++    }
+@@
+     public function edit(User )
+     {
+         // U?U, O\u0015U,O?O_U^O\u0015O? O\u0015U,U.O?O\u0015O-Oc
+            = Role::orderBy('name')->pluck('name', 'name'); // ['admin'=>'admin', ...]
+          = ->roles->pluck('name')->toArray();
+ 
+         return view('users.edit-roles', compact('user','roles','current'));
+     }
+@@
+     public function update(Request , User )
+     {
+          = ->validate([
+             'roles'   => ['array'],
+             'roles.*' => ['string','exists:roles,name'],
+         ]);
+ 
+         // O\u0015O3O?O"O_O\u0015U, O\u0015U,O?O_U^O\u0015O? O\u0015U,O-O\u0015U,USOc O"O\u0015U,O?O_USO_Oc
+         ->syncRoles(['roles'] ?? []);
+ 
+         return redirect()
+             ->route('users.index')
+             ->with('success', 'O?U. O?O-O_USO? O?O_U^O\u0015O? O\u0015U,U.O3O?OrO_U. O"U+O?O\u0015O-.');
+     }
++
++    public function editUser(User )
++    {
++        return view('users.edit', compact('user'));
++    }
++
++    public function updateUser(Request , User )
++    {
++         = ->validate([
++            'name' => ['required', 'string', 'max:255'],
++            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', UniqueRule::unique(User::class)->ignore(->id)],
++            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
++        ]);
++
++        ->name = ['name'];
++        ->email = ['email'];
++
++        if (!empty(['password'])) {
++            ->password = Hash::make(['password']);
++        }
++
++        ->save();
++
++        return redirect()->route('users.index')->with('success', __('users.User updated successfully'));
++    }
+ }
+*** End Patch
