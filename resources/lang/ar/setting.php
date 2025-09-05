@@ -49,5 +49,9 @@ return [
     'Default preview for icon size' => 'معاينة افتراضية لحجم الأيقونة',
     'No icon uploaded' => 'لا توجد أيقونة مرفوعة',
     'Inline Preview' => 'معاينة مدمجة',
+    'Dashboard' => 'لوحة التحكم',
+    'Settings' => 'الإعدادات',
+    'General Settings' => 'إعدادات عامة',
+    'General Setting' => 'إعداد عام',
 ];
 

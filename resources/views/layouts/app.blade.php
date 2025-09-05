@@ -22,9 +22,9 @@
               <div class="d-flex justify-content-between align-items-center w-100 py-3">
                 <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto text-decoration-none">
                   @if (!empty($setting) && !empty($setting->logo))
-                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ __('auth.ui.logo') }}" style="height: 40px;">
+                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ __('app.logo') }}" style="height: 40px;">
                   @else
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('auth.ui.logo') }}" style="height: 40px;">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
                   @endif
                   @php
                     $isAr = app()->getLocale() === 'ar';
@@ -38,15 +38,15 @@
 
                 {{-- زر تبديل اللغة --}}
                 <div class="ms-2">
-                  <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('auth.ui.switch_language') }}">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('app.switch_language') }}">
                     <a href="{{ route('lang.switch', 'ar') }}"
                        class="btn btn-outline-primary {{ $isAr ? 'active disabled' : '' }}"
                        aria-disabled="{{ $isAr ? 'true' : 'false' }}"
-                       title="{{ __('auth.ui.arabic') }}">AR</a>
+                       title="{{ __('app.arabic') }}">AR</a>
                     <a href="{{ route('lang.switch', 'en') }}"
                        class="btn btn-outline-primary {{ !$isAr ? 'active disabled' : '' }}"
                        aria-disabled="{{ !$isAr ? 'true' : 'false' }}"
-                       title="{{ __('auth.ui.english') }}">EN</a>
+                       title="{{ __('app.english') }}">EN</a>
                   </div>
                 </div>
               </div>
@@ -60,13 +60,13 @@
                     @hasSection('auth_title')
                       <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('auth_title')</h5>
                     @else
-                      <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('title', __('auth.ui.welcome'))</h5>
+                      <h5 class="card-title text-center pb-0 fs-4" id="auth-title">@yield('title', __('app.welcome'))</h5>
                     @endif
 
                     @hasSection('auth_subtitle')
                       <p class="text-center small mb-0" id="auth-subtitle">@yield('auth_subtitle')</p>
                     @else
-                      <p class="text-center small mb-0" id="auth-subtitle">{{ __('auth.ui.enter_credentials') }}</p>
+                      <p class="text-center small mb-0" id="auth-subtitle">{{ __('app.enter_credentials') }}</p>
                     @endif
                   </div>
 
@@ -74,7 +74,7 @@
                   @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert" aria-live="polite">
                       {{ session('success') }}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('app.close') }}"></button>
                     </div>
                   @endif
 
@@ -82,7 +82,7 @@
                   @if (session('status'))
                     <div class="alert alert-info alert-dismissible fade show" role="alert" aria-live="polite">
                       {{ session('status') }}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('app.close') }}"></button>
                     </div>
                   @endif
 
@@ -94,7 +94,7 @@
                           <li>{{ $error }}</li>
                         @endforeach
                       </ul>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('auth.ui.close') }}"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('app.close') }}"></button>
                     </div>
                   @endif
 
@@ -117,7 +117,7 @@
   </main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short" aria-label="{{ __('auth.ui.back_to_top') }}"></i>
+    <i class="bi bi-arrow-up-short" aria-label="{{ __('app.back_to_top') }}"></i>
   </a>
 
   @include('layouts.script')

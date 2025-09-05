@@ -49,5 +49,9 @@ return [
     'Default preview for icon size' => 'Default preview for icon size',
     'No icon uploaded' => 'No icon uploaded',
     'Inline Preview' => 'Inline Preview',
+    'Dashboard' => 'Dashboard',
+    'Settings' => 'Settings',
+    'General Settings' => 'General Settings',
+    'General Setting' => 'General Setting',
 ];
 

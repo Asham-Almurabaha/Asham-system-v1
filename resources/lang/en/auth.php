@@ -31,23 +31,4 @@ return [
         'password_min'       => 'Password must be at least 8 characters.',
         'password_mismatch'  => 'Passwords do not match.',
     ],
-
-    'ui' => [
-        'toggle_password'  => 'Show/Hide password',
-        'switch_language'  => 'Switch language',
-        'arabic'           => 'Arabic',
-        'english'          => 'English',
-        'home'             => 'Home',
-        'toggle_sidebar'   => 'Toggle sidebar',
-        'search'           => 'Search',
-        'user_menu'        => 'User menu',
-        'web_user'         => 'Web User',
-        'profile'          => 'Profile',
-        'welcome'          => 'Welcome',
-        'enter_credentials'=> 'Please enter your credentials to continue',
-        'close'            => 'Close',
-        'logo'             => 'Logo',
-        'back_to_top'      => 'Back to top',
-        'tooltip_failed'   => 'Tooltip initialization failed:',
-    ],
 ];

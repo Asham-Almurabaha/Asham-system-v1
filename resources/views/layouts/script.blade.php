@@ -34,7 +34,7 @@
         try {
           new bootstrap.Tooltip(el, { container: 'body' });
         } catch (e) {
-          console.warn(@json(__('auth.ui.tooltip_failed')), e);
+          console.warn(@json(__('app.tooltip_failed')), e);
         }
       });
 
