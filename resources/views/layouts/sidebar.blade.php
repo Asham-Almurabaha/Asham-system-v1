@@ -81,7 +81,7 @@
     <ul id="settings-nav" class="nav-content collapse {{ $open($settingsOpen) }}" data-bs-parent="#sidebar-nav">
       <li class="nav-heading">@lang('sidebar.General Settings')</li>
       <li>
-        <a class="{{ $active($isRoute('settings.index')) }}" href="{{ route('settings.index') }}">
+        <a class="{{ $active($isRoute('settings.*')) }}" href="{{ route('settings.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.General Setting')</span>
         </a>
       </li>

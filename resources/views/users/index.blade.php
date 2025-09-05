@@ -5,9 +5,13 @@
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
-  @if (session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-  @endif
+  {{-- Breadcrumbs --}}
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('setting.Dashboard')</a></li>
+      <li class="breadcrumb-item active" aria-current="page">@lang('users.Users')</li>
+    </ol>
+  </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div>
@@ -45,7 +49,6 @@
               <td class="text-end">
                 <div class="d-inline-flex gap-1">
                   <x-btn href="{{ route('users.edit', $u) }}" size="sm" variant="outline-secondary" icon="bi bi-person-gear">@lang('users.Edit User')</x-btn>
-                  <x-btn href="{{ route('users.roles.edit', $u) }}" size="sm" variant="outline-primary" icon="bi bi-shield-check">@lang('users.Manage Roles')</x-btn>
                 </div>
               </td>
             </tr>

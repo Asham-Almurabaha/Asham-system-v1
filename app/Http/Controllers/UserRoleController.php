@@ -11,6 +11,22 @@ use Illuminate\Validation\Rule as UniqueRule;
 
 class UserRoleController extends Controller
 {
+    public function list(Request $request)
+    {
+        $search = trim((string) $request->query('q', ''));
+        $users = User::with('roles')
+            ->when($search !== '', function ($q) use ($search) {
+                $q->where(function ($qq) use ($search) {
+                    $qq->where('name', 'like', "%$search%")
+                       ->orWhere('email', 'like', "%$search%");
+                });
+            })
+            ->orderBy('id','asc')
+            ->paginate(15)
+            ->appends(['q' => $search]);
+
+        return view('users.index', compact('users','search'));
+    }
     public function index()
     {
         // هنعرض كل المستخدمين مع أدوارهم
