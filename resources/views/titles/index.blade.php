@@ -4,7 +4,6 @@
 <div class="container py-3">
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('setting.Dashboard')</a></li>
       <li class="breadcrumb-item active" aria-current="page">@lang('titles.Job Titles')</li>
     </ol>
   </nav>

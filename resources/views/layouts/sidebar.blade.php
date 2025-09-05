@@ -14,7 +14,8 @@
       || $isRoute('products.*') || $isRoute('product_entries.*')
       || $isRoute('bank_cash_accounts.*') || $isRoute('transaction_types.*') || $isRoute('transaction_statuses.*')
       || $isRoute('categories.*')
-      || $isRoute('users.*');
+      || $isRoute('users.*')
+      || $isRoute('activity-logs.index');
 @endphp
 
 <ul class="sidebar-nav" id="sidebar-nav">
@@ -89,6 +90,11 @@
       <li>
         <a class="{{ $active($isRoute('users.*')) }}" href="{{ route('users.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Assign Roles to Users')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('activity-logs.index')) }}" href="{{ route('activity-logs.index') }}">
+          <i class="bi bi-circle"></i><span>{{ __('Activity Logs') }}</span>
         </a>
       </li>
       <li class="nav-heading">@lang('sidebar.Basic Data')</li>

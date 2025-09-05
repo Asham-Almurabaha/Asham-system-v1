@@ -3,27 +3,27 @@
 
 @section('content')
 <div class="pagetitle">
-  <h1>{{ __('Activity Logs') }}</h1>
+  <h1>{{ __('سجل النشاط') }}</h1>
+  <p class="text-muted mb-0">{{ __('عرض أوضح: التاريخ، المستخدم، والتغييرات من → إلى') }}</p>
+  <hr>
 </div>
 
 <section class="section">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{ __('Recent Activity') }}</h5>
+      <h5 class="card-title">{{ __('أحدث الأنشطة') }}</h5>
 
       <div class="table-responsive">
         <table class="table table-striped align-middle">
           <thead>
             <tr>
               <th>#</th>
-              <th>{{ __('Time') }}</th>
-              <th>{{ __('User') }}</th>
-              <th>{{ __('Event') }}</th>
-              <th>{{ __('Subject') }}</th>
-              <th>{{ __('Description') }}</th>
-              <th>{{ __('Method') }}</th>
-              <th>{{ __('Route/URL') }}</th>
-              <th>{{ __('IP') }}</th>
+              <th>{{ __('التاريخ') }}</th>
+              <th>{{ __('المستخدم') }}</th>
+              <th>{{ __('الحدث') }}</th>
+              <th>{{ __('الموضوع') }}</th>
+              <th style="width:40%">{{ __('التغييرات (من → إلى)') }}</th>
+              <th class="text-end">{{ __('التحكم') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -38,26 +38,34 @@
                     <small>{{ class_basename($log->subject_type) }}@if($log->subject_id)#{{ $log->subject_id }}@endif</small>
                   @endif
                 </td>
-                <td>{{ $log->description }}</td>
-                <td>{{ $log->method }}</td>
                 <td>
-                  <small>
-                    @if($log->route)
-                      {{ $log->route }}
-                    @elseif($log->url)
-                      {{ Str::limit($log->url, 60) }}
-                    @endif
-                  </small>
+                  @php($props = $log->properties ?? [])
+                  @if($log->event === 'updated' && isset($props['changes']))
+                    <ul class="mb-0 small">
+                      @foreach($props['changes'] as $k => $to)
+                        @php($from = $props['original'][$k] ?? null)
+                        <li><code>{{ $k }}</code>: <span class="text-danger">{{ Str::limit((string)($from===null?'∅':$from), 20) }}</span> → <span class="text-success">{{ Str::limit((string)($to===null?'∅':$to), 20) }}</span></li>
+                      @endforeach
+                    </ul>
+                  @elseif($log->event === 'created' && isset($props['attributes']))
+                    <small class="text-muted">{{ __('سجل إنشاء') }}</small>
+                  @elseif($log->event === 'deleted')
+                    <small class="text-muted">{{ __('سجل حذف') }}</small>
+                  @else
+                    <small class="text-muted">{{ $log->description }}</small>
+                  @endif
                 </td>
-                <td><small>{{ $log->ip }}</small></td>
+                <td class="text-end">
+                  <a class="btn btn-sm btn-outline-primary" href="{{ route('activity-logs.show', $log) }}">{{ __('عرض') }}</a>
+                  @if($log->event === 'updated')
+                    <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('هل أنت متأكد من إعادة التعديلات؟') }}')">
+                      @csrf
+                      <button type="submit" class="btn btn-sm btn-outline-danger">{{ __('إرجاع') }}</button>
+                    </form>
+                  @endif
+                </td>
               </tr>
-              @if($log->properties)
-                <tr>
-                  <td colspan="9">
-                    <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word; max-height: 240px; overflow:auto;">{{ json_encode($log->properties, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
-                  </td>
-                </tr>
-              @endif
+              
             @empty
               <tr>
                 <td colspan="9" class="text-center text-muted">{{ __('No activity yet') }}</td>

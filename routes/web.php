@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
         // Activity Logs
         Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
+        Route::get('/activity-logs/{log}', [ActivityLogController::class, 'show'])->name('activity-logs.show');
+        Route::post('/activity-logs/{log}/revert', [ActivityLogController::class, 'revert'])->name('activity-logs.revert');
 
     });
 
