@@ -3,17 +3,18 @@
 @section('title', __('users.Users'))
 
 @section('content')
-<div class="container-xxl py-4" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
   @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
   @endif
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <h1 class="h4 mb-0">@lang('users.Users')</h1>
-    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">
-      @lang('users.Add User')
-    </a>
+    <div>
+      <h4 class="mb-0">@lang('users.Users')</h4>
+      <small class="text-muted">@lang('users.Manage users and roles')</small>
+    </div>
+    <x-btn href="{{ route('users.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('users.Add User')</x-btn>
   </div>
 
   <div class="card border-0 shadow-sm">
@@ -42,13 +43,9 @@
                 @endforelse
               </td>
               <td class="text-end">
-                <div class="btn-group" role="group">
-                  <a href="{{ route('users.edit', $u) }}" class="btn btn-sm btn-outline-secondary">
-                    @lang('users.Edit User')
-                  </a>
-                  <a href="{{ route('users.roles.edit', $u) }}" class="btn btn-sm btn-outline-primary">
-                    @lang('users.Manage Roles')
-                  </a>
+                <div class="d-inline-flex gap-1">
+                  <x-btn href="{{ route('users.edit', $u) }}" size="sm" variant="outline-secondary" icon="bi bi-person-gear">@lang('users.Edit User')</x-btn>
+                  <x-btn href="{{ route('users.roles.edit', $u) }}" size="sm" variant="outline-primary" icon="bi bi-shield-check">@lang('users.Manage Roles')</x-btn>
                 </div>
               </td>
             </tr>

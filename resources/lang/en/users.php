@@ -25,4 +25,5 @@ return [
     'User created successfully' => 'User created successfully',
     'User updated successfully' => 'User updated successfully',
     'Leave password blank to keep current' => 'Leave blank to keep current password',
+    'Manage users and roles' => 'Manage users and roles',
 ];

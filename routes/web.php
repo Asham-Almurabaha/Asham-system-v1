@@ -32,14 +32,14 @@ Route::middleware('auth')->group(function () {
 
     // ✅ إدارة أدوار المستخدمين (محمية بدور admin)
     Route::middleware(['role:admin'])->group(function () {
-        Route::prefix('users')->group(function () {
-            Route::get('/users',               [UserRoleController::class, 'index'])->name('users.index');
-            Route::get('/users/create',        [UserRoleController::class, 'create'])->name('users.create');
-            Route::post('/users',              [UserRoleController::class, 'store'])->name('users.store');
-            Route::get('/users/{user}/edit',   [UserRoleController::class, 'editUser'])->name('users.edit');
-            Route::put('/users/{user}',        [UserRoleController::class, 'updateUser'])->name('users.update');
-            Route::get('/users/{user}/roles',  [UserRoleController::class, 'edit'])->name('users.roles.edit');
-            Route::put('/users/{user}/roles',  [UserRoleController::class, 'update'])->name('users.roles.update');
+        Route::prefix('users')->name('users.')->group(function () {
+            Route::get('/',               [UserRoleController::class, 'index'])->name('index');
+            Route::get('/create',        [UserRoleController::class, 'create'])->name('create');
+            Route::post('/',              [UserRoleController::class, 'store'])->name('store');
+            Route::get('/{user}/edit',   [UserRoleController::class, 'editUser'])->name('edit');
+            Route::put('/{user}',        [UserRoleController::class, 'updateUser'])->name('update');
+            Route::get('/{user}/roles',  [UserRoleController::class, 'edit'])->name('roles.edit');
+            Route::put('/{user}/roles',  [UserRoleController::class, 'update'])->name('roles.update');
         });
     });
 });
