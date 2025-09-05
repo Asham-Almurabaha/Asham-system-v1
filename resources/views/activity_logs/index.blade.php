@@ -58,8 +58,8 @@
                 </td>
                 <td class="text-end">
                   <a class="btn btn-sm btn-outline-primary" href="{{ route('activity-logs.show', $log) }}">{{ __('activitylogs.View') }}</a>
-                  @if($log->operation_type === 'updated')
-                    <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('activitylogs.Are you sure you want to revert changes?') }}')">
+                  @if(in_array($log->operation_type, ['updated','created','deleted']))
+                    <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('activitylogs.Are you sure to revert this operation?') }}')">
                       @csrf
                       <button type="submit" class="btn btn-sm btn-outline-danger">{{ __('activitylogs.Revert') }}</button>
                     </form>

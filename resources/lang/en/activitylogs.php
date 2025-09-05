@@ -25,6 +25,7 @@ return [
     'From' => 'From',
     'To' => 'To',
     'Are you sure to revert these changes?' => 'Are you sure to revert these changes?',
+    'Are you sure to revert this operation?' => 'Are you sure to revert this operation?',
     'Revert changes to previous' => 'Revert changes to previous',
     'Attributes at creation' => 'Attributes at creation',
     'Record deleted' => 'Record deleted',
@@ -33,4 +34,5 @@ return [
     'Method' => 'Method',
     'Path' => 'Path',
     'Status Code' => 'Status Code',
+    'Back' => 'Back',
 ];

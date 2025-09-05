@@ -2,12 +2,20 @@
 @php use Illuminate\Support\Str; @endphp
 
 @section('content')
-<div class="pagetitle">
-  <h1>{{ __('activitylogs.Log Details') }} #{{ $log->id }}</h1>
-  <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ route('activity-logs.index') }}">{{ __('activitylogs.Activity Log') }}</a></li>
-    <li class="breadcrumb-item active">#{{ $log->id }}</li>
-  </ul>
+<div class="pagetitle d-flex justify-content-between align-items-center">
+  <div>
+    <h1>{{ __('activitylogs.Log Details') }} #{{ $log->id }}</h1>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('activity-logs.index') }}">{{ __('activitylogs.Activity Log') }}</a></li>
+      <li class="breadcrumb-item active">#{{ $log->id }}</li>
+    </ul>
+  </div>
+  @if(in_array($log->operation_type, ['updated', 'created', 'deleted']))
+    <form method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('activitylogs.Are you sure to revert this operation?') }}')">
+      @csrf
+      <button type="submit" class="btn btn-danger">{{ __('activitylogs.Revert') }}</button>
+    </form>
+  @endif
 </div>
 
 <section class="section">
@@ -65,10 +73,6 @@
                 </tbody>
               </table>
             </div>
-            <form method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('activitylogs.Are you sure to revert these changes?') }}')">
-              @csrf
-              <button type="submit" class="btn btn-outline-danger">{{ __('activitylogs.Revert changes to previous') }}</button>
-            </form>
           @elseif($log->operation_type === 'created' && $log->value_after)
             <h6 class="mt-4">{{ __('activitylogs.Attributes at creation') }}</h6>
             <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($log->value_after, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>

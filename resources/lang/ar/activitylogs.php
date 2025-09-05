@@ -25,6 +25,7 @@ return [
     'From' => 'من',
     'To' => 'إلى',
     'Are you sure to revert these changes?' => 'هل أنت متأكد من إعادة هذه التغييرات؟',
+    'Are you sure to revert this operation?' => 'هل أنت متأكد من عكس هذه العملية؟',
     'Revert changes to previous' => 'إرجاع التعديلات إلى السابق',
     'Attributes at creation' => 'الخصائص عند الإنشاء',
     'Record deleted' => 'تم حذف السجل',
@@ -33,4 +34,5 @@ return [
     'Method' => 'الطريقة',
     'Path' => 'المسار',
     'Status Code' => 'الكود',
+    'Back' => 'رجوع',
 ];
