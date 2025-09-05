@@ -1,7 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
+
+// لغة الواجهة
+Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
+Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
+
 
 Route::get('/', function () {
     return view('welcome');
