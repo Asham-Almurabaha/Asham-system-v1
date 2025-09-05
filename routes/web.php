@@ -9,13 +9,12 @@ use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Setting\SettingController;
 
-// لغة الواجهة
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
-// الصفحة الرئيسية (لو مفيش يوزر يوجّه للتسجيل، غير كده تسجيل الدخول)
 Route::get('/', function () {
-    return User::count() == 0 ? redirect()->route('register') : redirect()->route('login'); });
+    return User::count() == 0 ? redirect()->route('register') : redirect()->route('login'); 
+});
 
 Route::middleware('auth')->group(function () {
 
@@ -24,22 +23,21 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
     
-
     Route::middleware(['role:admin'])->group(function () {
 
         Route::prefix('settings')->group(function () {
             Route::resource('settings', SettingController::class);
         });
 
-        Route::prefix('users')->group(function () {
-            Route::resource('users', UserRoleController::class);
-        });
+        Route::resource('users', UserRoleController::class);
 
     });
+
+    Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';

@@ -79,6 +79,13 @@
           </li>
           <li><hr class="dropdown-divider"></li>
           <li>
+            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
+              <i class="bi bi-person me-2"></i>
+              <span>@lang('app.profile')</span>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
               <i class="bi bi-box-arrow-right me-2"></i>
