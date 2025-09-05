@@ -10,12 +10,15 @@ return new class extends Migration {
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
             $table->string('event')->index();
+            $table->string('operation_type')->nullable()->index();
             $table->string('description')->nullable();
             $table->string('subject_type')->nullable()->index();
             $table->string('subject_id')->nullable()->index();
             $table->unsignedBigInteger('causer_id')->nullable()->index();
             $table->string('causer_type')->nullable();
             $table->json('properties')->nullable();
+            $table->json('value_before')->nullable();
+            $table->json('value_after')->nullable();
             $table->string('ip', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->string('method', 10)->nullable();

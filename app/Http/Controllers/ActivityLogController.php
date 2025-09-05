@@ -27,7 +27,7 @@ class ActivityLogController extends Controller
 
     public function revert(Request $request, ActivityLog $log)
     {
-        if ($log->event !== 'updated') {
+        if ($log->operation_type !== 'updated') {
             return back()->withErrors(__('Only update events can be reverted.'));
         }
 
@@ -44,15 +44,16 @@ class ActivityLogController extends Controller
             return back()->withErrors(__('The original record no longer exists.'));
         }
 
-        $props   = $log->properties ?? [];
-        $changes = $props['changes'] ?? [];
-        $original = $props['original'] ?? [];
-
-        if (empty($changes) || empty($original)) {
+        $changes = $log->changes;
+        if (empty($changes)) {
             return back()->withErrors(__('No change details to revert.'));
         }
 
-        $revertData = array_intersect_key($original, $changes);
+        $before = $log->value_before ?? [];
+        $revertData = [];
+        foreach ($changes as $k => $diff) {
+            $revertData[$k] = $before[$k] ?? null;
+        }
 
         $model->forceFill($revertData);
         $model->save();
@@ -60,7 +61,7 @@ class ActivityLogController extends Controller
         ActivityLogger::log('reverted', $model, 'Reverted changes from activity log #'.$log->id, [
             'reverted_keys' => array_keys($revertData),
             'activity_log_id' => $log->id,
-        ]);
+        ], operationType: 'reverted', before: $log->value_after, after: $revertData);
 
         return redirect()->route('activity-logs.show', $log)->with('success', __('Changes reverted successfully.'));
     }

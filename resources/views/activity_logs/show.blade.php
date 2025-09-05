@@ -23,8 +23,8 @@
             <dt class="col-sm-3">{{ __('المستخدم') }}</dt>
             <dd class="col-sm-9">{{ optional($log->causer)->name ?? 'system' }}</dd>
 
-            <dt class="col-sm-3">{{ __('الحدث') }}</dt>
-            <dd class="col-sm-9"><span class="badge bg-secondary">{{ $log->event }}</span></dd>
+            <dt class="col-sm-3">{{ __('العملية') }}</dt>
+            <dd class="col-sm-9"><span class="badge bg-secondary">{{ $log->operation_type }}</span></dd>
 
             <dt class="col-sm-3">{{ __('الموضوع') }}</dt>
             <dd class="col-sm-9">
@@ -39,9 +39,9 @@
             @endif
           </dl>
 
-          @php($props = $log->properties ?? [])
+          @php($changes = $log->changes)
 
-          @if($log->event === 'updated' && isset($props['changes']))
+          @if($log->operation_type === 'updated' && $changes)
             <h6 class="mt-4">{{ __('التغييرات') }}</h6>
             <div class="table-responsive">
               <table class="table table-sm align-middle">
@@ -53,8 +53,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($props['changes'] as $k => $to)
-                    @php($from = $props['original'][$k] ?? null)
+                  @foreach($changes as $k => $diff)
+                    @php($from = $diff['from'])
+                    @php($to = $diff['to'])
                     <tr>
                       <td><code>{{ $k }}</code></td>
                       <td class="text-danger">{{ is_null($from) ? '∅' : (is_scalar($from) ? (string)$from : json_encode($from, JSON_UNESCAPED_UNICODE)) }}</td>
@@ -68,16 +69,16 @@
               @csrf
               <button type="submit" class="btn btn-outline-danger">{{ __('إرجاع التعديلات إلى السابق') }}</button>
             </form>
-          @elseif($log->event === 'created' && isset($props['attributes']))
+          @elseif($log->operation_type === 'created' && $log->value_after)
             <h6 class="mt-4">{{ __('الخصائص عند الإنشاء') }}</h6>
-            <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($props['attributes'], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
-          @elseif($log->event === 'deleted')
+            <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($log->value_after, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
+          @elseif($log->operation_type === 'deleted' && $log->value_before)
             <h6 class="mt-4">{{ __('تم حذف السجل') }}</h6>
-            <p class="text-muted">{{ __('لا توجد بيانات للتراجع ما لم يكن الحذف ناعماً.') }}</p>
+            <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($log->value_before, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
           @else
-            @if($props)
+            @if($log->properties)
               <h6 class="mt-4">{{ __('تفاصيل') }}</h6>
-              <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($props, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
+              <pre class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;">{{ json_encode($log->properties, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>
             @endif
           @endif
         </div>

@@ -16,6 +16,9 @@ class ActivityLogger
         ?string $description = null,
         array $properties = [],
         ?int $status = null,
+        ?string $operationType = null,
+        ?array $before = null,
+        ?array $after = null,
     ): void {
         // Avoid recursion when logging ActivityLog itself
         if ($subject instanceof ActivityLog) {
@@ -56,15 +59,24 @@ class ActivityLogger
         if (!empty($properties)) {
             $properties = self::maskSensitive($properties, $filterKeys);
         }
+        if (!empty($before)) {
+            $before = self::maskSensitive($before, $filterKeys);
+        }
+        if (!empty($after)) {
+            $after = self::maskSensitive($after, $filterKeys);
+        }
 
         ActivityLog::query()->create([
             'event'        => $event,
+            'operation_type' => $operationType ?? $event,
             'description'  => $description,
             'subject_type' => $subjectType,
             'subject_id'   => $subjectId,
             'causer_id'    => $causer?->getAuthIdentifier(),
             'causer_type'  => $causer ? get_class($causer) : null,
             'properties'   => $properties ?: null,
+            'value_before' => $before ?: null,
+            'value_after'  => $after ?: null,
             'ip'           => $ip,
             'user_agent'   => $ua,
             'method'       => $method,

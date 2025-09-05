@@ -33,6 +33,7 @@ class LogActivity
                     'route' => $routeName,
                 ],
                 status: method_exists($response, 'getStatusCode') ? $response->getStatusCode() : null,
+                operationType: strtolower($method),
             );
         }
 

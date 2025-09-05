@@ -20,7 +20,7 @@
               <th>#</th>
               <th>{{ __('التاريخ') }}</th>
               <th>{{ __('المستخدم') }}</th>
-              <th>{{ __('الحدث') }}</th>
+              <th>{{ __('العملية') }}</th>
               <th>{{ __('الموضوع') }}</th>
               <th style="width:40%">{{ __('التغييرات (من → إلى)') }}</th>
               <th class="text-end">{{ __('التحكم') }}</th>
@@ -32,24 +32,25 @@
                 <td>{{ $log->id }}</td>
                 <td><small>{{ $log->created_at }}</small></td>
                 <td>{{ optional($log->causer)->name ?? 'system' }}</td>
-                <td><span class="badge bg-secondary">{{ $log->event }}</span></td>
+                <td><span class="badge bg-secondary">{{ $log->operation_type }}</span></td>
                 <td>
                   @if($log->subject_type)
                     <small>{{ class_basename($log->subject_type) }}@if($log->subject_id)#{{ $log->subject_id }}@endif</small>
                   @endif
                 </td>
                 <td>
-                  @php($props = $log->properties ?? [])
-                  @if($log->event === 'updated' && isset($props['changes']))
+                  @php($changes = $log->changes)
+                  @if($log->operation_type === 'updated' && $changes)
                     <ul class="mb-0 small">
-                      @foreach($props['changes'] as $k => $to)
-                        @php($from = $props['original'][$k] ?? null)
+                      @foreach($changes as $k => $diff)
+                        @php($from = $diff['from'])
+                        @php($to = $diff['to'])
                         <li><code>{{ $k }}</code>: <span class="text-danger">{{ Str::limit((string)($from===null?'∅':$from), 20) }}</span> → <span class="text-success">{{ Str::limit((string)($to===null?'∅':$to), 20) }}</span></li>
                       @endforeach
                     </ul>
-                  @elseif($log->event === 'created' && isset($props['attributes']))
+                  @elseif($log->operation_type === 'created' && $log->value_after)
                     <small class="text-muted">{{ __('سجل إنشاء') }}</small>
-                  @elseif($log->event === 'deleted')
+                  @elseif($log->operation_type === 'deleted')
                     <small class="text-muted">{{ __('سجل حذف') }}</small>
                   @else
                     <small class="text-muted">{{ $log->description }}</small>
@@ -57,7 +58,7 @@
                 </td>
                 <td class="text-end">
                   <a class="btn btn-sm btn-outline-primary" href="{{ route('activity-logs.show', $log) }}">{{ __('عرض') }}</a>
-                  @if($log->event === 'updated')
+                  @if($log->operation_type === 'updated')
                     <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('هل أنت متأكد من إعادة التعديلات؟') }}')">
                       @csrf
                       <button type="submit" class="btn btn-sm btn-outline-danger">{{ __('إرجاع') }}</button>
