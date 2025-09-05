@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'Dashboard' => 'Dashboard',
+    'Customers' => 'Customers',
+    'Guarantors' => 'Guarantors',
+    'Investors' => 'Investors',
+    'Contracts' => 'Contracts',
+    'Ledger' => 'Ledger',
+    'Settings' => 'Settings',
+    'General Settings' => 'General Settings',
+    'General Setting' => 'General Setting',
+    'Users and Permissions' => 'Users and Permissions',
+    'Assign Roles to Users' => 'Assign Roles to Users',
+];
+
