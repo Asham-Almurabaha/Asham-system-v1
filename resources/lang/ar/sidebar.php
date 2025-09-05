@@ -12,5 +12,5 @@ return [
     'General Setting' => 'إعداد عام',
     'Users and Permissions' => 'المستخدمون والصلاحيات',
     'Assign Roles to Users' => 'تعيين أدوار للمستخدمين',
+    
 ];
-
