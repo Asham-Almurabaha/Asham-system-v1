@@ -9,8 +9,7 @@
 ])
 
 @php
-  $isOutline = str_starts_with($variant, 'outline-');
-  $variantClass = $isOutline ? 'btn-'. $variant : 'btn-' . $variant;
+  $variantClass = 'btn-' . $variant;
   $sizeClass = $size === 'sm' ? 'btn-sm' : ($size === 'lg' ? 'btn-lg' : '');
   $btnClasses = trim("btn {$variantClass} {$sizeClass}");
   $iconClasses = $icon;
@@ -49,4 +48,3 @@
     {{ $btnLabel }}
   </button>
 @endif
-
