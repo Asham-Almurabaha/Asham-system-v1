@@ -94,7 +94,7 @@
       </li>
       <li>
         <a class="{{ $active($isRoute('activity-logs.index')) }}" href="{{ route('activity-logs.index') }}">
-          <i class="bi bi-circle"></i><span>{{ __('Activity Logs') }}</span>
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Activity Logs')</span>
         </a>
       </li>
       <li class="nav-heading">@lang('sidebar.Basic Data')</li>

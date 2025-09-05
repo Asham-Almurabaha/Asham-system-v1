@@ -12,7 +12,8 @@ return [
     'General Setting' => 'General Setting',
     'Users and Permissions' => 'Users and Permissions',
     'Assign Roles to Users' => 'Assign Roles to Users',
-    
+    'Activity Logs' => 'Activity Logs',
+
     'Basic Data' => 'Basic Data',
     'Nationalities' => 'Nationalities',
     'Job Titles' => 'Job Titles',

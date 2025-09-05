@@ -3,27 +3,27 @@
 
 @section('content')
 <div class="pagetitle">
-  <h1>{{ __('سجل النشاط') }}</h1>
-  <p class="text-muted mb-0">{{ __('عرض أوضح: التاريخ، المستخدم، والتغييرات من → إلى') }}</p>
+  <h1>{{ __('activitylogs.Activity Log') }}</h1>
+  <p class="text-muted mb-0">{{ __('activitylogs.Clear overview: date, user, and changes from → to') }}</p>
   <hr>
 </div>
 
 <section class="section">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{ __('أحدث الأنشطة') }}</h5>
+      <h5 class="card-title">{{ __('activitylogs.Latest Activities') }}</h5>
 
       <div class="table-responsive">
         <table class="table table-striped align-middle">
           <thead>
             <tr>
               <th>#</th>
-              <th>{{ __('التاريخ') }}</th>
-              <th>{{ __('المستخدم') }}</th>
-              <th>{{ __('العملية') }}</th>
-              <th>{{ __('الموضوع') }}</th>
-              <th style="width:40%">{{ __('التغييرات (من → إلى)') }}</th>
-              <th class="text-end">{{ __('التحكم') }}</th>
+              <th>{{ __('activitylogs.Date') }}</th>
+              <th>{{ __('activitylogs.User') }}</th>
+              <th>{{ __('activitylogs.Operation') }}</th>
+              <th>{{ __('activitylogs.Subject') }}</th>
+              <th style="width:40%">{{ __('activitylogs.Changes (from → to)') }}</th>
+              <th class="text-end">{{ __('activitylogs.Actions') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -49,19 +49,19 @@
                       @endforeach
                     </ul>
                   @elseif($log->operation_type === 'created' && $log->value_after)
-                    <small class="text-muted">{{ __('سجل إنشاء') }}</small>
+                    <small class="text-muted">{{ __('activitylogs.Creation Record') }}</small>
                   @elseif($log->operation_type === 'deleted')
-                    <small class="text-muted">{{ __('سجل حذف') }}</small>
+                    <small class="text-muted">{{ __('activitylogs.Deletion Record') }}</small>
                   @else
                     <small class="text-muted">{{ $log->description }}</small>
                   @endif
                 </td>
                 <td class="text-end">
-                  <a class="btn btn-sm btn-outline-primary" href="{{ route('activity-logs.show', $log) }}">{{ __('عرض') }}</a>
+                  <a class="btn btn-sm btn-outline-primary" href="{{ route('activity-logs.show', $log) }}">{{ __('activitylogs.View') }}</a>
                   @if($log->operation_type === 'updated')
-                    <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('هل أنت متأكد من إعادة التعديلات؟') }}')">
+                    <form class="d-inline" method="POST" action="{{ route('activity-logs.revert', $log) }}" onsubmit="return confirm('{{ __('activitylogs.Are you sure you want to revert changes?') }}')">
                       @csrf
-                      <button type="submit" class="btn btn-sm btn-outline-danger">{{ __('إرجاع') }}</button>
+                      <button type="submit" class="btn btn-sm btn-outline-danger">{{ __('activitylogs.Revert') }}</button>
                     </form>
                   @endif
                 </td>
@@ -69,7 +69,7 @@
               
             @empty
               <tr>
-                <td colspan="9" class="text-center text-muted">{{ __('No activity yet') }}</td>
+                <td colspan="9" class="text-center text-muted">{{ __('activitylogs.No activity yet') }}</td>
               </tr>
             @endforelse
           </tbody>

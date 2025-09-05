@@ -12,7 +12,8 @@ return [
     'General Setting' => 'إعداد عام',
     'Users and Permissions' => 'المستخدمون والصلاحيات',
     'Assign Roles to Users' => 'تعيين أدوار للمستخدمين',
-    
+    'Activity Logs' => 'سجل النشاط',
+
     'Basic Data' => 'البيانات الأساسية',
     'Nationalities' => 'الجنسيات',
     'Job Titles' => 'الوظائف',
