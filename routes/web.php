@@ -28,8 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('settings')->group(function () {
         Route::resource('settings', SettingController::class);
     });
-
-
     
 
     // ✅ إدارة أدوار المستخدمين (محمية بدور admin)

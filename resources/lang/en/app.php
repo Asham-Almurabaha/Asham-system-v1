@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'Login' => 'Login',
-    'Register' => 'Register',
-    'Logout' => 'Logout',
-    'Save' => 'Save',
-    'Cancel' => 'Cancel',
+    'Login'            => 'Login',
+    'Register'         => 'Register',
+    'Logout'           => 'Logout',
+    'Save'             => 'Save',
+    'Cancel'           => 'Cancel',
     'toggle_password'  => 'Show/Hide password',
     'switch_language'  => 'Switch language',
     'arabic'           => 'Arabic',
