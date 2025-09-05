@@ -15,18 +15,12 @@ Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.
 
 // الصفحة الرئيسية (لو مفيش يوزر يوجّه للتسجيل، غير كده تسجيل الدخول)
 Route::get('/', function () {
-    return User::count() == 0
-        ? redirect()->route('register')
-        : redirect()->route('login');
-});
+    return User::count() == 0 ? redirect()->route('register') : redirect()->route('login'); });
 
 Route::middleware('auth')->group(function () {
 
     Route::get('/home', function () {
-        return Setting::count() > 0
-            ? redirect()->route('dashboard')
-            : redirect()->route('settings.create');
-    })->name('home');
+        return Setting::count() > 0 ? redirect()->route('dashboard') : redirect()->route('settings.create'); })->name('home');
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
