@@ -27,6 +27,10 @@ class SettingController extends Controller
      */
     public function index()
     {
+        if (! Setting::query()->exists()) {
+            return redirect()->route('settings.create');
+        }
+
         $setting = Setting::query()->latest('id')->first();
         return view('settings.index', compact('setting'));
     }

@@ -22,9 +22,9 @@
               <div class="d-flex justify-content-between align-items-center w-100 py-3">
                 <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto text-decoration-none">
                   @if (!empty($setting) && !empty($setting->logo))
-                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo" style="height: 40px;">
+                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ __('auth.ui.logo') }}" style="height: 40px;">
                   @else
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" style="height: 40px;">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('auth.ui.logo') }}" style="height: 40px;">
                   @endif
                   @php
                     $isAr = app()->getLocale() === 'ar';
@@ -117,7 +117,7 @@
   </main>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
+    <i class="bi bi-arrow-up-short" aria-label="{{ __('auth.ui.back_to_top') }}"></i>
   </a>
 
   @include('layouts.script')

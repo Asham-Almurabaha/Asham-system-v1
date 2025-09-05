@@ -40,6 +40,8 @@ return [
         'welcome'          => 'Welcome',
         'enter_credentials'=> 'Please enter your credentials to continue',
         'close'            => 'Close',
+        'logo'             => 'Logo',
+        'back_to_top'      => 'Back to top',
+        'tooltip_failed'   => 'Tooltip initialization failed:',
     ],
 ];
-
