@@ -72,10 +72,8 @@
             </div>
 
             <div class="col-12 d-flex gap-2">
-              <button class="btn btn-outline-success">
-                <i class="bi bi-check2 me-1"></i>@lang('app.Save')
-              </button>
-              <a href="{{ route('settings.index') }}" class="btn btn-outline-secondary">@lang('app.Cancel')</a>
+              <x-btn variant="outline-success" type="submit" icon="bi bi-check2">@lang('app.Save')</x-btn>
+              <x-btn href="{{ route('settings.index') }}" variant="outline-secondary">@lang('app.Cancel')</x-btn>
             </div>
           </form>
         </div>

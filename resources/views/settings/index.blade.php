@@ -26,19 +26,7 @@
 
     <div class="d-flex gap-2">
       @if($setting)
-        <a href="{{ route('settings.show', $setting) }}" class="btn btn-outline-secondary">
-          <i class="bi bi-eye me-1"></i>@lang('setting.View')
-        </a>
-        <a href="{{ route('settings.edit', $setting) }}" class="btn btn-primary">
-          <i class="bi bi-pencil-square me-1"></i>@lang('setting.Edit')
-        </a>
-        <form action="{{ route('settings.destroy', $setting) }}" method="POST"
-              onsubmit="return confirm('@lang('setting.Delete setting and images. Are you sure?')')">
-          @csrf @method('DELETE')
-          <button class="btn btn-danger">
-            <i class="bi bi-trash me-1"></i>@lang('setting.Delete')
-          </button>
-        </form>
+        <x-btn href="{{ route('settings.show', $setting) }}" variant="outline-secondary" icon="bi bi-eye">@lang('setting.View')</x-btn>
       @else
         <a href="{{ route('settings.create') }}" class="btn btn-success">
           <i class="bi bi-plus-circle me-1"></i>@lang('setting.Create Setting')
@@ -53,7 +41,7 @@
         <div class="mb-3"><i class="bi bi-gear-wide-connected fs-1"></i></div>
         <h5 class="mb-2">@lang('setting.No saved setting yet')</h5>
         <p class="text-muted mb-4">@lang('setting.Create a setting to show the name, owner name, logo, and site icon across the system.')</p>
-        <a href="{{ route('settings.create') }}" class="btn btn-success">@lang('setting.Create Now')</a>
+        <x-btn href="{{ route('settings.create') }}" variant="success">@lang('setting.Create Now')</x-btn>
       </div>
     </div>
   @else
@@ -135,14 +123,7 @@
               </div>
             </div>
 
-            <div class="mt-3 d-flex gap-2">
-              <a href="{{ route('settings.show', $setting) }}" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-eye me-1"></i>@lang('setting.View Details')
-              </a>
-              <a href="{{ route('settings.edit', $setting) }}" class="btn btn-primary btn-sm">
-                <i class="bi bi-pencil me-1"></i>@lang('setting.Edit')
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -171,4 +152,3 @@
   @endif
 </div>
 @endsection
-

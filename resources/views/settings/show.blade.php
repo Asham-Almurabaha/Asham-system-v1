@@ -30,12 +30,8 @@
     </div>
 
     <div class="d-flex gap-2">
-      <a href="{{ route('settings.edit', $setting) }}" class="btn btn-primary">
-        <i class="bi bi-pencil-square me-1"></i>@lang('setting.Edit')
-      </a>
-      <a href="{{ route('settings.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-right-circle me-1"></i>@lang('setting.Back')
-      </a>
+      <x-btn href="{{ route('settings.edit', $setting) }}" variant="primary" icon="bi bi-pencil-square">@lang('setting.Edit')</x-btn>
+      <x-btn href="{{ route('settings.index') }}" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('setting.Back')</x-btn>
     </div>
   </div>
 
@@ -83,13 +79,13 @@
             <h6 class="text-danger mb-2"><i class="bi bi-exclamation-triangle me-1"></i>@lang('setting.Danger Zone')</h6>
             <div class="border border-danger-subtle rounded p-3">
               <p class="mb-3 text-danger small">@lang('setting.The record and associated images will be permanently deleted.')</p>
-              <form action="{{ route('settings.destroy', $setting) }}" method="POST"
-                    onsubmit="return confirm('@lang('setting.Are you sure you want to delete this setting? The operation cannot be undone.')')">
-                @csrf @method('DELETE')
-                <button class="btn btn-outline-danger">
-                  <i class="bi bi-trash me-1"></i>@lang('setting.Delete Setting')
-                </button>
-              </form>
+              <x-btn href="{{ route('settings.destroy', $setting) }}"
+                     method="DELETE"
+                     variant="outline-danger"
+                     icon="bi bi-trash"
+                     confirm="@lang('setting.Are you sure you want to delete this setting? The operation cannot be undone.')">
+                @lang('setting.Delete Setting')
+              </x-btn>
             </div>
           </div>
 
