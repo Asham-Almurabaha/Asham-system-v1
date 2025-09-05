@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\ActivityLog;
 use App\Models\Setting;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\View;
+use App\Services\ActivityLogger;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -63,6 +66,53 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('settings', $settings);
         });
+
+        // Global model activity logging (create/update/delete)
+        Model::created(function (Model $model) {
+            if ($model instanceof ActivityLog) { return; }
+            $props = self::extractModelProps($model, 'created');
+            ActivityLogger::log('created', $model, description: class_basename($model).' created', properties: $props);
+        });
+
+        Model::updated(function (Model $model) {
+            if ($model instanceof ActivityLog) { return; }
+            $props = self::extractModelProps($model, 'updated');
+            ActivityLogger::log('updated', $model, description: class_basename($model).' updated', properties: $props);
+        });
+
+        Model::deleted(function (Model $model) {
+            if ($model instanceof ActivityLog) { return; }
+            ActivityLogger::log('deleted', $model, description: class_basename($model).' deleted');
+        });
+    }
+
+    protected static function extractModelProps(Model $model, string $type): array
+    {
+        // mask hidden or sensitive attributes
+        $hidden = array_map('strtolower', $model->getHidden());
+
+        $filter = function (array $arr) use ($hidden): array {
+            $out = [];
+            foreach ($arr as $k => $v) {
+                if (in_array(strtolower((string)$k), array_merge($hidden, ['password','remember_token']), true)) {
+                    $out[$k] = '***';
+                } else {
+                    $out[$k] = $v;
+                }
+            }
+            return $out;
+        };
+
+        if ($type === 'updated') {
+            return [
+                'changes'    => $filter($model->getChanges()),
+                'attributes' => $filter($model->getAttributes()),
+                'original'   => $filter($model->getOriginal()),
+            ];
+        }
+
+        return [
+            'attributes' => $filter($model->getAttributes()),
+        ];
     }
 }
-
