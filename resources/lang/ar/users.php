@@ -26,6 +26,9 @@ return [
     'User updated successfully' => 'تم تحديث المستخدم بنجاح',
     'Leave password blank to keep current' => 'اترك كلمة المرور فارغة للإبقاء على الحالية',
     'Manage users and roles' => 'إدارة المستخدمين والأدوار',
+    'Manage users' => 'إدارة المستخدمين',
+    'View User' => 'عرض المستخدم',
+    'User deleted successfully' => 'تم حذف المستخدم بنجاح',
     'Search' => 'بحث',
     'Clear' => 'مسح',
 ];

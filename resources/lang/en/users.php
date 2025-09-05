@@ -26,6 +26,9 @@ return [
     'User updated successfully' => 'User updated successfully',
     'Leave password blank to keep current' => 'Leave blank to keep current password',
     'Manage users and roles' => 'Manage users and roles',
+    'Manage users' => 'Manage users',
+    'View User' => 'View User',
+    'User deleted successfully' => 'User deleted successfully',
     'Search' => 'Search',
     'Clear' => 'Clear',
 ];

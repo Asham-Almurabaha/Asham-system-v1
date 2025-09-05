@@ -24,28 +24,25 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // الإعدادات
-    Route::prefix('settings')->group(function () {
-        Route::resource('settings', SettingController::class);
-    });
+    Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
     
 
-    // ✅ إدارة أدوار المستخدمين (محمية بدور admin)
     Route::middleware(['role:admin'])->group(function () {
-        Route::resource('users', UserRoleController::class);
-        // Route::prefix('users')->name('users.')->group(function () {
-        //     Route::get('/',               [UserRoleController::class, 'index'])->name('index');
-        //     Route::get('/create',        [UserRoleController::class, 'create'])->name('create');
-        //     Route::post('/',              [UserRoleController::class, 'store'])->name('store');
-        //     Route::get('/{user}/edit',   [UserRoleController::class, 'editUser'])->name('edit');
-        //     Route::put('/{user}',        [UserRoleController::class, 'updateUser'])->name('update');
-        // });
+
+        Route::prefix('settings')->group(function () {
+            Route::resource('settings', SettingController::class);
+        });
+
+        Route::prefix('users')->group(function () {
+            Route::resource('users', UserRoleController::class);
+        });
+
     });
 });
 
 require __DIR__.'/auth.php';
 
-// البروفايل
-    // Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
