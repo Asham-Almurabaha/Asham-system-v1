@@ -10,7 +10,6 @@
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <h4 class="mb-0">@lang('nationalities.Nationalities')</h4>
     <x-btn href="{{ route('nationalities.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('nationalities.Create Nationality')</x-btn>
   </div>
 

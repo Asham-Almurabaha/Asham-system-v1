@@ -10,7 +10,6 @@
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <h4 class="mb-0">@lang('titles.Job Titles')</h4>
     <x-btn href="{{ route('titles.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('titles.Create Title')</x-btn>
   </div>
 

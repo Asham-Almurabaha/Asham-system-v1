@@ -13,10 +13,6 @@
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <div>
-      <h4 class="mb-0">@lang('users.Users')</h4>
-      <small class="text-muted">@lang('users.Manage users')</small>
-    </div>
     <x-btn href="{{ route('users.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('users.Add User')</x-btn>
   </div>
 
