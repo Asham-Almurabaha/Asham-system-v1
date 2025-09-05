@@ -88,6 +88,8 @@
         <button class="btn btn-outline-secondary"
                 type="button"
                 id="togglePassword"
+                data-toggle-password
+                data-target="password"
                 tabindex="-1"
                 aria-label="{{ __('auth.ui.toggle_password') }}">
           <i class="bi bi-eye"></i>
@@ -114,6 +116,8 @@
         <button class="btn btn-outline-secondary"
                 type="button"
                 id="togglePasswordConfirm"
+                data-toggle-password
+                data-target="password-confirm"
                 tabindex="-1"
                 aria-label="{{ __('auth.ui.toggle_password') }}">
           <i class="bi bi-eye"></i>
@@ -183,6 +187,37 @@
       }
     }
   });
+})();
+</script>
+@endpush
+
+@push('scripts')
+<script>
+(function () {
+  'use strict';
+
+  function init() {
+    // Ensure toggle works even if DOMContentLoaded already fired
+    function bindToggle(btnId, inputId) {
+      var btn = document.getElementById(btnId);
+      var inp = document.getElementById(inputId);
+      if (!btn || !inp) return;
+      btn.addEventListener('click', function () {
+        var isText = inp.type === 'text';
+        inp.type = isText ? 'password' : 'text';
+        this.innerHTML = isText ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+      });
+    }
+
+    bindToggle('togglePassword', 'password');
+    bindToggle('togglePasswordConfirm', 'password-confirm');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 @endpush

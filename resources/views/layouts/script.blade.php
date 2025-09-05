@@ -57,6 +57,30 @@
   })();
 </script>
 
+<script>
+  // Generic password visibility toggle using data attributes
+  (function () {
+    'use strict';
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-toggle-password]');
+      if (!btn) return;
+      var targetId = btn.getAttribute('data-target');
+      var input = targetId ? document.getElementById(targetId) : null;
+      if (!input) {
+        // Fallback: find input in the same input-group
+        var group = btn.closest('.input-group');
+        if (group) {
+          input = group.querySelector('input[type="password"], input[type="text"]');
+        }
+      }
+      if (!input) return;
+      var isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      btn.innerHTML = isText ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+    });
+  })();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>

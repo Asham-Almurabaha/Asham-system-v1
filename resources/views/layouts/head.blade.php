@@ -83,7 +83,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
 
 {{-- مناطق تخصيص إضافية للصفحات --}}
-@yield('css')
 @stack('css')
 @stack('styles')
 @stack('head')

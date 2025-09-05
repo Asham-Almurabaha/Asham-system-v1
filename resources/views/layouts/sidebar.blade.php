@@ -28,44 +28,44 @@
   </li>
 
   {{-- Customers --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('customers.*')) }} {{ $active($isRoute('customers.*')) }}"
        href="{{ route('customers.index') }}">
       <i class="bi bi-people"></i><span>@lang('sidebar.Customers')</span>
     </a>
-  </li>
+  </li> --}}
 
   {{-- Guarantors --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('guarantors.*')) }} {{ $active($isRoute('guarantors.*')) }}"
        href="{{ route('guarantors.index') }}">
       <i class="bi bi-person-bounding-box"></i><span>@lang('sidebar.Guarantors')</span>
     </a>
-  </li>
+  </li> --}}
 
   {{-- المستثمرين --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('investors.*')) }} {{ $active($isRoute('investors.*')) }}"
        href="{{ route('investors.index') }}">
       <i class="bi bi-briefcase"></i><span>@lang('sidebar.Investors')</span>
     </a>
-  </li>
+  </li> --}}
 
   {{-- العقود --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('contracts.*')) }} {{ $active($isRoute('contracts.*')) }}"
        href="{{ route('contracts.index') }}">
       <i class="bi bi-file-earmark-text"></i><span>@lang('sidebar.Contracts')</span>
     </a>
-  </li>
+  </li> --}}
 
   {{-- دفتر القيود --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('ledger.*')) }} {{ $active($isRoute('ledger.*')) }}"
        href="{{ route('ledger.index') }}">
       <i class="bi bi-journal"></i><span>@lang('sidebar.Ledger')</span>
     </a>
-  </li>
+  </li> --}}
 
   
 

@@ -49,6 +49,8 @@
         <button class="btn btn-outline-secondary"
                 type="button"
                 id="togglePassword"
+                data-toggle-password
+                data-target="password"
                 tabindex="-1"
                 aria-label="{{ __('auth.ui.toggle_password') }}">
           <i class="bi bi-eye"></i>
@@ -99,7 +101,8 @@
 <script>
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+
+  function init() {
     // Bootstrap validation on submit only
     var forms = document.querySelectorAll('.needs-validation');
     Array.prototype.slice.call(forms).forEach(function (form) {
@@ -122,7 +125,13 @@
         this.innerHTML = isText ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
       });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 @endpush
