@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Setting\SettingController;
 
 // لغة الواجهة
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
             ? redirect()->route('dashboard')
             : redirect()->route('settings.create');
     })->name('home');
+    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // الإعدادات
     Route::prefix('settings')->group(function () {

@@ -1,0 +1,23 @@
+{
+  "Enter your email & password to login": "Enter your email & password to login",
+  "Email Address": "Email Address",
+  "Please enter a valid email address.": "Please enter a valid email address.",
+  "Password": "Password",
+  "Show/Hide password": "Show/Hide password",
+  "Password is required.": "Password is required.",
+  "Remember Me": "Remember Me",
+  "Forgot Your Password?": "Forgot Your Password?",
+  "Don't have account?": "Don't have account?",
+  "Create an account": "Create an account",
+
+  "Register": "Register",
+  "Fill the fields below to create your account": "Fill the fields below to create your account",
+  "Name": "Name",
+  "Please enter your name.": "Please enter your name.",
+  "Phone Number": "Phone Number",
+  "Please enter a valid phone number.": "Please enter a valid phone number.",
+  "Password must be at least 8 characters.": "Password must be at least 8 characters.",
+  "Confirm Password": "Confirm Password",
+  "Passwords do not match.": "Passwords do not match.",
+  "Already have an account?": "Already have an account?"
+}

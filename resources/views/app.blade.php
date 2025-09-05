@@ -19,7 +19,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">{{ $companyName }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -60,7 +60,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="container mt-4">
         @yield('content')

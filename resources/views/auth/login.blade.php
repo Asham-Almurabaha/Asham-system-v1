@@ -4,10 +4,7 @@
 @section('auth_subtitle', __('Enter your email & password to login'))
 
 @section('form')
-  <form method="POST"
-        action="{{ route('login') }}"
-        class="row g-3 needs-validation"
-        novalidate>
+  <form method="POST" action="{{ route('login') }}" class="row g-3 needs-validation" novalidate>
     @csrf
 
     {{-- Email --}}

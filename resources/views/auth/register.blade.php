@@ -4,10 +4,7 @@
 @section('auth_subtitle', __('Fill the fields below to create your account'))
 
 @section('form')
-  <form method="POST"
-        action="{{ route('register') }}"
-        class="row g-3 needs-validation"
-        novalidate>
+  <form method="POST" action="{{ route('register') }}" class="row g-3 needs-validation" novalidate>
     @csrf
 
     {{-- Name --}}
