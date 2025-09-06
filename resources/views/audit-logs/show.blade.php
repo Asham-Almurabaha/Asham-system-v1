@@ -18,7 +18,7 @@
     <div class="d-flex gap-2">
       <form action="{{ route('audit-logs.revert', $auditLog) }}" method="POST" class="d-inline">
         @csrf
-        <x-btn type="submit" variant="danger" icon="bi bi-arrow-counterclockwise">@lang('audit.Revert')</x-btn>
+        <x-btn type="submit" variant="outline-danger" icon="bi bi-arrow-counterclockwise">@lang('audit.Revert')</x-btn>
       </form>
       <x-btn href="{{ route('audit-logs.index') }}" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('audit.Back')</x-btn>
     </div>
