@@ -16,5 +16,6 @@ return [
     'Basic Data' => 'Basic Data',
     'Nationalities' => 'Nationalities',
     'Job Titles' => 'Job Titles',
+    'Audit Logs' => 'Audit Logs',
 ];
 

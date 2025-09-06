@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\LogsActivity;
 
 
 class Setting extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
     protected $table = 'settings';
     protected $fillable = ['owner_name','name','name_ar','logo','favicon'];
     protected $hidden = ['created_at','updated_at'];

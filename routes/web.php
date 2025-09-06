@@ -10,6 +10,7 @@ use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\Setting\SettingController;
+use App\Http\Controllers\AuditLogController;
 
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserRoleController::class);
         Route::resource('nationalities', NationalityController::class);
         Route::resource('titles', TitleController::class);
+        Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
+        Route::get('audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
+        Route::post('audit-logs/{auditLog}/revert', [AuditLogController::class, 'revert'])->name('audit-logs.revert');
 
     });
 

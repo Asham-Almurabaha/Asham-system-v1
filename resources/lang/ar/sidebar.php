@@ -16,5 +16,6 @@ return [
     'Basic Data' => 'البيانات الأساسية',
     'Nationalities' => 'الجنسيات',
     'Job Titles' => 'الوظائف',
+    'Audit Logs' => 'سجل النشاط',
 ];
 

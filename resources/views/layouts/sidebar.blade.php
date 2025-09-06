@@ -102,6 +102,11 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Job Titles')</span>
         </a>
       </li>
+      <li>
+        <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
+        </a>
+      </li>
     </ul>
   </li>
   @endrole
