@@ -9,11 +9,12 @@
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
       || $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('titles.*')
-      || $isRoute('contract_statuses.*') 
+      || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
       || $isRoute('products.*') || $isRoute('product_entries.*')
       || $isRoute('bank_cash_accounts.*') || $isRoute('transaction_types.*') || $isRoute('transaction_statuses.*')
       || $isRoute('categories.*')
+      || $isRoute('audit-logs.*')
       || $isRoute('users.*');
 @endphp
 
