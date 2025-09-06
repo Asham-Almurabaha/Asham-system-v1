@@ -141,76 +141,22 @@
 <script>
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    // فحص Bootstrap عند الإرسال فقط
-    var forms = document.querySelectorAll('.needs-validation');
-    Array.prototype.slice.call(forms).forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        validateConfirm();
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-
-    // إظهار/إخفاء كلمات المرور
-    bindToggle('togglePassword', 'password');
-    bindToggle('togglePasswordConfirm', 'password-confirm');
-
-    // فحص تأكيد كلمة المرور بشكل حيّ
-    ['input','change','keyup'].forEach(function (evt) {
+  function validateConfirm() {
+    const pwd  = document.getElementById('password');
+    const conf = document.getElementById('password-confirm');
+    if (!pwd || !conf) return;
+    if (conf.value && pwd.value !== conf.value) {
+      conf.setCustomValidity('Mismatch');
+    } else {
+      conf.setCustomValidity('');
+    }
+  }
+  function init() {
+    ['input', 'change', 'keyup'].forEach(function (evt) {
       document.getElementById('password')?.addEventListener(evt, validateConfirm);
       document.getElementById('password-confirm')?.addEventListener(evt, validateConfirm);
     });
-
-    function bindToggle(btnId, inputId) {
-      const btn = document.getElementById(btnId);
-      const inp = document.getElementById(inputId);
-      if (!btn || !inp) return;
-      btn.addEventListener('click', function () {
-        const isText = inp.type === 'text';
-        inp.type = isText ? 'password' : 'text';
-        this.innerHTML = isText ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-      });
-    }
-
-    function validateConfirm() {
-      const pwd  = document.getElementById('password');
-      const conf = document.getElementById('password-confirm');
-      if (!pwd || !conf) return;
-      if (conf.value && pwd.value !== conf.value) {
-        conf.setCustomValidity('Mismatch');
-      } else {
-        conf.setCustomValidity('');
-      }
-    }
-  });
-})();
-</script>
-@endpush
-
-@push('scripts')
-<script>
-(function () {
-  'use strict';
-
-  function init() {
-    // Ensure toggle works even if DOMContentLoaded already fired
-    function bindToggle(btnId, inputId) {
-      var btn = document.getElementById(btnId);
-      var inp = document.getElementById(inputId);
-      if (!btn || !inp) return;
-      btn.addEventListener('click', function () {
-        var isText = inp.type === 'text';
-        inp.type = isText ? 'password' : 'text';
-        this.innerHTML = isText ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-      });
-    }
-
-    bindToggle('togglePassword', 'password');
-    bindToggle('togglePasswordConfirm', 'password-confirm');
+    validateConfirm();
   }
 
   if (document.readyState === 'loading') {
