@@ -16,10 +16,12 @@
       <small class="text-muted">@lang('audit.Entry ID'): {{ $auditLog->id }}</small>
     </div>
     <div class="d-flex gap-2">
-      <form action="{{ route('audit-logs.revert', $auditLog) }}" method="POST" class="d-inline">
-        @csrf
-        <x-btn type="submit" variant="outline-danger" icon="bi bi-arrow-counterclockwise">@lang('audit.Revert')</x-btn>
-      </form>
+      @if(in_array($auditLog->action, ['DELETE', 'UPDATE']))
+        <form action="{{ route('audit-logs.revert', $auditLog) }}" method="POST" class="d-inline">
+          @csrf
+          <x-btn type="submit" variant="outline-danger" icon="bi bi-arrow-counterclockwise">@lang('audit.Revert')</x-btn>
+        </form>
+      @endif
       <x-btn href="{{ route('audit-logs.index') }}" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('audit.Back')</x-btn>
     </div>
   </div>
