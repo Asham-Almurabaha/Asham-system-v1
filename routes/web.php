@@ -10,7 +10,6 @@ use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\Setting\SettingController;
-use App\Http\Controllers\ActivityLogController;
 
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
@@ -36,11 +35,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserRoleController::class);
         Route::resource('nationalities', NationalityController::class);
         Route::resource('titles', TitleController::class);
-
-        // Activity Logs
-        Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
-        Route::get('/activity-logs/{log}', [ActivityLogController::class, 'show'])->name('activity-logs.show');
-        Route::post('/activity-logs/{log}/revert', [ActivityLogController::class, 'revert'])->name('activity-logs.revert');
 
     });
 

@@ -15,7 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
         // ضيف SetLocale في web (append = يشتغل بعد وسطاء الويب الافتراضيين)
         $middleware->web(append: [
             SetLocale::class,
-            \App\Http\Middleware\LogActivity::class,
         ]);
 
         $middleware->alias([
