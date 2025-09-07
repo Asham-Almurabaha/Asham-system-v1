@@ -8,7 +8,7 @@
   @php
     $isAr = app()->getLocale() === 'ar';
     $brandBase = $setting?->name ?? config('app.name', '');
-    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : ($setting?->name_en ?? $brandBase);
+    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
   @endphp
 
   <main>
@@ -29,7 +29,7 @@
                   @php
                     $isAr = app()->getLocale() === 'ar';
                     $brandBase = $setting?->name ?? config('app.name', '');
-                    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : ($setting?->name_en ?? $brandBase);
+                    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
                   @endphp
                   <span class="d-none d-lg-block ms-2 fw-semibold">
                     {{ $brandName }}

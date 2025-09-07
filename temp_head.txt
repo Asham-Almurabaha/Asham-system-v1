@@ -4,7 +4,7 @@
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
   $favicon   = $setting->favicon ?? null;
-  $desc      = $setting->meta_description ?? $appName;           // إن عندك وصف في الإعدادات
+  $desc      = $setting->owner_name ?? $appName;           // إن عندك وصف في الإعدادات
   $canonical = request()->url();
   $locale    = app()->getLocale();
   $isRtl     = $locale === 'ar';
@@ -14,9 +14,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 @php
-  $appName = app()->getLocale()==='ar' ? ($setting->name_ar ?? ($setting->name ?? $appName)) : ($setting->name_en ?? ($setting->name ?? $appName));
+  $appName = app()->getLocale()==='ar' ? ($setting->name_ar ?? ($setting->name ?? $appName)) : ($setting->name ?? $appName);
   $title   = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
-  $desc    = $setting->meta_description ?? $appName;
+  $desc    = $setting->owner_name ?? $appName;
 @endphp
 
 <title>{{ $title }}</title>

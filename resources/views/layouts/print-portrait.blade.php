@@ -5,10 +5,13 @@
   <title>@yield('title', __('reports.Report'))</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {{-- Favicon (اختياري) --}}
-  @isset($setting->favicon)
-    <link rel="icon" href="{{ asset('storage/'.$setting->favicon) }}">
-  @endisset
+  {{-- Favicon --}}
+  @php
+    $faviconUrl = $setting->favicon_url
+                  ?? ($setting->favicon ? asset('storage/'.$setting->favicon)
+                                         : asset('assets/img/favicon.png'));
+  @endphp
+  <link rel="icon" href="{{ $faviconUrl }}">
 
   {{-- Bootstrap RTL/LTR تلقائي --}}
   @if(app()->getLocale() === 'ar')
@@ -68,7 +71,9 @@
 <body>
   @php
     $baseName  = $setting?->name ?? ($brandName ?? config('app.name',''));
-    $brandName = app()->getLocale()==='ar' ? ($setting?->name_ar ?? $baseName) : ($setting?->name_en ?? $baseName);
+    $brandName = app()->getLocale()==='ar'
+        ? ($setting?->name_ar ?? $baseName)
+        : ($setting?->name ?? $baseName);
   @endphp
   <div class="page shadow-sm">
     {{-- Watermark (يمكن إلغاؤها بعمل section فارغ) --}}

@@ -3,8 +3,9 @@
   $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
-  $favicon   = $setting->favicon ?? null;
-  $desc      = $setting->meta_description ?? $appName;           // إن عندك وصف في الإعدادات
+  $favicon   = $setting->favicon_url
+              ?? ($setting->favicon ? asset('storage/'.$setting->favicon) : null);
+  $desc      = $setting->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
   $canonical = request()->url();
   $locale    = app()->getLocale();
   $isRtl     = $locale === 'ar';
@@ -14,9 +15,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 @php
-  $appName = app()->getLocale()==='ar' ? ($setting->name_ar ?? ($setting->name ?? $appName)) : ($setting->name_en ?? ($setting->name ?? $appName));
+  $appName = app()->getLocale()==='ar'
+      ? ($setting->name_ar ?? ($setting->name ?? $appName))
+      : ($setting->name ?? $appName);
   $title   = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
-  $desc    = $setting->meta_description ?? $appName;
+  $desc    = $setting->owner_name ?? $appName;
 @endphp
 
 <title>{{ $title }}</title>
@@ -41,11 +44,12 @@
 
 {{-- Favicons --}}
 @if ($favicon)
-  <link rel="icon" href="{{ asset('storage/'.$favicon) }}" type="image/x-icon">
+  <link rel="icon" href="{{ $favicon }}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{ $favicon }}">
 @else
-  <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
 @endif
-<link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
 
 {{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
