@@ -35,6 +35,10 @@
                 <td class="fw-medium">{{ $user->email }}</td>
               </tr>
               <tr>
+                <th>@lang('users.Branch')</th>
+                <td class="fw-medium">{{ $user->branch->name ?? '-' }}</td>
+              </tr>
+              <tr>
                 <th>@lang('users.Roles')</th>
                 <td>
                   @forelse ($user->roles as $r)

@@ -49,6 +49,16 @@
           <input type="password" name="password_confirmation" class="form-control" required>
         </div>
 
+        <div class="col-md-6">
+          <label class="form-label">@lang('users.Branch') <span class="text-danger">*</span></label>
+          <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
+            @foreach($branches as $branch)
+              <option value="{{ $branch->id }}" @selected(old('branch_id') == $branch->id)>{{ $branch->name }}</option>
+            @endforeach
+          </select>
+          @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+        </div>
+
         <div class="col-12">
           <label class="form-label">@lang('users.Available Roles')</label>
           <div class="row g-2">

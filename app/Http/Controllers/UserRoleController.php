@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Branch;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +16,11 @@ class UserRoleController extends Controller
     // Resource: GET /users
     public function index()
     {
-        $users = User::with('roles')->orderBy('id', 'asc')->paginate(15);
+        $query = User::with(['roles', 'branch'])->orderBy('id', 'asc');
+        if (!Auth::user()->hasRole('admin')) {
+            $query->where('branch_id', Auth::user()->branch_id);
+        }
+        $users = $query->paginate(15);
         return view('users.index', compact('users'));
     }
 
@@ -22,7 +28,12 @@ class UserRoleController extends Controller
     public function create()
     {
         $roles = Role::orderBy('name')->pluck('name', 'name');
-        return view('users.create', compact('roles'));
+        $branches = Branch::where('is_active', true)->orderBy('name');
+        if (!Auth::user()->hasRole('admin')) {
+            $branches->where('id', Auth::user()->branch_id);
+        }
+        $branches = $branches->get();
+        return view('users.create', compact('roles', 'branches'));
     }
 
     // Resource: POST /users
@@ -32,6 +43,7 @@ class UserRoleController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'branch_id' => ['required', 'exists:branches,id'],
             'roles' => ['sometimes', 'array'],
             'roles.*' => ['string', 'exists:roles,name'],
         ]);
@@ -40,6 +52,7 @@ class UserRoleController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'branch_id' => $data['branch_id'],
         ]);
 
         $user->syncRoles($data['roles'] ?? []);
@@ -50,7 +63,7 @@ class UserRoleController extends Controller
     // Resource: GET /users/{user}
     public function show(User $user)
     {
-        $user->load('roles');
+        $user->load('roles', 'branch');
         return view('users.show', compact('user'));
     }
 
@@ -58,8 +71,13 @@ class UserRoleController extends Controller
     public function edit(User $user)
     {
         $roles = Role::orderBy('name')->pluck('name', 'name');
+        $branches = Branch::where('is_active', true)->orderBy('name');
+        if (!Auth::user()->hasRole('admin')) {
+            $branches->where('id', Auth::user()->branch_id);
+        }
+        $branches = $branches->get();
         $current = $user->roles->pluck('name')->toArray();
-        return view('users.edit', compact('user', 'roles', 'current'));
+        return view('users.edit', compact('user', 'roles', 'current', 'branches'));
     }
 
     // Resource: PUT/PATCH /users/{user}
@@ -69,6 +87,7 @@ class UserRoleController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', UniqueRule::unique(User::class)->ignore($user->id)],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'branch_id' => ['required', 'exists:branches,id'],
             'roles' => ['sometimes', 'array'],
             'roles.*' => ['string', 'exists:roles,name'],
         ]);
@@ -78,6 +97,7 @@ class UserRoleController extends Controller
         if (!empty($data['password'])) {
             $user->password = Hash::make($data['password']);
         }
+        $user->branch_id = $data['branch_id'];
         $user->save();
 
         $user->syncRoles($data['roles'] ?? []);

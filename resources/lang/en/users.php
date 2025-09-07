@@ -4,6 +4,7 @@ return [
     'Users' => 'Users',
     'Name' => 'Name',
     'Email' => 'Email',
+    'Branch' => 'Branch',
     'Roles' => 'Roles',
     'Actions' => 'Actions',
     'Manage Roles' => 'Manage Roles',

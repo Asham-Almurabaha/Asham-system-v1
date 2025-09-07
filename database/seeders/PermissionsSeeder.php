@@ -2,6 +2,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Branch;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -32,23 +33,40 @@ class PermissionsSeeder extends Seeder
         // $adminRole->givePermissionTo(Permission::all());
         $adminRole->syncPermissions(Permission::all());
 
+        $adminBranch = Branch::firstOrCreate(
+            ['name' => 'Administration'],
+            [
+                'name_ar' => 'الإدارة',
+                'city_id' => Branch::query()->first()?->city_id ?? 1,
+                'is_active' => true,
+            ]
+        );
+
         $adminuser = User::firstOrCreate(
             [
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin@123'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+            ],
+            [
+                'password' => bcrypt('admin@123'),
+                'branch_id' => $adminBranch->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         $testnuser = User::firstOrCreate(
             [
-            'name' => 'Test',
-            'email' => 'test@test.com',
-            'password' => bcrypt('test@123'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+                'name' => 'Test',
+                'email' => 'test@test.com',
+            ],
+            [
+                'password' => bcrypt('test@123'),
+                'branch_id' => $adminBranch->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         if (!$adminuser->hasRole('admin')) {
             $adminuser->assignRole($adminRole);

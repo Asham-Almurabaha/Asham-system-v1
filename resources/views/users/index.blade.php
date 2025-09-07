@@ -24,6 +24,7 @@
             <th>#</th>
             <th>@lang('users.Name')</th>
             <th>@lang('users.Email')</th>
+            <th>@lang('users.Branch')</th>
             <th>@lang('users.Roles')</th>
             <th class="text-end">@lang('users.Actions')</th>
           </tr>
@@ -34,6 +35,7 @@
               <td>{{ $u->id }}</td>
               <td>{{ $u->name }}</td>
               <td>{{ $u->email }}</td>
+              <td>{{ $u->branch->name ?? '-' }}</td>
               <td>
                 @forelse ($u->roles as $r)
                   <span class="badge text-bg-secondary me-1">{{ $r->name }}</span>
@@ -49,7 +51,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="5" class="text-center text-muted">@lang('users.No users found.')</td>
+              <td colspan="6" class="text-center text-muted">@lang('users.No users found.')</td>
             </tr>
           @endforelse
         </tbody>
