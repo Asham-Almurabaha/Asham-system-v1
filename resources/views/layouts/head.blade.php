@@ -30,7 +30,7 @@
 <meta name="color-scheme" content="light dark">
 
 {{-- Open Graph (للمشاركة على السوشيال) --}}
-<meta property="og:locale" content="{{ $locale === 'ar' ? 'ar_AR' : 'en_US' }}">
+<meta property="og:locale" content="{{ $locale === 'ar' ? 'ar_SA' : 'en_US' }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:site_name" content="{{ $appName }}">
