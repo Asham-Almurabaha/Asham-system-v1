@@ -10,6 +10,7 @@ use Modules\Branches\Database\Seeders\BranchSeeder;
 use Modules\Departments\Database\Seeders\DepartmentSeeder;
 use Modules\Nationalities\Database\Seeders\NationalitySeeder;
 use Modules\Titles\Database\Seeders\TitleSeeder;
+use Modules\Employees\Database\Seeders\EmployeeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             NationalitySeeder::class,
             TitleSeeder::class,
+            EmployeeSeeder::class,
         ]);
         
         // User::factory(10)->create();

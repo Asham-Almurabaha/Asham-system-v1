@@ -7,6 +7,7 @@ return [
     'Investors' => 'Investors',
     'Contracts' => 'Contracts',
     'Ledger' => 'Ledger',
+    'Employees' => 'Employees',
     'Settings' => 'Settings',
     'General Settings' => 'General Settings',
     'General Setting' => 'General Setting',

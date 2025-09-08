@@ -6,5 +6,6 @@
   "Titles": true,
   "AuditLogs": true,
   "Profiles": true,
-  "Departments": true
+  "Departments": true,
+  "Employees": true
 }

@@ -1,0 +1,66 @@
+<?php
+
+namespace Modules\Employees\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Modules\Employees\Models\Employee;
+use Modules\Branches\Models\Branch;
+use Modules\Departments\Models\Department;
+use Modules\Titles\Models\Title;
+use Modules\Nationalities\Models\Nationality;
+
+class EmployeeSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $branch = Branch::first();
+        $department = Department::first();
+        $title = Title::first();
+        $nationality = Nationality::first();
+
+        if (! $branch || ! $department || ! $title || ! $nationality) {
+            return;
+        }
+
+        $data = [
+            [
+                'first_name' => 'Ahmed',
+                'first_name_ar' => 'أحمد',
+                'last_name' => 'Hassan',
+                'last_name_ar' => 'حسن',
+                'email' => 'ahmed@example.com',
+                'hire_date' => '2022-01-10',
+                'branch_id' => $branch->id,
+                'department_id' => $department->id,
+                'title_id' => $title->id,
+                'nationality_id' => $nationality->id,
+                'phones' => ['0500000001', '0555555555'],
+            ],
+            [
+                'first_name' => 'Sara',
+                'first_name_ar' => 'سارة',
+                'last_name' => 'Ali',
+                'last_name_ar' => 'علي',
+                'email' => 'sara@example.com',
+                'hire_date' => '2023-03-15',
+                'branch_id' => $branch->id,
+                'department_id' => $department->id,
+                'title_id' => $title->id,
+                'nationality_id' => $nationality->id,
+                'phones' => ['0500000002'],
+            ],
+        ];
+
+        foreach ($data as $row) {
+            $phones = $row['phones'];
+            unset($row['phones']);
+            $employee = Employee::firstOrCreate(
+                ['email' => $row['email']],
+                $row + ['is_active' => true]
+            );
+            foreach ($phones as $phone) {
+                $employee->phones()->firstOrCreate(['phone' => $phone]);
+            }
+        }
+    }
+}

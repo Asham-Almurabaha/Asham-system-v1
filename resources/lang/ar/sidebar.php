@@ -7,6 +7,7 @@ return [
     'Investors' => 'المستثمرون',
     'Contracts' => 'العقود',
     'Ledger' => 'دفتر الأستاذ',
+    'Employees' => 'الموظفين',
     'Settings' => 'الإعدادات',
     'General Settings' => 'إعدادات عامة',
     'General Setting' => 'إعداد عام',

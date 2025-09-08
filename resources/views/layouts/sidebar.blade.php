@@ -28,6 +28,16 @@
     </a>
   </li>
 
+  {{-- Employees --}}
+  @role('admin')
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($isRoute('users.*')) }} {{ $active($isRoute('users.*')) }}"
+       href="{{ route('users.index') }}">
+      <i class="bi bi-people"></i><span>@lang('sidebar.Employees')</span>
+    </a>
+  </li>
+  @endrole
+
   {{-- Customers --}}
   {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('customers.*')) }} {{ $active($isRoute('customers.*')) }}"
