@@ -31,8 +31,8 @@
   {{-- Employees --}}
   @role('admin')
   <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('users.*')) }} {{ $active($isRoute('users.*')) }}"
-       href="{{ route('users.index') }}">
+    <a class="nav-link {{ $coll($isRoute('employees.*')) }} {{ $active($isRoute('employees.*')) }}"
+       href="{{ route('employees.index') }}">
       <i class="bi bi-people"></i><span>@lang('sidebar.Employees')</span>
     </a>
   </li>
