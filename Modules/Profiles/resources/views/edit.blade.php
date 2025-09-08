@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('title', __('profile.Profile'))
+@section('title', __('profiles::profiles.Profile'))
 
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item active" aria-current="page">@lang('profile.Profile')</li>
+      <li class="breadcrumb-item active" aria-current="page">@lang('profiles::profiles.Profile')</li>
     </ol>
   </nav>
 
@@ -14,7 +14,7 @@
     <div class="col-lg-8">
       <div class="card shadow-sm">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">@lang('profile.Profile Information')</h5>
+          <h5 class="mb-0">@lang('profiles::profiles.Profile Information')</h5>
         </div>
         <div class="card-body">
           <form method="POST" action="{{ route('profile.update') }}" class="row g-3">
@@ -42,7 +42,7 @@
 
       <div class="card shadow-sm mt-3">
         <div class="card-header">
-          <h5 class="mb-0">@lang('profile.Update Password')</h5>
+          <h5 class="mb-0">@lang('profiles::profiles.Update Password')</h5>
         </div>
         <div class="card-body">
           <form method="POST" action="{{ route('password.update') }}" class="row g-3">
@@ -50,7 +50,7 @@
             @method('PUT')
 
             <div class="col-12">
-              <label class="form-label">@lang('profile.Current Password')</label>
+              <label class="form-label">@lang('profiles::profiles.Current Password')</label>
               <input type="password" name="current_password" class="form-control @if($errors->updatePassword?->has('current_password')) is-invalid @endif" autocomplete="current-password">
               @if($errors->updatePassword?->has('current_password'))
                 <div class="invalid-feedback">{{ $errors->updatePassword->first('current_password') }}</div>
@@ -79,23 +79,23 @@
 
       <div class="card shadow-sm mt-3">
         <div class="card-header">
-          <h6 class="mb-0 text-danger"><i class="bi bi-exclamation-triangle me-1"></i>@lang('setting.Danger Zone')</h6>
+          <h6 class="mb-0 text-danger"><i class="bi bi-exclamation-triangle me-1"></i>@lang('profiles::profiles.Danger Zone')</h6>
         </div>
         <div class="card-body">
-          <p class="text-danger small mb-3">@lang('profile.Once your account is deleted, all data will be permanently removed.')</p>
+          <p class="text-danger small mb-3">@lang('profiles::profiles.Once your account is deleted, all data will be permanently removed.')</p>
           <form action="{{ route('profile.destroy') }}" method="POST" class="row g-2"
-                onsubmit="return confirm('@lang('profile.Are you sure you want to delete your account?')')">
+                onsubmit="return confirm('@lang('profiles::profiles.Are you sure you want to delete your account?')')">
             @csrf
             @method('DELETE')
             <div class="col-md-6">
-              <label class="form-label">@lang('profile.Current Password')</label>
+              <label class="form-label">@lang('profiles::profiles.Current Password')</label>
               <input type="password" name="password" class="form-control @if($errors->userDeletion?->has('password')) is-invalid @endif" required>
               @if($errors->userDeletion?->has('password'))
                 <div class="invalid-feedback">{{ $errors->userDeletion->first('password') }}</div>
               @endif
             </div>
             <div class="col-12">
-              <x-btn variant="outline-danger" type="submit" icon="bi bi-trash">@lang('profile.Delete Account')</x-btn>
+              <x-btn variant="outline-danger" type="submit" icon="bi bi-trash">@lang('profiles::profiles.Delete Account')</x-btn>
             </div>
           </form>
         </div>

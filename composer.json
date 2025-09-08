@@ -37,7 +37,8 @@
         "Modules\\Cities\\": "Modules/Cities/app/",
         "Modules\\Branches\\": "Modules/Branches/app/",
         "Modules\\\\Titles\\\\": "Modules/Titles/app/",
-        "Modules\\AuditLogs\\": "Modules/AuditLogs/app/"
+        "Modules\\AuditLogs\\": "Modules/AuditLogs/app/",
+        "Modules\\Profiles\\": "Modules/Profiles/app/"
       }
     },
   "autoload-dev": {

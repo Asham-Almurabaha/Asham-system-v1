@@ -4,5 +4,6 @@
   "Cities": true,
   "Branches": true,
   "Titles": true,
-  "AuditLogs": true
+  "AuditLogs": true,
+  "Profiles": true
 }
