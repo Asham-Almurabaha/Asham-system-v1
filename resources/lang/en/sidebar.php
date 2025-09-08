@@ -16,6 +16,7 @@ return [
     'Basic Data' => 'Basic Data',
     'Nationalities' => 'Nationalities',
     'Job Titles' => 'Job Titles',
+    'Departments' => 'Departments',
     'Cities' => 'Cities',
     'Branches' => 'Branches',
     'Audit Logs' => 'Audit Logs',

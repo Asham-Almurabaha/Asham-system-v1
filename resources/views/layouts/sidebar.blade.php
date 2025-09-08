@@ -104,6 +104,11 @@
         </a>
       </li>
       <li>
+        <a class="{{ $active($isRoute('departments.*')) }}" href="{{ route('departments.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Departments')</span>
+        </a>
+      </li>
+      <li>
         <a class="{{ $active($isRoute('cities.*')) }}" href="{{ route('cities.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Cities')</span>
         </a>
