@@ -35,6 +35,15 @@ class EmployeeSeeder extends Seeder
                 'title_id' => $title->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000001', '0555555555'],
+                'residencies' => [
+                    [
+                        'absher_id_image' => 'ahmed_absher.png',
+                        'tawakkalna_id_image' => 'ahmed_tawakkalna.png',
+                        'expiry_date' => '2025-12-31',
+                        'employer_name' => 'Company A',
+                        'employer_id' => '1234567890',
+                    ],
+                ],
             ],
             [
                 'first_name' => 'Sara',
@@ -48,18 +57,31 @@ class EmployeeSeeder extends Seeder
                 'title_id' => $title->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000002'],
+                'residencies' => [
+                    [
+                        'absher_id_image' => 'sara_absher.png',
+                        'tawakkalna_id_image' => 'sara_tawakkalna.png',
+                        'expiry_date' => '2024-06-30',
+                        'employer_name' => 'Company B',
+                        'employer_id' => '9876543210',
+                    ],
+                ],
             ],
         ];
 
         foreach ($data as $row) {
             $phones = $row['phones'];
-            unset($row['phones']);
+            $residencies = $row['residencies'] ?? [];
+            unset($row['phones'], $row['residencies']);
             $employee = Employee::firstOrCreate(
                 ['email' => $row['email']],
                 $row + ['is_active' => true]
             );
             foreach ($phones as $phone) {
                 $employee->phones()->firstOrCreate(['phone' => $phone]);
+            }
+            foreach ($residencies as $residency) {
+                $employee->residencies()->create($residency);
             }
         }
     }

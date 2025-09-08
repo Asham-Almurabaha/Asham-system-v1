@@ -10,6 +10,7 @@ use Modules\Departments\Models\Department;
 use Modules\Titles\Models\Title;
 use Modules\Nationalities\Models\Nationality;
 use Modules\Employees\Models\EmployeePhone;
+use Modules\Employees\Models\EmployeeResidency;
 
 class Employee extends Model
 {
@@ -48,5 +49,10 @@ class Employee extends Model
     public function phones()
     {
         return $this->hasMany(EmployeePhone::class);
+    }
+
+    public function residencies()
+    {
+        return $this->hasMany(EmployeeResidency::class);
     }
 }
