@@ -28,7 +28,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\Settings\\": "Modules/Settings/app/"
+            "Modules\\Settings\\": "Modules/Settings/app/",
+            "Modules\\Settings\\Providers\\": "Modules/Settings/app/Providers/"
         },
         "classmap": [
             "Modules/Settings/app/Providers"
