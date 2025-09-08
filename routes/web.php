@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Models\Setting;
+use Modules\Settings\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ProfileController;
@@ -11,7 +11,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\BranchController;
-use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\AuditLogController;
 
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
@@ -30,10 +29,6 @@ Route::middleware('auth')->group(function () {
 
     
     Route::middleware(['role:admin'])->group(function () {
-
-        Route::prefix('settings')->group(function () {
-            Route::resource('settings', SettingController::class);
-        });
 
         Route::resource('users', UserRoleController::class);
         Route::resource('nationalities', NationalityController::class);

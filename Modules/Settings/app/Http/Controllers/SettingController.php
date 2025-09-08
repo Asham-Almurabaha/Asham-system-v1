@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Setting;
+namespace Modules\Settings\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
+use Modules\Settings\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
@@ -32,7 +32,7 @@ class SettingController extends Controller
         }
 
         $setting = Setting::query()->latest('id')->first();
-        return view('settings.index', compact('setting'));
+        return view('settings::index', compact('setting'));
     }
 
     /**
@@ -46,7 +46,7 @@ class SettingController extends Controller
                 ->with('success', 'هناك إعداد محفوظ بالفعل.');
         }
 
-        return view('settings.create');
+            return view('settings::create');
     }
 
     /**
@@ -92,7 +92,7 @@ class SettingController extends Controller
      */
     public function show(Setting $setting)
     {
-        return view('settings.show', compact('setting'));
+        return view('settings::show', compact('setting'));
     }
 
     /**
@@ -100,7 +100,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        return view('settings.edit', compact('setting'));
+        return view('settings::edit', compact('setting'));
     }
 
     /**

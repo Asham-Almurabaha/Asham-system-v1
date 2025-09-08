@@ -27,13 +27,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Modules\\Settings\\": "Modules/Settings/app/",
-            "Modules\\Settings\\Providers\\": "Modules/Settings/app/Providers/"
-        },
-        "classmap": [
-            "Modules/Settings/app/Providers"
-        ]
+            "Database\\Seeders\\": "database/seeders/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -68,6 +63,14 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "merge-plugin": {
+            "include": [
+                "Modules/*/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "merge-dev": true
         }
     },
     "config": {
