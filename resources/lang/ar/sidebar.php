@@ -21,6 +21,7 @@ return [
     'Cities' => 'المدن',
     'Branches' => 'الفروع',
     'Residency Statuses' => 'حالات الإقامة',
+    'Work Statuses' => 'حالات العمل',
     'Audit Logs' => 'سجل النشاط',
 ];
 

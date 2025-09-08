@@ -8,5 +8,6 @@
   "Profiles": true,
   "Departments": true,
   "Employees": true,
-  "ResidencyStatuses": true
+  "ResidencyStatuses": true,
+  "WorkStatuses": true
 }

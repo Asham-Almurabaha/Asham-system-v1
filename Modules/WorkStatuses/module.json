@@ -1,0 +1,11 @@
+{
+    "name": "WorkStatuses",
+    "alias": "workstatuses",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WorkStatuses\\Providers\\WorkStatusesServiceProvider"
+    ],
+    "files": []
+}

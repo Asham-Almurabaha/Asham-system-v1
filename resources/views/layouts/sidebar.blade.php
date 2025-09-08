@@ -8,7 +8,7 @@
 
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
-      || $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('titles.*') || $isRoute('departments.*')|| $isRoute('cities.*') || $isRoute('branches.*')
+      || $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('titles.*') || $isRoute('departments.*')|| $isRoute('cities.*') || $isRoute('branches.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
       || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
       || $isRoute('products.*') || $isRoute('product_entries.*')
@@ -131,6 +131,11 @@
       <li>
         <a class="{{ $active($isRoute('residency-statuses.*')) }}" href="{{ route('residency-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Residency Statuses')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('work-statuses.*')) }}" href="{{ route('work-statuses.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Work Statuses')</span>
         </a>
       </li>
       <li class="nav-heading">@lang('sidebar.Audit Logs')</li>
