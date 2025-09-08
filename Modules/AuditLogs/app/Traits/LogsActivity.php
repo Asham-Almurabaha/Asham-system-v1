@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Traits;
+namespace Modules\AuditLogs\Traits;
 
-use App\Models\AuditLog;
-use Illuminate\Support\Facades\Auth;
 use DateTimeInterface;
+use Illuminate\Support\Facades\Auth;
+use Modules\AuditLogs\Models\AuditLog;
 
 trait LogsActivity
 {

@@ -3,5 +3,6 @@
   "Nationalities": true,
   "Cities": true,
   "Branches": true,
-  "Titles": true
+  "Titles": true,
+  "AuditLogs": true
 }

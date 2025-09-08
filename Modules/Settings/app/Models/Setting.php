@@ -5,7 +5,7 @@ namespace Modules\Settings\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\LogsActivity;
+use Modules\AuditLogs\Traits\LogsActivity;
 
 
 class Setting extends Model

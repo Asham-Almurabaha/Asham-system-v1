@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace Modules\AuditLogs\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class AuditLog extends Model
 {

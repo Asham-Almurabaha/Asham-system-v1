@@ -1,18 +1,18 @@
 @extends('layouts.master')
-@section('title', __('audit.Audit Logs'))
+@section('title', __('auditlogs::audit.Audit Logs'))
 
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item active" aria-current="page">@lang('audit.Audit Logs')</li>
+      <li class="breadcrumb-item active" aria-current="page">@lang('auditlogs::audit.Audit Logs')</li>
     </ol>
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div>
-      <h4 class="mb-0">@lang('audit.Audit Logs')</h4>
-      <small class="text-muted">@lang('audit.History Description')</small>
+      <h4 class="mb-0">@lang('auditlogs::audit.Audit Logs')</h4>
+      <small class="text-muted">@lang('auditlogs::audit.History Description')</small>
     </div>
   </div>
 
@@ -22,12 +22,12 @@
         <thead class="table-light">
           <tr>
             <th>#</th>
-            <th>@lang('audit.Table')</th>
-            <th>@lang('audit.Record')</th>
-            <th>@lang('audit.Action')</th>
-            <th>@lang('audit.User')</th>
-            <th>@lang('audit.At')</th>
-            <th class="text-end">@lang('audit.Actions')</th>
+            <th>@lang('auditlogs::audit.Table')</th>
+            <th>@lang('auditlogs::audit.Record')</th>
+            <th>@lang('auditlogs::audit.Action')</th>
+            <th>@lang('auditlogs::audit.User')</th>
+            <th>@lang('auditlogs::audit.At')</th>
+            <th class="text-end">@lang('auditlogs::audit.Actions')</th>
           </tr>
         </thead>
         <tbody>
@@ -46,12 +46,12 @@
                 <span class="text-muted">— {{ $log->performed_at?->diffForHumans() }}</span>
               </td>
               <td class="text-end">
-                <x-btn href="{{ route('audit-logs.show', $log) }}" size="sm" variant="outline-secondary" icon="bi bi-eye">@lang('audit.View')</x-btn>
+                <x-btn href="{{ route('audit-logs.show', $log) }}" size="sm" variant="outline-secondary" icon="bi bi-eye">@lang('auditlogs::audit.View')</x-btn>
               </td>
             </tr>
           @empty
             <tr>
-              <td colspan="7" class="text-center text-muted">@lang('audit.No logs found')</td>
+              <td colspan="7" class="text-center text-muted">@lang('auditlogs::audit.No logs found')</td>
             </tr>
           @endforelse
         </tbody>

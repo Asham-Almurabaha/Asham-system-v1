@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\AuditLogs\Http\Controllers;
 
-use App\Models\AuditLog;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Modules\AuditLogs\Models\AuditLog;
 
 class AuditLogController extends Controller
 {
     public function index()
     {
         $logs = AuditLog::with('user')->orderByDesc('performed_at')->paginate(20);
-        return view('audit-logs.index', compact('logs'));
+        return view('auditlogs::index', compact('logs'));
     }
 
     public function show(AuditLog $auditLog)
     {
-        return view('audit-logs.show', compact('auditLog'));
+        return view('auditlogs::show', compact('auditLog'));
     }
 
     public function revert(AuditLog $auditLog)

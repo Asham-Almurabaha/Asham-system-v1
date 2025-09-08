@@ -4,7 +4,7 @@ namespace Modules\Titles\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\LogsActivity;
+use Modules\AuditLogs\Traits\LogsActivity;
 
 class Title extends Model
 {

@@ -34,11 +34,12 @@
       "Database\\Seeders\\": "database/seeders/",
       "Modules\\Nationalities\\": "Modules/Nationalities/app/",
       "Modules\\Settings\\": "Modules/Settings/app/",
-      "Modules\\Cities\\": "Modules/Cities/app/",
-      "Modules\\Branches\\": "Modules/Branches/app/",
-      "Modules\\\\Titles\\\\": "Modules/Titles/app/"
-    }
-  },
+        "Modules\\Cities\\": "Modules/Cities/app/",
+        "Modules\\Branches\\": "Modules/Branches/app/",
+        "Modules\\\\Titles\\\\": "Modules/Titles/app/",
+        "Modules\\AuditLogs\\": "Modules/AuditLogs/app/"
+      }
+    },
   "autoload-dev": {
     "psr-4": {
       "Tests\\": "tests/"
