@@ -1,5 +1,5 @@
 ﻿@extends('layouts.master')
-@section('title', __('setting.Settings'))
+@section('title', __('settings::setting.Settings'))
 
 @section('content')
 <div class="container py-3">
@@ -7,7 +7,7 @@
   {{-- Breadcrumbs --}}
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item active" aria-current="page">@lang('setting.General Settings')</li>
+      <li class="breadcrumb-item active" aria-current="page">@lang('settings::setting.General Settings')</li>
     </ol>
   </nav>
 
@@ -19,16 +19,16 @@
 
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div>
-      <h4 class="mb-0">@lang('setting.General Settings')</h4>
-      <small class="text-muted">@lang('setting.Control the name, owner name, logo, and site icon')</small>
+      <h4 class="mb-0">@lang('settings::setting.General Settings')</h4>
+      <small class="text-muted">@lang('settings::setting.Control the name, owner name, logo, and site icon')</small>
     </div>
 
     <div class="d-flex gap-2">
       @if($setting)
-        <x-btn href="{{ route('settings.show', $setting) }}" variant="outline-secondary" icon="bi bi-eye">@lang('setting.View')</x-btn>
+        <x-btn href="{{ route('settings.show', $setting) }}" variant="outline-secondary" icon="bi bi-eye">@lang('settings::setting.View')</x-btn>
       @else
         <a href="{{ route('settings.create') }}" class="btn btn-success">
-          <i class="bi bi-plus-circle me-1"></i>@lang('setting.Create Setting')
+          <i class="bi bi-plus-circle me-1"></i>@lang('settings::setting.Create Setting')
         </a>
       @endif
     </div>
@@ -38,9 +38,9 @@
     <div class="card shadow-sm mt">
       <div class="card-body text-center py-5">
         <div class="mb-3"><i class="bi bi-gear-wide-connected fs-1"></i></div>
-        <h5 class="mb-2">@lang('setting.No saved setting yet')</h5>
-        <p class="text-muted mb-4">@lang('setting.Create a setting to show the name, owner name, logo, and site icon across the system.')</p>
-        <x-btn href="{{ route('settings.create') }}" variant="success">@lang('setting.Create Now')</x-btn>
+        <h5 class="mb-2">@lang('settings::setting.No saved setting yet')</h5>
+        <p class="text-muted mb-4">@lang('settings::setting.Create a setting to show the name, owner name, logo, and site icon across the system.')</p>
+        <x-btn href="{{ route('settings.create') }}" variant="success">@lang('settings::setting.Create Now')</x-btn>
       </div>
     </div>
   @else
@@ -50,34 +50,34 @@
         <div class="card shadow-sm h-100">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3 mt-2">
-              <h5 class="mb-0 mt">@lang('setting.Basic Data')</h5>
-              <span class="badge bg-success-subtle text-success border">@lang('setting.Active')</span>
+              <h5 class="mb-0 mt">@lang('settings::setting.Basic Data')</h5>
+              <span class="badge bg-success-subtle text-success border">@lang('settings::setting.Active')</span>
             </div>
 
             <div class="table-responsive">
               <table class="table table-sm align-middle mb-0">
                 <tbody>
                   <tr>
-                    <th style="width:220px">@lang('setting.Owner Name')</th>
+                    <th style="width:220px">@lang('settings::setting.Owner Name')</th>
                     <td class="fw-medium">{{ $setting->owner_name }}</td>
                   </tr>
                   <tr>
-                    <th>@lang('setting.Name (EN)')</th>
+                    <th>@lang('settings::setting.Name (EN)')</th>
                     <td class="fw-medium">{{ $setting->name }}</td>
                   </tr>
                   <tr>
-                    <th>@lang('setting.Name (AR)')</th>
+                    <th>@lang('settings::setting.Name (AR)')</th>
                     <td class="fw-medium">{{ $setting->name_ar }}</td>
                   </tr>
                   <tr>
-                    <th>@lang('setting.Created At')</th>
+                    <th>@lang('settings::setting.Created At')</th>
                     <td>
                       {{ $setting->created_at?->format('Y-m-d H:i') }}
                       <span class="text-muted">— {{ $setting->created_at?->diffForHumans() }}</span>
                     </td>
                   </tr>
                   <tr>
-                    <th>@lang('setting.Last Updated')</th>
+                    <th>@lang('settings::setting.Last Updated')</th>
                     <td>
                       {{ $setting->updated_at?->format('Y-m-d H:i') }}
                       <span class="text-muted">— {{ $setting->updated_at?->diffForHumans() }}</span>
@@ -94,30 +94,30 @@
       <div class="col-lg-4">
         <div class="card shadow-sm h-100">
           <div class="card-body mt-2">
-            <h6 class="mb-3">@lang('setting.Media')</h6>
+            <h6 class="mb-3">@lang('settings::setting.Media')</h6>
 
             <div class="d-flex gap-4 flex-wrap">
               {{-- Logo --}}
               <div class="text-center">
-                <div class="text-muted small mb-2">@lang('setting.Logo')</div>
+                <div class="text-muted small mb-2">@lang('settings::setting.Logo')</div>
                 @if(!empty($logoUrl))
                   <div class="ratio ratio-1x1 border rounded bg-light d-flex align-items-center justify-content-center" style="width:96px;">
-                    <img src="{{ $logoUrl }}" alt="@lang('setting.Logo')" class="img-fluid p-1">
+                    <img src="{{ $logoUrl }}" alt="@lang('settings::setting.Logo')" class="img-fluid p-1">
                   </div>
                 @else
-                  <div class="text-muted fst-italic">@lang('setting.Not uploaded')</div>
+                  <div class="text-muted fst-italic">@lang('settings::setting.Not uploaded')</div>
                 @endif
               </div>
 
               {{-- Favicon --}}
               <div class="text-center">
-                <div class="text-muted small mb-2">@lang('setting.Icon')</div>
+                <div class="text-muted small mb-2">@lang('settings::setting.Icon')</div>
                 @if(!empty($faviconUrl))
                   <div class="ratio ratio-1x1 border rounded bg-light d-flex align-items-center justify-content-center" style="width:64px;">
-                    <img src="{{ $faviconUrl }}" alt="@lang('setting.Icon')" class="img-fluid p-1">
+                    <img src="{{ $faviconUrl }}" alt="@lang('settings::setting.Icon')" class="img-fluid p-1">
                   </div>
                 @else
-                  <div class="text-muted fst-italic">@lang('setting.Not uploaded')</div>
+                  <div class="text-muted fst-italic">@lang('settings::setting.Not uploaded')</div>
                 @endif
               </div>
             </div>
@@ -131,10 +131,10 @@
     {{-- Branding Preview --}}
     <div class="card shadow-sm mt-3">
       <div class="card-body mt-2">
-        <h6 class="mb-3">@lang('setting.Brand Preview')</h6>
+        <h6 class="mb-3">@lang('settings::setting.Brand Preview')</h6>
         <div class="border rounded p-3 d-flex align-items-center gap-3">
           @if(!empty($logoUrl))
-            <img src="{{ $logoUrl }}" alt="@lang('setting.Logo')" class="logo-img-40" class="rounded border bg-white p-1">
+            <img src="{{ $logoUrl }}" alt="@lang('settings::setting.Logo')" class="logo-img-40" class="rounded border bg-white p-1">
           @else
             <div class="rounded border bg-light d-flex align-items-center justify-content-center" style="height:40px;width:40px;">
               <i class="bi bi-image text-muted"></i>
