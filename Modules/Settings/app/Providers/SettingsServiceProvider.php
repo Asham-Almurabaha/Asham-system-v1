@@ -71,7 +71,7 @@ class SettingsServiceProvider extends ServiceProvider
         foreach (['en', 'ar'] as $locale) {
             $file = $langPath.'/'.$locale.'/setting.php';
             if (file_exists($file)) {
-                Lang::addLines(require $file, $locale, 'setting');
+                Lang::addLines(['setting' => require $file], $locale, $this->nameLower);
             }
         }
     }
