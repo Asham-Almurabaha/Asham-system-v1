@@ -26,7 +26,7 @@
             <select name="city_id" class="form-select @error('city_id') is-invalid @enderror" required>
               <option value="" disabled selected>@lang('branches::branches.City')</option>
               @foreach($cities as $c)
-                <option value="{{ $c->id }}" {{ old('city_id') == $c->id ? 'selected' : '' }}>{{ $c->name }}</option>
+                <option value="{{ $c->id }}" {{ old('city_id') == $c->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $c->name_ar : $c->name }}</option>
               @endforeach
             </select>
             @error('city_id') <div class="invalid-feedback">{{ $message }}</div> @enderror

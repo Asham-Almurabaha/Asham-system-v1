@@ -33,7 +33,7 @@
               <td>{{ $u->id }}</td>
               <td>{{ $u->name }}</td>
               <td>{{ $u->email }}</td>
-              <td>{{ $u->branch->name ?? '-' }}</td>
+              <td>{{ $u->branch ? (app()->getLocale() === 'ar' ? $u->branch->name_ar : $u->branch->name) : '-' }}</td>
               <td>
                 @forelse ($u->roles as $r)
                   <span class="badge text-bg-secondary me-1">{{ $r->name }}</span>

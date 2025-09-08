@@ -19,7 +19,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
-            <strong>@lang('branches::branches.City'):</strong> {{ $item->city->name }}
+            <strong>@lang('branches::branches.City'):</strong> {{ $item->city ? (app()->getLocale() === 'ar' ? $item->city->name_ar : $item->city->name) : '' }}
           </div>
           <div class="col-md-6">
             <strong>@lang('branches::branches.Active'):</strong>

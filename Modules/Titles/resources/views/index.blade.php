@@ -31,7 +31,7 @@
               <td>{{ $i->id }}</td>
               <td>{{ $i->name }}</td>
               <td>{{ $i->name_ar }}</td>
-              <td>{{ $i->department?->name }}</td>
+              <td>{{ $i->department ? (app()->getLocale() === 'ar' ? $i->department->name_ar : $i->department->name) : '' }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('titles::titles.Active')</span>

@@ -61,7 +61,7 @@
             <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
               <option value="" disabled>@lang('employees::employees.Branch')</option>
               @foreach($branches as $b)
-                <option value="{{ $b->id }}" {{ old('branch_id', $item->branch_id) == $b->id ? 'selected' : '' }}>{{ $b->name }}</option>
+                <option value="{{ $b->id }}" {{ old('branch_id', $item->branch_id) == $b->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $b->name_ar : $b->name }}</option>
               @endforeach
             </select>
             @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -71,7 +71,7 @@
             <select name="department_id" class="form-select @error('department_id') is-invalid @enderror">
               <option value="">@lang('employees::employees.Department')</option>
               @foreach($departments as $d)
-                <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ $d->name }}</option>
+                <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $d->name_ar : $d->name }}</option>
               @endforeach
             </select>
             @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -81,7 +81,7 @@
             <select name="title_id" class="form-select @error('title_id') is-invalid @enderror">
               <option value="">@lang('employees::employees.Title')</option>
               @foreach($titles as $t)
-                <option value="{{ $t->id }}" {{ old('title_id', $item->title_id) == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
+                <option value="{{ $t->id }}" {{ old('title_id', $item->title_id) == $t->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $t->name_ar : $t->name }}</option>
               @endforeach
             </select>
             @error('title_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -91,7 +91,7 @@
             <select name="nationality_id" class="form-select @error('nationality_id') is-invalid @enderror">
               <option value="">@lang('employees::employees.Nationality')</option>
               @foreach($nationalities as $n)
-                <option value="{{ $n->id }}" {{ old('nationality_id', $item->nationality_id) == $n->id ? 'selected' : '' }}>{{ $n->name }}</option>
+                <option value="{{ $n->id }}" {{ old('nationality_id', $item->nationality_id) == $n->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $n->name_ar : $n->name }}</option>
               @endforeach
             </select>
             @error('nationality_id') <div class="invalid-feedback">{{ $message }}</div> @enderror

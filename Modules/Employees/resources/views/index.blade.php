@@ -35,8 +35,8 @@
               <td>{{ $i->first_name }}</td>
               <td>{{ $i->last_name }}</td>
               <td>{{ $i->email }}</td>
-              <td>{{ $i->branch->name ?? '' }}</td>
-              <td>{{ $i->title->name ?? '' }}</td>
+              <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
+              <td>{{ $i->title ? (app()->getLocale() === 'ar' ? $i->title->name_ar : $i->title->name) : '' }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('employees::employees.Active')</span>

@@ -36,7 +36,7 @@
               </tr>
               <tr>
                 <th>@lang('users.Branch')</th>
-                <td class="fw-medium">{{ $user->branch->name ?? '-' }}</td>
+                <td class="fw-medium">{{ $user->branch ? (app()->getLocale() === 'ar' ? $user->branch->name_ar : $user->branch->name) : '-' }}</td>
               </tr>
               <tr>
                 <th>@lang('users.Roles')</th>

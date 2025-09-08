@@ -23,7 +23,7 @@
           <tbody>
             <tr><th style="width:220px">@lang('titles::titles.Name (EN)')</th><td class="fw-medium">{{ $item->name }}</td></tr>
             <tr><th>@lang('titles::titles.Name (AR)')</th><td class="fw-medium">{{ $item->name_ar }}</td></tr>
-            <tr><th>@lang('titles::titles.Department')</th><td>{{ $item->department?->name }}</td></tr>
+            <tr><th>@lang('titles::titles.Department')</th><td>{{ $item->department ? (app()->getLocale() === 'ar' ? $item->department->name_ar : $item->department->name) : '' }}</td></tr>
             <tr><th>@lang('titles::titles.Active')</th><td>{{ $item->is_active ? __('titles.Active') : __('titles.Inactive') }}</td></tr>
           </tbody>
         </table>

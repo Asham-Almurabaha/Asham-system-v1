@@ -32,7 +32,7 @@
               <td>{{ $i->id }}</td>
               <td>{{ $i->name }}</td>
               <td>{{ $i->name_ar }}</td>
-              <td>{{ $i->city->name }}</td>
+              <td>{{ $i->city ? (app()->getLocale() === 'ar' ? $i->city->name_ar : $i->city->name) : '' }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('branches::branches.Active')</span>

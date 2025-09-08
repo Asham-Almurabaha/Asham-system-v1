@@ -21,14 +21,14 @@
           <div class="col-md-6"><strong>@lang('employees::employees.Email'):</strong> {{ $item->email }}</div>
           <div class="col-md-6"><strong>@lang('employees::employees.Phone Numbers'):</strong> {{ $item->phones->pluck('phone')->join(', ') }}</div>
         </div>
-        <div class="row mb-3">
-          <div class="col-md-6"><strong>@lang('employees::employees.Branch'):</strong> {{ $item->branch->name ?? '' }}</div>
-          <div class="col-md-6"><strong>@lang('employees::employees.Department'):</strong> {{ $item->department->name ?? '' }}</div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-6"><strong>@lang('employees::employees.Title'):</strong> {{ $item->title->name ?? '' }}</div>
-          <div class="col-md-6"><strong>@lang('employees::employees.Nationality'):</strong> {{ $item->nationality->name ?? '' }}</div>
-        </div>
+          <div class="row mb-3">
+            <div class="col-md-6"><strong>@lang('employees::employees.Branch'):</strong> {{ $item->branch ? (app()->getLocale() === 'ar' ? $item->branch->name_ar : $item->branch->name) : '' }}</div>
+            <div class="col-md-6"><strong>@lang('employees::employees.Department'):</strong> {{ $item->department ? (app()->getLocale() === 'ar' ? $item->department->name_ar : $item->department->name) : '' }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6"><strong>@lang('employees::employees.Title'):</strong> {{ $item->title ? (app()->getLocale() === 'ar' ? $item->title->name_ar : $item->title->name) : '' }}</div>
+            <div class="col-md-6"><strong>@lang('employees::employees.Nationality'):</strong> {{ $item->nationality ? (app()->getLocale() === 'ar' ? $item->nationality->name_ar : $item->nationality->name) : '' }}</div>
+          </div>
         <div class="row mb-3">
           <div class="col-md-6"><strong>@lang('employees::employees.Hire Date'):</strong> {{ optional($item->hire_date)->format('Y-m-d') }}</div>
           <div class="col-md-6"><strong>@lang('employees::employees.Active'):</strong> {{ $item->is_active ? __('employees::employees.Active') : __('employees::employees.Inactive') }}</div>

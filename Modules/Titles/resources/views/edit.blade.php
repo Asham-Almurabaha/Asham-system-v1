@@ -27,7 +27,7 @@
             <select name="department_id" class="form-select @error('department_id') is-invalid @enderror">
               <option value="">@lang('titles::titles.Select Department')</option>
               @foreach($departments as $d)
-                <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ $d->name }}</option>
+                <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $d->name_ar : $d->name }}</option>
               @endforeach
             </select>
             @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
