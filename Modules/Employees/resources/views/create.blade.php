@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Photo (PNG/JPG/WEBP/SVG)')</label>
-            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
+            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-photo')">
             @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
             <div class="form-text">@lang('settings::setting.Limit 4MB')</div>
           </div>
@@ -107,12 +107,12 @@
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
-            <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
+            <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_absher_id_image')">
             @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
-            <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
+            <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_tawakkalna_id_image')">
             @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
@@ -168,24 +168,20 @@ document.addEventListener('click', function (e) {
     }
 });
 
-const previewMap = {
-    photo: 'preview-photo',
-    residency_absher_id_image: 'preview-residency_absher_id_image',
-    residency_tawakkalna_id_image: 'preview-residency_tawakkalna_id_image'
-};
-
-Object.keys(previewMap).forEach(function (name) {
-    const input = document.querySelector(`input[name="${name}"]`);
-    const img = document.getElementById(previewMap[name]);
-    if (input && img) {
-        input.addEventListener('change', function () {
-            const file = input.files[0];
-            if (file) {
-                img.src = URL.createObjectURL(file);
-                img.classList.remove('d-none');
-            }
-        });
+function previewImage(event, previewId) {
+    const file = event.target.files[0];
+    const preview = document.getElementById(previewId);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.classList.remove('d-none');
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.classList.add('d-none');
     }
-});
+}
 </script>
 @endpush
