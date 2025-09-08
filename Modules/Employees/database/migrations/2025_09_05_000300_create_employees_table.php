@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('last_name', 100);
             $table->string('last_name_ar', 100);
             $table->string('email')->unique();
+            $table->string('photo')->nullable();
             $table->date('hire_date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
