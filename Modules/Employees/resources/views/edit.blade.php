@@ -53,9 +53,6 @@
                 <input class="form-check-input" type="checkbox" value="1" id="remove_photo" name="remove_photo">
                 <label class="form-check-label" for="remove_photo">@lang('employees::employees.Delete current photo')</label>
               </div>
-              <div class="mt-2">
-                <img src="{{ $item->photo_url }}" alt="@lang('employees::employees.Photo')" class="img-fluid rounded border" style="max-height:64px">
-              </div>
             @endif
           </div>
           <div class="col-md-6">
@@ -122,13 +119,23 @@
             <h5>@lang('employees::employees.Identity Data')</h5>
           </div>
           <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
-            <input type="text" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" value="{{ old('residency_absher_id_image', $residency?->absher_id_image) }}">
+            <label class="form-label d-flex justify-content-between">
+              <span>@lang('employees::employees.Absher ID Image')</span>
+              @if($residency?->absher_id_image)
+                <a href="{{ Storage::url($residency->absher_id_image) }}" target="_blank" class="small">@lang('settings::setting.View Current')</a>
+              @endif
+            </label>
+            <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
             @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
-            <input type="text" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" value="{{ old('residency_tawakkalna_id_image', $residency?->tawakkalna_id_image) }}">
+            <label class="form-label d-flex justify-content-between">
+              <span>@lang('employees::employees.Tawakkalna ID Image')</span>
+              @if($residency?->tawakkalna_id_image)
+                <a href="{{ Storage::url($residency->tawakkalna_id_image) }}" target="_blank" class="small">@lang('settings::setting.View Current')</a>
+              @endif
+            </label>
+            <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
             @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
@@ -145,6 +152,14 @@
             <label class="form-label">@lang('employees::employees.Employer ID')</label>
             <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id', $residency?->employer_id) }}">
             @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-12">
+            <label class="form-label">@lang('employees::employees.Preview')</label>
+            <div class="d-flex gap-3" id="image-preview">
+              <img id="preview-photo" src="{{ $item->photo_url }}" class="img-fluid rounded border {{ $item->photo_url ? '' : 'd-none' }}" style="max-height:100px" alt="preview">
+              <img id="preview-residency_absher_id_image" src="{{ $residency?->absher_id_image ? Storage::url($residency->absher_id_image) : '' }}" class="img-fluid rounded border {{ $residency?->absher_id_image ? '' : 'd-none' }}" style="max-height:100px" alt="preview">
+              <img id="preview-residency_tawakkalna_id_image" src="{{ $residency?->tawakkalna_id_image ? Storage::url($residency->tawakkalna_id_image) : '' }}" class="img-fluid rounded border {{ $residency?->tawakkalna_id_image ? '' : 'd-none' }}" style="max-height:100px" alt="preview">
+            </div>
           </div>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', $item->is_active) ? 'checked' : '' }}>
@@ -173,6 +188,26 @@ document.getElementById('add-phone').addEventListener('click', function () {
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('remove-phone')) {
         e.target.closest('.input-group').remove();
+    }
+});
+
+const previewMap = {
+    photo: 'preview-photo',
+    residency_absher_id_image: 'preview-residency_absher_id_image',
+    residency_tawakkalna_id_image: 'preview-residency_tawakkalna_id_image'
+};
+
+Object.keys(previewMap).forEach(function (name) {
+    const input = document.querySelector(`input[name="${name}"]`);
+    const img = document.getElementById(previewMap[name]);
+    if (input && img) {
+        input.addEventListener('change', function () {
+            const file = input.files[0];
+            if (file) {
+                img.src = URL.createObjectURL(file);
+                img.classList.remove('d-none');
+            }
+        });
     }
 });
 </script>

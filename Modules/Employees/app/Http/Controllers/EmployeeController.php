@@ -16,6 +16,7 @@ class EmployeeController extends Controller
 {
     private const DISK = 'public';
     private const DIR  = 'employees';
+    private const RESIDENCY_DIR = 'employee-residencies';
     public function index()
     {
         $items = Employee::with(['branch','title'])->orderBy('id','asc')->paginate(15);
@@ -48,13 +49,31 @@ class EmployeeController extends Controller
             'title_id' => ['nullable','exists:titles,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
+            'residency_absher_id_image' => ['nullable','image'],
+            'residency_tawakkalna_id_image' => ['nullable','image'],
+            'residency_expiry_date' => ['nullable','date'],
+            'residency_employer_name' => ['nullable','string','max:100'],
+            'residency_employer_id' => ['nullable','string','max:50'],
             'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $phones = $data['phones'] ?? [];
-        unset($data['phones']);
+        $residencyData = [
+            'expiry_date' => $data['residency_expiry_date'] ?? null,
+            'employer_name' => $data['residency_employer_name'] ?? null,
+            'employer_id' => $data['residency_employer_id'] ?? null,
+        ];
+        unset($data['phones'], $data['residency_absher_id_image'], $data['residency_tawakkalna_id_image'], $data['residency_expiry_date'], $data['residency_employer_name'], $data['residency_employer_id']);
         if ($request->hasFile('photo')) {
             $data['photo'] = $this->storeFile($request->file('photo'));
+        }
+
+        if ($request->hasFile('residency_absher_id_image')) {
+            $residencyData['absher_id_image'] = $request->file('residency_absher_id_image')->store(self::RESIDENCY_DIR, self::DISK);
+        }
+
+        if ($request->hasFile('residency_tawakkalna_id_image')) {
+            $residencyData['tawakkalna_id_image'] = $request->file('residency_tawakkalna_id_image')->store(self::RESIDENCY_DIR, self::DISK);
         }
 
         $employee = Employee::create($data);
@@ -62,6 +81,10 @@ class EmployeeController extends Controller
             if ($phone) {
                 $employee->phones()->create(['phone' => $phone]);
             }
+        }
+
+        if (array_filter($residencyData)) {
+            $employee->residencies()->create($residencyData);
         }
 
         return redirect()->route('employees.index')->with('success', __('employees.Created successfully'));
@@ -75,7 +98,7 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        $employee->load('phones');
+        $employee->load('phones','residencies');
         $branches = Branch::where('is_active', true)->orderBy('name')->get();
         $departments = Department::where('is_active', true)->orderBy('name')->get();
         $titles = Title::where('is_active', true)->orderBy('name')->get();
@@ -86,6 +109,7 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
+        $residency = $employee->residencies()->first();
         $data = $request->validate([
             'first_name' => ['required','string','max:100'],
             'first_name_ar' => ['required','string','max:100'],
@@ -101,11 +125,21 @@ class EmployeeController extends Controller
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'remove_photo' => ['sometimes','boolean'],
+            'residency_absher_id_image' => ['nullable','image'],
+            'residency_tawakkalna_id_image' => ['nullable','image'],
+            'residency_expiry_date' => ['nullable','date'],
+            'residency_employer_name' => ['nullable','string','max:100'],
+            'residency_employer_id' => ['nullable','string','max:50'],
             'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $phones = $data['phones'] ?? [];
-        unset($data['phones']);
+        $residencyData = [
+            'expiry_date' => $data['residency_expiry_date'] ?? null,
+            'employer_name' => $data['residency_employer_name'] ?? null,
+            'employer_id' => $data['residency_employer_id'] ?? null,
+        ];
+        unset($data['phones'], $data['residency_absher_id_image'], $data['residency_tawakkalna_id_image'], $data['residency_expiry_date'], $data['residency_employer_name'], $data['residency_employer_id']);
         if ($request->boolean('remove_photo')) {
             $this->deleteIfExists($employee->photo);
             $data['photo'] = null;
@@ -116,12 +150,28 @@ class EmployeeController extends Controller
             $data['photo'] = $this->storeFile($request->file('photo'));
         }
 
+        if ($request->hasFile('residency_absher_id_image')) {
+            $this->deleteIfExists($residency?->absher_id_image);
+            $residencyData['absher_id_image'] = $request->file('residency_absher_id_image')->store(self::RESIDENCY_DIR, self::DISK);
+        }
+
+        if ($request->hasFile('residency_tawakkalna_id_image')) {
+            $this->deleteIfExists($residency?->tawakkalna_id_image);
+            $residencyData['tawakkalna_id_image'] = $request->file('residency_tawakkalna_id_image')->store(self::RESIDENCY_DIR, self::DISK);
+        }
+
         $employee->update($data);
         $employee->phones()->delete();
         foreach ($phones as $phone) {
             if ($phone) {
                 $employee->phones()->create(['phone' => $phone]);
             }
+        }
+
+        if ($residency) {
+            $residency->update($residencyData);
+        } elseif (array_filter($residencyData)) {
+            $employee->residencies()->create($residencyData);
         }
 
         return redirect()->route('employees.index')->with('success', __('employees.Updated successfully'));

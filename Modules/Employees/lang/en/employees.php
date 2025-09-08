@@ -31,4 +31,5 @@ return [
     'Photo (PNG/JPG/WEBP/SVG)' => 'Photo (PNG/JPG/WEBP/SVG)',
     'Delete current photo' => 'Delete current photo',
     'Photo' => 'Photo',
+    'Preview' => 'Preview',
 ];

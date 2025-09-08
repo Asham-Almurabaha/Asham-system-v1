@@ -107,12 +107,12 @@
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
-            <input type="text" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" value="{{ old('residency_absher_id_image') }}">
+            <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
             @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
-            <input type="text" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" value="{{ old('residency_tawakkalna_id_image') }}">
+            <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
             @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
@@ -129,6 +129,14 @@
             <label class="form-label">@lang('employees::employees.Employer ID')</label>
             <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id') }}">
             @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-12">
+            <label class="form-label">@lang('employees::employees.Preview')</label>
+            <div class="d-flex gap-3" id="image-preview">
+              <img id="preview-photo" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
+              <img id="preview-residency_absher_id_image" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
+              <img id="preview-residency_tawakkalna_id_image" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
+            </div>
           </div>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>
@@ -157,6 +165,26 @@ document.getElementById('add-phone').addEventListener('click', function () {
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('remove-phone')) {
         e.target.closest('.input-group').remove();
+    }
+});
+
+const previewMap = {
+    photo: 'preview-photo',
+    residency_absher_id_image: 'preview-residency_absher_id_image',
+    residency_tawakkalna_id_image: 'preview-residency_tawakkalna_id_image'
+};
+
+Object.keys(previewMap).forEach(function (name) {
+    const input = document.querySelector(`input[name="${name}"]`);
+    const img = document.getElementById(previewMap[name]);
+    if (input && img) {
+        input.addEventListener('change', function () {
+            const file = input.files[0];
+            if (file) {
+                img.src = URL.createObjectURL(file);
+                img.classList.remove('d-none');
+            }
+        });
     }
 });
 </script>
