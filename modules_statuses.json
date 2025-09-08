@@ -1,6 +1,7 @@
 {
-    "Settings": true,
-    "Nationalities": true,
-    "Cities": true,
-    "Branches": true
+  "Settings": true,
+  "Nationalities": true,
+  "Cities": true,
+  "Branches": true,
+  "Titles": true
 }

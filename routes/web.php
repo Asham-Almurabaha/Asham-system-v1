@@ -3,7 +3,6 @@
 use App\Models\User;
 use Modules\Settings\Models\Setting;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TitleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserRoleController;
@@ -28,7 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:admin'])->group(function () {
 
         Route::resource('users', UserRoleController::class);
-        Route::resource('titles', TitleController::class);
         Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
         Route::post('audit-logs/{auditLog}/revert', [AuditLogController::class, 'revert'])->name('audit-logs.revert');

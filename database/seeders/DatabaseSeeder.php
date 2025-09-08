@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Modules\Cities\Database\Seeders\CitySeeder;
 use Modules\Branches\Database\Seeders\BranchSeeder;
 use Modules\Nationalities\Database\Seeders\NationalitySeeder;
+use Modules\Titles\Database\Seeders\TitleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
