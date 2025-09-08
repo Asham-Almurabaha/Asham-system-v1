@@ -28,4 +28,7 @@ return [
     'Created successfully' => 'Created successfully',
     'Updated successfully' => 'Updated successfully',
     'Deleted successfully' => 'Deleted successfully',
+    'Photo (PNG/JPG/WEBP/SVG)' => 'Photo (PNG/JPG/WEBP/SVG)',
+    'Delete current photo' => 'Delete current photo',
+    'Photo' => 'Photo',
 ];

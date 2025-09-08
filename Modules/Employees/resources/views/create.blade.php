@@ -9,7 +9,7 @@
         <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('employees.store') }}" class="row g-3">
+        <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data" class="row g-3">
           @csrf
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.First Name (EN)')</label>
@@ -35,6 +35,12 @@
             <label class="form-label">@lang('employees::employees.Email')</label>
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Photo (PNG/JPG/WEBP/SVG)')</label>
+            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp">
+            @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            <div class="form-text">@lang('settings::setting.Limit 4MB')</div>
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Phone Numbers')</label>
@@ -94,6 +100,35 @@
               @endforeach
             </select>
             @error('nationality_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-12"><hr></div>
+          <div class="col-12">
+            <h5>@lang('employees::employees.Identity Data')</h5>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
+            <input type="text" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" value="{{ old('residency_absher_id_image') }}">
+            @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
+            <input type="text" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" value="{{ old('residency_tawakkalna_id_image') }}">
+            @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Residency Expiry Date')</label>
+            <input type="date" name="residency_expiry_date" class="form-control js-date @error('residency_expiry_date') is-invalid @enderror" value="{{ old('residency_expiry_date') }}">
+            @error('residency_expiry_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Employer Name')</label>
+            <input type="text" name="residency_employer_name" class="form-control @error('residency_employer_name') is-invalid @enderror" value="{{ old('residency_employer_name') }}">
+            @error('residency_employer_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('employees::employees.Employer ID')</label>
+            <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id') }}">
+            @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>

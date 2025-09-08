@@ -11,13 +11,14 @@ use Modules\Titles\Models\Title;
 use Modules\Nationalities\Models\Nationality;
 use Modules\Employees\Models\EmployeePhone;
 use Modules\Employees\Models\EmployeeResidency;
+use Illuminate\Support\Facades\Storage;
 
 class Employee extends Model
 {
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'first_name', 'first_name_ar', 'last_name', 'last_name_ar', 'email', 'hire_date',
+        'first_name', 'first_name_ar', 'last_name', 'last_name_ar', 'email', 'photo', 'hire_date',
         'branch_id', 'department_id', 'title_id', 'nationality_id', 'is_active',
     ];
 
@@ -54,5 +55,10 @@ class Employee extends Model
     public function residencies()
     {
         return $this->hasMany(EmployeeResidency::class);
+    }
+
+    public function getPhotoUrlAttribute(): ?string
+    {
+        return $this->photo ? Storage::url($this->photo) : null;
     }
 }

@@ -28,4 +28,7 @@ return [
     'Created successfully' => 'تم الإنشاء بنجاح',
     'Updated successfully' => 'تم التحديث بنجاح',
     'Deleted successfully' => 'تم الحذف بنجاح',
+    'Photo (PNG/JPG/WEBP/SVG)' => 'الصورة (PNG/JPG/WEBP/SVG)',
+    'Delete current photo' => 'حذف الصورة الحالية',
+    'Photo' => 'الصورة',
 ];

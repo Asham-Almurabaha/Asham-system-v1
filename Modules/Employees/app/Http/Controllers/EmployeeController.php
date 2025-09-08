@@ -9,9 +9,13 @@ use Modules\Branches\Models\Branch;
 use Modules\Departments\Models\Department;
 use Modules\Titles\Models\Title;
 use Modules\Nationalities\Models\Nationality;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
+    private const DISK = 'public';
+    private const DIR  = 'employees';
     public function index()
     {
         $items = Employee::with(['branch','title'])->orderBy('id','asc')->paginate(15);
@@ -43,11 +47,16 @@ class EmployeeController extends Controller
             'department_id' => ['nullable','exists:departments,id'],
             'title_id' => ['nullable','exists:titles,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
+            'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $phones = $data['phones'] ?? [];
         unset($data['phones']);
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $this->storeFile($request->file('photo'));
+        }
+
         $employee = Employee::create($data);
         foreach ($phones as $phone) {
             if ($phone) {
@@ -90,11 +99,23 @@ class EmployeeController extends Controller
             'department_id' => ['nullable','exists:departments,id'],
             'title_id' => ['nullable','exists:titles,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
+            'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
+            'remove_photo' => ['sometimes','boolean'],
             'is_active' => ['boolean'],
         ]);
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $phones = $data['phones'] ?? [];
         unset($data['phones']);
+        if ($request->boolean('remove_photo')) {
+            $this->deleteIfExists($employee->photo);
+            $data['photo'] = null;
+        }
+
+        if ($request->hasFile('photo')) {
+            $this->deleteIfExists($employee->photo);
+            $data['photo'] = $this->storeFile($request->file('photo'));
+        }
+
         $employee->update($data);
         $employee->phones()->delete();
         foreach ($phones as $phone) {
@@ -108,7 +129,24 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee)
     {
+        $this->deleteIfExists($employee->photo);
         $employee->delete();
         return redirect()->route('employees.index')->with('success', __('employees.Deleted successfully'));
+    }
+
+    private function storeFile(UploadedFile $file): string
+    {
+        return $file->store(self::DIR, self::DISK);
+    }
+
+    private function deleteIfExists(?string $path): void
+    {
+        if ($path && Storage::disk(self::DISK)->exists($path)) {
+            try {
+                Storage::disk(self::DISK)->delete($path);
+            } catch (\Throwable $e) {
+                // ignore
+            }
+        }
     }
 }
