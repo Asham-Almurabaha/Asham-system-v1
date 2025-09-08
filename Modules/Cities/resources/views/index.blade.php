@@ -38,10 +38,8 @@
                 @endif
               </td>
               <td class="text-end">
-                <div class="d-inline-flex gap-1">
                   <x-btn href="{{ route('cities.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">@lang('cities::cities.Edit')</x-btn>
                   <x-btn href="{{ route('cities.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('cities::cities.Delete confirm')">@lang('cities::cities.Delete')</x-btn>
-                </div>
               </td>
             </tr>
           @empty

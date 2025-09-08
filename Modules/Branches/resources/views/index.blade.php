@@ -41,10 +41,8 @@
                 @endif
               </td>
               <td class="text-end">
-                <div class="d-inline-flex gap-1">
                   <x-btn href="{{ route('branches.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">@lang('branches::branches.Edit')</x-btn>
                   <x-btn href="{{ route('branches.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('branches::branches.Delete confirm')">@lang('branches::branches.Delete')</x-btn>
-                </div>
               </td>
             </tr>
           @empty
