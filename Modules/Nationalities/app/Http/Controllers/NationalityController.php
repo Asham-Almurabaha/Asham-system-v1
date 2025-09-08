@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Nationalities\Http\Controllers;
 
-use App\Models\Nationality;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Nationalities\Models\Nationality;
 
 class NationalityController extends Controller
 {
     public function index()
     {
         $items = Nationality::orderBy('id', 'asc')->paginate(15);
-        return view('nationalities.index', compact('items'));
+        return view('nationalities::index', compact('items'));
     }
 
     public function create()
     {
-        return view('nationalities.create');
+        return view('nationalities::create');
     }
 
     public function store(Request $request)
@@ -34,12 +35,12 @@ class NationalityController extends Controller
 
     public function show(Nationality $nationality)
     {
-        return view('nationalities.show', ['item' => $nationality]);
+        return view('nationalities::show', ['item' => $nationality]);
     }
 
     public function edit(Nationality $nationality)
     {
-        return view('nationalities.edit', ['item' => $nationality]);
+        return view('nationalities::edit', ['item' => $nationality]);
     }
 
     public function update(Request $request, Nationality $nationality)

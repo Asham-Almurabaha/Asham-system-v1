@@ -1,0 +1,11 @@
+{
+    "name": "Nationalities",
+    "alias": "nationalities",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Nationalities\\Providers\\NationalitiesServiceProvider"
+    ],
+    "files": []
+}

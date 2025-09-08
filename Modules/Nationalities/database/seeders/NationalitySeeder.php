@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Nationalities\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Nationality;
+use Modules\Nationalities\Models\Nationality;
 
 class NationalitySeeder extends Seeder
 {

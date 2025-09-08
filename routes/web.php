@@ -8,7 +8,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\AuditLogController;
@@ -31,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:admin'])->group(function () {
 
         Route::resource('users', UserRoleController::class);
-        Route::resource('nationalities', NationalityController::class);
         Route::resource('titles', TitleController::class);
         Route::resource('cities', CityController::class);
         Route::resource('branches', BranchController::class);
