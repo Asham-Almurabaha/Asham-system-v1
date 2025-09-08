@@ -6,7 +6,7 @@
     <div class="card shadow-sm">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0">@lang('nationalities::nationalities.Create Nationality')</h5>
-        <x-btn href="{{ route('nationalities.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('setting.Back')</x-btn>
+        <x-btn href="{{ route('nationalities.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('nationalities::nationalities.Back')</x-btn>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('nationalities.store') }}" class="row g-3">

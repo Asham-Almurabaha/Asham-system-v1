@@ -7,6 +7,7 @@ return [
     'Active' => 'Active',
     'Inactive' => 'Inactive',
     'Actions' => 'Actions',
+    'Back' => 'Back',
     'Edit' => 'Edit',
     'Delete' => 'Delete',
     'Delete confirm' => 'Delete this record? This cannot be undone.',

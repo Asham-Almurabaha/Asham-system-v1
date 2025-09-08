@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', __('nationalities.Edit Nationality'))
+@section('title', __('nationalities::nationalities.Edit Nationality'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">
     <div class="card shadow-sm">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0">@lang('nationalities::nationalities.Edit Nationality')</h5>
-        <x-btn href="{{ route('nationalities.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('setting.Back')</x-btn>
+        <x-btn href="{{ route('nationalities.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('nationalities::nationalities.Back')</x-btn>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('nationalities.update', $item) }}" class="row g-3">
