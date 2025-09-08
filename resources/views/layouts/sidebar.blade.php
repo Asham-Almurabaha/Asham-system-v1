@@ -8,7 +8,7 @@
 
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
-      || $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('titles.*') || $isRoute('cities.*') || $isRoute('branches.*')
+      || $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('titles.*') || $isRoute('departments.*')|| $isRoute('cities.*') || $isRoute('branches.*')
       || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
       || $isRoute('products.*') || $isRoute('product_entries.*')
@@ -99,13 +99,13 @@
         </a>
       </li>
       <li>
-        <a class="{{ $active($isRoute('titles.*')) }}" href="{{ route('titles.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Job Titles')</span>
+        <a class="{{ $active($isRoute('departments.*')) }}" href="{{ route('departments.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Departments')</span>
         </a>
       </li>
       <li>
-        <a class="{{ $active($isRoute('departments.*')) }}" href="{{ route('departments.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Departments')</span>
+        <a class="{{ $active($isRoute('titles.*')) }}" href="{{ route('titles.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Job Titles')</span>
         </a>
       </li>
       <li>
@@ -118,6 +118,7 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Branches')</span>
         </a>
       </li>
+      <li class="nav-heading">@lang('sidebar.Audit Logs')</li>
       <li>
         <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
