@@ -52,6 +52,6 @@ return [
     'Dashboard' => 'لوحة التحكم',
     'Settings' => 'الإعدادات',
     'General Settings' => 'إعدادات عامة',
-    'General Setting' => 'إعداد عام',
+    'General Setting' => 'إعدادات عامة',
 ];
 
