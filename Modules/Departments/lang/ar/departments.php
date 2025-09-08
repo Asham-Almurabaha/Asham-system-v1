@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Job Titles' => 'الوظائف',
+    'Departments' => 'الأقسام',
     'Name (EN)' => 'الاسم (إنجليزي)',
     'Name (AR)' => 'الاسم (عربي)',
     'Active' => 'مفعل',
@@ -12,13 +12,10 @@ return [
     'Delete' => 'حذف',
     'Delete confirm' => 'هل أنت متأكد من حذف هذا السجل؟ لا يمكن التراجع.',
     'No data' => 'لا توجد بيانات',
-    'Create Title' => 'إنشاء وظيفة',
-    'Edit Title' => 'تعديل وظيفة',
-    'View Title' => 'عرض وظيفة',
+    'Create Department' => 'إنشاء قسم',
+    'Edit Department' => 'تعديل قسم',
+    'View Department' => 'عرض قسم',
     'Created successfully' => 'تم الإنشاء بنجاح',
     'Updated successfully' => 'تم التحديث بنجاح',
     'Deleted successfully' => 'تم الحذف بنجاح',
-    'Department' => 'القسم',
-    'Select Department' => 'اختر القسم',
 ];
-

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Modules\Cities\Database\Seeders\CitySeeder;
 use Modules\Branches\Database\Seeders\BranchSeeder;
+use Modules\Departments\Database\Seeders\DepartmentSeeder;
 use Modules\Nationalities\Database\Seeders\NationalitySeeder;
 use Modules\Titles\Database\Seeders\TitleSeeder;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CitySeeder::class,
             BranchSeeder::class,
+            DepartmentSeeder::class,
             PermissionsSeeder::class,
             NationalitySeeder::class,
             TitleSeeder::class,

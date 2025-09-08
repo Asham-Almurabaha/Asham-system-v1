@@ -22,6 +22,16 @@
             <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid @enderror" value="{{ old('name_ar', $item->name_ar) }}" required>
             @error('name_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
+          <div class="col-md-6">
+            <label class="form-label">@lang('titles::titles.Department')</label>
+            <select name="department_id" class="form-select @error('department_id') is-invalid @enderror">
+              <option value="">@lang('titles::titles.Select Department')</option>
+              @foreach($departments as $d)
+                <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ $d->name }}</option>
+              @endforeach
+            </select>
+            @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', $item->is_active) ? 'checked' : '' }}>
             <label class="form-check-label" for="is_active">@lang('titles::titles.Active')</label>
@@ -36,4 +46,3 @@
   </div>
 </div>
 @endsection
-

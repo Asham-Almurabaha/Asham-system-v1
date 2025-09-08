@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Job Titles' => 'Job Titles',
+    'Departments' => 'Departments',
     'Name (EN)' => 'Name (EN)',
     'Name (AR)' => 'Name (AR)',
     'Active' => 'Active',
@@ -12,13 +12,10 @@ return [
     'Delete' => 'Delete',
     'Delete confirm' => 'Delete this record? This cannot be undone.',
     'No data' => 'No data',
-    'Create Title' => 'Create Title',
-    'Edit Title' => 'Edit Title',
-    'View Title' => 'View Title',
+    'Create Department' => 'Create Department',
+    'Edit Department' => 'Edit Department',
+    'View Department' => 'View Department',
     'Created successfully' => 'Created successfully',
     'Updated successfully' => 'Updated successfully',
     'Deleted successfully' => 'Deleted successfully',
-    'Department' => 'Department',
-    'Select Department' => 'Select Department',
 ];
-
