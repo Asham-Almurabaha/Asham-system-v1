@@ -53,7 +53,7 @@
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Hire Date')</label>
-            <input type="date" name="hire_date" class="form-control @error('hire_date') is-invalid @enderror" value="{{ old('hire_date', $item->hire_date?->format('Y-m-d')) }}">
+            <input type="date" name="hire_date" class="form-control js-date @error('hire_date') is-invalid @enderror" value="{{ old('hire_date', $item->hire_date?->format('Y-m-d')) }}">
             @error('hire_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
