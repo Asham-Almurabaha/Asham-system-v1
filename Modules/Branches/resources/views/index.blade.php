@@ -2,6 +2,7 @@
 @section('title', __('branches.Branches'))
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+  
   <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb mb-0">
       <li class="breadcrumb-item active" aria-current="page">@lang('branches::branches.Branches')</li>

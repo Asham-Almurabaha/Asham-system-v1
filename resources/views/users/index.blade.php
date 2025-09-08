@@ -1,7 +1,5 @@
 @extends('layouts.master')
-
 @section('title', __('users.Users'))
-
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
@@ -57,7 +55,6 @@
         </tbody>
       </table>
     </div>
-
     <div class="card-body">
       {{ $users->links() }}
     </div>
