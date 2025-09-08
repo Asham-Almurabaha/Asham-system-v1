@@ -20,6 +20,7 @@ return [
     'Departments' => 'Departments',
     'Cities' => 'Cities',
     'Branches' => 'Branches',
+    'Residency Statuses' => 'Residency Statuses',
     'Audit Logs' => 'Audit Logs',
 ];
 

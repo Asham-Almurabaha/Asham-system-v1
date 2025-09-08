@@ -20,6 +20,7 @@ return [
     'Departments' => 'الأقسام',
     'Cities' => 'المدن',
     'Branches' => 'الفروع',
+    'Residency Statuses' => 'حالات الإقامة',
     'Audit Logs' => 'سجل النشاط',
 ];
 

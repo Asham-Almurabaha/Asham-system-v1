@@ -7,5 +7,6 @@
   "AuditLogs": true,
   "Profiles": true,
   "Departments": true,
-  "Employees": true
+  "Employees": true,
+  "ResidencyStatuses": true
 }

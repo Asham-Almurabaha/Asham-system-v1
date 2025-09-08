@@ -38,7 +38,8 @@
         "Modules\\Branches\\": "Modules/Branches/app/",
         "Modules\\\\Titles\\\\": "Modules/Titles/app/",
         "Modules\\AuditLogs\\": "Modules/AuditLogs/app/",
-        "Modules\\Profiles\\": "Modules/Profiles/app/"
+        "Modules\\Profiles\\": "Modules/Profiles/app/",
+        "Modules\\ResidencyStatuses\\": "Modules/ResidencyStatuses/app/"
       }
     },
   "autoload-dev": {

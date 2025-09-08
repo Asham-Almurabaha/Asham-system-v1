@@ -1,0 +1,28 @@
+{
+    "name": "nwidart/residencystatuses",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ResidencyStatuses\\": "app/",
+            "Modules\\ResidencyStatuses\\Database\\Factories\\": "database/factories/",
+            "Modules\\ResidencyStatuses\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\ResidencyStatuses\\Tests\\": "tests/"
+        }
+    }
+}

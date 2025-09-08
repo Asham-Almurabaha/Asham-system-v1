@@ -128,6 +128,11 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Branches')</span>
         </a>
       </li>
+      <li>
+        <a class="{{ $active($isRoute('residency-statuses.*')) }}" href="{{ route('residency-statuses.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Residency Statuses')</span>
+        </a>
+      </li>
       <li class="nav-heading">@lang('sidebar.Audit Logs')</li>
       <li>
         <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
