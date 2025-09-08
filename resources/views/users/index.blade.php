@@ -45,7 +45,7 @@
               </td>
               <td class="text-end">
                 <div class="d-inline-flex gap-1">
-                  <x-btn href="{{ route('users.edit', $u) }}" size="sm" variant="outline-secondary" icon="bi bi-person-gear">@lang('users.Edit User')</x-btn>
+                  <x-btn href="{{ route('users.edit', $u) }}" size="sm" variant="outline-secondary" icon="bi bi-person-gear" class="btn-icon-sm" title="@lang('users.Edit User')" />
                 </div>
               </td>
             </tr>
