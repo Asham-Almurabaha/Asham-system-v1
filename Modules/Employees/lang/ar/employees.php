@@ -40,6 +40,6 @@ return [
     'Tawakkalna ID Image' => 'صورة هوية توكلنا',
     'Residency Expiry Date' => 'تاريخ انتهاء الإقامة',
     'Employer Name' => 'اسم صاحب العمل',
-    'Employer ID' => 'رقم صاحب العمل',
+    'Employer ID' => 'هوية صاحب العمل',
     'Preview' => 'معاينة',
 ];
