@@ -11,8 +11,10 @@ Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.t
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 Route::get('/', function () {
-    return User::count() == 0 ? redirect()->route('register') : redirect()->route('login'); 
+    return User::count() == 0 ? redirect()->route('register') : redirect()->route('login');
 });
+
+Route::get('/loading', function () {return view('loading');})->name('loading');
 
 Route::middleware('auth')->group(function () {
 
