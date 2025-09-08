@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\LogsActivity;
-use App\Models\Branch;
+use Modules\Branches\Models\Branch;
 
 class User extends Authenticatable
 {

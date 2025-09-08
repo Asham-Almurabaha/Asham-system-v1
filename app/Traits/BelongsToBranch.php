@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Branch;
+use Modules\Branches\Models\Branch;
 
 trait BelongsToBranch
 {

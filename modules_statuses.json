@@ -1,4 +1,6 @@
 {
     "Settings": true,
-    "Nationalities": true
+    "Nationalities": true,
+    "Cities": true,
+    "Branches": true
 }

@@ -8,8 +8,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\BranchController;
 use App\Http\Controllers\AuditLogController;
 
 Route::post('/lang/toggle', [LanguageController::class, 'toggle'])->name('lang.toggle');
@@ -31,8 +29,6 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('users', UserRoleController::class);
         Route::resource('titles', TitleController::class);
-        Route::resource('cities', CityController::class);
-        Route::resource('branches', BranchController::class);
         Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
         Route::post('audit-logs/{auditLog}/revert', [AuditLogController::class, 'revert'])->name('audit-logs.revert');
