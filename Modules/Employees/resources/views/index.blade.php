@@ -32,8 +32,16 @@
           @forelse ($items as $i)
             <tr>
               <td>{{ $i->id }}</td>
-              <td>{{ $i->first_name }}</td>
-              <td>{{ $i->last_name }}</td>
+              <td>
+                <a href="{{ route('employees.show', $i) }}">
+                  {{ $i->first_name }}
+                </a>
+              </td>
+              <td>
+                <a href="{{ route('employees.show', $i) }}">
+                  {{ $i->last_name }}
+                </a>
+              </td>
               <td>{{ $i->email }}</td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
               <td>{{ $i->title ? (app()->getLocale() === 'ar' ? $i->title->name_ar : $i->title->name) : '' }}</td>
