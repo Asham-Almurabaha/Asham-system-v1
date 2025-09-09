@@ -41,6 +41,7 @@
             <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-photo')">
             @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
             <div class="form-text">@lang('settings::setting.Limit 4MB')</div>
+            <img id="preview-photo" class="img-fluid rounded border d-none mt-2" style="max-height:100px" alt="preview">
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('employees::employees.Phone Numbers')</label>
@@ -102,42 +103,38 @@
             @error('nationality_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-12"><hr></div>
-          <div class="col-12">
+          <section class="col-12">
             <h5>@lang('employees::employees.Identity Data')</h5>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
-            <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_absher_id_image')">
-            @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
-            <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_tawakkalna_id_image')">
-            @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Residency Expiry Date')</label>
-            <input type="date" name="residency_expiry_date" class="form-control js-date @error('residency_expiry_date') is-invalid @enderror" value="{{ old('residency_expiry_date') }}">
-            @error('residency_expiry_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Employer Name')</label>
-            <input type="text" name="residency_employer_name" class="form-control @error('residency_employer_name') is-invalid @enderror" value="{{ old('residency_employer_name') }}">
-            @error('residency_employer_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('employees::employees.Employer ID')</label>
-            <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id') }}">
-            @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-12">
-            <label class="form-label">@lang('employees::employees.Preview')</label>
-            <div class="d-flex gap-3" id="image-preview">
-              <img id="preview-photo" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
-              <img id="preview-residency_absher_id_image" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
-              <img id="preview-residency_tawakkalna_id_image" class="img-fluid rounded border d-none" style="max-height:100px" alt="preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
+                <input type="file" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_absher_id_image')">
+                @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                <img id="preview-residency_absher_id_image" class="img-fluid rounded border d-none mt-2" style="max-height:100px" alt="preview">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
+                <input type="file" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp" onchange="previewImage(event, 'preview-residency_tawakkalna_id_image')">
+                @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                <img id="preview-residency_tawakkalna_id_image" class="img-fluid rounded border d-none mt-2" style="max-height:100px" alt="preview">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">@lang('employees::employees.Residency Expiry Date')</label>
+                <input type="date" name="residency_expiry_date" class="form-control js-date @error('residency_expiry_date') is-invalid @enderror" value="{{ old('residency_expiry_date') }}">
+                @error('residency_expiry_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">@lang('employees::employees.Employer Name')</label>
+                <input type="text" name="residency_employer_name" class="form-control @error('residency_employer_name') is-invalid @enderror" value="{{ old('residency_employer_name') }}">
+                @error('residency_employer_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">@lang('employees::employees.Employer ID')</label>
+                <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id') }}">
+                @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+              </div>
             </div>
-          </div>
+          </section>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>
             <label class="form-check-label" for="is_active">@lang('employees::employees.Active')</label>
