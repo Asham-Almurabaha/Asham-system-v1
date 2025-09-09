@@ -45,7 +45,9 @@
                 <tr>
                   <th>@lang('auditlogs::audit.Action')</th>
                   <td>
-                    @php($badge = ['INSERT' => 'success', 'UPDATE' => 'warning', 'DELETE' => 'danger'][$auditLog->action] ?? 'secondary')
+                    @php
+                      $badge = ['INSERT' => 'success', 'UPDATE' => 'warning', 'DELETE' => 'danger'][$auditLog->action] ?? 'secondary';
+                    @endphp
                     <span class="badge bg-{{ $badge }}">{{ $auditLog->action }}</span>
                   </td>
                 </tr>

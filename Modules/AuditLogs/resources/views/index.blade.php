@@ -37,7 +37,9 @@
               <td>{{ $log->table_name }}</td>
               <td>{{ $log->record_id }}</td>
               <td>
-                @php($badge = ['INSERT' => 'success', 'UPDATE' => 'warning', 'DELETE' => 'danger'][$log->action] ?? 'secondary')
+                @php
+                  $badge = ['INSERT' => 'success', 'UPDATE' => 'warning', 'DELETE' => 'danger'][$log->action] ?? 'secondary';
+                @endphp
                 <span class="badge bg-{{ $badge }}">{{ $log->action }}</span>
               </td>
               <td>{{ optional($log->user)->name ?? $log->performed_by }}</td>
