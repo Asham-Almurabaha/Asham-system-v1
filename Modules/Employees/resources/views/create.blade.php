@@ -12,8 +12,8 @@
           <h5 class="mb-0">@lang('employees::employees.Create Employee')</h5>
           <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
         </div>
-        <div class="card-body">
-          <div class="row g-3 m-1">
+        <div class="card-body m-1">
+          <div class="row g-3">
             {{-- Arabic Names (same row) --}}
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.First Name (AR)')</label>
@@ -47,10 +47,9 @@
 
             {{-- Photo (own row) --}}
             <div class="col-12">
-              <label class="form-label">@lang('employees::employees.Photo (PNG/JPG/WEBP/SVG)')</label>
+              <label class="form-label">@lang('employees::employees.Photo')</label>
               <input type="file" id="photo" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp,.svg" onchange="previewImage(event, 'preview-photo', 'remove-photo')">
               @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
-              <div class="form-text">@lang('settings::setting.Limit 4MB')</div>
               <img id="preview-photo" class="img-fluid rounded border d-none mt-2" style="max-height:100px" alt="preview">
               <button type="button" id="remove-photo" class="btn btn-sm btn-outline-danger d-none mt-2" onclick="removeImage('photo','preview-photo','remove-photo')">@lang('employees::employees.Delete')</button>
             </div>
@@ -131,7 +130,7 @@
         <div class="card-header">
           <h5 class="mb-0">@lang('employees::employees.Identity Data')</h5>
         </div>
-        <div class="card-body  m-1">
+        <div class="card-body m-1">
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
@@ -168,7 +167,7 @@
 
       {{-- ============================= Actions (separate card) ============================= --}}
       <div class="card shadow-sm">
-        <div class="card-body  m-1">
+        <div class="card-body m-1">
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>
             <label class="form-check-label" for="is_active">@lang('employees::employees.Active')</label>
