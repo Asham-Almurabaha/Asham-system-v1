@@ -59,7 +59,7 @@
                      icon="bi bi-pencil-square">
                 @lang('employees::employees.Edit')
               </x-btn>
-            @endif>
+            @endif
 
             <x-btn href="javascript:window.print()"
                    size="sm" variant="outline-dark"
