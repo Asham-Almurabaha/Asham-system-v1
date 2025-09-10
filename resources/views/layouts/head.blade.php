@@ -3,8 +3,9 @@
   $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
-  $favicon   = $setting->favicon_url
-              ?? ($setting->favicon ? asset('storage/'.$setting->favicon) : null);
+  $favicon   = $setting->favicon
+              ? asset('storage/'.$setting->favicon)
+              : null;
   $desc      = $setting->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
   $canonical = request()->url();
   $locale    = app()->getLocale();
@@ -54,9 +55,7 @@
 {{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 {{-- Bootstrap & DataTables RTL/LTR --}}
 @if ($isRtl)
