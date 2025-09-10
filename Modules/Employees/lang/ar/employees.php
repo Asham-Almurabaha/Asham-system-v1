@@ -36,6 +36,7 @@ return [
     'Residencies' => 'الإقامات',
     'Expiry Date' => 'تاريخ الانتهاء',
     'Identity Data' => 'بيانات الهوية',
+    'ID Images' => 'صور الهوية',
     'Absher ID Image' => 'صورة هوية أبشر',
     'Tawakkalna ID Image' => 'صورة هوية توكلنا',
     'Residency Expiry Date' => 'تاريخ انتهاء الإقامة',

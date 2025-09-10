@@ -19,55 +19,52 @@
 
           {{-- ============================= Basic Info ============================= --}}
           <div class="row g-3">
-            {{-- Arabic Names (same row) --}}
+            {{-- Arabic Names --}}
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.First Name (AR)')</label>
-              <input type="text" name="first_name_ar" class="form-control @error('first_name_ar') is-invalid @enderror" value="{{ old('first_name_ar', $item->first_name_ar) }}" placeholder="{{ __('اكتب الاسم الأول بالعربية (مثال: خالد)') }}" required>
+              <input type="text" name="first_name_ar" class="form-control @error('first_name_ar') is-invalid @enderror" value="{{ old('first_name_ar', $item->first_name_ar) }}" required>
               @error('first_name_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.Last Name (AR)')</label>
-              <input type="text" name="last_name_ar" class="form-control @error('last_name_ar') is-invalid @enderror" value="{{ old('last_name_ar', $item->last_name_ar) }}" placeholder="{{ __('اكتب اسم العائلة بالعربية (مثال: الحربي)') }}" required>
+              <input type="text" name="last_name_ar" class="form-control @error('last_name_ar') is-invalid @enderror" value="{{ old('last_name_ar', $item->last_name_ar) }}" required>
               @error('last_name_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            {{-- English Names (same row) --}}
+            {{-- English Names --}}
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.First Name (EN)')</label>
-              <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name', $item->first_name) }}" placeholder="{{ __('Enter first name in English (e.g., Khaled)') }}" required>
+              <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name', $item->first_name) }}" required>
               @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.Last Name (EN)')</label>
-              <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name', $item->last_name) }}" placeholder="{{ __('Enter last name in English (e.g., Al‑Harbi)') }}" required>
+              <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name', $item->last_name) }}" required>
               @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             {{-- Email --}}
             <div class="col-md-6">
               <label class="form-label">@lang('employees::employees.Email')</label>
-              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $item->email) }}" placeholder="{{ __('example@company.com') }}" required>
+              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $item->email) }}" required>
               @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            {{-- Photo (own row) --}}
+            {{-- Photo --}}
             <div class="col-12">
-              <label class="form-label d-flex justify-content-between">
-                <span>@lang('employees::employees.Photo')</span>
-                @if($item->photo_url)
-                  <a href="{{ $item->photo_url }}" target="_blank" class="small">@lang('settings::setting.View Current')</a>
-                @endif
-              </label>
-              <input type="file" id="photo" name="photo" class="form-control @error('photo') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp,.svg" onchange="previewImage(event, 'preview-photo', 'remove-photo')">
+              <label class="form-label">@lang('employees::employees.Photo')</label>
+              <input type="file" id="photo" name="photo" class="form-control @error('photo') is-invalid @enderror"
+                     accept=".png,.jpg,.jpeg,.gif,.webp,.svg"
+                     onchange="previewImage(event, 'preview-photo', 'remove-photo')">
               @error('photo') <div class="invalid-feedback">{{ $message }}</div> @enderror
-              <img id="preview-photo" src="{{ $item->photo_url }}" class="img-fluid rounded border {{ $item->photo_url ? '' : 'd-none' }} mt-2" style="max-height:100px" alt="preview">
-              <button type="button" id="remove-photo" class="btn btn-sm btn-outline-danger d-none mt-2" onclick="removeImage('photo','preview-photo','remove-photo')">@lang('employees::employees.Delete')</button>
-              @if($item->photo_url)
-                <div class="form-check mt-2">
-                  <input class="form-check-input" type="checkbox" value="1" id="remove_photo" name="remove_photo">
-                  <label class="form-check-label" for="remove_photo">@lang('employees::employees.Delete current photo')</label>
-                </div>
-              @endif
+              <img id="preview-photo" src="{{ $item->photo_url }}"
+                   class="img-fluid rounded border {{ $item->photo_url ? '' : 'd-none' }} mt-2"
+                   style="max-height:100px" alt="preview"
+                   onerror="this.classList.add('d-none');">
+              <button type="button" id="remove-photo" class="btn btn-sm btn-outline-danger d-none mt-2"
+                      onclick="removeImage('photo','preview-photo','remove-photo')">
+                @lang('employees::employees.Delete')
+              </button>
             </div>
 
             {{-- Phones --}}
@@ -75,67 +72,14 @@
               <label class="form-label">@lang('employees::employees.Phone Numbers')</label>
               <div id="phone-container">
                 @php $phones = old('phones', $item->phones->pluck('phone')->toArray() ?: ['']); @endphp
-                @foreach($phones as $i => $phone)
+                @foreach($phones as $phone)
                 <div class="input-group mb-2">
-                  <input type="text" name="phones[]" class="form-control" value="{{ $phone }}" placeholder="{{ __('05xxxxxxxx') }}">
+                  <input type="text" name="phones[]" class="form-control" value="{{ $phone }}" placeholder="05xxxxxxxx">
                   <button type="button" class="btn btn-outline-danger remove-phone {{ $loop->first ? 'd-none' : '' }}">&times;</button>
                 </div>
                 @endforeach
               </div>
-              @error('phones.*') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
               <button type="button" id="add-phone" class="btn btn-sm btn-outline-primary mt-2">@lang('employees::employees.Add Phone')</button>
-            </div>
-
-            {{-- Hire Date --}}
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Hire Date')</label>
-              <input type="date" name="hire_date" class="form-control js-date @error('hire_date') is-invalid @enderror" value="{{ old('hire_date', $item->hire_date?->format('Y-m-d')) }}" placeholder="@lang('employees::employees.Hire Date')">
-              @error('hire_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-
-            {{-- Branch --}}
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Branch')</label>
-              <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
-                <option value="" disabled>@lang('employees::employees.Branch')</option>
-                @foreach($branches as $b)
-                  <option value="{{ $b->id }}" {{ old('branch_id', $item->branch_id) == $b->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $b->name_ar : $b->name }}</option>
-                @endforeach
-              </select>
-              @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-
-            {{-- Department --}}
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Department')</label>
-              <select name="department_id" id="department_id" class="form-select @error('department_id') is-invalid @enderror">
-                <option value="" selected>{{ __('اختر القسم') }}</option>
-                @foreach($departments as $d)
-                  <option value="{{ $d->id }}" {{ old('department_id', $item->department_id) == $d->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $d->name_ar : $d->name }}</option>
-                @endforeach
-              </select>
-              @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-
-            {{-- Title (depends on department) --}}
-            <div class="col-md-6 d-none" id="title-container">
-              <label class="form-label">@lang('employees::employees.Title')</label>
-              <select name="title_id" id="title_id" class="form-select @error('title_id') is-invalid @enderror">
-                <option value="" selected>{{ __('اختر المسمى الوظيفي') }}</option>
-              </select>
-              @error('title_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-
-            {{-- Nationality --}}
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Nationality')</label>
-              <select name="nationality_id" class="form-select @error('nationality_id') is-invalid @enderror">
-                <option value="" selected>@lang('employees::employees.Nationality')</option>
-                @foreach($nationalities as $n)
-                  <option value="{{ $n->id }}" {{ old('nationality_id', $item->nationality_id) == $n->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $n->name_ar : $n->name }}</option>
-                @endforeach
-              </select>
-              @error('nationality_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
           </div>
         </div>
@@ -149,57 +93,49 @@
         <div class="card-body m-1">
           <div class="row g-3">
             <div class="col-md-6">
-              <label class="form-label d-flex justify-content-between">
-                <span>@lang('employees::employees.Absher ID Image')</span>
-                @if($residency?->absher_id_image)
-                  <a href="{{ Storage::url($residency->absher_id_image) }}" target="_blank" class="small">@lang('settings::setting.View Current')</a>
-                @endif
-              </label>
-              <input type="file" id="residency_absher_id_image" name="residency_absher_id_image" class="form-control @error('residency_absher_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp,.svg" onchange="previewImage(event, 'preview-residency_absher_id_image', 'remove-residency_absher_id_image')">
-              @error('residency_absher_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
-              <img id="preview-residency_absher_id_image" src="{{ $residency?->absher_id_image ? Storage::url($residency->absher_id_image) : '' }}" class="img-fluid rounded border {{ $residency?->absher_id_image ? '' : 'd-none' }} mt-2" style="max-height:100px" alt="preview">
-              <button type="button" id="remove-residency_absher_id_image" class="btn btn-sm btn-outline-danger d-none mt-2" onclick="removeImage('residency_absher_id_image','preview-residency_absher_id_image','remove-residency_absher_id_image')">@lang('employees::employees.Delete')</button>
+              <label class="form-label">@lang('employees::employees.Absher ID Image')</label>
+              <input type="file" id="residency_absher_id_image" name="residency_absher_id_image"
+                     class="form-control" accept=".png,.jpg,.jpeg"
+                     onchange="previewImage(event, 'preview-residency_absher_id_image', 'remove-residency_absher_id_image')">
+              <img id="preview-residency_absher_id_image"
+                   src="{{ $residency?->absher_id_image ? Storage::url($residency->absher_id_image) : '' }}"
+                   class="img-fluid rounded border {{ $residency?->absher_id_image ? '' : 'd-none' }} mt-2"
+                   style="max-height:100px" alt="preview"
+                   onerror="this.classList.add('d-none');">
+              <button type="button" id="remove-residency_absher_id_image" class="btn btn-sm btn-outline-danger d-none mt-2"
+                      onclick="removeImage('residency_absher_id_image','preview-residency_absher_id_image','remove-residency_absher_id_image')">
+                @lang('employees::employees.Delete')
+              </button>
             </div>
             <div class="col-md-6">
-              <label class="form-label d-flex justify-content-between">
-                <span>@lang('employees::employees.Tawakkalna ID Image')</span>
-                @if($residency?->tawakkalna_id_image)
-                  <a href="{{ Storage::url($residency->tawakkalna_id_image) }}" target="_blank" class="small">@lang('settings::setting.View Current')</a>
-                @endif
-              </label>
-              <input type="file" id="residency_tawakkalna_id_image" name="residency_tawakkalna_id_image" class="form-control @error('residency_tawakkalna_id_image') is-invalid @enderror" accept=".png,.jpg,.jpeg,.gif,.webp,.svg" onchange="previewImage(event, 'preview-residency_tawakkalna_id_image', 'remove-residency_tawakkalna_id_image')">
-              @error('residency_tawakkalna_id_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
-              <img id="preview-residency_tawakkalna_id_image" src="{{ $residency?->tawakkalna_id_image ? Storage::url($residency->tawakkalna_id_image) : '' }}" class="img-fluid rounded border {{ $residency?->tawakkalna_id_image ? '' : 'd-none' }} mt-2" style="max-height:100px" alt="preview">
-              <button type="button" id="remove-residency_tawakkalna_id_image" class="btn btn-sm btn-outline-danger d-none mt-2" onclick="removeImage('residency_tawakkalna_id_image','preview-residency_tawakkalna_id_image','remove-residency_tawakkalna_id_image')">@lang('employees::employees.Delete')</button>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Residency Expiry Date')</label>
-              <input type="date" name="residency_expiry_date" class="form-control js-date @error('residency_expiry_date') is-invalid @enderror" value="{{ old('residency_expiry_date', $residency?->expiry_date?->format('Y-m-d')) }}" placeholder="@lang('employees::employees.Residency Expiry Date')">
-              @error('residency_expiry_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Employer Name')</label>
-              <input type="text" name="residency_employer_name" class="form-control @error('residency_employer_name') is-invalid @enderror" value="{{ old('residency_employer_name', $residency?->employer_name) }}" placeholder="{{ __('اكتب اسم صاحب العمل كما هو بالإقامة/توكلنا') }}">
-              @error('residency_employer_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">@lang('employees::employees.Employer ID')</label>
-              <input type="text" name="residency_employer_id" class="form-control @error('residency_employer_id') is-invalid @enderror" value="{{ old('residency_employer_id', $residency?->employer_id) }}" placeholder="{{ __('رقم صاحب العمل') }}">
-              @error('residency_employer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+              <label class="form-label">@lang('employees::employees.Tawakkalna ID Image')</label>
+              <input type="file" id="residency_tawakkalna_id_image" name="residency_tawakkalna_id_image"
+                     class="form-control" accept=".png,.jpg,.jpeg"
+                     onchange="previewImage(event, 'preview-residency_tawakkalna_id_image', 'remove-residency_tawakkalna_id_image')">
+              <img id="preview-residency_tawakkalna_id_image"
+                   src="{{ $residency?->tawakkalna_id_image ? Storage::url($residency->tawakkalna_id_image) : '' }}"
+                   class="img-fluid rounded border {{ $residency?->tawakkalna_id_image ? '' : 'd-none' }} mt-2"
+                   style="max-height:100px" alt="preview"
+                   onerror="this.classList.add('d-none');">
+              <button type="button" id="remove-residency_tawakkalna_id_image" class="btn btn-sm btn-outline-danger d-none mt-2"
+                      onclick="removeImage('residency_tawakkalna_id_image','preview-residency_tawakkalna_id_image','remove-residency_tawakkalna_id_image')">
+                @lang('employees::employees.Delete')
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {{-- ============================= Actions (separate card) ============================= --}}
+      {{-- ============================= Actions ============================= --}}
       <div class="card shadow-sm">
         <div class="card-body m-1">
           <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', $item->is_active) ? 'checked' : '' }}>
+            <input class="form-check-input" type="checkbox" name="is_active" id="is_active"
+                   {{ old('is_active', $item->is_active) ? 'checked' : '' }}>
             <label class="form-check-label" for="is_active">@lang('employees::employees.Active')</label>
           </div>
           <div class="d-flex gap-2">
-            <x-btn variant="outline-success" type="submit" icon="bi bi-check2">@lang('users.Save')</x-btn>
+            <x-btn variant="outline-success" type="submit">@lang('users.Save')</x-btn>
             <x-btn href="{{ route('employees.index') }}" variant="outline-secondary">@lang('users.Cancel')</x-btn>
           </div>
         </div>
@@ -213,104 +149,55 @@
 @endsection
 
 @push('scripts')
-@php
-    // Prepare titles for JS (simple array) — same as create
-    $titlesForJs = $titles
-        ->map(fn($t) => [
-            'id' => $t->id,
-            'name' => $t->name,
-            'name_ar' => $t->name_ar,
-            'department_id' => $t->department_id,
-        ])
-        ->values()
-        ->toArray();
-@endphp
 <script>
-// ====== Phones add/remove ======
-document.getElementById('add-phone')?.addEventListener('click', function () {
-    const container = document.getElementById('phone-container');
-    const div = document.createElement('div');
-    div.className = 'input-group mb-2';
-    div.innerHTML = `
-        <input type=\"text\" name=\"phones[]\" class=\"form-control\" placeholder=\"{{ __('05xxxxxxxx') }}\">
-        <button type=\"button\" class=\"btn btn-outline-danger remove-phone\">&times;</button>
-    `;
-    container.appendChild(div);
-});
+function initPreview(imgId, removeBtnId = null) {
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  const hasSrc = (img.getAttribute('src') || '').trim().length > 0;
 
-document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('remove-phone')) {
-        e.target.closest('.input-group').remove();
-    }
-});
-
-// ====== Titles (dependent on Department) ======
-const allTitles = @json($titlesForJs);
-const locale = @js(app()->getLocale());
-const departmentSelect = document.getElementById('department_id');
-const titleSelect = document.getElementById('title_id');
-const titleContainer = document.getElementById('title-container');
-let oldTitleId = @js(old('title_id', $item->title_id));
-
-function updateTitles() {
-    const depId = departmentSelect.value;
-    titleSelect.innerHTML = `<option value=\"\" selected>{{ __('اختر المسمى الوظيفي') }}</option>`;
-    if (depId) {
-        const filtered = allTitles.filter(t => String(t.department_id) === String(depId));
-        filtered.forEach(t => {
-            const option = document.createElement('option');
-            option.value = t.id;
-            option.textContent = locale === 'ar' ? (t.name_ar ?? t.name) : (t.name ?? t.name_ar);
-            if (String(oldTitleId) === String(t.id)) option.selected = true;
-            titleSelect.appendChild(option);
-        });
-        titleContainer.classList.toggle('d-none', filtered.length === 0);
-    } else {
-        titleContainer.classList.add('d-none');
-    }
+  if (!hasSrc) {
+    img.classList.add('d-none');
+    if (removeBtnId) document.getElementById(removeBtnId)?.classList.add('d-none');
+  }
+  img.addEventListener('error', () => {
+    img.classList.add('d-none');
+    if (removeBtnId) document.getElementById(removeBtnId)?.classList.add('d-none');
+  });
 }
 
-departmentSelect.addEventListener('change', () => {
-    oldTitleId = '';
-    updateTitles();
+document.addEventListener('DOMContentLoaded', () => {
+  initPreview('preview-photo','remove-photo');
+  initPreview('preview-residency_absher_id_image','remove-residency_absher_id_image');
+  initPreview('preview-residency_tawakkalna_id_image','remove-residency_tawakkalna_id_image');
 });
 
-// Hide title initially if no department selected
-if (!departmentSelect.value) {
-    titleContainer.classList.add('d-none');
-}
-
-// Initial population
-updateTitles();
-
-// ====== Image preview/remove (same helpers as create) ======
 function previewImage(event, previewId, removeBtnId) {
-    const file = event.target.files[0];
-    const preview = document.getElementById(previewId);
-    const removeBtn = removeBtnId ? document.getElementById(removeBtnId) : null;
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            preview.src = e.target.result;
-            preview.classList.remove('d-none');
-            if (removeBtn) removeBtn.classList.remove('d-none');
-        };
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = '';
-        preview.classList.add('d-none');
-        if (removeBtn) removeBtn.classList.add('d-none');
-    }
+  const file = event.target.files?.[0];
+  const preview = document.getElementById(previewId);
+  const removeBtn = document.getElementById(removeBtnId);
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.src = e.target.result;
+      preview.classList.remove('d-none');
+      removeBtn?.classList.remove('d-none');
+    };
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = '';
+    preview.classList.add('d-none');
+    removeBtn?.classList.add('d-none');
+  }
 }
 
 function removeImage(inputId, previewId, removeBtnId) {
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
-    const removeBtn = removeBtnId ? document.getElementById(removeBtnId) : null;
-    input.value = '';
-    preview.src = '';
-    preview.classList.add('d-none');
-    if (removeBtn) removeBtn.classList.add('d-none');
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  const removeBtn = document.getElementById(removeBtnId);
+  input.value = '';
+  preview.src = '';
+  preview.classList.add('d-none');
+  removeBtn?.classList.add('d-none');
 }
 </script>
 @endpush

@@ -3,7 +3,7 @@
   $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
-  $favicon   = $setting->favicon
+  $favicon   = $setting->favicon_url
               ?? ($setting->favicon ? asset('storage/'.$setting->favicon) : null);
   $desc      = $setting->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
   $canonical = request()->url();

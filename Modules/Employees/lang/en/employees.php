@@ -36,6 +36,7 @@ return [
     'Residencies' => 'Residencies',
     'Expiry Date' => 'Expiry Date',
     'Identity Data' => 'Identity Data',
+    'ID Images' => 'ID Images',
     'Absher ID Image' => 'Absher ID Image',
     'Tawakkalna ID Image' => 'Tawakkalna ID Image',
     'Residency Expiry Date' => 'Residency Expiry Date',

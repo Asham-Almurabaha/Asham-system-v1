@@ -10,7 +10,9 @@
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <x-btn href="{{ route('employees.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('employees::employees.Create Employee')</x-btn>
+    <x-btn href="{{ route('employees.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">
+      @lang('employees::employees.Create Employee')
+    </x-btn>
   </div>
 
   <div class="card shadow-sm">
@@ -19,9 +21,20 @@
         <thead class="table-light">
           <tr>
             <th>#</th>
-            <th>@lang('employees::employees.First Name (EN)')</th>
-            <th>@lang('employees::employees.Last Name (EN)')</th>
-            <th>@lang('employees::employees.Email')</th>
+            <th>
+              @if(app()->getLocale() === 'ar')
+                @lang('employees::employees.First Name (AR)')
+              @else
+                @lang('employees::employees.First Name (EN)')
+              @endif
+            </th>
+            <th>
+              @if(app()->getLocale() === 'ar')
+                @lang('employees::employees.Last Name (AR)')
+              @else
+                @lang('employees::employees.Last Name (EN)')
+              @endif
+            </th>
             <th>@lang('employees::employees.Branch')</th>
             <th>@lang('employees::employees.Title')</th>
             <th>@lang('employees::employees.Active')</th>
@@ -33,16 +46,14 @@
             <tr>
               <td>{{ $i->id }}</td>
               <td>
-                <a href="{{ route('employees.show', $i) }}">
-                  {{ $i->first_name }}
+                <a href="{{ route('employees.show', $i) }}"
+                   class="fw-bold text-dark text-decoration-none hover-link">
+                  {{ app()->getLocale() === 'ar' ? $i->first_name_ar : $i->first_name }}
                 </a>
               </td>
               <td>
-                <a href="{{ route('employees.show', $i) }}">
-                  {{ $i->last_name }}
-                </a>
+                {{ app()->getLocale() === 'ar' ? $i->last_name_ar : $i->last_name }}
               </td>
-              <td>{{ $i->email }}</td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
               <td>{{ $i->title ? (app()->getLocale() === 'ar' ? $i->title->name_ar : $i->title->name) : '' }}</td>
               <td>
@@ -53,8 +64,12 @@
                 @endif
               </td>
               <td class="text-end">
-                  <x-btn href="{{ route('employees.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">@lang('employees::employees.Edit')</x-btn>
-                  <x-btn href="{{ route('employees.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">@lang('employees::employees.Delete')</x-btn>
+                <x-btn href="{{ route('employees.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">
+                  @lang('employees::employees.Edit')
+                </x-btn>
+                <x-btn href="{{ route('employees.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
+                  @lang('employees::employees.Delete')
+                </x-btn>
               </td>
             </tr>
           @empty
@@ -69,3 +84,11 @@
   </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+  .hover-link:hover {
+    color: #0d6efd !important; /* Bootstrap primary blue */
+  }
+</style>
+@endpush
