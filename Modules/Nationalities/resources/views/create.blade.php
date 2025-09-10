@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('nationalities.Create Nationality'))
+@section('title', __('nationalities::nationalities.Create Nationality'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">

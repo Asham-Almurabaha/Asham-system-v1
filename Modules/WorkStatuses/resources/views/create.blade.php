@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('workstatuses.Create Work Status'))
+@section('title', __('workstatuses::workstatuses.Create Work Status'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('departments.View Department'))
+@section('title', __('departments::departments.View Department'))
 @section('content')
 <div class="container py-3">
   <nav aria-label="breadcrumb" class="mb-3">
@@ -21,7 +21,7 @@
         <table class="table table-bordered">
             <tr><th style="width:220px">@lang('departments::departments.Name (EN)')</th><td class="fw-medium">{{ $item->name }}</td></tr>
             <tr><th>@lang('departments::departments.Name (AR)')</th><td class="fw-medium">{{ $item->name_ar }}</td></tr>
-            <tr><th>@lang('departments::departments.Active')</th><td>{{ $item->is_active ? __('departments.Active') : __('departments.Inactive') }}</td></tr>
+            <tr><th>@lang('departments::departments.Active')</th><td>{{ $item->is_active ? __('departments::departments.Active') : __('departments::departments.Inactive') }}</td></tr>
         </table>
       </div>
     </div>

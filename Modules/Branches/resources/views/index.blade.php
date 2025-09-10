@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('branches.Branches'))
+@section('title', __('branches::branches.Branches'))
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
   

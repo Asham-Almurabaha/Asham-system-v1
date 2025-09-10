@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('departments.Departments'))
+@section('title', __('departments::departments.Departments'))
 @section('content')
 <div class="container py-3">
   <nav aria-label="breadcrumb" class="mb-3">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('residencystatuses.Edit Residency Status'))
+@section('title', __('residencystatuses::residencystatuses.Edit Residency Status'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">

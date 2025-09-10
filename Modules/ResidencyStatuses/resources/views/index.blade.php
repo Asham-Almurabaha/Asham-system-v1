@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('residencystatuses.Residency Statuses'))
+@section('title', __('residencystatuses::residencystatuses.Residency Statuses'))
 @section('content')
 <div class="container py-3" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
   <nav aria-label="breadcrumb" class="mb-3">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', __('departments.Edit Department'))
+@section('title', __('departments::departments.Edit Department'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">
