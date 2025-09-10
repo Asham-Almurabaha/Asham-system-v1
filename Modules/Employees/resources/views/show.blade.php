@@ -145,9 +145,6 @@
       </div>
     </div>
 
-    {{-- ================= Basic Info + Contact (2 columns) ================= --}}
-<div class="row g-3 align-items-stretch">
-  <div class="col-12 col-xl-6">
     {{-- ================= Basic Info ================= --}}
     <div class="card shadow-sm border-0 mb-3">
       <div class="card-header bg-white border-0 py-3">
@@ -175,8 +172,7 @@
         </dl>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-xl-6">
+
     {{-- ================= Contact ================= --}}
     <div class="card shadow-sm border-0 mb-3">
       <div class="card-header bg-white border-0 py-3">
@@ -222,10 +218,8 @@
         </dl>
       </div>
     </div>
-  </div>
-</div>
 
-{{-- ================= Identity (Active Residency if exists) ================= --}}
+    {{-- ================= Identity (Active Residency if exists) ================= --}}
     <div class="card shadow-sm border-0 mb-3">
       <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
         <h6 class="mb-0">@lang('employees::employees.Identity Data')</h6>
