@@ -6,5 +6,10 @@
   "Profiles": true,
   "Employees": true,
   "ResidencyStatuses": true,
-  "WorkStatuses": true
+  "WorkStatuses": true,
+  "Contracts": true,
+  "Attendance": true,
+  "Leaves": true,
+  "Payroll": true,
+  "Assets": true
 }

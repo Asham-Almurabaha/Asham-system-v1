@@ -38,6 +38,31 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
    php artisan schedule:work
    ```
 
+## HRIS Setup (Part 2/2)
+
+1. **Autoload modules**
+   ```bash
+   composer dump-autoload
+   ```
+2. **Run migrations**
+   ```bash
+   php artisan migrate
+   ```
+3. **Seed leave types**
+   ```bash
+   php artisan db:seed --class="Modules\Leaves\Database\Seeders\LeaveTypesSeeder"
+   ```
+4. **Seed roles & permissions**
+   ```bash
+   php artisan db:seed --class="Modules\Payroll\Database\Seeders\RolesAndPermissionsSeeder"
+   ```
+5. **Run scheduler locally**
+   ```bash
+   php artisan schedule:work
+   ```
+
+KSA Notes: WPS export is manual via منصة مدد. GOSI and قوى reports have no API integration.
+
 Time zone uses **Asia/Riyadh**. Interface switches to **RTL** when locale is `ar`.
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.

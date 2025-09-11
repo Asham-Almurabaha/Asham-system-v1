@@ -79,32 +79,32 @@ class Employee extends Model
 
     public function contracts()
     {
-        return $this->hasMany(\Modules\Contracts\Models\Contract::class); // TODO: ensure module exists
+        return $this->hasMany(\Modules\Contracts\Models\Contract::class);
     }
 
     public function attendance()
     {
-        return $this->hasMany(\Modules\Attendance\Models\Attendance::class); // TODO
+        return $this->hasMany(\Modules\Attendance\Models\Attendance::class);
     }
 
-    public function overtime()
+    public function overtimeRequests()
     {
-        return $this->hasMany(\Modules\Overtime\Models\Overtime::class); // TODO
+        return $this->hasMany(\Modules\Attendance\Models\OvertimeRequest::class);
     }
 
     public function leaves()
     {
-        return $this->hasMany(\Modules\Leaves\Models\Leave::class); // TODO
+        return $this->hasMany(\Modules\Leaves\Models\Leave::class);
     }
 
     public function payrollItems()
     {
-        return $this->hasMany(\Modules\Payroll\Models\PayrollItem::class); // TODO
+        return $this->hasMany(\Modules\Payroll\Models\PayrollItem::class);
     }
 
     public function assetAssignments()
     {
-        return $this->hasMany(\Modules\Assets\Models\AssetAssignment::class); // TODO
+        return $this->hasMany(\Modules\Assets\Models\AssetAssignment::class);
     }
 
     public function getPhotoUrlAttribute(): ?string

@@ -1,0 +1,11 @@
+{
+    "name": "nwidart/payroll",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Payroll\\": "app/",
+            "Modules\\Payroll\\Database\\Factories\\": "database/factories/",
+            "Modules\\Payroll\\Database\\Seeders\\": "database/seeders/"
+        }
+    }
+}
