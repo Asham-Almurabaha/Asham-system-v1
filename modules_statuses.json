@@ -2,11 +2,8 @@
   "Settings": true,
   "Nationalities": true,
   "Cities": true,
-  "Branches": true,
-  "Titles": true,
   "AuditLogs": true,
   "Profiles": true,
-  "Departments": true,
   "Employees": true,
   "ResidencyStatuses": true,
   "WorkStatuses": true

@@ -11,3 +11,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('residencies', [EmployeeResidencyController::class, 'store'])->name('employees.residencies.store');
     });
 });
+
+Route::middleware(['web','auth'])->prefix('hr')->name('hr.')->group(function () {
+    Route::resource('employees', EmployeeController::class);
+});

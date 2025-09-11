@@ -21,7 +21,7 @@
               {{-- شريط علوي صغير: شعار + تبديل لغة --}}
               <div class="d-flex justify-content-between align-items-center w-100 py-3">
                 <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto text-decoration-none">
-                  @if (!empty($setting) && !empty($setting->logo))
+                  @if (!empty($setting?->logo))
                     <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ __('app.logo') }}" style="height: 40px;">
                   @else
                     <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">

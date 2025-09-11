@@ -3,12 +3,17 @@
 namespace Modules\Nationalities\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Modules\Nationalities\Models\Nationality;
 
 class NationalitySeeder extends Seeder
 {
     public function run(): void
     {
+        if (!Schema::hasTable('nationalities')) {
+            return;
+        }
+
         $data = [
             ['name' => 'Egyptian', 'name_ar' => 'مصري'],
             ['name' => 'Saudi',    'name_ar' => 'سعودي'],

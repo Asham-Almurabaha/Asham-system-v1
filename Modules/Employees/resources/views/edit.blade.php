@@ -8,10 +8,10 @@
     <div class="card shadow-sm mb-3">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0">@lang('employees::employees.Edit Employee')</h5>
-        <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
+        <x-btn href="{{ route(Route::has('hr.employees.index') ? 'hr.employees.index' : 'employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
       </div>
       <div class="card-body m-1">
-        <form method="POST" action="{{ route('employees.update', $item) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route(Route::has('hr.employees.update') ? 'hr.employees.update' : 'employees.update', $item) }}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
 

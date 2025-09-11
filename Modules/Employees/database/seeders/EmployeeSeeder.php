@@ -3,16 +3,21 @@
 namespace Modules\Employees\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Modules\Employees\Models\Employee;
-use Modules\Branches\Models\Branch;
-use Modules\Departments\Models\Department;
-use Modules\Titles\Models\Title;
+use Modules\Org\Models\Branch;
+use Modules\Org\Models\Department;
+use Modules\Org\Models\Title;
 use Modules\Nationalities\Models\Nationality;
 
 class EmployeeSeeder extends Seeder
 {
     public function run(): void
     {
+        if (!Schema::hasTable('employees') || !Schema::hasTable('branches') || !Schema::hasTable('departments') || !Schema::hasTable('titles') || !Schema::hasTable('nationalities')) {
+            return;
+        }
+
         $branch = Branch::first();
         $department = Department::first();
         $title = Title::first();

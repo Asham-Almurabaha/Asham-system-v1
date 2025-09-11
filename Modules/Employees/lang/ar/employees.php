@@ -10,6 +10,7 @@ return [
     'Phone Numbers' => 'أرقام الجوال',
     'Add Phone' => 'إضافة رقم',
     'Branch' => 'الفرع',
+    'Company' => 'الشركة',
     'Department' => 'القسم',
     'Title' => 'المسمى الوظيفي',
     'Nationality' => 'الجنسية',

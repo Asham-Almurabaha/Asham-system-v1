@@ -10,6 +10,7 @@ return [
     'Phone Numbers' => 'Phone Numbers',
     'Add Phone' => 'Add Phone',
     'Branch' => 'Branch',
+    'Company' => 'Company',
     'Department' => 'Department',
     'Title' => 'Title',
     'Nationality' => 'Nationality',

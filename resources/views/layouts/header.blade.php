@@ -1,6 +1,7 @@
-﻿@php
-  $logo    = $setting->logo ?? null;
-  $name    = $setting->name ?? config('app.name', 'اسم الشركة');
+@php
+  // دعم غياب الإعدادات بدون أخطاء
+  $logo    = $setting?->logo;
+  $name    = $setting?->name ?? config('app.name', 'اسم الشركة');
   $homeUrl = url('/');
   $locale  = app()->getLocale();
   $currentLocaleBadge = strtoupper($locale); // AR أو EN
@@ -13,7 +14,7 @@
     @else
       <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
     @endif
-    <span class="d-none d-lg-block ms-2 fw-semibold">{{ $locale === 'ar' ? ($setting->name_ar ?? $name) : $name }}</span>
+    <span class="d-none d-lg-block ms-2 fw-semibold">{{ $locale === 'ar' ? ($setting?->name_ar ?? $name) : $name }}</span>
   </a>
 
   <button class="btn p-0 border-0 bg-transparent" type="button" aria-label="{{ __('app.toggle_sidebar') }}">

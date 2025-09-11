@@ -10,7 +10,7 @@
   </nav>
 
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <x-btn href="{{ route('employees.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">
+    <x-btn href="{{ route(Route::has('hr.employees.create') ? 'hr.employees.create' : 'employees.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">
       @lang('employees::employees.Create Employee')
     </x-btn>
   </div>
@@ -35,6 +35,7 @@
                 @lang('employees::employees.Last Name (EN)')
               @endif
             </th>
+            <th>@lang('employees::employees.Company')</th>
             <th>@lang('employees::employees.Branch')</th>
             <th>@lang('employees::employees.Title')</th>
             <th>@lang('employees::employees.Active')</th>
@@ -46,7 +47,7 @@
             <tr>
               <td>{{ $i->id }}</td>
               <td>
-                <a href="{{ route('employees.show', $i) }}"
+                <a href="{{ route(Route::has('hr.employees.show') ? 'hr.employees.show' : 'employees.show', $i) }}"
                    class="fw-bold text-dark text-decoration-none hover-link">
                   {{ app()->getLocale() === 'ar' ? $i->first_name_ar : $i->first_name }}
                 </a>
@@ -54,6 +55,7 @@
               <td>
                 {{ app()->getLocale() === 'ar' ? $i->last_name_ar : $i->last_name }}
               </td>
+              <td>{{ $i->company ? (app()->getLocale() === 'ar' ? $i->company->name_ar : $i->company->name_en) : '' }}</td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
               <td>{{ $i->title ? (app()->getLocale() === 'ar' ? $i->title->name_ar : $i->title->name) : '' }}</td>
               <td>
@@ -64,10 +66,10 @@
                 @endif
               </td>
               <td class="text-end">
-                <x-btn href="{{ route('employees.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">
+                <x-btn href="{{ route(Route::has('hr.employees.edit') ? 'hr.employees.edit' : 'employees.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">
                   @lang('employees::employees.Edit')
                 </x-btn>
-                <x-btn href="{{ route('employees.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
+                <x-btn href="{{ route(Route::has('hr.employees.destroy') ? 'hr.employees.destroy' : 'employees.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
                   @lang('employees::employees.Delete')
                 </x-btn>
               </td>

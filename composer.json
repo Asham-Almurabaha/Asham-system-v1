@@ -32,6 +32,7 @@
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/",
+      "Modules\\": "Modules/",
       "Modules\\Nationalities\\": "Modules/Nationalities/app/",
       "Modules\\Settings\\": "Modules/Settings/app/",
         "Modules\\Cities\\": "Modules/Cities/app/",

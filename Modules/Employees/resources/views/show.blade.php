@@ -58,7 +58,7 @@
     <nav aria-label="breadcrumb" class="mb-3">
       <ol class="breadcrumb small mb-0">
         <li class="breadcrumb-item">
-          <a href="{{ route('employees.index') }}" class="text-decoration-none">
+          <a href="{{ route(Route::has('hr.employees.index') ? 'hr.employees.index' : 'employees.index') }}" class="text-decoration-none">
             @lang('employees::employees.Employees')
           </a>
         </li>
@@ -77,11 +77,11 @@
             <span class="text-muted small">#{{ $item->id }}</span>
           </div>
           <div class="btn-group" role="group" aria-label="Actions">
-            <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">
+            <x-btn href="{{ route(Route::has('hr.employees.index') ? 'hr.employees.index' : 'employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">
               @lang('employees::employees.Back')
             </x-btn>
             @if(Route::has('employees.edit'))
-              <x-btn href="{{ route('employees.edit', $item) }}" size="sm" variant="outline-primary" icon="bi bi-pencil-square">
+              <x-btn href="{{ route(Route::has('hr.employees.edit') ? 'hr.employees.edit' : 'employees.edit', $item) }}" size="sm" variant="outline-primary" icon="bi bi-pencil-square">
                 @lang('employees::employees.Edit')
               </x-btn>
             @endif
@@ -426,6 +426,8 @@
 
   </div>
 </div>
+
+@includeIf('documents::_list', ['employee' => $item, 'documents' => $item->documents])
 @endsection
 
 @push('styles')
@@ -522,3 +524,4 @@
   });
 </script>
 @endpush
+@endsection

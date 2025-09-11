@@ -6,10 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Modules\Cities\Database\Seeders\CitySeeder;
-use Modules\Branches\Database\Seeders\BranchSeeder;
-use Modules\Departments\Database\Seeders\DepartmentSeeder;
 use Modules\Nationalities\Database\Seeders\NationalitySeeder;
-use Modules\Titles\Database\Seeders\TitleSeeder;
 use Modules\Employees\Database\Seeders\EmployeeSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,11 +19,8 @@ class DatabaseSeeder extends Seeder
         
         $this->call([
             CitySeeder::class,
-            BranchSeeder::class,
-            DepartmentSeeder::class,
             PermissionsSeeder::class,
             NationalitySeeder::class,
-            TitleSeeder::class,
             EmployeeSeeder::class,
         ]);
         

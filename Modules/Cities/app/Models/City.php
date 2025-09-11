@@ -5,7 +5,7 @@ namespace Modules\Cities\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
-use Modules\Branches\Models\Branch;
+use Modules\Org\Models\Branch;
 
 class City extends Model
 {

@@ -3,14 +3,14 @@
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">
-    <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route(Route::has('hr.employees.store') ? 'hr.employees.store' : 'employees.store') }}" enctype="multipart/form-data">
       @csrf
 
       {{-- ============================= Basic Info ============================= --}}
       <div class="card shadow-sm mb-3">
         <div class="card-header d-flex align-items-center justify-content-between">
           <h5 class="mb-0">@lang('employees::employees.Create Employee')</h5>
-          <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
+          <x-btn href="{{ route(Route::has('hr.employees.index') ? 'hr.employees.index' : 'employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::employees.Back')</x-btn>
         </div>
         <div class="card-body m-1">
           <div class="row g-3">
@@ -75,6 +75,17 @@
               <label class="form-label">@lang('employees::employees.Hire Date')</label>
               <input type="date" name="hire_date" class="form-control js-date @error('hire_date') is-invalid @enderror" value="{{ old('hire_date') }}" placeholder="@lang('employees::employees.Hire Date')">
               @error('hire_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
+            {{-- Company --}}
+            <div class="col-md-6">
+              <label class="form-label">@lang('employees::employees.Company')</label>
+              <select name="company_id" class="form-select">
+                <option value="" disabled selected>@lang('employees::employees.Company')</option>
+                @foreach($companies as $c)
+                  <option value="{{ $c->id }}" {{ old('company_id') == $c->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $c->name_ar : $c->name_en }}</option>
+                @endforeach
+              </select>
             </div>
 
             {{-- Branch --}}

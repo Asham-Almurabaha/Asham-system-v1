@@ -5,10 +5,11 @@ namespace Modules\Employees\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Employees\Models\Employee;
-use Modules\Branches\Models\Branch;
-use Modules\Departments\Models\Department;
-use Modules\Titles\Models\Title;
+use Modules\Org\Models\Branch;
+use Modules\Org\Models\Department;
+use Modules\Org\Models\Title;
 use Modules\Nationalities\Models\Nationality;
+use Modules\Org\Models\Company;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,7 @@ class EmployeeController extends Controller
     private const RESIDENCY_DIR = 'employee-residencies';
     public function index()
     {
-        $items = Employee::with(['branch','title'])->orderBy('id','asc')->paginate(15);
+        $items = Employee::with(['company','branch','title'])->orderBy('id','asc')->paginate(15);
         return view('employees::index', compact('items'));
     }
 
@@ -29,7 +30,8 @@ class EmployeeController extends Controller
         $departments = Department::where('is_active', true)->orderBy('name')->get();
         $titles = Title::where('is_active', true)->orderBy('name')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
-        return view('employees::create', compact('branches','departments','titles','nationalities'));
+        $companies = Company::orderBy('name_en')->get();
+        return view('employees::create', compact('branches','departments','titles','nationalities','companies'));
     }
 
     public function store(Request $request)
@@ -92,7 +94,7 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        $employee->load('phones');
+        $employee->load(['phones','company','branch','department','title','manager','documents']);
         return view('employees::show', ['item' => $employee]);
     }
 
@@ -103,7 +105,8 @@ class EmployeeController extends Controller
         $departments = Department::where('is_active', true)->orderBy('name')->get();
         $titles = Title::where('is_active', true)->orderBy('name')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
-        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'titles' => $titles, 'nationalities' => $nationalities]);
+        $companies = Company::orderBy('name_en')->get();
+        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'titles' => $titles, 'nationalities' => $nationalities, 'companies'=>$companies]);
     }
 
     public function update(Request $request, Employee $employee)

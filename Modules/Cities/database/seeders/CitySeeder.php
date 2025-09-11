@@ -3,12 +3,17 @@
 namespace Modules\Cities\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Modules\Cities\Models\City;
 
 class CitySeeder extends Seeder
 {
     public function run(): void
     {
+        if (!Schema::hasTable('cities')) {
+            return;
+        }
+
         $data = [
             ['name' => 'Riyadh',  'name_ar' => 'الرياض'],
             ['name' => 'Jeddah',  'name_ar' => 'جدة'],

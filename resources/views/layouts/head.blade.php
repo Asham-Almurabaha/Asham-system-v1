@@ -1,12 +1,13 @@
 @php
-  $appName   = $setting->name ?? config('app.name', 'لوحة التحكم');
+  // إعدادات عامة مع التعامل مع غياب السجل
+  $appName   = $setting?->name ?? config('app.name', 'لوحة التحكم');
   $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
-  $favicon   = $setting->favicon
+  $favicon   = $setting?->favicon
               ? asset('storage/'.$setting->favicon)
               : null;
-  $desc      = $setting->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
+  $desc      = $setting?->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
   $canonical = request()->url();
   $locale    = app()->getLocale();
   $isRtl     = $locale === 'ar';
@@ -17,10 +18,10 @@
 
 @php
   $appName = app()->getLocale()==='ar'
-      ? ($setting->name_ar ?? ($setting->name ?? $appName))
-      : ($setting->name ?? $appName);
+      ? ($setting?->name_ar ?? ($setting?->name ?? $appName))
+      : ($setting?->name ?? $appName);
   $title   = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
-  $desc    = $setting->owner_name ?? $appName;
+  $desc    = $setting?->owner_name ?? $appName;
 @endphp
 
 <title>{{ $title }}</title>

@@ -7,8 +7,9 @@
 
   {{-- Favicon --}}
   @php
-    $faviconUrl = $setting->favicon_url
-                  ?? ($setting->favicon ? asset('storage/'.$setting->favicon)
+    // دعم غياب الإعدادات عند توليد تقارير الطباعة
+    $faviconUrl = $setting?->favicon_url
+                  ?? ($setting?->favicon ? asset('storage/'.$setting->favicon)
                                          : asset('assets/img/favicon.png'));
   @endphp
   <link rel="icon" href="{{ $faviconUrl }}">

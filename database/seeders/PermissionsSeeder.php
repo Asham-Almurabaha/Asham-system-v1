@@ -2,8 +2,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Modules\Branches\Models\Branch;
+use Modules\Org\Models\Branch;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -13,6 +14,10 @@ class PermissionsSeeder extends Seeder
     public function run(): void
     {
         $guard = 'web'; // عدّله لو عندك غارد مختلف
+
+        if (!Schema::hasTable('roles') || !Schema::hasTable('permissions') || !Schema::hasTable('users')) {
+            return;
+        }
 
         // 1) أنشئ الصلاحيات (مثال – عدل القائمة حسب مشروعك)
         $permissions = [
@@ -28,19 +33,20 @@ class PermissionsSeeder extends Seeder
         $entry   = Role::findOrCreate('data-entry', $guard);
         $viewer  = Role::findOrCreate('viewer', $guard);
 
-        // $adminRole->syncPermissions(Permission::where('guard_name', $guard)->get());
-        // $adminRole->givePermissionTo(Permission::where('guard_name', $guard)->get());
-        // $adminRole->givePermissionTo(Permission::all());
         $adminRole->syncPermissions(Permission::all());
 
-        $adminBranch = Branch::firstOrCreate(
-            ['name' => 'Administration'],
-            [
-                'name_ar' => 'الإدارة',
-                'city_id' => Branch::query()->first()?->city_id ?? 1,
-                'is_active' => true,
-            ]
-        );
+        $branchId = null;
+        if (Schema::hasTable('branches') && Schema::hasColumn('users', 'branch_id')) {
+            $adminBranch = Branch::firstOrCreate(
+                ['name' => 'Administration'],
+                [
+                    'name_ar' => 'الإدارة',
+                    'city_id' => Branch::query()->first()?->city_id ?? 1,
+                    'is_active' => true,
+                ]
+            );
+            $branchId = $adminBranch->id;
+        }
 
         $adminuser = User::firstOrCreate(
             [
@@ -49,7 +55,7 @@ class PermissionsSeeder extends Seeder
             ],
             [
                 'password' => bcrypt('admin@123'),
-                'branch_id' => $adminBranch->id,
+                'branch_id' => $branchId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -62,7 +68,7 @@ class PermissionsSeeder extends Seeder
             ],
             [
                 'password' => bcrypt('test@123'),
-                'branch_id' => $adminBranch->id,
+                'branch_id' => $branchId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -71,7 +77,6 @@ class PermissionsSeeder extends Seeder
         if (!$adminuser->hasRole('admin')) {
             $adminuser->assignRole($adminRole);
         }
-
         
     }
 }
