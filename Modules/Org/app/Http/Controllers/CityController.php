@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Cities\Http\Controllers;
+namespace Modules\Org\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use Modules\Cities\Models\City;
+use Modules\Org\Models\City;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -12,12 +12,12 @@ class CityController extends Controller
     public function index()
     {
         $items = City::orderBy('id', 'asc')->paginate(15);
-        return view('cities::index', compact('items'));
+        return view('org::cities.index', compact('items'));
     }
 
     public function create()
     {
-        return view('cities::create');
+        return view('org::cities.create');
     }
 
     public function store(Request $request)
@@ -31,17 +31,17 @@ class CityController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         City::create($data);
 
-        return redirect()->route('cities.index')->with('success', __('cities.Created successfully'));
+        return redirect()->route('cities.index')->with('success', __('org::cities.Created successfully'));
     }
 
     public function show(City $city)
     {
-        return view('cities::show', ['item' => $city]);
+        return view('org::cities.show', ['item' => $city]);
     }
 
     public function edit(City $city)
     {
-        return view('cities::edit', ['item' => $city]);
+        return view('org::cities.edit', ['item' => $city]);
     }
 
     public function update(Request $request, City $city)
@@ -55,13 +55,13 @@ class CityController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $city->update($data);
 
-        return redirect()->route('cities.index')->with('success', __('cities.Updated successfully'));
+        return redirect()->route('cities.index')->with('success', __('org::cities.Updated successfully'));
     }
 
     public function destroy(City $city)
     {
         $city->delete();
-        return redirect()->route('cities.index')->with('success', __('cities.Deleted successfully'));
+        return redirect()->route('cities.index')->with('success', __('org::cities.Deleted successfully'));
     }
 }
 

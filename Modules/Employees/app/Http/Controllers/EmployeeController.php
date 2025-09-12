@@ -8,7 +8,7 @@ use Modules\Employees\Models\Employee;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
 use Modules\Org\Models\Job;
-use Modules\Nationalities\Models\Nationality;
+use Modules\Org\Models\Nationality;
 use Modules\Org\Models\Company;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;

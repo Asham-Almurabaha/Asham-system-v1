@@ -1,7 +1,5 @@
 {
   "Settings": true,
-  "Nationalities": true,
-  "Cities": true,
   "AuditLogs": true,
   "Profiles": true,
   "Employees": true,

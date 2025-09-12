@@ -1,17 +1,23 @@
 <?php
 
-namespace Modules\Nationalities\Models;
+namespace Modules\Org\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
+use Modules\Org\Models\Branch;
 
-class Nationality extends Model
+class City extends Model
 {
     use HasFactory, LogsActivity;
 
     protected $fillable = [
         'name', 'name_ar', 'is_active',
     ];
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class);
+    }
 }
 

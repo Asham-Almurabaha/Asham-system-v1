@@ -1,22 +1,22 @@
 <?php
 
-namespace Modules\Nationalities\Http\Controllers;
+namespace Modules\Org\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\Nationalities\Models\Nationality;
+use Modules\Org\Models\Nationality;
 
 class NationalityController extends Controller
 {
     public function index()
     {
         $items = Nationality::orderBy('id', 'asc')->paginate(15);
-        return view('nationalities::index', compact('items'));
+        return view('org::nationalities.index', compact('items'));
     }
 
     public function create()
     {
-        return view('nationalities::create');
+        return view('org::nationalities.create');
     }
 
     public function store(Request $request)
@@ -30,17 +30,17 @@ class NationalityController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         Nationality::create($data);
 
-        return redirect()->route('nationalities.index')->with('success', __('nationalities.Created successfully'));
+        return redirect()->route('nationalities.index')->with('success', __('org::nationalities.Created successfully'));
     }
 
     public function show(Nationality $nationality)
     {
-        return view('nationalities::show', ['item' => $nationality]);
+        return view('org::nationalities.show', ['item' => $nationality]);
     }
 
     public function edit(Nationality $nationality)
     {
-        return view('nationalities::edit', ['item' => $nationality]);
+        return view('org::nationalities.edit', ['item' => $nationality]);
     }
 
     public function update(Request $request, Nationality $nationality)
@@ -54,13 +54,13 @@ class NationalityController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $nationality->update($data);
 
-        return redirect()->route('nationalities.index')->with('success', __('nationalities.Updated successfully'));
+        return redirect()->route('nationalities.index')->with('success', __('org::nationalities.Updated successfully'));
     }
 
     public function destroy(Nationality $nationality)
     {
         $nationality->delete();
-        return redirect()->route('nationalities.index')->with('success', __('nationalities.Deleted successfully'));
+        return redirect()->route('nationalities.index')->with('success', __('org::nationalities.Deleted successfully'));
     }
 }
 

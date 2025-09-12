@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Nationalities\Database\Seeders;
+namespace Modules\Org\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
