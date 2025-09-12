@@ -31,5 +31,8 @@ return [
     'Leaves' => 'Leaves',
     'Payroll' => 'Payroll',
     'Assets' => 'Assets',
+    'Cars' => 'Cars',
+    'Motorcycles' => 'Motorcycles',
+    'Phones' => 'Phones',
 ];
 

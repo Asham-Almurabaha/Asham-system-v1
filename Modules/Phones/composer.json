@@ -1,0 +1,28 @@
+{
+    "name": "nwidart/phones",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Phones\\": "app/",
+            "Modules\\Phones\\Database\\Factories\\": "database/factories/",
+            "Modules\\Phones\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Phones\\Tests\\": "tests/"
+        }
+    }
+}

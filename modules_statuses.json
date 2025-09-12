@@ -8,5 +8,8 @@
   "Leaves": true,
   "Payroll": true,
   "Org": true,
-  "Assets": true
+  "Assets": true,
+  "Cars": true,
+  "Motorcycles": true,
+  "Phones": true
 }

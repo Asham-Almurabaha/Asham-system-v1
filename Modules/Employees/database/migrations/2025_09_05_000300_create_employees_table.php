@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('title_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('job_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('nationality_id')->nullable()->constrained()->nullOnDelete();
             $table->string('first_name', 100);
             $table->string('first_name_ar', 100);

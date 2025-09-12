@@ -41,6 +41,22 @@
   </li>
   @endrole
 
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($isRoute('cars.*')) }} {{ $active($isRoute('cars.*')) }}" href="{{ route('cars.index') }}">
+      <i class="bi bi-car-front"></i><span>@lang('sidebar.Cars')</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($isRoute('motorcycles.*')) }} {{ $active($isRoute('motorcycles.*')) }}" href="{{ route('motorcycles.index') }}">
+      <i class="bi bi-bicycle"></i><span>@lang('sidebar.Motorcycles')</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($isRoute('phones.*')) }} {{ $active($isRoute('phones.*')) }}" href="{{ route('phones.index') }}">
+      <i class="bi bi-phone"></i><span>@lang('sidebar.Phones')</span>
+    </a>
+  </li>
+
   {{-- Customers --}}
   {{-- <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('customers.*')) }} {{ $active($isRoute('customers.*')) }}"
