@@ -94,7 +94,7 @@
               <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
                 <option value="" disabled selected>@lang('employees::employees.Branch')</option>
                 @foreach($branches as $b)
-                  <option value="{{ $b->id }}" {{ old('branch_id') == $b->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $b->name_ar : $b->name }}</option>
+                  <option value="{{ $b->id }}" {{ old('branch_id') == $b->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $b->name_ar : $b->name_en }}</option>
                 @endforeach
               </select>
               @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -106,7 +106,7 @@
               <select name="department_id" id="department_id" class="form-select @error('department_id') is-invalid @enderror">
                 <option value="" selected>{{ __('اختر القسم') }}</option>
                 @foreach($departments as $d)
-                  <option value="{{ $d->id }}" {{ old('department_id') == $d->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $d->name_ar : $d->name }}</option>
+                  <option value="{{ $d->id }}" {{ old('department_id') == $d->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $d->name_ar : $d->name_en }}</option>
                 @endforeach
               </select>
               @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -127,7 +127,7 @@
               <select name="nationality_id" class="form-select @error('nationality_id') is-invalid @enderror">
                 <option value="" selected>@lang('employees::employees.Nationality')</option>
                 @foreach($nationalities as $n)
-                  <option value="{{ $n->id }}" {{ old('nationality_id') == $n->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $n->name_ar : $n->name }}</option>
+                  <option value="{{ $n->id }}" {{ old('nationality_id') == $n->id ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? $n->name_ar : $n->name_en }}</option>
                 @endforeach
               </select>
               @error('nationality_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -200,7 +200,7 @@
     $jobsForJs = $jobs
         ->map(fn($t) => [
             'id' => $t->id,
-            'name' => $t->name,
+            'name_en' => $t->name_en,
             'name_ar' => $t->name_ar,
             'department_id' => $t->department_id,
         ])
@@ -242,7 +242,7 @@ function updateJobs() {
         filtered.forEach(t => {
             const option = document.createElement('option');
             option.value = t.id;
-            option.textContent = locale === 'ar' ? (t.name_ar ?? t.name) : (t.name ?? t.name_ar);
+            option.textContent = locale === 'ar' ? t.name_ar : t.name_en;
             if (String(oldJobId) === String(t.id)) option.selected = true;
             jobSelect.appendChild(option);
         });

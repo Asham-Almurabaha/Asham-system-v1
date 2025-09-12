@@ -21,7 +21,7 @@
       <div class="card-body">
         <table class="table table-sm align-middle mb-0">
           <tbody>
-            <tr><th style="width:220px">@lang('org::nationalities.Name (EN)')</th><td class="fw-medium">{{ $item->name }}</td></tr>
+            <tr><th style="width:220px">@lang('org::nationalities.Name (EN)')</th><td class="fw-medium">{{ $item->name_en }}</td></tr>
             <tr><th>@lang('org::nationalities.Name (AR)')</th><td class="fw-medium">{{ $item->name_ar }}</td></tr>
             <tr><th>@lang('org::nationalities.Active')</th><td>{{ $item->is_active ? __('org::nationalities.Active') : __('org::nationalities.Inactive') }}</td></tr>
           </tbody>

@@ -28,7 +28,7 @@ class UserRoleController extends Controller
     public function create()
     {
         $roles = Role::orderBy('name')->pluck('name', 'name');
-        $branches = Branch::where('is_active', true)->orderBy('name');
+        $branches = Branch::where('is_active', true)->orderBy('name_en');
         if (!Auth::user()->hasRole('admin')) {
             $branches->where('id', Auth::user()->branch_id);
         }
@@ -71,7 +71,7 @@ class UserRoleController extends Controller
     public function edit(User $user)
     {
         $roles = Role::orderBy('name')->pluck('name', 'name');
-        $branches = Branch::where('is_active', true)->orderBy('name');
+        $branches = Branch::where('is_active', true)->orderBy('name_en');
         if (!Auth::user()->hasRole('admin')) {
             $branches->where('id', Auth::user()->branch_id);
         }

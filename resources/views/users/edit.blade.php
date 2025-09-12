@@ -58,7 +58,7 @@
           <label class="form-label">@lang('users.Branch') <span class="text-danger">*</span></label>
             <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
               @foreach($branches as $branch)
-                <option value="{{ $branch->id }}" @selected(old('branch_id', $user->branch_id) == $branch->id)>{{ app()->getLocale() === 'ar' ? $branch->name_ar : $branch->name }}</option>
+                <option value="{{ $branch->id }}" @selected(old('branch_id', $user->branch_id) == $branch->id)>{{ app()->getLocale() === 'ar' ? $branch->name_ar : $branch->name_en }}</option>
               @endforeach
             </select>
           @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror

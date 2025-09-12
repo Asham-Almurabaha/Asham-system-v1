@@ -14,8 +14,8 @@
           @method('PUT')
           <div class="col-md-6">
             <label class="form-label">@lang('org::nationalities.Name (EN)')</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $item->name) }}" required>
-            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            <input type="text" name="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en', $item->name_en) }}" required>
+            @error('name_en') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
             <label class="form-label">@lang('org::nationalities.Name (AR)')</label>

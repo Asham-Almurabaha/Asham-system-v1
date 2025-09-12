@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="row mb-3">
           <div class="col-md-6">
-            <strong>@lang('org::cities.Name (EN)'):</strong> {{ $item->name }}
+            <strong>@lang('org::cities.Name (EN)'):</strong> {{ $item->name_en }}
           </div>
           <div class="col-md-6">
             <strong>@lang('org::cities.Name (AR)'):</strong> {{ $item->name_ar }}

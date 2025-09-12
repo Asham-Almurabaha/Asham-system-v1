@@ -4,6 +4,7 @@ return [
     'Work Statuses' => 'Work Statuses',
     'Name (EN)' => 'Name (EN)',
     'Name (AR)' => 'Name (AR)',
+    'Code' => 'Code',
     'Active' => 'Active',
     'Inactive' => 'Inactive',
     'Actions' => 'Actions',

@@ -11,7 +11,7 @@ class WorkStatus extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'is_active',
+        'code', 'name_en', 'name_ar', 'is_active',
     ];
 }
 

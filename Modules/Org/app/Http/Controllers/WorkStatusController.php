@@ -23,6 +23,7 @@ class WorkStatusController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
+            'code' => ['required','string','max:100','unique:work_statuses,code'],
             'name_en' => ['required','string','max:100','unique:work_statuses,name_en'],
             'name_ar' => ['required','string','max:100','unique:work_statuses,name_ar'],
             'is_active' => ['boolean'],
@@ -47,6 +48,7 @@ class WorkStatusController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
+            'code' => ['required','string','max:100','unique:work_statuses,code,'.$workStatus->id],
             'name_en' => ['required','string','max:100','unique:work_statuses,name_en,'.$workStatus->id],
             'name_ar' => ['required','string','max:100','unique:work_statuses,name_ar,'.$workStatus->id],
             'is_active' => ['boolean'],

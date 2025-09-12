@@ -56,8 +56,8 @@
                 {{ app()->getLocale() === 'ar' ? $i->last_name_ar : $i->last_name }}
               </td>
               <td>{{ $i->company ? (app()->getLocale() === 'ar' ? $i->company->name_ar : $i->company->name_en) : '' }}</td>
-              <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
-              <td>{{ $i->job ? (app()->getLocale() === 'ar' ? $i->job->name_ar : $i->job->name) : '' }}</td>
+              <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name_en) : '' }}</td>
+              <td>{{ $i->job ? (app()->getLocale() === 'ar' ? $i->job->name_ar : $i->job->name_en) : '' }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('employees::employees.Active')</span>

@@ -29,7 +29,7 @@ class EmployeeController extends Controller
         $branches = Branch::where('is_active', true)->orderBy('name_en')->get();
         $departments = Department::where('is_active', true)->orderBy('name_en')->get();
         $jobs = Job::where('is_active', true)->orderBy('name_en')->get();
-        $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
+        $nationalities = Nationality::where('is_active', true)->orderBy('name_en')->get();
         $companies = Company::orderBy('name_en')->get();
         return view('employees::create', compact('branches','departments','jobs','nationalities','companies'));
     }
@@ -49,7 +49,7 @@ class EmployeeController extends Controller
             'company_id' => ['nullable','exists:companies,id'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'job_id' => ['nullable','exists:jobs,id'],
+            'job_id' => ['nullable','exists:org_jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'residency_absher_id_image' => ['nullable','image'],
@@ -102,10 +102,10 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $employee->load('phones','residencies');
-        $branches = Branch::where('is_active', true)->orderBy('name')->get();
-        $departments = Department::where('is_active', true)->orderBy('name')->get();
-        $jobs = Job::where('is_active', true)->orderBy('name')->get();
-        $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
+        $branches = Branch::where('is_active', true)->orderBy('name_en')->get();
+        $departments = Department::where('is_active', true)->orderBy('name_en')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name_en')->get();
+        $nationalities = Nationality::where('is_active', true)->orderBy('name_en')->get();
         $companies = Company::orderBy('name_en')->get();
         return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'jobs' => $jobs, 'nationalities' => $nationalities, 'companies'=>$companies]);
     }
@@ -126,7 +126,7 @@ class EmployeeController extends Controller
             'company_id' => ['nullable','exists:companies,id'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'job_id' => ['nullable','exists:jobs,id'],
+            'job_id' => ['nullable','exists:org_jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'remove_photo' => ['sometimes','boolean'],

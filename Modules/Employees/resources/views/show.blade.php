@@ -129,14 +129,14 @@
 
               @if($item->department)
                 <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-diagram-3" aria-hidden="true"></i><span>{{ $tr($item->department) }}</span>
+                    <i class="bi bi-diagram-3" aria-hidden="true"></i><span>{{ $tr($item->department, 'name_en') }}</span>
                 </li>
                 <li class="text-muted">•</li>
               @endif
 
               @if($item->branch)
                 <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-geo-alt" aria-hidden="true"></i><span>{{ $tr($item->branch) }}</span>
+                    <i class="bi bi-geo-alt" aria-hidden="true"></i><span>{{ $tr($item->branch, 'name_en') }}</span>
                 </li>
               @endif
             </ul>
@@ -165,7 +165,7 @@
           <dd class="col-12 col-md-8 col-lg-9">{{ $item->last_name_ar ?? '—' }}</dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Nationality')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->nationality) }}</dd>
+            <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->nationality, 'name_en') }}</dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Hire Date')</dt>
           <dd class="col-12 col-md-8 col-lg-9">{{ $fmtDate($item->hire_date) }}</dd>
@@ -208,13 +208,13 @@
           </dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Branch')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->branch) }}</dd>
+            <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->branch, 'name_en') }}</dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Department')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->department) }}</dd>
+            <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->department, 'name_en') }}</dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Job')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->job) }}</dd>
+            <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->job, 'name_en') }}</dd>
         </dl>
       </div>
     </div>

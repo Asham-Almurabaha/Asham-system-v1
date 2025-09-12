@@ -28,7 +28,7 @@
           @forelse ($items as $i)
             <tr>
               <td>{{ $i->id }}</td>
-              <td>{{ $i->name }}</td>
+              <td>{{ $i->name_en }}</td>
               <td>{{ $i->name_ar }}</td>
               <td>
                 @if($i->is_active)
