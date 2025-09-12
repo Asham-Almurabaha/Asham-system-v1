@@ -8,7 +8,7 @@
     </ol>
   </nav>
   <div class="d-flex align-items-center justify-content-between mb-3 gap-2 flex-wrap">
-    <form method="GET" class="d-flex gap-2 flex-wrap">
+    {{-- <form method="GET" class="d-flex gap-2 flex-wrap">
       <select name="status" class="form-select form-select-sm">
         <option value="">@lang('cars::common.All Statuses')</option>
         @foreach(\Modules\Cars\Entities\CarStatus::cases() as $status)
@@ -24,7 +24,7 @@
       <input type="text" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="@lang('cars::common.Search')">
       <x-btn type="submit" size="sm" variant="outline-secondary">@lang('cars::common.Filter')</x-btn>
       <x-btn href="{{ route('cars.index') }}" size="sm" variant="outline-secondary">@lang('cars::common.Reset')</x-btn>
-    </form>
+    </form> --}}
     @can('cars.create')
     <x-btn href="{{ route('cars.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('cars::cars.Create Car')</x-btn>
     @endcan

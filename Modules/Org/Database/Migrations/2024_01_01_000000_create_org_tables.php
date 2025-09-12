@@ -57,6 +57,7 @@ return new class extends Migration {
             $table->string('name_ar', 100)->unique();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('cities', function (Blueprint $table) {
@@ -65,6 +66,7 @@ return new class extends Migration {
             $table->string('name_ar', 100)->unique();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('residency_statuses', function (Blueprint $table) {
@@ -73,6 +75,7 @@ return new class extends Migration {
             $table->string('name_ar', 100)->unique();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('work_statuses', function (Blueprint $table) {
@@ -82,6 +85,7 @@ return new class extends Migration {
             $table->string('name_ar');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
         
     }
