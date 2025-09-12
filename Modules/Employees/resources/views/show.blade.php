@@ -15,7 +15,7 @@
 
     // ====== Helpers
     $fmtDate = fn ($date) => optional($date)?->format('Y-m-d') ?? __('employees::employees.Not set');
-    $tr = function ($rel, $enKey = 'name', $arKey = 'name_ar') use ($locale) {
+    $tr = function ($rel, $enKey = 'name_en', $arKey = 'name_ar') use ($locale) {
         return $rel
             ? ($locale === 'ar' ? ($rel->{$arKey} ?? $rel->{$enKey}) : ($rel->{$enKey} ?? $rel->{$arKey}))
             : __('employees::employees.Not set');
@@ -113,16 +113,16 @@
 
           <div class="flex-grow-1 min-w-0">
             <div class="d-flex align-items-center gap-2 flex-wrap">
-              <h4 class="mb-0 text-truncate" title="{{ $displayName }}">{{ $displayName }}</h4>
+              <h4 class="mb-0 text-truncate" job="{{ $displayName }}">{{ $displayName }}</h4>
               <span class="badge {{ $item->is_active ? 'text-bg-success' : 'text-bg-secondary' }}">
                 {{ $item->is_active ? __('employees::employees.Active') : __('employees::employees.Inactive') }}
               </span>
             </div>
 
             <ul class="list-inline text-muted small mt-1 mb-0 d-flex flex-wrap align-items-center gap-2">
-              @if($item->title)
+              @if($item->job)
                 <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-person-badge" aria-hidden="true"></i><span>{{ $tr($item->title) }}</span>
+                  <i class="bi bi-person-badge" aria-hidden="true"></i><span>{{ $tr($item->job) }}</span>
                 </li>
                 <li class="text-muted">•</li>
               @endif
@@ -213,8 +213,8 @@
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Department')</dt>
           <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->department) }}</dd>
 
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Title')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->title) }}</dd>
+          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.job')</dt>
+          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->job) }}</dd>
         </dl>
       </div>
     </div>

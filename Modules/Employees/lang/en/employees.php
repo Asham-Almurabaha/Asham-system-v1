@@ -11,7 +11,7 @@ return [
     'Add Phone' => 'Add Phone',
     'Branch' => 'Branch',
     'Department' => 'Department',
-    'Title' => 'Title',
+    'Job' => 'Job',
     'Nationality' => 'Nationality',
     'Hire Date' => 'Hire Date',
     'Active' => 'Active',

@@ -11,7 +11,7 @@ return [
     'Add Phone' => 'إضافة رقم',
     'Branch' => 'الفرع',
     'Department' => 'القسم',
-    'Title' => 'المسمى الوظيفي',
+    'Job' => 'المسمى الوظيفي',
     'Nationality' => 'الجنسية',
     'Hire Date' => 'تاريخ التعيين',
     'Active' => 'نشط',

@@ -19,7 +19,7 @@ class Employee extends Model
 
     protected $fillable = [
         'first_name', 'first_name_ar', 'last_name', 'last_name_ar', 'email', 'photo', 'hire_date',
-        'branch_id', 'department_id', 'title_id', 'nationality_id', 'is_active',
+        'branch_id', 'department_id', 'job_id', 'nationality_id', 'is_active',
     ];
 
     protected $casts = [
@@ -37,9 +37,9 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function Job()
+    public function job()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class, 'job_id');
     }
 
     public function nationality()

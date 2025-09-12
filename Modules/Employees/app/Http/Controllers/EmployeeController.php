@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     private const RESIDENCY_DIR = 'employee-residencies';
     public function index()
     {
-        $items = Employee::with(['branch','title'])->orderBy('id','asc')->paginate(15);
+        $items = Employee::with(['branch','job'])->orderBy('id','asc')->paginate(15);
         return view('employees::index', compact('items'));
     }
 
@@ -27,9 +27,9 @@ class EmployeeController extends Controller
     {
         $branches = Branch::where('is_active', true)->orderBy('name_en')->get();
         $departments = Department::where('is_active', true)->orderBy('name_en')->get();
-        $job = Job::where('is_active', true)->orderBy('name_en')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name_en')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name_en')->get();
-        return view('employees::create', compact('branches','departments','titles','nationalities'));
+        return view('employees::create', compact('branches','departments','jobs','nationalities'));
     }
 
     public function store(Request $request)
@@ -46,7 +46,7 @@ class EmployeeController extends Controller
             'hire_date' => ['nullable','date'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'title_id' => ['nullable','exists:titles,id'],
+            'job_id' => ['nullable','exists:jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'residency_absher_id_image' => ['nullable','image'],
@@ -99,11 +99,11 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $employee->load('phones','residencies');
-        $branches = Branch::where('is_active', true)->orderBy('name')->get();
-        $departments = Department::where('is_active', true)->orderBy('name')->get();
-        $titles = Title::where('is_active', true)->orderBy('name')->get();
-        $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
-        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'titles' => $titles, 'nationalities' => $nationalities]);
+        $branches = Branch::where('is_active', true)->orderBy('name_en')->get();
+        $departments = Department::where('is_active', true)->orderBy('name_en')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name_en')->get();
+        $nationalities = Nationality::where('is_active', true)->orderBy('name_en')->get();
+        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'jobs' => $jobs, 'nationalities' => $nationalities]);
     }
 
     public function update(Request $request, Employee $employee)
@@ -121,7 +121,7 @@ class EmployeeController extends Controller
             'hire_date' => ['nullable','date'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'title_id' => ['nullable','exists:titles,id'],
+            'job_id' => ['nullable','exists:jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'remove_photo' => ['sometimes','boolean'],
