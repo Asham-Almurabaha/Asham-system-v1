@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Modules\Org\Database\Seeders\CitySeeder;
 use Modules\Org\Database\Seeders\NationalitySeeder;
+use Modules\Org\Database\Seeders\ResidencyStatusSeeder;
+use Modules\Org\Database\Seeders\WorkStatusSeeder;
 use Modules\Employees\Database\Seeders\EmployeeSeeder;
 use Modules\Org\Database\Seeders\CompanySeeder;
 use Modules\Org\Database\Seeders\BranchSeeder;
@@ -25,6 +27,8 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             PermissionsSeeder::class,
             NationalitySeeder::class,
+            ResidencyStatusSeeder::class,
+            WorkStatusSeeder::class,
             CompanySeeder::class,
             BranchSeeder::class,
             DepartmentSeeder::class,
