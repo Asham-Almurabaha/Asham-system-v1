@@ -13,7 +13,7 @@ class JobSeeder extends Seeder
 {
     public function run(): void
     {
-        if (!Schema::hasTable('org_jobs')) {
+        if (!Schema::hasTable('jobs')) {
             return;
         }
 

@@ -7,101 +7,83 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        if (!Schema::hasTable('companies')) {
-            Schema::create('companies', function (Blueprint $table) {
-                $table->id();
-                $table->string('name_en');
-                $table->string('name_ar');
-                $table->string('cr_number')->nullable();
-                $table->string('vat_number')->nullable();
-                $table->string('iban')->nullable();
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } else {
-            Schema::table('companies', function (Blueprint $table) {
-                if (!Schema::hasColumn('companies', 'name_en')) $table->string('name_en')->nullable();
-                if (!Schema::hasColumn('companies', 'name_ar')) $table->string('name_ar')->nullable();
-                if (!Schema::hasColumn('companies', 'cr_number')) $table->string('cr_number')->nullable();
-                if (!Schema::hasColumn('companies', 'vat_number')) $table->string('vat_number')->nullable();
-                if (!Schema::hasColumn('companies', 'iban')) $table->string('iban')->nullable();
-                if (!Schema::hasColumn('companies', 'deleted_at')) $table->softDeletes();
-            });
-        }
+        Schema::create('companies', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en');
+            $table->string('name_ar');
+            $table->string('cr_number')->nullable();
+            $table->string('vat_number')->nullable();
+            $table->string('iban')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
-        if (!Schema::hasTable('branches')) {
-            Schema::create('branches', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('company_id')->nullable()->constrained('companies');
-                $table->string('name_en');
-                $table->string('name_ar');
-                $table->boolean('is_active')->default(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } else {
-            Schema::table('branches', function (Blueprint $table) {
-                if (!Schema::hasColumn('branches', 'company_id')) {
-                    $table->foreignId('company_id')->nullable()->constrained('companies');
-                }
-                if (!Schema::hasColumn('branches', 'name_en')) $table->string('name_en')->nullable();
-                if (!Schema::hasColumn('branches', 'name_ar')) $table->string('name_ar')->nullable();
-                if (!Schema::hasColumn('branches', 'is_active')) $table->boolean('is_active')->default(true);
-                if (!Schema::hasColumn('branches', 'deleted_at')) $table->softDeletes();
-            });
-        }
+        Schema::create('branches', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->nullable()->constrained('companies');
+            $table->string('name_en');
+            $table->string('name_ar');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
-        if (!Schema::hasTable('departments')) {
-            Schema::create('departments', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('company_id')->nullable()->constrained('companies');
-                $table->foreignId('branch_id')->nullable()->constrained('branches');
-                $table->string('name_en');
-                $table->string('name_ar');
-                $table->boolean('is_active')->default(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } else {
-            Schema::table('departments', function (Blueprint $table) {
-                if (!Schema::hasColumn('departments', 'company_id')) $table->foreignId('company_id')->nullable()->constrained('companies');
-                if (!Schema::hasColumn('departments', 'branch_id')) $table->foreignId('branch_id')->nullable()->constrained('branches');
-                if (!Schema::hasColumn('departments', 'name_en')) $table->string('name_en')->nullable();
-                if (!Schema::hasColumn('departments', 'name_ar')) $table->string('name_ar')->nullable();
-                if (!Schema::hasColumn('departments', 'is_active')) $table->boolean('is_active')->default(true);
-                if (!Schema::hasColumn('departments', 'deleted_at')) $table->softDeletes();
-            });
-        }
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->nullable()->constrained('companies');
+            $table->foreignId('branch_id')->nullable()->constrained('branches');
+            $table->string('name_en');
+            $table->string('name_ar');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
-        if (!Schema::hasTable('org_jobs')) {
-            Schema::create('org_jobs', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('company_id')->nullable()->constrained('companies');
-                $table->foreignId('branch_id')->nullable()->constrained('branches');
-                $table->foreignId('department_id')->nullable()->constrained('departments');
-                $table->string('name_en');
-                $table->string('name_ar');
-                $table->boolean('is_active')->default(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
-        } else {
-            Schema::table('org_jobs', function (Blueprint $table) {
-                if (!Schema::hasColumn('org_jobs', 'company_id')) $table->foreignId('company_id')->nullable()->constrained('companies');
-                if (!Schema::hasColumn('org_jobs', 'branch_id')) $table->foreignId('branch_id')->nullable()->constrained('branches');
-                if (!Schema::hasColumn('org_jobs', 'department_id')) $table->foreignId('department_id')->nullable()->constrained('departments');
-                if (!Schema::hasColumn('org_jobs', 'name_en')) $table->string('name_en')->nullable();
-                if (!Schema::hasColumn('org_jobs', 'name_ar')) $table->string('name_ar')->nullable();
-                if (!Schema::hasColumn('org_jobs', 'is_active')) $table->boolean('is_active')->default(true);
-                if (!Schema::hasColumn('org_jobs', 'created_at') && !Schema::hasColumn('org_jobs', 'updated_at')) {
-                    $table->timestamps();
-                } else {
-                    if (!Schema::hasColumn('org_jobs', 'created_at')) $table->timestamp('created_at')->nullable();
-                    if (!Schema::hasColumn('org_jobs', 'updated_at')) $table->timestamp('updated_at')->nullable();
-                }
-                if (!Schema::hasColumn('org_jobs', 'deleted_at')) $table->softDeletes();
-            });
-        }
+        Schema::create('jobs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->nullable()->constrained('companies');
+            $table->foreignId('branch_id')->nullable()->constrained('branches');
+            $table->foreignId('department_id')->nullable()->constrained('departments');
+            $table->string('name_en');
+            $table->string('name_ar');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('nationalities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en', 100)->unique();
+            $table->string('name_ar', 100)->unique();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en', 100)->unique();
+            $table->string('name_ar', 100)->unique();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('residency_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en', 100)->unique();
+            $table->string('name_ar', 100)->unique();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('work_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->string('name_en');
+            $table->string('name_ar');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+        
     }
 
     public function down(): void
