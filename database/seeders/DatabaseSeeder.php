@@ -14,6 +14,9 @@ use Modules\Org\Database\Seeders\CompanySeeder;
 use Modules\Org\Database\Seeders\BranchSeeder;
 use Modules\Org\Database\Seeders\DepartmentSeeder;
 use Modules\Org\Database\Seeders\JobSeeder;
+use Modules\Cars\Database\Seeders\CarSeeder;
+use Modules\Motorcycles\Database\Seeders\MotorcycleSeeder;
+use Modules\Phones\Database\Seeders\PhoneSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +36,9 @@ class DatabaseSeeder extends Seeder
             BranchSeeder::class,
             DepartmentSeeder::class,
             JobSeeder::class,
+            CarSeeder::class,
+            MotorcycleSeeder::class,
+            PhoneSeeder::class,
             // EmployeeSeeder::class,
         ]);
         
