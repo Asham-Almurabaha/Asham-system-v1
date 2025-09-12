@@ -14,7 +14,7 @@ return new class extends Migration {
         $hasCompanies = Schema::hasTable('companies');
         $hasBranches = Schema::hasTable('branches');
         $hasDepartments = Schema::hasTable('departments');
-        $hasJobs = Schema::hasTable('org_jobs');
+        $hasJobs = Schema::hasTable('jobs');
         $hasNationalities = Schema::hasTable('nationalities');
 
         Schema::create('employees', function (Blueprint $table) use ($hasCompanies, $hasBranches, $hasDepartments, $hasJobs, $hasNationalities) {
@@ -40,7 +40,7 @@ return new class extends Migration {
             }
 
             if ($hasJobs) {
-                $table->foreignId('job_id')->nullable()->constrained('org_jobs')->nullOnDelete();
+                $table->foreignId('job_id')->nullable()->constrained('jobs')->nullOnDelete();
             } else {
                 $table->unsignedBigInteger('job_id')->nullable();
             }
