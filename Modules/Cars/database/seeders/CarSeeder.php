@@ -11,6 +11,8 @@ class CarSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->call(CarLookupSeeder::class);
+
         $branch = Branch::query()->first();
 
         Car::firstOrCreate(
