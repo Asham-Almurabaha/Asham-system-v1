@@ -26,9 +26,9 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        $branches = Branch::where('is_active', true)->orderBy('name')->get();
-        $departments = Department::where('is_active', true)->orderBy('name')->get();
-        $jobs = Job::where('is_active', true)->orderBy('name')->get();
+        $branches = Branch::where('is_active', true)->orderBy('name_en')->get();
+        $departments = Department::where('is_active', true)->orderBy('name_en')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name_en')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
         $companies = Company::orderBy('name_en')->get();
         return view('employees::create', compact('branches','departments','jobs','nationalities','companies'));
