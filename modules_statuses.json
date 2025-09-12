@@ -11,5 +11,6 @@
   "Attendance": true,
   "Leaves": true,
   "Payroll": true,
+  "Org": true,
   "Assets": true
 }

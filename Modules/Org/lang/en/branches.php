@@ -1,0 +1,21 @@
+<?php
+return [
+    'Branches' => 'Branches',
+    'Company' => 'Company',
+    'Name (EN)' => 'Name (EN)',
+    'Name (AR)' => 'Name (AR)',
+    'Active' => 'Active',
+    'Inactive' => 'Inactive',
+    'Actions' => 'Actions',
+    'Back' => 'Back',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Delete confirm' => 'Delete this record? This cannot be undone.',
+    'No data' => 'No data',
+    'Create Branch' => 'Create Branch',
+    'Edit Branch' => 'Edit Branch',
+    'View Branch' => 'View Branch',
+    'Created successfully' => 'Created successfully',
+    'Updated successfully' => 'Updated successfully',
+    'Deleted successfully' => 'Deleted successfully',
+];

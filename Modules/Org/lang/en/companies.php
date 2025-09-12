@@ -1,0 +1,21 @@
+<?php
+return [
+    'Companies' => 'Companies',
+    'Name (EN)' => 'Name (EN)',
+    'Name (AR)' => 'Name (AR)',
+    'CR Number' => 'CR Number',
+    'VAT Number' => 'VAT Number',
+    'IBAN' => 'IBAN',
+    'Actions' => 'Actions',
+    'Back' => 'Back',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Delete confirm' => 'Delete this record? This cannot be undone.',
+    'No data' => 'No data',
+    'Create Company' => 'Create Company',
+    'Edit Company' => 'Edit Company',
+    'View Company' => 'View Company',
+    'Created successfully' => 'Created successfully',
+    'Updated successfully' => 'Updated successfully',
+    'Deleted successfully' => 'Deleted successfully',
+];

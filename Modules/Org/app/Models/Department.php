@@ -5,20 +5,18 @@ namespace Modules\Org\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
-use Modules\Cities\Models\City;
-use App\Models\User;
 
-class Branch extends Model
+class Department extends Model
 {
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name', 'name_ar', 'city_id', 'is_active', 'company_id',
+        'name_en', 'name_ar', 'is_active', 'company_id', 'branch_id',
     ];
 
-    public function city()
+    public function titles()
     {
-        return $this->belongsTo(City::class);
+        return $this->hasMany(Title::class);
     }
 
     public function company()
@@ -26,8 +24,8 @@ class Branch extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function users()
+    public function branch()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Branch::class);
     }
 }

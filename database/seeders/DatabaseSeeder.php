@@ -8,6 +8,10 @@ use Illuminate\Database\Seeder;
 use Modules\Cities\Database\Seeders\CitySeeder;
 use Modules\Nationalities\Database\Seeders\NationalitySeeder;
 use Modules\Employees\Database\Seeders\EmployeeSeeder;
+use Modules\Org\Database\Seeders\CompanySeeder;
+use Modules\Org\Database\Seeders\BranchSeeder;
+use Modules\Org\Database\Seeders\DepartmentSeeder;
+use Modules\Org\Database\Seeders\TitleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +25,10 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             PermissionsSeeder::class,
             NationalitySeeder::class,
+            CompanySeeder::class,
+            BranchSeeder::class,
+            DepartmentSeeder::class,
+            TitleSeeder::class,
             EmployeeSeeder::class,
         ]);
         

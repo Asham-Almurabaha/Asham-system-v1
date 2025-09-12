@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
 
-class Department extends Model
+class Title extends Model
 {
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name', 'name_ar', 'is_active', 'company_id', 'branch_id',
+        'name_en', 'name_ar', 'is_active', 'department_id', 'company_id', 'branch_id',
     ];
 
-    public function titles()
+    public function department()
     {
-        return $this->hasMany(Title::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function company()

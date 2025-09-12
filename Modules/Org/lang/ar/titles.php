@@ -1,0 +1,23 @@
+<?php
+return [
+    'Titles' => 'المسميات الوظيفية',
+    'Company' => 'الشركة',
+    'Branch' => 'الفرع',
+    'Department' => 'القسم',
+    'Name (EN)' => 'الاسم (إنجليزي)',
+    'Name (AR)' => 'الاسم (عربي)',
+    'Active' => 'مفعل',
+    'Inactive' => 'غير مفعل',
+    'Actions' => 'الإجراءات',
+    'Back' => 'رجوع',
+    'Edit' => 'تعديل',
+    'Delete' => 'حذف',
+    'Delete confirm' => 'هل أنت متأكد من حذف هذا السجل؟ لا يمكن التراجع.',
+    'No data' => 'لا توجد بيانات',
+    'Create Title' => 'إنشاء مسمى وظيفي',
+    'Edit Title' => 'تعديل مسمى وظيفي',
+    'View Title' => 'عرض مسمى وظيفي',
+    'Created successfully' => 'تم الإنشاء بنجاح',
+    'Updated successfully' => 'تم التحديث بنجاح',
+    'Deleted successfully' => 'تم الحذف بنجاح',
+];

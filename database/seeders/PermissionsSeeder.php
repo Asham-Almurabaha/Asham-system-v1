@@ -3,6 +3,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Modules\Org\Models\Branch;
+use Modules\Org\Models\Company;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Role;
@@ -38,10 +39,10 @@ class PermissionsSeeder extends Seeder
         $branchId = null;
         if (Schema::hasTable('branches') && Schema::hasColumn('users', 'branch_id')) {
             $adminBranch = Branch::firstOrCreate(
-                ['name' => 'Administration'],
+                ['name_en' => 'Administration'],
                 [
                     'name_ar' => 'الإدارة',
-                    'city_id' => Branch::query()->first()?->city_id ?? 1,
+                    'company_id' => Company::query()->first()?->id,
                     'is_active' => true,
                 ]
             );
