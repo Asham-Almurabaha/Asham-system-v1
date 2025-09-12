@@ -12,11 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('settings')) {
+            return; // TODO: merge with existing settings table
+        }
+
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('owner_name',50);
-            $table->string('name',50);
-            $table->string('name_ar',50);
+            $table->string('owner_name', 50);
+            $table->string('name', 50);
+            $table->string('name_ar', 50);
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->timestamps();

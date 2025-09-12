@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
+        if (Schema::hasTable('cities')) {
+            return; // TODO: merge with existing cities table
+        }
+
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->unique();

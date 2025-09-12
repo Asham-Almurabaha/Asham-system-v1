@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('audit_logs')) {
+            return; // TODO: merge with existing audit_logs table
+        }
+
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
             $table->string('table_name');

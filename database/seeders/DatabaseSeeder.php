@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             BranchSeeder::class,
             DepartmentSeeder::class,
-            JobSeeder::class,
-            EmployeeSeeder::class,
+            // JobSeeder::class,
+            // EmployeeSeeder::class,
         ]);
         
         // User::factory(10)->create();
