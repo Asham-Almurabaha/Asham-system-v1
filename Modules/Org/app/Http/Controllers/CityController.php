@@ -24,7 +24,7 @@ class CityController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'name' => ['required','string','max:100','unique:cities,name'],
+            'name_en' => ['required','string','max:100','unique:cities,name_en'],
             'name_ar' => ['required','string','max:100','unique:cities,name_ar'],
             'is_active' => ['boolean'],
         ]);
@@ -48,7 +48,7 @@ class CityController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'name' => ['required','string','max:100','unique:cities,name,'.$city->id],
+            'name_en' => ['required','string','max:100','unique:cities,name_en,'.$city->id],
             'name_ar' => ['required','string','max:100','unique:cities,name_ar,'.$city->id],
             'is_active' => ['boolean'],
         ]);

@@ -14,10 +14,10 @@
 - Modules/Employees/app/Models/EmployeeResidency.php
 - Modules/Employees/app/Models/EmployeePhone.php
 - Modules/Org/app/Models/City.php
-- Modules/ResidencyStatuses/app/Models/ResidencyStatus.php
-- Modules/Settings/app/Models/Setting.php
-- Modules/AuditLogs/app/Models/AuditLog.php
-- Modules/WorkStatuses/app/Models/WorkStatus.php
+ - Modules/Org/app/Models/ResidencyStatus.php
+ - Modules/Settings/app/Models/Setting.php
+ - Modules/AuditLogs/app/Models/AuditLog.php
+ - Modules/Org/app/Models/WorkStatus.php
  - Modules/Org/Models/Company.php
  - Modules/Org/Models/Branch.php
  - Modules/Org/Models/Department.php
@@ -27,16 +27,16 @@
 - routes/web.php
 - routes/api.php
 - routes/console.php
-- Modules/*/routes/web.php & api.php (Org, Employees, ResidencyStatuses, Settings, Profiles, AuditLogs, WorkStatuses)
+- Modules/*/routes/web.php & api.php (Org, Employees, Settings, Profiles, AuditLogs)
 
 ## Views
-- Modules/*/resources/views/* (Org, Employees, ResidencyStatuses, Settings, Profiles, AuditLogs, WorkStatuses)
+- Modules/*/resources/views/* (Org, Employees, Settings, Profiles, AuditLogs)
 
 ## Translations
 - resources/lang/en/*
 - resources/lang/ar/*
 - resources/lang/vendor/backup/*
-- Modules/*/lang/en/* and ar/* (Org, Employees, ResidencyStatuses, Settings, Profiles, AuditLogs, WorkStatuses)
+- Modules/*/lang/en/* and ar/* (Org, Employees, Settings, Profiles, AuditLogs)
 
 ## Scheduling
 - app/Console/Kernel.php schedules hr:check-document-expiry daily at 09:00 Asia/Riyadh.

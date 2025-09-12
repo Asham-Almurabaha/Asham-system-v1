@@ -3,8 +3,6 @@
   "AuditLogs": true,
   "Profiles": true,
   "Employees": true,
-  "ResidencyStatuses": true,
-  "WorkStatuses": true,
   "Contracts": true,
   "Attendance": true,
   "Leaves": true,

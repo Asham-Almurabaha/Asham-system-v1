@@ -11,7 +11,7 @@ class Nationality extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name', 'name_ar', 'is_active',
+        'name_en', 'name_ar', 'is_active',
     ];
 }
 

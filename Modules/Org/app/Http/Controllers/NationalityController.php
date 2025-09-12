@@ -23,7 +23,7 @@ class NationalityController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'name' => ['required','string','max:100','unique:nationalities,name'],
+            'name_en' => ['required','string','max:100','unique:nationalities,name_en'],
             'name_ar' => ['required','string','max:100','unique:nationalities,name_ar'],
             'is_active' => ['boolean'],
         ]);
@@ -47,7 +47,7 @@ class NationalityController extends Controller
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'name' => ['required','string','max:100','unique:nationalities,name,'.$nationality->id],
+            'name_en' => ['required','string','max:100','unique:nationalities,name_en,'.$nationality->id],
             'name_ar' => ['required','string','max:100','unique:nationalities,name_ar,'.$nationality->id],
             'is_active' => ['boolean'],
         ]);

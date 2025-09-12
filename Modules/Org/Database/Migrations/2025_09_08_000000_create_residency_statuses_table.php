@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        if (Schema::hasTable('nationalities')) {
-            return; // TODO: merge with existing nationalities table
+        if (Schema::hasTable('residency_statuses')) {
+            return; // TODO: merge with existing residency_statuses table
         }
 
-        Schema::create('nationalities', function (Blueprint $table) {
+        Schema::create('residency_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name_en', 100)->unique();
             $table->string('name_ar', 100)->unique();
@@ -22,7 +22,7 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('nationalities');
+        Schema::dropIfExists('residency_statuses');
     }
 };
 
