@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
-use Modules\Org\Models\Title;
+use Modules\Org\Models\Job;
 
 class Company extends Model
 {
@@ -27,8 +27,8 @@ class Company extends Model
         return $this->hasMany(Department::class);
     }
 
-    public function titles(): HasMany
+    public function jobs(): HasMany
     {
-        return $this->hasMany(Title::class);
+        return $this->hasMany(Job::class);
     }
 }

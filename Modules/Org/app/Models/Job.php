@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
 
-class Title extends Model
+class Job extends Model
 {
     use HasFactory, LogsActivity;
 

@@ -18,7 +18,7 @@ return [
     'Companies' => 'Companies',
     'Branches' => 'Branches',
     'Departments' => 'Departments',
-    'Job Titles' => 'Job Titles',
+    'Jobs' => 'Jobs',
     'Nationalities' => 'Nationalities',
     'Cities' => 'Cities',
     'Residency Statuses' => 'Residency Statuses',

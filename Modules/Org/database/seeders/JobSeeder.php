@@ -4,16 +4,16 @@ namespace Modules\Org\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-use Modules\Org\Models\Title;
+use Modules\Org\Models\Job;
 use Modules\Org\Models\Company;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
 
-class TitleSeeder extends Seeder
+class JobSeeder extends Seeder
 {
     public function run(): void
     {
-        if (!Schema::hasTable('titles')) {
+        if (!Schema::hasTable('jobs')) {
             return;
         }
 
@@ -29,7 +29,7 @@ class TitleSeeder extends Seeder
         ];
 
         foreach ($data as $row) {
-            Title::firstOrCreate(
+            Job::firstOrCreate(
                 ['name_en' => $row['name_en']],
                 $row
             );

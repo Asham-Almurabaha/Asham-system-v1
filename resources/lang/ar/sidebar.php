@@ -18,7 +18,7 @@ return [
     'Companies' => 'الشركات',
     'Branches' => 'الفروع',
     'Departments' => 'الأقسام',
-    'Job Titles' => 'الوظائف',
+    'Jobs' => 'الوظائف',
     'Nationalities' => 'الجنسيات',
     'Cities' => 'المدن',
     'Residency Statuses' => 'حالات الإقامة',

@@ -4,8 +4,8 @@
 2. Implement `app/Providers/ModulesServiceProvider` to auto-register module providers; register in `config/app.php`.
 3. Create `app/Console/Kernel.php` with scheduling stub.
 4. Build **Org** module:
-   - Migration for `companies`, `branches`, `departments`, `titles` with safe checks.
-   - Create `Company` model and link existing Branch/Department/Title models to it.
+   - Migration for `companies`, `branches`, `departments`, `jobs` with safe checks.
+   - Create `Company` model and link existing Branch/Department/Job models to it.
    - Add simple translations.
 5. Extend **Employees** module:
    - Safe migration for `employment_statuses`, `work_statuses`, `sponsorship_statuses`, `employees` table.

@@ -1,6 +1,6 @@
 <?php
 return [
-    'Titles' => 'Job Titles',
+    'Jobs' => 'Jobs',
     'Company' => 'Company',
     'Branch' => 'Branch',
     'Department' => 'Department',
@@ -14,9 +14,9 @@ return [
     'Delete' => 'Delete',
     'Delete confirm' => 'Delete this record? This cannot be undone.',
     'No data' => 'No data',
-    'Create Title' => 'Create Title',
-    'Edit Title' => 'Edit Title',
-    'View Title' => 'View Title',
+    'Create Job' => 'Create Job',
+    'Edit Job' => 'Edit Job',
+    'View Job' => 'View Job',
     'Created successfully' => 'Created successfully',
     'Updated successfully' => 'Updated successfully',
     'Deleted successfully' => 'Deleted successfully',

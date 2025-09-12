@@ -11,7 +11,7 @@ use Modules\Employees\Database\Seeders\EmployeeSeeder;
 use Modules\Org\Database\Seeders\CompanySeeder;
 use Modules\Org\Database\Seeders\BranchSeeder;
 use Modules\Org\Database\Seeders\DepartmentSeeder;
-use Modules\Org\Database\Seeders\TitleSeeder;
+use Modules\Org\Database\Seeders\JobSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             BranchSeeder::class,
             DepartmentSeeder::class,
-            TitleSeeder::class,
+            JobSeeder::class,
             EmployeeSeeder::class,
         ]);
         

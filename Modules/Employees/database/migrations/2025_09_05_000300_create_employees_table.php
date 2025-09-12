@@ -13,10 +13,10 @@ return new class extends Migration {
 
         $hasBranches = Schema::hasTable('branches');
         $hasDepartments = Schema::hasTable('departments');
-        $hasTitles = Schema::hasTable('titles');
+        $hasJobs = Schema::hasTable('jobs');
         $hasNationalities = Schema::hasTable('nationalities');
 
-        Schema::create('employees', function (Blueprint $table) use ($hasBranches, $hasDepartments, $hasTitles, $hasNationalities) {
+        Schema::create('employees', function (Blueprint $table) use ($hasBranches, $hasDepartments, $hasJobs, $hasNationalities) {
             $table->id();
 
             if ($hasBranches) {
@@ -32,10 +32,10 @@ return new class extends Migration {
                 $table->unsignedBigInteger('department_id')->nullable();
             }
 
-            if ($hasTitles) {
-                $table->foreignId('title_id')->nullable()->constrained()->nullOnDelete();
+            if ($hasJobs) {
+                $table->foreignId('job_id')->nullable()->constrained()->nullOnDelete();
             } else {
-                $table->unsignedBigInteger('title_id')->nullable();
+                $table->unsignedBigInteger('job_id')->nullable();
             }
 
             if ($hasNationalities) {

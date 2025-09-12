@@ -1,6 +1,6 @@
 <?php
 return [
-    'Titles' => 'المسميات الوظيفية',
+    'Jobs' => 'الوظائف',
     'Company' => 'الشركة',
     'Branch' => 'الفرع',
     'Department' => 'القسم',
@@ -14,9 +14,9 @@ return [
     'Delete' => 'حذف',
     'Delete confirm' => 'هل أنت متأكد من حذف هذا السجل؟ لا يمكن التراجع.',
     'No data' => 'لا توجد بيانات',
-    'Create Title' => 'إنشاء مسمى وظيفي',
-    'Edit Title' => 'تعديل مسمى وظيفي',
-    'View Title' => 'عرض مسمى وظيفي',
+    'Create Job' => 'إنشاء وظيفة',
+    'Edit Job' => 'تعديل وظيفة',
+    'View Job' => 'عرض وظيفة',
     'Created successfully' => 'تم الإنشاء بنجاح',
     'Updated successfully' => 'تم التحديث بنجاح',
     'Deleted successfully' => 'تم الحذف بنجاح',

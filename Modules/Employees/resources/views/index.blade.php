@@ -37,7 +37,7 @@
             </th>
             <th>@lang('employees::employees.Company')</th>
             <th>@lang('employees::employees.Branch')</th>
-            <th>@lang('employees::employees.Title')</th>
+            <th>@lang('employees::employees.Job')</th>
             <th>@lang('employees::employees.Active')</th>
             <th class="text-end">@lang('employees::employees.Actions')</th>
           </tr>
@@ -57,7 +57,7 @@
               </td>
               <td>{{ $i->company ? (app()->getLocale() === 'ar' ? $i->company->name_ar : $i->company->name_en) : '' }}</td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name) : '' }}</td>
-              <td>{{ $i->title ? (app()->getLocale() === 'ar' ? $i->title->name_ar : $i->title->name) : '' }}</td>
+              <td>{{ $i->job ? (app()->getLocale() === 'ar' ? $i->job->name_ar : $i->job->name) : '' }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('employees::employees.Active')</span>

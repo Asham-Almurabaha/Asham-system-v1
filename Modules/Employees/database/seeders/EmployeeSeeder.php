@@ -7,23 +7,23 @@ use Illuminate\Support\Facades\Schema;
 use Modules\Employees\Models\Employee;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
-use Modules\Org\Models\Title;
+use Modules\Org\Models\Job;
 use Modules\Nationalities\Models\Nationality;
 
 class EmployeeSeeder extends Seeder
 {
     public function run(): void
     {
-        if (!Schema::hasTable('employees') || !Schema::hasTable('branches') || !Schema::hasTable('departments') || !Schema::hasTable('titles') || !Schema::hasTable('nationalities')) {
+        if (!Schema::hasTable('employees') || !Schema::hasTable('branches') || !Schema::hasTable('departments') || !Schema::hasTable('jobs') || !Schema::hasTable('nationalities')) {
             return;
         }
 
         $branch = Branch::first();
         $department = Department::first();
-        $title = Title::first();
+        $job = Job::first();
         $nationality = Nationality::first();
 
-        if (! $branch || ! $department || ! $title || ! $nationality) {
+        if (! $branch || ! $department || ! $job || ! $nationality) {
             return;
         }
 
@@ -37,7 +37,7 @@ class EmployeeSeeder extends Seeder
                 'hire_date' => '2022-01-10',
                 'branch_id' => $branch->id,
                 'department_id' => $department->id,
-                'title_id' => $title->id,
+                'job_id' => $job->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000001', '0555555555'],
                 'residencies' => [
@@ -59,7 +59,7 @@ class EmployeeSeeder extends Seeder
                 'hire_date' => '2023-03-15',
                 'branch_id' => $branch->id,
                 'department_id' => $department->id,
-                'title_id' => $title->id,
+                'job_id' => $job->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000002'],
                 'residencies' => [

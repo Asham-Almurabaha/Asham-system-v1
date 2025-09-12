@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Modules\Employees\Models\Employee;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
-use Modules\Org\Models\Title;
+use Modules\Org\Models\Job;
 use Modules\Nationalities\Models\Nationality;
 use Modules\Org\Models\Company;
 use Illuminate\Http\UploadedFile;
@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     private const RESIDENCY_DIR = 'employee-residencies';
     public function index()
     {
-        $items = Employee::with(['company','branch','title'])->orderBy('id','asc')->paginate(15);
+        $items = Employee::with(['company','branch','job'])->orderBy('id','asc')->paginate(15);
         return view('employees::index', compact('items'));
     }
 
@@ -28,10 +28,10 @@ class EmployeeController extends Controller
     {
         $branches = Branch::where('is_active', true)->orderBy('name')->get();
         $departments = Department::where('is_active', true)->orderBy('name')->get();
-        $titles = Title::where('is_active', true)->orderBy('name')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
         $companies = Company::orderBy('name_en')->get();
-        return view('employees::create', compact('branches','departments','titles','nationalities','companies'));
+        return view('employees::create', compact('branches','departments','jobs','nationalities','companies'));
     }
 
     public function store(Request $request)
@@ -48,7 +48,7 @@ class EmployeeController extends Controller
             'hire_date' => ['nullable','date'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'title_id' => ['nullable','exists:titles,id'],
+            'job_id' => ['nullable','exists:jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'residency_absher_id_image' => ['nullable','image'],
@@ -94,7 +94,7 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        $employee->load(['phones','company','branch','department','title','manager','documents']);
+        $employee->load(['phones','company','branch','department','job','manager','documents']);
         return view('employees::show', ['item' => $employee]);
     }
 
@@ -103,10 +103,10 @@ class EmployeeController extends Controller
         $employee->load('phones','residencies');
         $branches = Branch::where('is_active', true)->orderBy('name')->get();
         $departments = Department::where('is_active', true)->orderBy('name')->get();
-        $titles = Title::where('is_active', true)->orderBy('name')->get();
+        $jobs = Job::where('is_active', true)->orderBy('name')->get();
         $nationalities = Nationality::where('is_active', true)->orderBy('name')->get();
         $companies = Company::orderBy('name_en')->get();
-        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'titles' => $titles, 'nationalities' => $nationalities, 'companies'=>$companies]);
+        return view('employees::edit', ['item' => $employee, 'branches' => $branches, 'departments' => $departments, 'jobs' => $jobs, 'nationalities' => $nationalities, 'companies'=>$companies]);
     }
 
     public function update(Request $request, Employee $employee)
@@ -124,7 +124,7 @@ class EmployeeController extends Controller
             'hire_date' => ['nullable','date'],
             'branch_id' => ['required','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
-            'title_id' => ['nullable','exists:titles,id'],
+            'job_id' => ['nullable','exists:jobs,id'],
             'nationality_id' => ['nullable','exists:nationalities,id'],
             'photo' => ['nullable','mimes:png,jpg,jpeg,gif,webp,svg','mimetypes:image/png,image/jpeg,image/gif,image/webp,image/svg+xml','max:4096'],
             'remove_photo' => ['sometimes','boolean'],

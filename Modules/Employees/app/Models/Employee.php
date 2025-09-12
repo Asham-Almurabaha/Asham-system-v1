@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
-use Modules\Org\Models\Title;
+use Modules\Org\Models\Job;
 use Modules\Nationalities\Models\Nationality;
 use Modules\Employees\Models\EmployeePhone;
 use Modules\Employees\Models\EmployeeResidency;
@@ -21,7 +21,7 @@ class Employee extends Model
 
     protected $fillable = [
         'code', 'first_name', 'first_name_ar', 'last_name', 'last_name_ar', 'email', 'photo', 'hire_date',
-        'branch_id', 'department_id', 'title_id', 'nationality_id', 'company_id', 'manager_id',
+        'branch_id', 'department_id', 'job_id', 'nationality_id', 'company_id', 'manager_id',
         'national_id', 'nationality', 'dob', 'salary_basic', 'currency',
         'employment_status_id', 'work_status_id', 'sponsorship_status_id', 'is_active',
     ];
@@ -47,9 +47,9 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function title()
+    public function job()
     {
-        return $this->belongsTo(Title::class);
+        return $this->belongsTo(Job::class);
     }
 
     public function manager()

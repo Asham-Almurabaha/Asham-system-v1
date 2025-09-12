@@ -21,7 +21,7 @@
  - Modules/Org/Models/Company.php
  - Modules/Org/Models/Branch.php
  - Modules/Org/Models/Department.php
- - Modules/Org/Models/Title.php
+ - Modules/Org/Models/Job.php
 
 ## Routes
 - routes/web.php

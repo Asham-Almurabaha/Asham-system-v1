@@ -8,7 +8,7 @@
 
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
-       || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('titles.*')
+       || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
        || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
       || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
@@ -120,8 +120,8 @@
         </a>
       </li>
       <li>
-        <a class="{{ $active($isRoute('titles.*')) }}" href="{{ route('titles.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Job Titles')</span>
+        <a class="{{ $active($isRoute('jobs.*')) }}" href="{{ route('jobs.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Jobs')</span>
         </a>
       </li>
       <li>

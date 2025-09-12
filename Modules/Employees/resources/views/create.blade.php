@@ -112,13 +112,13 @@
               @error('department_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            {{-- Title (depends on department) --}}
-            <div class="col-md-6 d-none" id="title-container">
-              <label class="form-label">@lang('employees::employees.Title')</label>
-              <select name="title_id" id="title_id" class="form-select @error('title_id') is-invalid @enderror">
-                <option value="" selected>{{ __('اختر المسمى الوظيفي') }}</option>
+            {{-- Job (depends on department) --}}
+            <div class="col-md-6 d-none" id="job-container">
+              <label class="form-label">@lang('employees::employees.Job')</label>
+              <select name="job_id" id="job_id" class="form-select @error('job_id') is-invalid @enderror">
+                <option value="" selected>{{ __('اختر الوظيفة') }}</option>
               </select>
-              @error('title_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+              @error('job_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             {{-- Nationality --}}
@@ -196,8 +196,8 @@
 
 @push('scripts')
 @php
-    // Prepare titles for JS (simple array)
-    $titlesForJs = $titles
+    // Prepare jobs for JS (simple array)
+    $jobsForJs = $jobs
         ->map(fn($t) => [
             'id' => $t->id,
             'name' => $t->name,
@@ -226,44 +226,44 @@ document.addEventListener('click', function (e) {
     }
 });
 
-// ====== Titles (dependent on Department) ======
-const allTitles = @json($titlesForJs);
+// ====== Jobs (dependent on Department) ======
+const allJobs = @json($jobsForJs);
 const locale = @js(app()->getLocale());
 const departmentSelect = document.getElementById('department_id');
-const titleSelect = document.getElementById('title_id');
-const titleContainer = document.getElementById('title-container');
-let oldTitleId = @js(old('title_id'));
+const jobSelect = document.getElementById('job_id');
+const jobContainer = document.getElementById('job-container');
+let oldJobId = @js(old('job_id'));
 
-function updateTitles() {
+function updateJobs() {
     const depId = departmentSelect.value;
-    titleSelect.innerHTML = `<option value="" selected>{{ __('اختر المسمى الوظيفي') }}</option>`;
+    jobSelect.innerHTML = `<option value="" selected>{{ __('اختر الوظيفة') }}</option>`;
     if (depId) {
-        const filtered = allTitles.filter(t => String(t.department_id) === String(depId));
+        const filtered = allJobs.filter(t => String(t.department_id) === String(depId));
         filtered.forEach(t => {
             const option = document.createElement('option');
             option.value = t.id;
             option.textContent = locale === 'ar' ? (t.name_ar ?? t.name) : (t.name ?? t.name_ar);
-            if (String(oldTitleId) === String(t.id)) option.selected = true;
-            titleSelect.appendChild(option);
+            if (String(oldJobId) === String(t.id)) option.selected = true;
+            jobSelect.appendChild(option);
         });
-        titleContainer.classList.toggle('d-none', filtered.length === 0);
+        jobContainer.classList.toggle('d-none', filtered.length === 0);
     } else {
-        titleContainer.classList.add('d-none');
+        jobContainer.classList.add('d-none');
     }
 }
 
 departmentSelect.addEventListener('change', () => {
-    oldTitleId = '';
-    updateTitles();
+    oldJobId = '';
+    updateJobs();
 });
 
-// Hide title initially if no department selected
+// Hide job initially if no department selected
 if (!departmentSelect.value) {
-    titleContainer.classList.add('d-none');
+    jobContainer.classList.add('d-none');
 }
 
 // Initial population
-updateTitles();
+updateJobs();
 
 // ====== Image preview/remove ======
 function previewImage(event, previewId, removeBtnId) {

@@ -3,5 +3,5 @@ return [
     'company' => 'Company',
     'branch' => 'Branch',
     'department' => 'Department',
-    'title' => 'Title',
+    'job' => 'Job',
 ];

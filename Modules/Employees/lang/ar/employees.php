@@ -12,7 +12,7 @@ return [
     'Branch' => 'الفرع',
     'Company' => 'الشركة',
     'Department' => 'القسم',
-    'Title' => 'المسمى الوظيفي',
+    'Job' => 'الوظيفة',
     'Nationality' => 'الجنسية',
     'Hire Date' => 'تاريخ التعيين',
     'Active' => 'نشط',

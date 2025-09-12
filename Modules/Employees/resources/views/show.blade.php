@@ -213,8 +213,8 @@
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Department')</dt>
           <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->department) }}</dd>
 
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Title')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->title) }}</dd>
+          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Job')</dt>
+          <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->job) }}</dd>
         </dl>
       </div>
     </div>

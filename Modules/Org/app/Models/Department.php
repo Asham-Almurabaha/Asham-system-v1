@@ -14,9 +14,9 @@ class Department extends Model
         'name_en', 'name_ar', 'is_active', 'company_id', 'branch_id',
     ];
 
-    public function titles()
+    public function jobs()
     {
-        return $this->hasMany(Title::class);
+        return $this->hasMany(Job::class);
     }
 
     public function company()
