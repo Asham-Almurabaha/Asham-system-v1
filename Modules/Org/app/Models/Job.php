@@ -10,6 +10,8 @@ class Job extends Model
 {
     use HasFactory, LogsActivity;
 
+    protected $table = 'org_jobs';
+
     protected $fillable = [
         'name_en', 'name_ar', 'is_active', 'department_id', 'company_id', 'branch_id',
     ];

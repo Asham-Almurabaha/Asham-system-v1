@@ -4,6 +4,8 @@ namespace Modules\Org\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Modules\Org\Models\Branch;
+use Modules\Org\Models\Company;
 
 class BranchSeeder extends Seeder
 {
@@ -12,6 +14,21 @@ class BranchSeeder extends Seeder
         if (!Schema::hasTable('branches')) {
             return;
         }
-        // TODO: seed branches
+
+        $company = Company::query()->first();
+        if (!$company) {
+            return;
+        }
+
+        Branch::query()->updateOrCreate(
+            [
+                'company_id' => $company->id,
+                'name_en' => 'Main Branch',
+            ],
+            [
+                'name_ar' => 'الفرع الرئيسي',
+                'is_active' => true,
+            ]
+        );
     }
 }
