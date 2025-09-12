@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Modules\Motorcycles\Entities\Motorcycle;
 use Modules\Motorcycles\Http\Requests\MotorcycleRequest;
+use Modules\Org\Models\Branch;
 
 class MotorcycleController extends Controller
 {
@@ -27,12 +28,14 @@ class MotorcycleController extends Controller
             $query->where('brand', 'like', "%$brand%");
         }
         $motorcycles = $query->paginate();
-        return view('motorcycles::index', compact('motorcycles'));
+        $branches = Branch::all();
+        return view('motorcycles::index', compact('motorcycles', 'branches'));
     }
 
     public function create(): View
     {
-        return view('motorcycles::form', ['motorcycle' => new Motorcycle()]);
+        $branches = Branch::all();
+        return view('motorcycles::create', ['motorcycle' => new Motorcycle(), 'branches' => $branches]);
     }
 
     public function store(MotorcycleRequest $request): RedirectResponse
@@ -48,7 +51,8 @@ class MotorcycleController extends Controller
 
     public function edit(Motorcycle $motorcycle): View
     {
-        return view('motorcycles::form', compact('motorcycle'));
+        $branches = Branch::all();
+        return view('motorcycles::edit', compact('motorcycle', 'branches'));
     }
 
     public function update(MotorcycleRequest $request, Motorcycle $motorcycle): RedirectResponse

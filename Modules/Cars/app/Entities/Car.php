@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Cars\Entities\CarAssignment;
+use Modules\Org\Models\Branch;
 
 class Car extends Model
 {
@@ -31,6 +32,11 @@ class Car extends Model
     public function currentAssignment(): HasOne
     {
         return $this->hasOne(CarAssignment::class)->whereNull('returned_at');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function scopeAvailable($query)

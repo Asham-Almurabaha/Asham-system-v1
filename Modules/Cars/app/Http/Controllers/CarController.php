@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Modules\Cars\Entities\Car;
 use Modules\Cars\Http\Requests\CarRequest;
+use Modules\Org\Models\Branch;
 
 class CarController extends Controller
 {
@@ -28,12 +29,14 @@ class CarController extends Controller
             $query->where('brand', 'like', "%$brand%");
         }
         $cars = $query->paginate();
-        return view('cars::index', compact('cars'));
+        $branches = Branch::all();
+        return view('cars::index', compact('cars', 'branches'));
     }
 
     public function create(): View
     {
-        return view('cars::form', ['car' => new Car()]);
+        $branches = Branch::all();
+        return view('cars::create', ['car' => new Car(), 'branches' => $branches]);
     }
 
     public function store(CarRequest $request): RedirectResponse
@@ -49,7 +52,8 @@ class CarController extends Controller
 
     public function edit(Car $car): View
     {
-        return view('cars::form', compact('car'));
+        $branches = Branch::all();
+        return view('cars::edit', compact('car', 'branches'));
     }
 
     public function update(CarRequest $request, Car $car): RedirectResponse

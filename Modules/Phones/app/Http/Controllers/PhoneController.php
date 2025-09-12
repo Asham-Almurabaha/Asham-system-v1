@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
+use Modules\Org\Models\Branch;
 use Modules\Phones\Entities\Phone;
 use Modules\Phones\Http\Requests\PhoneRequest;
 
@@ -20,16 +21,21 @@ class PhoneController extends Controller
         if ($brand = $request->input('brand')) {
             $query->where('brand', 'like', "%$brand%");
         }
-        if ($line = $request->input('line_number')) {
-            $query->where('line_number', $line);
+        if ($branch = $request->input('branch_id')) {
+            $query->where('branch_id', $branch);
+        }
+        if (($hasLine = $request->input('has_line')) !== null) {
+            $hasLine === '1' ? $query->whereNotNull('line_number') : $query->whereNull('line_number');
         }
         $phones = $query->paginate();
-        return view('phones::index', compact('phones'));
+        $branches = Branch::all();
+        return view('phones::index', compact('phones', 'branches'));
     }
 
     public function create(): View
     {
-        return view('phones::form', ['phone' => new Phone()]);
+        $branches = Branch::all();
+        return view('phones::create', ['phone' => new Phone(), 'branches' => $branches]);
     }
 
     public function store(PhoneRequest $request): RedirectResponse
@@ -45,7 +51,8 @@ class PhoneController extends Controller
 
     public function edit(Phone $phone): View
     {
-        return view('phones::form', compact('phone'));
+        $branches = Branch::all();
+        return view('phones::edit', compact('phone', 'branches'));
     }
 
     public function update(PhoneRequest $request, Phone $phone): RedirectResponse

@@ -4,8 +4,10 @@ namespace Modules\Motorcycles\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Modules\Org\Models\Branch;
 
 class Motorcycle extends Model
 {
@@ -30,6 +32,11 @@ class Motorcycle extends Model
     public function currentAssignment(): HasOne
     {
         return $this->hasOne(MotorcycleAssignment::class)->whereNull('returned_at');
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function scopeAvailable($query)
