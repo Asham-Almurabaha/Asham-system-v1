@@ -37,7 +37,10 @@ return new class extends Migration {
 
         if (Schema::hasTable('employees')) {
             Schema::table('employees', function (Blueprint $table) {
-                if (!Schema::hasColumn('employees', 'company_id')) $table->foreignId('company_id')->nullable()->constrained('companies');
+                if (!Schema::hasColumn('employees', 'company_id')) {
+                    $table->foreignId('company_id')->nullable()->constrained('companies');
+                    $table->index(['company_id','branch_id']);
+                }
                 if (!Schema::hasColumn('employees', 'code')) $table->string('code')->nullable()->unique();
                 if (!Schema::hasColumn('employees', 'manager_id')) $table->foreignId('manager_id')->nullable()->constrained('employees');
                 if (!Schema::hasColumn('employees', 'national_id')) $table->string('national_id')->nullable();
@@ -49,7 +52,6 @@ return new class extends Migration {
                 if (!Schema::hasColumn('employees', 'work_status_id')) $table->foreignId('work_status_id')->nullable()->constrained('work_statuses');
                 if (!Schema::hasColumn('employees', 'sponsorship_status_id')) $table->foreignId('sponsorship_status_id')->nullable()->constrained('sponsorship_statuses');
                 if (!Schema::hasColumn('employees', 'deleted_at')) $table->softDeletes();
-                $table->index(['company_id','branch_id']);
             });
         }
     }

@@ -427,6 +427,7 @@
   </div>
 </div>
 
+@includeIf('contracts::_list', ['employee' => $item, 'contracts' => $item->contracts])
 @includeIf('documents::_list', ['employee' => $item, 'documents' => $item->documents])
 @endsection
 

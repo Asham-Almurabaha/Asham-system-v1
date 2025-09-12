@@ -17,6 +17,8 @@
       || $isRoute('categories.*')
       || $isRoute('audit-logs.*')
       || $isRoute('users.*');
+
+  $attendanceOpen = $isRoute('hr.shifts.*') || $isRoute('hr.attendances.*') || $isRoute('hr.overtime.*');
 @endphp
 
 <ul class="sidebar-nav" id="sidebar-nav">
@@ -78,6 +80,51 @@
       <i class="bi bi-journal"></i><span>@lang('sidebar.Ledger')</span>
     </a>
   </li> --}}
+    {{-- Attendance --}}
+    <li class="nav-item">
+      <a class="nav-link {{ $coll($attendanceOpen) }}" data-bs-target="#attendance-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-clock"></i><span>@lang('sidebar.Attendance')</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="attendance-nav" class="nav-content collapse {{ $open($attendanceOpen) }}" data-bs-parent="#sidebar-nav">
+        <li>
+          <a class="{{ $active($isRoute('hr.shifts.*')) }}" href="{{ route('hr.shifts.index') }}">
+            <i class="bi bi-circle"></i><span>@lang('sidebar.Shifts')</span>
+          </a>
+        </li>
+        <li>
+          <a class="{{ $active($isRoute('hr.attendances.*')) }}" href="{{ route('hr.attendances.index') }}">
+            <i class="bi bi-circle"></i><span>@lang('sidebar.Attendance Records')</span>
+          </a>
+        </li>
+        <li>
+          <a class="{{ $active($isRoute('hr.overtime.*')) }}" href="{{ route('hr.overtime.index') }}">
+            <i class="bi bi-circle"></i><span>@lang('sidebar.Overtime')</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    {{-- Leaves --}}
+    <li class="nav-item">
+      <a class="nav-link {{ $coll($isRoute('hr.leaves.*')) }} {{ $active($isRoute('hr.leaves.*')) }}" href="{{ route('hr.leaves.index') }}">
+        <i class="bi bi-calendar2-check"></i><span>@lang('sidebar.Leaves')</span>
+      </a>
+    </li>
+
+    {{-- Payroll --}}
+    <li class="nav-item">
+      <a class="nav-link {{ $coll($isRoute('hr.payroll-runs.*')) }} {{ $active($isRoute('hr.payroll-runs.*')) }}" href="{{ route('hr.payroll-runs.index') }}">
+        <i class="bi bi-cash-stack"></i><span>@lang('sidebar.Payroll')</span>
+      </a>
+    </li>
+
+    {{-- Assets --}}
+    <li class="nav-item">
+      <a class="nav-link {{ $coll($isRoute('hr.assets.*')) }} {{ $active($isRoute('hr.assets.*')) }}" href="{{ route('hr.assets.index') }}">
+        <i class="bi bi-box-seam"></i><span>@lang('sidebar.Assets')</span>
+      </a>
+    </li>
+
 
   
 

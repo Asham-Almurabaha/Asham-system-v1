@@ -11,13 +11,20 @@ return new class extends Migration {
             return; // table already exists
         }
 
+        $hasCompanies = Schema::hasTable('companies');
         $hasBranches = Schema::hasTable('branches');
         $hasDepartments = Schema::hasTable('departments');
         $hasJobs = Schema::hasTable('org_jobs');
         $hasNationalities = Schema::hasTable('nationalities');
 
-        Schema::create('employees', function (Blueprint $table) use ($hasBranches, $hasDepartments, $hasJobs, $hasNationalities) {
+        Schema::create('employees', function (Blueprint $table) use ($hasCompanies, $hasBranches, $hasDepartments, $hasJobs, $hasNationalities) {
             $table->id();
+
+            if ($hasCompanies) {
+                $table->foreignId('company_id')->nullable()->constrained('companies');
+            } else {
+                $table->unsignedBigInteger('company_id')->nullable();
+            }
 
             if ($hasBranches) {
                 $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
@@ -53,6 +60,8 @@ return new class extends Migration {
             $table->date('hire_date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
+            $table->index(['company_id', 'branch_id']);
         });
     }
 

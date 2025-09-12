@@ -24,5 +24,12 @@ return [
     'Residency Statuses' => 'Residency Statuses',
     'Work Statuses' => 'Work Statuses',
     'Audit Logs' => 'Audit Logs',
+    'Attendance' => 'Attendance',
+    'Attendance Records' => 'Attendance Records',
+    'Shifts' => 'Shifts',
+    'Overtime' => 'Overtime',
+    'Leaves' => 'Leaves',
+    'Payroll' => 'Payroll',
+    'Assets' => 'Assets',
 ];
 

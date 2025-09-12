@@ -10,6 +10,8 @@ class AttendanceServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'attendance');
+        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'attendance');
     }
 
     public function register(): void

@@ -24,5 +24,12 @@ return [
     'Residency Statuses' => 'حالات الإقامة',
     'Work Statuses' => 'حالات العمل',
     'Audit Logs' => 'سجل النشاط',
+    'Attendance' => 'الحضور',
+    'Attendance Records' => 'سجلات الحضور',
+    'Shifts' => 'الورديات',
+    'Overtime' => 'الوقت الإضافي',
+    'Leaves' => 'الإجازات',
+    'Payroll' => 'الرواتب',
+    'Assets' => 'الأصول',
 ];
 
