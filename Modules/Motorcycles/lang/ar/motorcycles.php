@@ -12,6 +12,7 @@ return [
     'Model' => 'الطراز',
     'Color' => 'اللون',
     'Status' => 'الحالة',
+    'Branch' => 'الفرع',
     'Purchase Date' => 'تاريخ الشراء',
     'Cost' => 'التكلفة',
     'Notes' => 'ملاحظات',
@@ -24,4 +25,10 @@ return [
     'Deleted successfully' => 'تم الحذف بنجاح',
     'Cannot delete assigned' => 'لا يمكن حذف دراجة مسلّمة',
     'View' => 'عرض',
+    'statuses' => [
+        'available' => 'متاحة',
+        'assigned' => 'مسلّمة',
+        'maintenance' => 'صيانة',
+        'retired' => 'متوقفة',
+    ],
 ];

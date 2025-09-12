@@ -12,6 +12,10 @@ return [
     'Color' => 'Color',
     'Line Number' => 'Line Number',
     'Status' => 'Status',
+    'Branch' => 'Branch',
+    'Line Filter' => 'Line Filter',
+    'With Line' => 'With Line',
+    'Without Line' => 'Without Line',
     'Purchase Date' => 'Purchase Date',
     'Cost' => 'Cost',
     'Notes' => 'Notes',
@@ -24,4 +28,10 @@ return [
     'Deleted successfully' => 'Deleted successfully',
     'Cannot delete assigned' => 'Cannot delete phone with active assignment',
     'View' => 'View',
+    'statuses' => [
+        'available' => 'Available',
+        'assigned' => 'Assigned',
+        'maintenance' => 'Maintenance',
+        'retired' => 'Retired',
+    ],
 ];

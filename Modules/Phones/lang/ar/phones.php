@@ -12,6 +12,10 @@ return [
     'Color' => 'اللون',
     'Line Number' => 'رقم الشريحة',
     'Status' => 'الحالة',
+    'Branch' => 'الفرع',
+    'Line Filter' => 'تصفية الشريحة',
+    'With Line' => 'بشريحة',
+    'Without Line' => 'بدون شريحة',
     'Purchase Date' => 'تاريخ الشراء',
     'Cost' => 'التكلفة',
     'Notes' => 'ملاحظات',
@@ -24,4 +28,10 @@ return [
     'Deleted successfully' => 'تم الحذف بنجاح',
     'Cannot delete assigned' => 'لا يمكن حذف جوال مسلّم',
     'View' => 'عرض',
+    'statuses' => [
+        'available' => 'متاح',
+        'assigned' => 'مسلّم',
+        'maintenance' => 'صيانة',
+        'retired' => 'متوقف',
+    ],
 ];

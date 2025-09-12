@@ -12,6 +12,7 @@ return [
     'Model' => 'Model',
     'Color' => 'Color',
     'Status' => 'Status',
+    'Branch' => 'Branch',
     'Purchase Date' => 'Purchase Date',
     'Cost' => 'Cost',
     'Notes' => 'Notes',
@@ -24,4 +25,10 @@ return [
     'Deleted successfully' => 'Deleted successfully',
     'Cannot delete assigned' => 'Cannot delete motorcycle with active assignment',
     'View' => 'View',
+    'statuses' => [
+        'available' => 'Available',
+        'assigned' => 'Assigned',
+        'maintenance' => 'Maintenance',
+        'retired' => 'Retired',
+    ],
 ];
