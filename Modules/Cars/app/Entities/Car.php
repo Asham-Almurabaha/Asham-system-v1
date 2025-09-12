@@ -4,9 +4,11 @@ namespace Modules\Cars\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Cars\Entities\CarAssignment;
+use Modules\Cars\Entities\Lookups\{CarBrand, CarColor, CarModel, CarStatus, CarType, CarYear};
 use Modules\Org\Models\Branch;
 
 class Car extends Model
@@ -14,14 +16,23 @@ class Car extends Model
     use HasFactory;
 
     protected $fillable = [
-        'plate_number','vin','year','brand','model','color','status','purchase_date','cost','branch_id','notes'
+        'plate_number',
+        'vin',
+        'car_year_id',
+        'car_type_id',
+        'car_brand_id',
+        'car_model_id',
+        'car_color_id',
+        'car_status_id',
+        'purchase_date',
+        'cost',
+        'branch_id',
+        'notes'
     ];
 
     protected $casts = [
         'purchase_date' => 'date',
-        'year' => 'integer',
         'cost' => 'decimal:2',
-        'status' => CarStatus::class,
     ];
 
     public function assignments(): HasMany
@@ -39,21 +50,45 @@ class Car extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function year(): BelongsTo
+    {
+        return $this->belongsTo(CarYear::class, 'car_year_id');
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(CarType::class, 'car_type_id');
+    }
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(CarBrand::class, 'car_brand_id');
+    }
+
+    public function model(): BelongsTo
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id');
+    }
+
+    public function color(): BelongsTo
+    {
+        return $this->belongsTo(CarColor::class, 'car_color_id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(CarStatus::class, 'car_status_id');
+    }
+
     public function scopeAvailable($query)
     {
-        return $query->where('status', CarStatus::AVAILABLE);
+        $statusId = CarStatus::where('name_en', 'available')->value('id');
+        return $query->where('car_status_id', $statusId);
     }
 
     public function scopeAssigned($query)
     {
-        return $query->where('status', CarStatus::ASSIGNED);
+        $statusId = CarStatus::where('name_en', 'assigned')->value('id');
+        return $query->where('car_status_id', $statusId);
     }
-}
-
-enum CarStatus: string
-{
-    case AVAILABLE = 'available';
-    case ASSIGNED = 'assigned';
-    case MAINTENANCE = 'maintenance';
-    case RETIRED = 'retired';
 }

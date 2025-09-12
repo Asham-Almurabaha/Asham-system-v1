@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Cars\Entities\Concerns\FormatsHijriDates;
+use Modules\Cars\Entities\Lookups\CarStatus;
 use Modules\Employees\Models\Employee;
 
 class CarAssignment extends Model
@@ -23,6 +24,15 @@ class CarAssignment extends Model
         'condition_on_return' => CarCondition::class,
     ];
 
+    protected static function booted()
+    {
+        static::created(function ($assignment) {
+            $assignment->car->update([
+                'car_status_id' => CarStatus::where('name_en', 'assigned')->value('id'),
+            ]);
+        });
+    }
+
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
@@ -31,6 +41,16 @@ class CarAssignment extends Model
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function assignedBy(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'assigned_by');
+    }
+
+    public function receivedBy(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'received_by');
     }
 
     public function getAssignedAtHijriAttribute(): ?string

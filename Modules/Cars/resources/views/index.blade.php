@@ -8,23 +8,7 @@
     </ol>
   </nav>
   <div class="d-flex align-items-center justify-content-between mb-3 gap-2 flex-wrap">
-    {{-- <form method="GET" class="d-flex gap-2 flex-wrap">
-      <select name="status" class="form-select form-select-sm">
-        <option value="">@lang('cars::common.All Statuses')</option>
-        @foreach(\Modules\Cars\Entities\CarStatus::cases() as $status)
-          <option value="{{ $status->value }}" @selected(request('status')==$status->value)>@lang('cars::statuses.' . $status->value)</option>
-        @endforeach
-      </select>
-      <select name="branch_id" class="form-select form-select-sm">
-        <option value="">@lang('cars::cars.Branch')</option>
-        @foreach($branches as $branch)
-          <option value="{{ $branch->id }}" @selected(request('branch_id')==$branch->id)>{{ $branch->name }}</option>
-        @endforeach
-      </select>
-      <input type="text" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="@lang('cars::common.Search')">
-      <x-btn type="submit" size="sm" variant="outline-secondary">@lang('cars::common.Filter')</x-btn>
-      <x-btn href="{{ route('cars.index') }}" size="sm" variant="outline-secondary">@lang('cars::common.Reset')</x-btn>
-    </form> --}}
+    {{-- Filter form removed temporarily --}}
     @can('cars.create')
     <x-btn href="{{ route('cars.create') }}" size="sm" variant="success" icon="bi bi-plus-circle">@lang('cars::cars.Create Car')</x-btn>
     @endcan
@@ -51,18 +35,18 @@
             <tr>
               <td>{{ $car->id }}</td>
               <td>{{ $car->plate_number }}</td>
-              <td>{{ $car->brand }}</td>
-              <td>{{ $car->model }}</td>
-              <td>{{ $car->year }}</td>
-              <td>{{ $car->color }}</td>
+              <td>{{ $car->brand?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td>
+              <td>{{ $car->model?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td>
+              <td>{{ $car->year?->year }}</td>
+              <td>{{ $car->color?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td>
               <td>
-                @php $cls = match($car->status->value){
+                @php $cls = match($car->status?->name_en){
                   'available' => 'success',
                   'assigned' => 'warning',
                   'maintenance' => 'info',
                   'retired' => 'secondary',
                 }; @endphp
-                <span class="badge bg-{{ $cls }}-subtle text-{{ $cls }} border">@lang('cars::statuses.' . $car->status->value)</span>
+                <span class="badge bg-{{ $cls }}-subtle text-{{ $cls }} border">@lang('cars::statuses.' . $car->status?->name_en)</span>
               </td>
               <td>
                 {{ optional($car->currentAssignment?->employee)->name }}

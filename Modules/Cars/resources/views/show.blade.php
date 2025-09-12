@@ -24,11 +24,11 @@
           <tbody>
             <tr><th style="width:220px">@lang('cars::cars.Plate Number')</th><td class="fw-medium">{{ $car->plate_number }}</td></tr>
             <tr><th>@lang('cars::cars.VIN')</th><td class="fw-medium">{{ $car->vin }}</td></tr>
-            <tr><th>@lang('cars::cars.Brand')</th><td class="fw-medium">{{ $car->brand }}</td></tr>
-            <tr><th>@lang('cars::cars.Model')</th><td class="fw-medium">{{ $car->model }}</td></tr>
-            <tr><th>@lang('cars::cars.Year')</th><td class="fw-medium">{{ $car->year }}</td></tr>
-            <tr><th>@lang('cars::cars.Color')</th><td class="fw-medium">{{ $car->color }}</td></tr>
-            <tr><th>@lang('cars::cars.Status')</th><td>@lang('cars::statuses.' . $car->status->value)</td></tr>
+            <tr><th>@lang('cars::cars.Brand')</th><td class="fw-medium">{{ $car->brand?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td></tr>
+            <tr><th>@lang('cars::cars.Model')</th><td class="fw-medium">{{ $car->model?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td></tr>
+            <tr><th>@lang('cars::cars.Year')</th><td class="fw-medium">{{ $car->year?->year }}</td></tr>
+            <tr><th>@lang('cars::cars.Color')</th><td class="fw-medium">{{ $car->color?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td></tr>
+            <tr><th>@lang('cars::cars.Status')</th><td>@lang('cars::statuses.' . $car->status?->name_en)</td></tr>
             <tr><th>@lang('cars::cars.Branch')</th><td>{{ $car->branch?->name }}</td></tr>
             <tr><th>@lang('cars::cars.Notes')</th><td>{{ $car->notes }}</td></tr>
           </tbody>

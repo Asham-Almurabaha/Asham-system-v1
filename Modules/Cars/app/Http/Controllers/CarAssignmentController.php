@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Modules\Cars\Entities\Car;
 use Modules\Cars\Entities\CarAssignment;
-use Modules\Cars\Entities\CarStatus;
+use Modules\Cars\Entities\Lookups\CarStatus;
 use Modules\Cars\Http\Requests\CarAssignmentRequest;
 
 class CarAssignmentController extends Controller
@@ -18,7 +18,7 @@ class CarAssignmentController extends Controller
             return back()->withErrors(__('cars::assignments.Car already assigned'));
         }
         $assignment = $car->assignments()->create($request->validated());
-        $car->status = CarStatus::ASSIGNED;
+        $car->car_status_id = CarStatus::where('name_en', 'assigned')->value('id');
         $car->save();
         return redirect()->route('cars.show', $car)->with('success', __('cars::assignments.Assigned'));
     }
@@ -26,7 +26,8 @@ class CarAssignmentController extends Controller
     public function return(CarAssignmentRequest $request, Car $car, CarAssignment $assignment): RedirectResponse
     {
         $assignment->update($request->validated());
-        $car->status = $request->input('condition_on_return') === 'needs_maintenance' ? CarStatus::MAINTENANCE : CarStatus::AVAILABLE;
+        $statusName = $request->input('condition_on_return') === 'needs_maintenance' ? 'maintenance' : 'available';
+        $car->car_status_id = CarStatus::where('name_en', $statusName)->value('id');
         $car->save();
         return redirect()->route('cars.show', $car)->with('success', __('cars::assignments.Returned'));
     }
