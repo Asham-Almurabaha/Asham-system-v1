@@ -7,14 +7,11 @@
   $coll    = fn($cond) => $cond ? '' : 'collapsed';
 
   // open states for settings groups
-  $generalSettingsOpen = $isRoute('settings.*') || $isRoute('audit-logs.*');
-  $employeeSettingsOpen = $isRoute('users.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
-      || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
+  $generalSettingsOpen = $isRoute('settings.*') || $isRoute('users.*') || $isRoute('companies.*') || $isRoute('cities.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*') || $isRoute('audit-logs.*');
+  $employeeSettingsOpen = $isRoute('nationalities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
   $carSettingsOpen = $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*') || $isRoute('car-brands.*')
       || $isRoute('car-models.*') || $isRoute('car-statuses.*') || $isRoute('car-document-data-types.*')
       || $isRoute('car-delegation-types.*') || $isRoute('violation-types.*') || $isRoute('violation-payment-statuses.*');
-
-  $attendanceOpen = $isRoute('hr.shifts.*') || $isRoute('hr.attendances.*') || $isRoute('hr.overtime.*');
   $carsOpen = $isRoute('cars.*');
 @endphp
 
@@ -61,49 +58,6 @@
     </a>
   </li>
 
-  {{-- Customers --}}
-  {{-- <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('customers.*')) }} {{ $active($isRoute('customers.*')) }}"
-       href="{{ route('customers.index') }}">
-      <i class="bi bi-people"></i><span>@lang('sidebar.Customers')</span>
-    </a>
-  </li> --}}
-
-  {{-- Guarantors --}}
-  {{-- <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('guarantors.*')) }} {{ $active($isRoute('guarantors.*')) }}"
-       href="{{ route('guarantors.index') }}">
-      <i class="bi bi-person-bounding-box"></i><span>@lang('sidebar.Guarantors')</span>
-    </a>
-  </li> --}}
-
-  {{-- المستثمرين --}}
-  {{-- <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('investors.*')) }} {{ $active($isRoute('investors.*')) }}"
-       href="{{ route('investors.index') }}">
-      <i class="bi bi-briefcase"></i><span>@lang('sidebar.Investors')</span>
-    </a>
-  </li> --}}
-
-  {{-- العقود --}}
-  {{-- <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('contracts.*')) }} {{ $active($isRoute('contracts.*')) }}"
-       href="{{ route('contracts.index') }}">
-      <i class="bi bi-file-earmark-text"></i><span>@lang('sidebar.Contracts')</span>
-    </a>
-  </li> --}}
-
-  {{-- دفتر القيود --}}
-  {{-- <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('ledger.*')) }} {{ $active($isRoute('ledger.*')) }}"
-       href="{{ route('ledger.index') }}">
-      <i class="bi bi-journal"></i><span>@lang('sidebar.Ledger')</span>
-    </a>
-  </li> --}}
-    
-
-  
-
   {{-- الإعدادات --}}
   @role('admin')
   <li class="nav-item">
@@ -116,19 +70,7 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.General Setting')</span>
         </a>
       </li>
-      <li>
-        <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
-        </a>
-      </li>
-    </ul>
-  </li>
 
-  <li class="nav-item">
-    <a class="nav-link {{ $coll($employeeSettingsOpen) }}" data-bs-target="#employee-settings-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $employeeSettingsOpen ? 'true' : 'false' }}">
-      <i class="bi bi-people"></i><span>@lang('sidebar.Employee Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="employee-settings-nav" class="nav-content collapse {{ $open($employeeSettingsOpen) }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ $active($isRoute('users.*')) }}" href="{{ route('users.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Assign Roles to Users')</span>
@@ -137,6 +79,11 @@
       <li>
         <a class="{{ $active($isRoute('companies.*')) }}" href="{{ route('companies.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Companies')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('cities.*')) }}" href="{{ route('cities.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Cities')</span>
         </a>
       </li>
       <li>
@@ -154,14 +101,24 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Jobs')</span>
         </a>
       </li>
+
+      <li>
+        <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($employeeSettingsOpen) }}" data-bs-target="#employee-settings-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $employeeSettingsOpen ? 'true' : 'false' }}">
+      <i class="bi bi-people"></i><span>@lang('sidebar.Employee Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="employee-settings-nav" class="nav-content collapse {{ $open($employeeSettingsOpen) }}" data-bs-parent="#sidebar-nav">
+
       <li>
         <a class="{{ $active($isRoute('nationalities.*')) }}" href="{{ route('nationalities.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Nationalities')</span>
-        </a>
-      </li>
-      <li>
-        <a class="{{ $active($isRoute('cities.*')) }}" href="{{ route('cities.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Cities')</span>
         </a>
       </li>
       <li>
