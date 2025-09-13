@@ -6,6 +6,7 @@ return [
     'Edit Car' => 'Edit Car',
     'View Car' => 'View Car',
     'Plate Number' => 'Plate Number',
+    'Sequence Number' => 'Sequence Number',
     'VIN' => 'VIN',
     'Year' => 'Year',
     'Brand' => 'Brand',

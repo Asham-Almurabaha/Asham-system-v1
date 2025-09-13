@@ -16,6 +16,7 @@ class Car extends Model
     use HasFactory;
 
     protected $fillable = [
+        'sequence_number',
         'plate_number',
         'vin',
         'car_year_id',

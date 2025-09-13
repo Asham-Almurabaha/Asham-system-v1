@@ -23,6 +23,7 @@
         <table class="table table-sm align-middle mb-0">
           <tbody>
             <tr><th style="width:220px">@lang('cars::cars.Plate Number')</th><td class="fw-medium">{{ $car->plate_number }}</td></tr>
+            <tr><th>@lang('cars::cars.Sequence Number')</th><td class="fw-medium">{{ $car->sequence_number }}</td></tr>
             <tr><th>@lang('cars::cars.VIN')</th><td class="fw-medium">{{ $car->vin }}</td></tr>
             <tr><th>@lang('cars::cars.Brand')</th><td class="fw-medium">{{ $car->brand?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td></tr>
             <tr><th>@lang('cars::cars.Model')</th><td class="fw-medium">{{ $car->model?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td></tr>

@@ -20,6 +20,7 @@
           <tr>
             <th>#</th>
             <th>@lang('cars::cars.Plate Number')</th>
+            <th>@lang('cars::cars.Sequence Number')</th>
             <th>@lang('cars::cars.Brand')</th>
             <th>@lang('cars::cars.Model')</th>
             <th>@lang('cars::cars.Year')</th>
@@ -35,6 +36,7 @@
             <tr>
               <td>{{ $car->id }}</td>
               <td>{{ $car->plate_number }}</td>
+              <td>{{ $car->sequence_number }}</td>
               <td>{{ $car->brand?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td>
               <td>{{ $car->model?->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</td>
               <td>{{ $car->year?->year }}</td>
@@ -80,7 +82,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="10" class="text-center text-muted">@lang('cars::cars.No data')</td>
+              <td colspan="11" class="text-center text-muted">@lang('cars::cars.No data')</td>
             </tr>
           @endforelse
         </tbody>

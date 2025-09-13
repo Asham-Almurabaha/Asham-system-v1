@@ -1,5 +1,10 @@
 <div class="row g-3">
   <div class="col-md-6">
+    <label class="form-label">@lang('cars::cars.Sequence Number')</label>
+    <input type="text" name="sequence_number" value="{{ old('sequence_number', $car->sequence_number) }}" class="form-control @error('sequence_number') is-invalid @enderror">
+    @error('sequence_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  </div>
+  <div class="col-md-6">
     <label class="form-label">@lang('cars::cars.Plate Number')</label>
     <input type="text" name="plate_number" value="{{ old('plate_number', $car->plate_number) }}" class="form-control @error('plate_number') is-invalid @enderror" required>
     @error('plate_number')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -25,6 +25,7 @@ class CarSeeder extends Seeder
         Car::firstOrCreate(
             ['plate_number' => 'CAR-001'],
             [
+                'sequence_number' => 'SEQ-001',
                 'car_status_id' => $status?->id,
                 'car_type_id' => $type?->id,
                 'car_brand_id' => $brand?->id,

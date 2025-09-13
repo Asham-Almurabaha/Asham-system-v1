@@ -10,11 +10,8 @@ return new class extends Migration {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('plate_number')->unique()->index();
+            $table->string('sequence_number')->unique()->nullable()->index();
             $table->string('vin')->unique()->nullable()->index();
-            $table->date('purchase_date')->nullable();
-            $table->decimal('cost',12,2)->nullable();
-            $table->foreignId('branch_id')->nullable();
-            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

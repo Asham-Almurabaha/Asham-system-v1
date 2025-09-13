@@ -25,6 +25,7 @@ class CarTest extends TestCase
         $color = CarColor::first();
 
         $car = Car::create([
+            'sequence_number' => '123456',
             'plate_number' => 'ا1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
@@ -50,6 +51,7 @@ class CarTest extends TestCase
         $year = CarYear::first();
         $color = CarColor::first();
         $car = Car::create([
+            'sequence_number' => '234567',
             'plate_number' => 'ب1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
@@ -78,6 +80,7 @@ class CarTest extends TestCase
         $year = CarYear::first();
         $color = CarColor::first();
         $car = Car::create([
+            'sequence_number' => '345678',
             'plate_number' => 'ت1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
