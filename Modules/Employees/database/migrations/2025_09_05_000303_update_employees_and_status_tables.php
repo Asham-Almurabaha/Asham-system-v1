@@ -9,18 +9,18 @@ return new class extends Migration {
     {
         if (!Schema::hasTable('employment_statuses')) {
             Schema::create('employment_statuses', function (Blueprint $table) {
-                $table->id();
-                $table->string('code')->unique();
-                $table->string('name_en');
-                $table->string('name_ar');
+                $table->string('name_en', 100)->unique();
+                $table->string('name_ar', 100)->unique();
+                $table->boolean('is_active')->default(true);
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
         if (!Schema::hasTable('work_statuses')) {
             Schema::create('work_statuses', function (Blueprint $table) {
                 $table->id();
-                $table->string('name_en')->unique();
-                $table->string('name_ar')->unique();
+                $table->string('name_en', 100)->unique();
+                $table->string('name_ar', 100)->unique();
                 $table->boolean('is_active')->default(true);
                 $table->timestamps();
                 $table->softDeletes();
@@ -39,10 +39,11 @@ return new class extends Migration {
         if (!Schema::hasTable('sponsorship_statuses')) {
             Schema::create('sponsorship_statuses', function (Blueprint $table) {
                 $table->id();
-                $table->string('code')->unique();
-                $table->string('name_en');
-                $table->string('name_ar');
+                $table->string('name_en', 100)->unique();
+                $table->string('name_ar', 100)->unique();
+                $table->boolean('is_active')->default(true);
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
 
