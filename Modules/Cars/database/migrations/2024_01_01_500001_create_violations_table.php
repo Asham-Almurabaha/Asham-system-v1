@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
-            $table->foreignIdFor(Employee::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('employee_id')->index();
             $table->foreignId('violation_type_id')->constrained('violation_types')->cascadeOnDelete();
             $table->foreignId('violation_payment_status_id')->constrained('violation_payment_statuses')->cascadeOnDelete();
             $table->string('violation_number')->unique();
