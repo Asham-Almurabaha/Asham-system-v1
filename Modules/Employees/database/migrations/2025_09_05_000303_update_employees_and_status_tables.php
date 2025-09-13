@@ -71,6 +71,64 @@ return new class extends Migration {
 
     public function down(): void
     {
-        // intentionally empty
+        if (Schema::hasTable('employees')) {
+            Schema::table('employees', function (Blueprint $table) {
+                if (Schema::hasColumn('employees', 'sponsorship_status_id')) {
+                    $table->dropForeign(['sponsorship_status_id']);
+                    $table->dropColumn('sponsorship_status_id');
+                }
+                if (Schema::hasColumn('employees', 'work_status_id')) {
+                    $table->dropForeign(['work_status_id']);
+                    $table->dropColumn('work_status_id');
+                }
+                if (Schema::hasColumn('employees', 'employment_status_id')) {
+                    $table->dropForeign(['employment_status_id']);
+                    $table->dropColumn('employment_status_id');
+                }
+                if (Schema::hasColumn('employees', 'currency')) {
+                    $table->dropColumn('currency');
+                }
+                if (Schema::hasColumn('employees', 'salary_basic')) {
+                    $table->dropColumn('salary_basic');
+                }
+                if (Schema::hasColumn('employees', 'dob')) {
+                    $table->dropColumn('dob');
+                }
+                if (Schema::hasColumn('employees', 'nationality')) {
+                    $table->dropColumn('nationality');
+                }
+                if (Schema::hasColumn('employees', 'national_id')) {
+                    $table->dropColumn('national_id');
+                }
+                if (Schema::hasColumn('employees', 'manager_id')) {
+                    $table->dropForeign(['manager_id']);
+                    $table->dropColumn('manager_id');
+                }
+                if (Schema::hasColumn('employees', 'code')) {
+                    $table->dropColumn('code');
+                }
+                if (Schema::hasColumn('employees', 'company_id')) {
+                    $table->dropForeign(['company_id']);
+                    $table->dropIndex(['company_id', 'branch_id']);
+                    $table->dropColumn('company_id');
+                }
+                if (Schema::hasColumn('employees', 'deleted_at')) {
+                    $table->dropSoftDeletes();
+                }
+            });
+        }
+
+        if (Schema::hasTable('sponsorship_statuses')) {
+            Schema::drop('sponsorship_statuses');
+        }
+        if (Schema::hasTable('residency_statuses')) {
+            Schema::drop('residency_statuses');
+        }
+        if (Schema::hasTable('work_statuses')) {
+            Schema::drop('work_statuses');
+        }
+        if (Schema::hasTable('employment_statuses')) {
+            Schema::drop('employment_statuses');
+        }
     }
 };
