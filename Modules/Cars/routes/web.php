@@ -10,6 +10,10 @@ use Modules\Cars\Http\Controllers\CarStatusController;
 use Modules\Cars\Http\Controllers\CarBrandController;
 use Modules\Cars\Http\Controllers\OilChangeController;
 use Modules\Cars\Http\Controllers\CarDocumentController;
+use Modules\Cars\Http\Controllers\CarDocumentDataTypeController;
+use Modules\Cars\Http\Controllers\CarDelegationTypeController;
+use Modules\Cars\Http\Controllers\ViolationTypeController;
+use Modules\Cars\Http\Controllers\ViolationPaymentStatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web','auth'])->group(function () {
@@ -20,6 +24,10 @@ Route::middleware(['web','auth'])->group(function () {
     Route::resource('car-brands', CarBrandController::class)->except(['show']);
     Route::resource('car-models', CarModelController::class)->except(['show']);
     Route::resource('car-statuses', CarStatusController::class)->except(['show']);
+    Route::resource('car-document-data-types', CarDocumentDataTypeController::class)->except(['show']);
+    Route::resource('car-delegation-types', CarDelegationTypeController::class)->except(['show']);
+    Route::resource('violation-types', ViolationTypeController::class)->except(['show']);
+    Route::resource('violation-payment-statuses', ViolationPaymentStatusController::class)->except(['show']);
     
     Route::post('cars/{car}/assignments', [CarAssignmentController::class, 'store'])->name('cars.assignments.store');
     Route::post('cars/{car}/assignments/{assignment}/return', [CarAssignmentController::class, 'return'])->name('cars.assignments.return');

@@ -1,21 +1,18 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('cars', function (Blueprint $table) {
-            $table->string('plate_letters', 3)->change();
-        });
+        // Ensure existing deployments upgrade the column length without
+        // requiring the doctrine/dbal package.
+        DB::statement('ALTER TABLE cars MODIFY plate_letters VARCHAR(3)');
     }
 
     public function down(): void
     {
-        Schema::table('cars', function (Blueprint $table) {
-            $table->string('plate_letters', 2)->change();
-        });
+        DB::statement('ALTER TABLE cars MODIFY plate_letters VARCHAR(2)');
     }
 };

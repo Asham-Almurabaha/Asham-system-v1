@@ -11,7 +11,8 @@
   $employeeSettingsOpen = $isRoute('users.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
       || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
   $carSettingsOpen = $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*') || $isRoute('car-brands.*')
-      || $isRoute('car-models.*') || $isRoute('car-statuses.*');
+      || $isRoute('car-models.*') || $isRoute('car-statuses.*') || $isRoute('car-document-data-types.*')
+      || $isRoute('car-delegation-types.*') || $isRoute('violation-types.*') || $isRoute('violation-payment-statuses.*');
 
   $attendanceOpen = $isRoute('hr.shifts.*') || $isRoute('hr.attendances.*') || $isRoute('hr.overtime.*');
   $carsOpen = $isRoute('cars.*');
@@ -209,6 +210,26 @@
       <li>
         <a class="{{ $active($isRoute('car-statuses.*')) }}" href="{{ route('car-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Car Statuses')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-document-data-types.*')) }}" href="{{ route('car-document-data-types.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Document Data Types')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-delegation-types.*')) }}" href="{{ route('car-delegation-types.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Delegation Types')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('violation-types.*')) }}" href="{{ route('violation-types.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Violation Types')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('violation-payment-statuses.*')) }}" href="{{ route('violation-payment-statuses.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Violation Payment Statuses')</span>
         </a>
       </li>
     </ul>

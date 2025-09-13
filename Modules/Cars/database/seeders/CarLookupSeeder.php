@@ -9,6 +9,10 @@ use Modules\Cars\Entities\Lookups\CarType;
 use Modules\Cars\Entities\Lookups\CarModel;
 use Modules\Cars\Entities\Lookups\CarStatus;
 use Modules\Cars\Entities\Lookups\CarBrand;
+use Modules\Cars\Entities\Lookups\CarDocumentDataType;
+use Modules\Cars\Entities\Lookups\CarDelegationType;
+use Modules\Cars\Entities\Lookups\ViolationType;
+use Modules\Cars\Entities\Lookups\ViolationPaymentStatus;
 
 class CarLookupSeeder extends Seeder
 {
@@ -131,6 +135,41 @@ class CarLookupSeeder extends Seeder
         ];
         foreach ($statuses as $status) {
             CarStatus::firstOrCreate($status);
+        }
+
+        $documentDataTypes = [
+            ['name_en' => 'registration', 'name_ar' => 'استمارة'],
+            ['name_en' => 'insurance', 'name_ar' => 'تأمين'],
+            ['name_en' => 'ownership', 'name_ar' => 'ملكية'],
+        ];
+        foreach ($documentDataTypes as $type) {
+            CarDocumentDataType::firstOrCreate($type);
+        }
+
+        $delegationTypes = [
+            ['name_en' => 'driving', 'name_ar' => 'قيادة'],
+            ['name_en' => 'selling', 'name_ar' => 'بيع'],
+        ];
+        foreach ($delegationTypes as $type) {
+            CarDelegationType::firstOrCreate($type);
+        }
+
+        $violationTypes = [
+            ['name_en' => 'speeding', 'name_ar' => 'تجاوز السرعة'],
+            ['name_en' => 'parking', 'name_ar' => 'مخالفة وقوف'],
+            ['name_en' => 'red_light', 'name_ar' => 'قطع إشارة'],
+        ];
+        foreach ($violationTypes as $type) {
+            ViolationType::firstOrCreate($type);
+        }
+
+        $violationPaymentStatuses = [
+            ['name_en' => 'unpaid', 'name_ar' => 'غير مدفوعة'],
+            ['name_en' => 'paid', 'name_ar' => 'مدفوعة'],
+            ['name_en' => 'pending', 'name_ar' => 'قيد المعالجة'],
+        ];
+        foreach ($violationPaymentStatuses as $paymentStatus) {
+            ViolationPaymentStatus::firstOrCreate($paymentStatus);
         }
     }
 }

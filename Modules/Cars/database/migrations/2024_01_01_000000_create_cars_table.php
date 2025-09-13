@@ -9,7 +9,9 @@ return new class extends Migration {
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('plate_letters', 2);
+            // Allow up to three characters for license plate letters to
+            // accommodate the seeded data which uses three Arabic letters.
+            $table->string('plate_letters', 3);
             $table->string('plate_numbers', 4);
             $table->unique(['plate_letters', 'plate_numbers']);
             $table->string('sequence_number')->unique()->nullable()->index();
