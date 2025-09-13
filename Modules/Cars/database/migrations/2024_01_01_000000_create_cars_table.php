@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('vin')->unique()->nullable()->index();
             $table->date('purchase_date')->nullable();
             $table->decimal('cost',12,2)->nullable();
-            $table->foreignId('branch_id')->nullable()->constrained('branches')->nullOnDelete();
+            $table->foreignId('branch_id')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

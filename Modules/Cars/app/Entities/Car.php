@@ -26,7 +26,6 @@ class Car extends Model
         'car_status_id',
         'purchase_date',
         'cost',
-        'branch_id',
         'notes'
     ];
 
@@ -43,11 +42,6 @@ class Car extends Model
     public function currentAssignment(): HasOne
     {
         return $this->hasOne(CarAssignment::class)->whereNull('returned_at');
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
     }
 
     public function year(): BelongsTo
