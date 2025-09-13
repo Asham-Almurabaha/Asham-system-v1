@@ -4,10 +4,15 @@
     <input type="text" name="sequence_number" value="{{ old('sequence_number', $car->sequence_number) }}" class="form-control @error('sequence_number') is-invalid @enderror">
     @error('sequence_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
   </div>
-  <div class="col-md-6">
-    <label class="form-label">@lang('cars::cars.Plate Number')</label>
-    <input type="text" name="plate_number" value="{{ old('plate_number', $car->plate_number) }}" class="form-control @error('plate_number') is-invalid @enderror" required>
-    @error('plate_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  <div class="col-md-3">
+    <label class="form-label">@lang('cars::cars.Plate Letters')</label>
+    <input type="text" name="plate_letters" value="{{ old('plate_letters', $car->plate_letters) }}" class="form-control @error('plate_letters') is-invalid @enderror" required>
+    @error('plate_letters')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">@lang('cars::cars.Plate Numbers')</label>
+    <input type="text" name="plate_numbers" value="{{ old('plate_numbers', $car->plate_numbers) }}" class="form-control @error('plate_numbers') is-invalid @enderror" required>
+    @error('plate_numbers')<div class="invalid-feedback">{{ $message }}</div>@enderror
   </div>
   <div class="col-md-6">
     <label class="form-label">@lang('cars::cars.VIN')</label>

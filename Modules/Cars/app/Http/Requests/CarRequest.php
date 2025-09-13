@@ -12,7 +12,12 @@ class CarRequest extends FormRequest
         $id = $this->route('car')?->id;
         return [
             'sequence_number' => ['nullable', Rule::unique('cars', 'sequence_number')->ignore($id)],
-            'plate_number' => ['required', 'regex:/^[أ-ي]{1,2}\s?\d{4}$/', Rule::unique('cars', 'plate_number')->ignore($id)],
+            'plate_letters' => ['required', 'regex:/^[أ-ي]{1,2}$/'],
+            'plate_numbers' => [
+                'required',
+                'digits:4',
+                Rule::unique('cars')->where(fn($q) => $q->where('plate_letters', $this->plate_letters))->ignore($id),
+            ],
             'vin' => ['nullable', Rule::unique('cars', 'vin')->ignore($id)],
             'car_year_id' => ['nullable','exists:car_years,id'],
             'car_type_id' => ['nullable','exists:car_types,id'],

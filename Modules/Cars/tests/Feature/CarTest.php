@@ -26,7 +26,8 @@ class CarTest extends TestCase
 
         $car = Car::create([
             'sequence_number' => '123456',
-            'plate_number' => 'ا1234',
+            'plate_letters' => 'ا',
+            'plate_numbers' => '1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
             'car_brand_id' => $brand->id,
@@ -34,7 +35,7 @@ class CarTest extends TestCase
             'car_year_id' => $year->id,
             'car_color_id' => $color->id,
         ]);
-        $this->assertDatabaseHas('cars', ['plate_number' => 'ا1234']);
+        $this->assertDatabaseHas('cars', ['plate_letters' => 'ا', 'plate_numbers' => '1234']);
         $newBrand = CarBrand::where('id', '!=', $brand->id)->first();
         $car->update(['car_brand_id' => $newBrand->id]);
         $this->assertDatabaseHas('cars', ['car_brand_id' => $newBrand->id]);
@@ -52,7 +53,8 @@ class CarTest extends TestCase
         $color = CarColor::first();
         $car = Car::create([
             'sequence_number' => '234567',
-            'plate_number' => 'ب1234',
+            'plate_letters' => 'ب',
+            'plate_numbers' => '1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
             'car_brand_id' => $brand->id,
@@ -81,7 +83,8 @@ class CarTest extends TestCase
         $color = CarColor::first();
         $car = Car::create([
             'sequence_number' => '345678',
-            'plate_number' => 'ت1234',
+            'plate_letters' => 'ت',
+            'plate_numbers' => '1234',
             'car_status_id' => $status->id,
             'car_type_id' => $type->id,
             'car_brand_id' => $brand->id,

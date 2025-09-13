@@ -19,7 +19,8 @@ class Car extends Model
 
     protected $fillable = [
         'sequence_number',
-        'plate_number',
+        'plate_letters',
+        'plate_numbers',
         'vin',
         'car_year_id',
         'car_type_id',
@@ -37,6 +38,11 @@ class Car extends Model
         'purchase_date' => 'date',
         'cost' => 'decimal:2',
     ];
+
+    public function getPlateNumberAttribute(): string
+    {
+        return $this->plate_letters.$this->plate_numbers;
+    }
 
     public function assignments(): HasMany
     {

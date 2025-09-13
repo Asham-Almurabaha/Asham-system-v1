@@ -6,6 +6,8 @@ return [
     'Edit Car' => 'تعديل سيارة',
     'View Car' => 'عرض سيارة',
     'Plate Number' => 'رقم اللوحة',
+    'Plate Letters' => 'حروف اللوحة',
+    'Plate Numbers' => 'أرقام اللوحة',
     'Sequence Number' => 'رقم التسلسل من المرور',
     'VIN' => 'رقم الهيكل',
     'Year' => 'السنة',

@@ -9,7 +9,9 @@ return new class extends Migration {
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('plate_number')->unique()->index();
+            $table->string('plate_letters', 2);
+            $table->string('plate_numbers', 4);
+            $table->unique(['plate_letters', 'plate_numbers']);
             $table->string('sequence_number')->unique()->nullable()->index();
             $table->string('vin')->unique()->nullable()->index();
             $table->timestamps();

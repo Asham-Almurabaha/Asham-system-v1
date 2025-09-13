@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->date('end_date')->nullable();
             $table->text('value')->nullable();
             $table->timestamps();
-            $table->index(['car_id', 'name_en']);
+            $table->index(['car_id']);
         });
     }
 
