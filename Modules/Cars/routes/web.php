@@ -8,6 +8,7 @@ use Modules\Cars\Http\Controllers\CarTypeController;
 use Modules\Cars\Http\Controllers\CarModelController;
 use Modules\Cars\Http\Controllers\CarStatusController;
 use Modules\Cars\Http\Controllers\CarBrandController;
+use Modules\Cars\Http\Controllers\OilChangeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web','auth'])->group(function () {
@@ -18,7 +19,11 @@ Route::middleware(['web','auth'])->group(function () {
     Route::resource('car-brands', CarBrandController::class)->only(['index','store','update','destroy']);
     Route::resource('car-models', CarModelController::class)->only(['index','store','update','destroy']);
     Route::resource('car-statuses', CarStatusController::class)->only(['index','store','update','destroy']);
+    
     Route::post('cars/{car}/assignments', [CarAssignmentController::class, 'store'])->name('cars.assignments.store');
     Route::post('cars/{car}/assignments/{assignment}/return', [CarAssignmentController::class, 'return'])->name('cars.assignments.return');
     Route::get('cars/{car}/assignments/history', [CarAssignmentController::class, 'history'])->name('cars.assignments.history');
+   
+    Route::get('cars/{car}/oil-changes', [OilChangeController::class, 'index'])->name('cars.oil-changes.index');
+    Route::post('cars/{car}/oil-changes', [OilChangeController::class, 'store'])->name('cars.oil-changes.store');
 });
