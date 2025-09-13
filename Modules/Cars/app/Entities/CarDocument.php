@@ -14,9 +14,14 @@ class CarDocument extends Model
     protected $fillable = [
         'car_id',
         'car_document_data_type_id',
-        'name_en',
-        'name_ar',
         'value',
+        'start_date',
+        'end_date',
+    ];
+
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     public function car(): BelongsTo
