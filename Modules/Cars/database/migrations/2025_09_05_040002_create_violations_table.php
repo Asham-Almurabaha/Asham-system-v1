@@ -3,14 +3,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Employees\Models\Employee;
 
 return new class extends Migration {
     public function up(): void
     {
         Schema::create('violations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
-            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
+            $table->foreignIdFor(Employee::class)->constrained()->cascadeOnDelete();
             $table->foreignId('violation_type_id')->constrained('violation_types')->cascadeOnDelete();
             $table->foreignId('violation_payment_status_id')->constrained('violation_payment_statuses')->cascadeOnDelete();
             $table->string('violation_number')->unique();
