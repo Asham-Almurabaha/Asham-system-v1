@@ -1,22 +1,22 @@
 <?php
 
-namespace Modules\Org\Http\Controllers;
+namespace Modules\Employees\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\Org\Models\WorkStatus;
+use Modules\Employees\Models\WorkStatus;
 
 class WorkStatusController extends Controller
 {
     public function index()
     {
         $items = WorkStatus::orderBy('id', 'asc')->paginate(15);
-        return view('org::workstatuses.index', compact('items'));
+        return view('employees::workstatuses.index', compact('items'));
     }
 
     public function create()
     {
-        return view('org::workstatuses.create');
+        return view('employees::workstatuses.create');
     }
 
     public function store(Request $request)
@@ -30,17 +30,17 @@ class WorkStatusController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         WorkStatus::create($data);
 
-        return redirect()->route('work-statuses.index')->with('success', __('org::workstatuses.Created successfully'));
+        return redirect()->route('work-statuses.index')->with('success', __('employees::workstatuses.Created successfully'));
     }
 
     public function show(WorkStatus $workStatus)
     {
-        return view('org::workstatuses.show', ['item' => $workStatus]);
+        return view('employees::workstatuses.show', ['item' => $workStatus]);
     }
 
     public function edit(WorkStatus $workStatus)
     {
-        return view('org::workstatuses.edit', ['item' => $workStatus]);
+        return view('employees::workstatuses.edit', ['item' => $workStatus]);
     }
 
     public function update(Request $request, WorkStatus $workStatus)
@@ -54,13 +54,13 @@ class WorkStatusController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $workStatus->update($data);
 
-        return redirect()->route('work-statuses.index')->with('success', __('org::workstatuses.Updated successfully'));
+        return redirect()->route('work-statuses.index')->with('success', __('employees::workstatuses.Updated successfully'));
     }
 
     public function destroy(WorkStatus $workStatus)
     {
         $workStatus->delete();
-        return redirect()->route('work-statuses.index')->with('success', __('org::workstatuses.Deleted successfully'));
+        return redirect()->route('work-statuses.index')->with('success', __('employees::workstatuses.Deleted successfully'));
     }
 }
 

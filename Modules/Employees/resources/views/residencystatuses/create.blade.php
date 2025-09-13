@@ -1,29 +1,29 @@
 @extends('layouts.master')
-@section('title', __('org::residencystatuses.Create Residency Status'))
+@section('title', __('employees::residencystatuses.Create Residency Status'))
 @section('content')
 <div class="container py-3">
   <div class="col-lg-8 mx-auto">
     <div class="card shadow-sm">
       <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="mb-0">@lang('org::residencystatuses.Create Residency Status')</h5>
-        <x-btn href="{{ route('residency-statuses.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('org::residencystatuses.Back')</x-btn>
+        <h5 class="mb-0">@lang('employees::residencystatuses.Create Residency Status')</h5>
+        <x-btn href="{{ route('residency-statuses.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('employees::residencystatuses.Back')</x-btn>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('residency-statuses.store') }}" class="row g-3">
           @csrf
           <div class="col-md-6">
-            <label class="form-label">@lang('org::residencystatuses.Name (EN)')</label>
+            <label class="form-label">@lang('employees::residencystatuses.Name (EN)')</label>
             <input type="text" name="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" required>
             @error('name_en') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
-            <label class="form-label">@lang('org::residencystatuses.Name (AR)')</label>
+            <label class="form-label">@lang('employees::residencystatuses.Name (AR)')</label>
             <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid @enderror" value="{{ old('name_ar') }}" required>
             @error('name_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-12 form-check">
             <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>
-            <label class="form-check-label" for="is_active">@lang('org::residencystatuses.Active')</label>
+            <label class="form-check-label" for="is_active">@lang('employees::residencystatuses.Active')</label>
           </div>
           <div class="col-12 d-flex gap-2">
             <x-btn variant="outline-success" type="submit" icon="bi bi-check2">@lang('users.Save')</x-btn>

@@ -19,10 +19,21 @@ return new class extends Migration {
         if (!Schema::hasTable('work_statuses')) {
             Schema::create('work_statuses', function (Blueprint $table) {
                 $table->id();
-                $table->string('code')->unique();
-                $table->string('name_en');
-                $table->string('name_ar');
+                $table->string('name_en')->unique();
+                $table->string('name_ar')->unique();
+                $table->boolean('is_active')->default(true);
                 $table->timestamps();
+                $table->softDeletes();
+            });
+        }
+        if (!Schema::hasTable('residency_statuses')) {
+            Schema::create('residency_statuses', function (Blueprint $table) {
+                $table->id();
+                $table->string('name_en', 100)->unique();
+                $table->string('name_ar', 100)->unique();
+                $table->boolean('is_active')->default(true);
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
         if (!Schema::hasTable('sponsorship_statuses')) {

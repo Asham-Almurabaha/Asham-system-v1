@@ -14,10 +14,10 @@
 - Modules/Employees/app/Models/EmployeeResidency.php
 - Modules/Employees/app/Models/EmployeePhone.php
 - Modules/Org/app/Models/City.php
- - Modules/Org/app/Models/ResidencyStatus.php
+- Modules/Employees/app/Models/ResidencyStatus.php
  - Modules/Settings/app/Models/Setting.php
  - Modules/AuditLogs/app/Models/AuditLog.php
- - Modules/Org/app/Models/WorkStatus.php
+- Modules/Employees/app/Models/WorkStatus.php
  - Modules/Org/Models/Company.php
  - Modules/Org/Models/Branch.php
  - Modules/Org/Models/Department.php

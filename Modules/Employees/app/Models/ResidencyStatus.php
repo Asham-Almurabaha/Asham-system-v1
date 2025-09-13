@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Org\Models;
+namespace Modules\Employees\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\AuditLogs\Traits\LogsActivity;
 
-class WorkStatus extends Model
+class ResidencyStatus extends Model
 {
     use HasFactory, LogsActivity;
 

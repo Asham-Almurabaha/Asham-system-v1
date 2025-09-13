@@ -1,22 +1,22 @@
 <?php
 
-namespace Modules\Org\Http\Controllers;
+namespace Modules\Employees\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\Org\Models\ResidencyStatus;
+use Modules\Employees\Models\ResidencyStatus;
 
 class ResidencyStatusController extends Controller
 {
     public function index()
     {
         $items = ResidencyStatus::orderBy('id', 'asc')->paginate(15);
-        return view('org::residencystatuses.index', compact('items'));
+        return view('employees::residencystatuses.index', compact('items'));
     }
 
     public function create()
     {
-        return view('org::residencystatuses.create');
+        return view('employees::residencystatuses.create');
     }
 
     public function store(Request $request)
@@ -30,17 +30,17 @@ class ResidencyStatusController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         ResidencyStatus::create($data);
 
-        return redirect()->route('residency-statuses.index')->with('success', __('org::residencystatuses.Created successfully'));
+        return redirect()->route('residency-statuses.index')->with('success', __('employees::residencystatuses.Created successfully'));
     }
 
     public function show(ResidencyStatus $residencyStatus)
     {
-        return view('org::residencystatuses.show', ['item' => $residencyStatus]);
+        return view('employees::residencystatuses.show', ['item' => $residencyStatus]);
     }
 
     public function edit(ResidencyStatus $residencyStatus)
     {
-        return view('org::residencystatuses.edit', ['item' => $residencyStatus]);
+        return view('employees::residencystatuses.edit', ['item' => $residencyStatus]);
     }
 
     public function update(Request $request, ResidencyStatus $residencyStatus)
@@ -54,13 +54,13 @@ class ResidencyStatusController extends Controller
         $data['is_active'] = (bool)($data['is_active'] ?? true);
         $residencyStatus->update($data);
 
-        return redirect()->route('residency-statuses.index')->with('success', __('org::residencystatuses.Updated successfully'));
+        return redirect()->route('residency-statuses.index')->with('success', __('employees::residencystatuses.Updated successfully'));
     }
 
     public function destroy(ResidencyStatus $residencyStatus)
     {
         $residencyStatus->delete();
-        return redirect()->route('residency-statuses.index')->with('success', __('org::residencystatuses.Deleted successfully'));
+        return redirect()->route('residency-statuses.index')->with('success', __('employees::residencystatuses.Deleted successfully'));
     }
 }
 

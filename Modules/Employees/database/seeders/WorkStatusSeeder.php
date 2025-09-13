@@ -1,26 +1,26 @@
 <?php
 
-namespace Modules\Org\Database\Seeders;
+namespace Modules\Employees\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-use Modules\Org\Models\ResidencyStatus;
+use Modules\Employees\Models\WorkStatus;
 
-class ResidencyStatusSeeder extends Seeder
+class WorkStatusSeeder extends Seeder
 {
     public function run(): void
     {
-        if (!Schema::hasTable('residency_statuses')) {
+        if (!Schema::hasTable('work_statuses')) {
             return;
         }
 
         $statuses = [
-            ['name_en' => 'Resident', 'name_ar' => 'مقيم'],
-            ['name_en' => 'Non-Resident', 'name_ar' => 'غير مقيم'],
+            ['name_en' => 'Active', 'name_ar' => 'نشط'],
+            ['name_en' => 'Terminated', 'name_ar' => 'منتهي'],
         ];
 
         foreach ($statuses as $status) {
-            ResidencyStatus::query()->updateOrCreate(
+            WorkStatus::query()->updateOrCreate(
                 ['name_en' => $status['name_en']],
                 [
                     'name_ar' => $status['name_ar'],

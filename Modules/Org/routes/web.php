@@ -7,8 +7,6 @@ use Modules\Org\Http\Controllers\DepartmentController;
 use Modules\Org\Http\Controllers\JobController;
 use Modules\Org\Http\Controllers\NationalityController;
 use Modules\Org\Http\Controllers\CityController;
-use Modules\Org\Http\Controllers\ResidencyStatusController;
-use Modules\Org\Http\Controllers\WorkStatusController;
 
 Route::middleware(['web', 'auth', 'role:admin'])
     ->prefix('org')
@@ -19,6 +17,4 @@ Route::middleware(['web', 'auth', 'role:admin'])
         Route::resource('jobs', JobController::class);
         Route::resource('nationalities', NationalityController::class);
         Route::resource('cities', CityController::class);
-        Route::resource('residency-statuses', ResidencyStatusController::class);
-        Route::resource('work-statuses', WorkStatusController::class);
     });

@@ -68,24 +68,6 @@ return new class extends Migration {
             $table->softDeletes();
         });
 
-        Schema::create('residency_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_en', 100)->unique();
-            $table->string('name_ar', 100)->unique();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('work_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_en')->unique();
-            $table->string('name_ar')->unique();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-        
     }
 
     public function down(): void
