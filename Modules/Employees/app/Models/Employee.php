@@ -12,6 +12,7 @@ use Modules\Org\Models\Nationality;
 use Modules\Employees\Models\EmployeePhone;
 use Modules\Employees\Models\EmployeeResidency;
 use Illuminate\Support\Facades\Storage;
+use Modules\Cars\Entities\Violation;
 
 class Employee extends Model
 {
@@ -55,6 +56,11 @@ class Employee extends Model
     public function residencies()
     {
         return $this->hasMany(EmployeeResidency::class);
+    }
+
+    public function violations()
+    {
+        return $this->hasMany(Violation::class);
     }
 
     public function getPhotoUrlAttribute(): ?string

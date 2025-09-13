@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Cars\Entities\{CarAssignment, CarDocument};
 use Modules\Cars\Entities\Lookups\{CarBrand, CarColor, CarModel, CarStatus, CarType, CarYear};
 use Modules\Cars\Entities\OilChange;
+use Modules\Cars\Entities\Violation;
 use Modules\Org\Models\Branch;
 
 class Car extends Model
@@ -55,6 +56,11 @@ class Car extends Model
     public function oilChanges(): HasMany
     {
         return $this->hasMany(OilChange::class);
+    }
+
+    public function violations(): HasMany
+    {
+        return $this->hasMany(Violation::class);
     }
 
     public function year(): BelongsTo
