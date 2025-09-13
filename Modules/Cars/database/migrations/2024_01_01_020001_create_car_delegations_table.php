@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
             $table->unsignedBigInteger('employee_id')->index();
             $table->foreignId('car_delegation_type_id')->constrained('car_delegation_types')->cascadeOnDelete();
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
             $table->index(['car_id', 'employee_id']);
