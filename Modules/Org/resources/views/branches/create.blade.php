@@ -22,6 +22,16 @@
             @error('company_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
           </div>
           <div class="col-md-6">
+            <label class="form-label">@lang('org::branches.City')</label>
+            <select name="city_id" class="form-select @error('city_id') is-invalid @enderror">
+              <option value="">--</option>
+              @foreach($cities as $c)
+                <option value="{{ $c->id }}" @selected(old('city_id')==$c->id)>{{ $c->name_en }}</option>
+              @endforeach
+            </select>
+            @error('city_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+          </div>
+          <div class="col-md-6">
             <label class="form-label">@lang('org::branches.Name (EN)')</label>
             <input type="text" name="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" required>
             @error('name_en') <div class="invalid-feedback">{{ $message }}</div> @enderror

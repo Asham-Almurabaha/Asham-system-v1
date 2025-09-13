@@ -18,9 +18,19 @@ return new class extends Migration {
             $table->softDeletes();
         });
 
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_en', 100)->unique();
+            $table->string('name_ar', 100)->unique();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->nullable()->constrained('companies');
+            $table->foreignId('city_id')->nullable()->constrained('cities');
             $table->string('name_en');
             $table->string('name_ar');
             $table->boolean('is_active')->default(true);
@@ -52,15 +62,6 @@ return new class extends Migration {
         });
 
         Schema::create('nationalities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_en', 100)->unique();
-            $table->string('name_ar', 100)->unique();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name_en', 100)->unique();
             $table->string('name_ar', 100)->unique();

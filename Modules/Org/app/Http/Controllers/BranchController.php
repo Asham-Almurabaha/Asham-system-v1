@@ -6,19 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Company;
+use Modules\Org\Models\City;
 
 class BranchController extends Controller
 {
     public function index()
     {
-        $items = Branch::with('company')->orderBy('id', 'asc')->paginate(15);
+        $items = Branch::with(['company', 'city'])->orderBy('id', 'asc')->paginate(15);
         return view('org::branches.index', compact('items'));
     }
 
     public function create()
     {
         $companies = Company::orderBy('name_en')->get();
-        return view('org::branches.create', compact('companies'));
+        $cities = City::orderBy('name_en')->get();
+        return view('org::branches.create', compact('companies', 'cities'));
     }
 
     public function store(Request $request)
@@ -26,6 +28,7 @@ class BranchController extends Controller
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
             'company_id' => ['nullable','exists:companies,id'],
+            'city_id' => ['nullable','exists:cities,id'],
             'name_en' => ['required','string','max:100','unique:branches,name_en'],
             'name_ar' => ['required','string','max:100','unique:branches,name_ar'],
             'is_active' => ['boolean'],
@@ -38,13 +41,15 @@ class BranchController extends Controller
 
     public function show(Branch $branch)
     {
+        $branch->load(['company', 'city']);
         return view('org::branches.show', ['item' => $branch]);
     }
 
     public function edit(Branch $branch)
     {
         $companies = Company::orderBy('name_en')->get();
-        return view('org::branches.edit', ['item' => $branch, 'companies' => $companies]);
+        $cities = City::orderBy('name_en')->get();
+        return view('org::branches.edit', ['item' => $branch, 'companies' => $companies, 'cities' => $cities]);
     }
 
     public function update(Request $request, Branch $branch)
@@ -52,6 +57,7 @@ class BranchController extends Controller
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
             'company_id' => ['nullable','exists:companies,id'],
+            'city_id' => ['nullable','exists:cities,id'],
             'name_en' => ['required','string','max:100','unique:branches,name_en,'.$branch->id],
             'name_ar' => ['required','string','max:100','unique:branches,name_ar,'.$branch->id],
             'is_active' => ['boolean'],

@@ -21,6 +21,7 @@
             <th>@lang('org::branches.Name (EN)')</th>
             <th>@lang('org::branches.Name (AR)')</th>
             <th>@lang('org::branches.Company')</th>
+            <th>@lang('org::branches.City')</th>
             <th>@lang('org::branches.Active')</th>
             <th class="text-end">@lang('org::branches.Actions')</th>
           </tr>
@@ -32,6 +33,7 @@
               <td>{{ $i->name_en }}</td>
               <td>{{ $i->name_ar }}</td>
               <td>{{ optional($i->company)->name_en }}</td>
+              <td>{{ optional($i->city)->name_en }}</td>
               <td>
                 @if($i->is_active)
                   <span class="badge bg-success-subtle text-success border">@lang('org::branches.Active')</span>
@@ -46,7 +48,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="6" class="text-center text-muted">@lang('org::branches.No data')</td>
+              <td colspan="7" class="text-center text-muted">@lang('org::branches.No data')</td>
             </tr>
           @endforelse
         </tbody>

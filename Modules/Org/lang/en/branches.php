@@ -2,6 +2,7 @@
 return [
     'Branches' => 'Branches',
     'Company' => 'Company',
+    'City' => 'City',
     'Name (EN)' => 'Name (EN)',
     'Name (AR)' => 'Name (AR)',
     'Active' => 'Active',

@@ -23,6 +23,10 @@
             <div class="form-control-plaintext">{{ optional($item->company)->name_en }}</div>
           </div>
           <div class="col-md-6">
+            <label class="form-label">@lang('org::branches.City')</label>
+            <div class="form-control-plaintext">{{ optional($item->city)->name_en }}</div>
+          </div>
+          <div class="col-md-6">
             <label class="form-label">@lang('org::branches.Active')</label>
             <div class="form-control-plaintext">{{ $item->is_active ? __('org::branches.Active') : __('org::branches.Inactive') }}</div>
           </div>

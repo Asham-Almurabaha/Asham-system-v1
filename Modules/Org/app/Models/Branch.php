@@ -13,7 +13,7 @@ class Branch extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'is_active', 'company_id',
+        'name_en', 'name_ar', 'is_active', 'company_id', 'city_id',
     ];
 
     public function city()

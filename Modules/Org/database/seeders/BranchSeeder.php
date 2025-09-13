@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Modules\Org\Models\Branch;
 use Modules\Org\Models\Company;
+use Modules\Org\Models\City;
 
 class BranchSeeder extends Seeder
 {
@@ -16,7 +17,9 @@ class BranchSeeder extends Seeder
         }
 
         $company = Company::query()->first();
-        if (!$company) {
+        $city = City::query()->first();
+
+        if (!$company || !$city) {
             return;
         }
 
@@ -27,6 +30,7 @@ class BranchSeeder extends Seeder
             ],
             [
                 'name_ar' => 'الفرع الرئيسي',
+                'city_id' => $city->id,
                 'is_active' => true,
             ]
         );
