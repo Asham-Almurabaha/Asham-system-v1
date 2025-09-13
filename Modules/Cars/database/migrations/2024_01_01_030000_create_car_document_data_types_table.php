@@ -9,7 +9,8 @@ return new class extends Migration {
     {
         Schema::create('car_document_data_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name_en')->unique();
+            $table->string('name_ar')->unique();
         });
     }
 

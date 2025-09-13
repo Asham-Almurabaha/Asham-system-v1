@@ -14,7 +14,8 @@ class CarDocument extends Model
     protected $fillable = [
         'car_id',
         'car_document_data_type_id',
-        'name',
+        'name_en',
+        'name_ar',
         'value',
     ];
 

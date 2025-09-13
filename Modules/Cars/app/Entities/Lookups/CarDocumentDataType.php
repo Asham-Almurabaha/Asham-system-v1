@@ -13,7 +13,7 @@ class CarDocumentDataType extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en', 'name_ar'];
 
     public function documents(): HasMany
     {

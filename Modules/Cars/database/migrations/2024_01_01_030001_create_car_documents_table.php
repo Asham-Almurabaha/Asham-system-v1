@@ -11,10 +11,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
             $table->foreignId('car_document_data_type_id')->constrained('car_document_data_types');
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_ar');
             $table->text('value')->nullable();
             $table->timestamps();
-            $table->index(['car_id', 'name']);
+            $table->index(['car_id', 'name_en']);
         });
     }
 
