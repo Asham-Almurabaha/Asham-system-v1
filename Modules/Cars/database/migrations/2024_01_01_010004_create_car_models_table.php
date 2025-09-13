@@ -13,8 +13,6 @@ return new class extends Migration {
             $table->foreignId('car_brand_id')->constrained('car_brands')->cascadeOnDelete();
             $table->string('name_en');
             $table->string('name_ar');
-            $table->unique(['car_brand_id', 'name_en']);
-            $table->unique(['car_brand_id', 'name_ar']);
         });
     }
 
