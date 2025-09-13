@@ -61,6 +61,14 @@
         @include('cars::assignments._list')
       </div>
     </div>
+    <div class="card shadow-sm mt-3">
+      <div class="card-header">
+        <h5 class="mb-0">@lang('cars::delegations.Delegations')</h5>
+      </div>
+      <div class="card-body">
+        @include('cars::delegations._list')
+      </div>
+    </div>
   </div>
 </div>
 @include('cars::assignments._return_modal')

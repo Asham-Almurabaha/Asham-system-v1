@@ -27,6 +27,7 @@
             <th>@lang('cars::cars.Color')</th>
             <th>@lang('cars::cars.Status')</th>
             <th>@lang('cars::cars.Current Employee')</th>
+            <th>@lang('cars::delegations.Current Delegation')</th>
             <th>@lang('cars::cars.Branch')</th>
             <th class="text-end">@lang('cars::cars.Actions')</th>
           </tr>
@@ -56,6 +57,7 @@
                   <a href="{{ route('cars.assignments.history', $car) }}" class="ms-1">@lang('cars::assignments.History')</a>
                 @endif
               </td>
+              <td>{{ optional($car->currentDelegation?->employee)->name }}</td>
               <td>{{ $car->branch?->name }}</td>
               <td class="text-end">
                 <div class="d-inline-flex gap-1">
@@ -82,7 +84,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="11" class="text-center text-muted">@lang('cars::cars.No data')</td>
+              <td colspan="12" class="text-center text-muted">@lang('cars::cars.No data')</td>
             </tr>
           @endforelse
         </tbody>
