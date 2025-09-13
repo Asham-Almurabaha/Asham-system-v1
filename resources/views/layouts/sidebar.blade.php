@@ -8,7 +8,7 @@
 
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
-       || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
+      || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
       || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
       || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
