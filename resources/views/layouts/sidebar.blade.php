@@ -7,8 +7,8 @@
   $coll    = fn($cond) => $cond ? '' : 'collapsed';
 
   // open states for settings groups
-  $generalSettingsOpen = $isRoute('settings.*') || $isRoute('users.*') || $isRoute('companies.*') || $isRoute('cities.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*') || $isRoute('audit-logs.*');
-  $employeeSettingsOpen = $isRoute('nationalities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
+  $generalSettingsOpen = $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('users.*') || $isRoute('companies.*') || $isRoute('cities.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*') || $isRoute('audit-logs.*');
+  $employeeSettingsOpen = $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
   $carSettingsOpen = $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*') || $isRoute('car-brands.*')
       || $isRoute('car-models.*') || $isRoute('car-statuses.*') || $isRoute('car-document-data-types.*')
       || $isRoute('car-delegation-types.*') || $isRoute('violation-types.*') || $isRoute('violation-payment-statuses.*');
@@ -73,7 +73,7 @@
 
       <li>
         <a class="{{ $active($isRoute('users.*')) }}" href="{{ route('users.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Assign Roles to Users')</span>
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Users')</span>
         </a>
       </li>
       <li>
@@ -103,6 +103,12 @@
       </li>
 
       <li>
+        <a class="{{ $active($isRoute('nationalities.*')) }}" href="{{ route('nationalities.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Nationalities')</span>
+        </a>
+      </li>
+
+      <li>
         <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
         </a>
@@ -116,11 +122,7 @@
     </a>
     <ul id="employee-settings-nav" class="nav-content collapse {{ $open($employeeSettingsOpen) }}" data-bs-parent="#sidebar-nav">
 
-      <li>
-        <a class="{{ $active($isRoute('nationalities.*')) }}" href="{{ route('nationalities.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Nationalities')</span>
-        </a>
-      </li>
+      
       <li>
         <a class="{{ $active($isRoute('residency-statuses.*')) }}" href="{{ route('residency-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Residency Statuses')</span>

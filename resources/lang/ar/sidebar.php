@@ -13,7 +13,7 @@ return [
     'General Setting' => 'إعداد عام',
     'Employee Settings' => 'إعدادات الموظفين',
     'Users and Permissions' => 'المستخدمون والصلاحيات',
-    'Assign Roles to Users' => 'تعيين أدوار للمستخدمين',
+    'Users' => 'المستخدمين',
 
     'Basic Data' => 'البيانات الأساسية',
     'Companies' => 'الشركات',

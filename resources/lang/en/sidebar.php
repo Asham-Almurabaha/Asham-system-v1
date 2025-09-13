@@ -13,7 +13,7 @@ return [
     'General Setting' => 'General Setting',
     'Employee Settings' => 'Employee Settings',
     'Users and Permissions' => 'Users and Permissions',
-    'Assign Roles to Users' => 'Assign Roles to Users',
+    'Users' => 'Users',
 
     'Basic Data' => 'Basic Data',
     'Companies' => 'Companies',
