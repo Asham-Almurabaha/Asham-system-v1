@@ -25,6 +25,7 @@ class Car extends Model
         'car_model_id',
         'car_color_id',
         'car_status_id',
+        'branch_id',
         'purchase_date',
         'cost',
         'notes'
@@ -73,6 +74,11 @@ class Car extends Model
     public function status(): BelongsTo
     {
         return $this->belongsTo(CarStatus::class, 'car_status_id');
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
     public function scopeAvailable($query)

@@ -14,6 +14,10 @@ return new class extends Migration {
             $table->foreignId('car_model_id')->nullable()->constrained('car_models')->cascadeOnDelete();
             $table->foreignId('car_color_id')->nullable()->constrained('car_colors')->cascadeOnDelete();
             $table->foreignId('car_status_id')->nullable()->constrained('car_statuses')->cascadeOnDelete();
+            $table->foreignId('branch_id')->nullable()->constrained('branches')->cascadeOnDelete();
+            $table->date('purchase_date')->nullable();
+            $table->decimal('cost', 12, 2)->nullable();
+            $table->text('notes')->nullable();
         });
     }
 
@@ -26,6 +30,8 @@ return new class extends Migration {
             $table->dropConstrainedForeignId('car_model_id');
             $table->dropConstrainedForeignId('car_color_id');
             $table->dropConstrainedForeignId('car_status_id');
+            $table->dropConstrainedForeignId('branch_id');
+            $table->dropColumn(['purchase_date', 'cost', 'notes']);
         });
     }
 };
