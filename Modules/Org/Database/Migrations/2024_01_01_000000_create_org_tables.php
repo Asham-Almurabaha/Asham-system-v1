@@ -79,9 +79,8 @@ return new class extends Migration {
 
         Schema::create('work_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name_en');
-            $table->string('name_ar');
+            $table->string('name_en')->unique();
+            $table->string('name_ar')->unique();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();

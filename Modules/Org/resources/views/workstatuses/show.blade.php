@@ -10,13 +10,10 @@
       </div>
       <div class="card-body">
         <div class="row mb-3">
-          <div class="col-md-4">
-            <strong>@lang('org::workstatuses.Code'):</strong> {{ $item->code }}
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <strong>@lang('org::workstatuses.Name (EN)'):</strong> {{ $item->name_en }}
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <strong>@lang('org::workstatuses.Name (AR)'):</strong> {{ $item->name_ar }}
           </div>
         </div>

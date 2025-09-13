@@ -18,7 +18,6 @@
         <thead class="table-light">
           <tr>
             <th>#</th>
-            <th>@lang('org::workstatuses.Code')</th>
             <th>@lang('org::workstatuses.Name (EN)')</th>
             <th>@lang('org::workstatuses.Name (AR)')</th>
             <th>@lang('org::workstatuses.Active')</th>
@@ -29,7 +28,6 @@
           @forelse ($items as $i)
             <tr>
               <td>{{ $i->id }}</td>
-              <td>{{ $i->code }}</td>
               <td>{{ $i->name_en }}</td>
               <td>{{ $i->name_ar }}</td>
               <td>

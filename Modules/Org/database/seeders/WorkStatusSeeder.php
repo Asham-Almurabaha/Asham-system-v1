@@ -15,15 +15,14 @@ class WorkStatusSeeder extends Seeder
         }
 
         $statuses = [
-            ['code' => 'active', 'name_en' => 'Active', 'name_ar' => 'نشط'],
-            ['code' => 'terminated', 'name_en' => 'Terminated', 'name_ar' => 'منتهي'],
+            ['name_en' => 'Active', 'name_ar' => 'نشط'],
+            ['name_en' => 'Terminated', 'name_ar' => 'منتهي'],
         ];
 
         foreach ($statuses as $status) {
             WorkStatus::query()->updateOrCreate(
-                ['code' => $status['code']],
+                ['name_en' => $status['name_en']],
                 [
-                    'name_en' => $status['name_en'],
                     'name_ar' => $status['name_ar'],
                     'is_active' => true,
                 ]

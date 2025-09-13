@@ -4,7 +4,6 @@ return [
     'Work Statuses' => 'حالات العمل',
     'Name (EN)' => 'الاسم (إنجليزي)',
     'Name (AR)' => 'الاسم (عربي)',
-    'Code' => 'الرمز',
     'Active' => 'مفعل',
     'Inactive' => 'غير مفعل',
     'Actions' => 'الإجراءات',
