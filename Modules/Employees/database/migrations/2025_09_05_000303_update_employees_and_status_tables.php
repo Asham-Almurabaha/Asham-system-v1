@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         if (!Schema::hasTable('employment_statuses')) {
             Schema::create('employment_statuses', function (Blueprint $table) {
+                $table->id();
                 $table->string('name_en', 100)->unique();
                 $table->string('name_ar', 100)->unique();
                 $table->boolean('is_active')->default(true);
