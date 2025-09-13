@@ -8,5 +8,6 @@ return [
     'Filter' => 'Filter',
     'Reset' => 'Reset',
     'Delete confirm' => 'Are you sure?',
+    'Delete' => 'Delete',
     'All Statuses' => 'All Statuses',
 ];

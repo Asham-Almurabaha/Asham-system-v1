@@ -41,7 +41,13 @@ class Car extends Model
 
     public function getPlateNumberAttribute(): string
     {
-        return $this->plate_letters.$this->plate_numbers;
+        $letters = implode(' ', preg_split('//u', $this->plate_letters, -1, PREG_SPLIT_NO_EMPTY));
+        return trim($letters.' '.$this->plate_numbers);
+    }
+
+    public function setPlateLettersAttribute($value): void
+    {
+        $this->attributes['plate_letters'] = str_replace(' ', '', $value);
     }
 
     public function assignments(): HasMany

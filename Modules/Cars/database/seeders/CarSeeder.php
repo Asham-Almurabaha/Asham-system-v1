@@ -23,7 +23,7 @@ class CarSeeder extends Seeder
         $color = CarColor::first();
 
         Car::firstOrCreate(
-            ['plate_letters' => 'أ', 'plate_numbers' => '0001'],
+            ['plate_letters' => 'أبج', 'plate_numbers' => '0001'],
             [
                 'sequence_number' => 'SEQ-001',
                 'car_status_id' => $status?->id,

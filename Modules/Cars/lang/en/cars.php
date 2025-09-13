@@ -28,6 +28,12 @@ return [
     'Deleted successfully' => 'Deleted successfully',
     'Cannot delete assigned' => 'Cannot delete car with active assignment',
     'View' => 'View',
+    'Car Years' => 'Car Years',
+    'Car Types' => 'Car Types',
+    'Car Brands' => 'Car Brands',
+    'Car Models' => 'Car Models',
+    'Car Colors' => 'Car Colors',
+    'Car Statuses' => 'Car Statuses',
     'statuses' => [
         'available' => 'Available',
         'assigned' => 'Assigned',

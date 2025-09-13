@@ -9,16 +9,19 @@
   // هل مجموعة الإعدادات مفتوحة؟
   $settingsOpen = $isPath('*/setting*')
        || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
-       || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
+      || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
       || $isRoute('contract_statuses.*')
       || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
       || $isRoute('products.*') || $isRoute('product_entries.*')
       || $isRoute('bank_cash_accounts.*') || $isRoute('transaction_types.*') || $isRoute('transaction_statuses.*')
       || $isRoute('categories.*')
+      || $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*')
+      || $isRoute('car-brands.*') || $isRoute('car-models.*') || $isRoute('car-statuses.*')
       || $isRoute('audit-logs.*')
       || $isRoute('users.*');
 
   $attendanceOpen = $isRoute('hr.shifts.*') || $isRoute('hr.attendances.*') || $isRoute('hr.overtime.*');
+  $carsOpen = $isRoute('cars.*');
 @endphp
 
 <ul class="sidebar-nav" id="sidebar-nav">
@@ -42,9 +45,16 @@
   @endrole
 
   <li class="nav-item">
-    <a class="nav-link {{ $coll($isRoute('cars.*')) }} {{ $active($isRoute('cars.*')) }}" href="{{ route('cars.index') }}">
-      <i class="bi bi-car-front"></i><span>@lang('sidebar.Cars')</span>
+    <a class="nav-link {{ $coll($carsOpen) }}" data-bs-target="#cars-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $carsOpen ? 'true' : 'false' }}">
+      <i class="bi bi-car-front"></i><span>@lang('sidebar.Cars')</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
+    <ul id="cars-nav" class="nav-content collapse {{ $open($carsOpen) }}" data-bs-parent="#sidebar-nav">
+      <li>
+        <a class="{{ $active($isRoute('cars.*')) }}" href="{{ route('cars.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Cars')</span>
+        </a>
+      </li>
+    </ul>
   </li>
   <li class="nav-item">
     <a class="nav-link {{ $coll($isRoute('motorcycles.*')) }} {{ $active($isRoute('motorcycles.*')) }}" href="{{ route('motorcycles.index') }}">
@@ -161,6 +171,36 @@
       <li>
         <a class="{{ $active($isRoute('work-statuses.*')) }}" href="{{ route('work-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Work Statuses')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-years.*')) }}" href="{{ route('car-years.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Years')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-types.*')) }}" href="{{ route('car-types.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Types')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-brands.*')) }}" href="{{ route('car-brands.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Brands')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-models.*')) }}" href="{{ route('car-models.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Models')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-colors.*')) }}" href="{{ route('car-colors.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Colors')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-statuses.*')) }}" href="{{ route('car-statuses.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Statuses')</span>
         </a>
       </li>
       <li class="nav-heading">@lang('sidebar.Audit Logs')</li>

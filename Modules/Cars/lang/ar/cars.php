@@ -28,6 +28,12 @@ return [
     'Deleted successfully' => 'تم الحذف بنجاح',
     'Cannot delete assigned' => 'لا يمكن حذف سيارة مسلّمة',
     'View' => 'عرض',
+    'Car Years' => 'سنوات السيارات',
+    'Car Types' => 'أنواع السيارات',
+    'Car Brands' => 'ماركات السيارات',
+    'Car Models' => 'طرازات السيارات',
+    'Car Colors' => 'ألوان السيارات',
+    'Car Statuses' => 'حالات السيارات',
     'statuses' => [
         'available' => 'متاحة',
         'assigned' => 'مسلّمة',

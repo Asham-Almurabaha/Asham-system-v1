@@ -8,5 +8,6 @@ return [
     'Filter' => 'تصفية',
     'Reset' => 'إعادة تعيين',
     'Delete confirm' => 'هل أنت متأكد؟',
+    'Delete' => 'حذف',
     'All Statuses' => 'كل الحالات',
 ];

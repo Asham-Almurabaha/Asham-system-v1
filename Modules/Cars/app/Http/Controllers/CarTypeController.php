@@ -2,42 +2,57 @@
 
 namespace Modules\Cars\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Response;
 use Modules\Cars\Entities\Lookups\CarType;
 
 class CarTypeController extends Controller
 {
     public function index()
     {
-        return response()->json(CarType::with('brands.models')->get());
+        $items = CarType::orderBy('id')->paginate(15);
+        return view('cars::car-types.index', compact('items'));
+    }
+
+    public function create()
+    {
+        return view('cars::car-types.create');
     }
 
     public function store(Request $request)
     {
-        $type = CarType::create($request->validate([
-            'name_en' => 'required|string|max:100',
-            'name_ar' => 'required|string|max:100'
-        ]));
+        $data = $request->validate([
+            'name_en' => ['required', 'string', 'max:100', 'unique:car_types,name_en'],
+            'name_ar' => ['required', 'string', 'max:100', 'unique:car_types,name_ar'],
+        ]);
+        CarType::create($data);
 
-        return response()->json($type, Response::HTTP_CREATED);
+        return redirect()->route('car-types.index')
+            ->with('success', __('cars::types.Created successfully'));
+    }
+
+    public function edit(CarType $carType)
+    {
+        return view('cars::car-types.edit', ['item' => $carType]);
     }
 
     public function update(Request $request, CarType $carType)
     {
-        $carType->update($request->validate([
-            'name_en' => 'required|string|max:100',
-            'name_ar' => 'required|string|max:100'
-        ]));
+        $data = $request->validate([
+            'name_en' => ['required', 'string', 'max:100', 'unique:car_types,name_en,' . $carType->id],
+            'name_ar' => ['required', 'string', 'max:100', 'unique:car_types,name_ar,' . $carType->id],
+        ]);
+        $carType->update($data);
 
-        return response()->json($carType);
+        return redirect()->route('car-types.index')
+            ->with('success', __('cars::types.Updated successfully'));
     }
 
     public function destroy(CarType $carType)
     {
         $carType->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return redirect()->route('car-types.index')
+            ->with('success', __('cars::types.Deleted successfully'));
     }
 }

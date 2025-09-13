@@ -16,6 +16,7 @@
           @can('cars.update')
           <x-btn href="{{ route('cars.edit', $car) }}" variant="primary" size="sm" icon="bi bi-pencil">@lang('cars::common.Edit')</x-btn>
           @endcan
+          <x-btn href="{{ route('cars.documents.index', $car) }}" variant="outline-info" size="sm" icon="bi bi-file-earmark">@lang('cars::documents.Documents')</x-btn>
           <x-btn href="{{ route('cars.index') }}" variant="outline-secondary" size="sm" icon="bi bi-arrow-right-circle">@lang('cars::common.Back')</x-btn>
         </div>
       </div>

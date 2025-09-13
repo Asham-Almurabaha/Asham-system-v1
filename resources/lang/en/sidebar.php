@@ -34,5 +34,11 @@ return [
     'Cars' => 'Cars',
     'Motorcycles' => 'Motorcycles',
     'Phones' => 'Phones',
+    'Car Years' => 'Car Years',
+    'Car Types' => 'Car Types',
+    'Car Brands' => 'Car Brands',
+    'Car Models' => 'Car Models',
+    'Car Colors' => 'Car Colors',
+    'Car Statuses' => 'Car Statuses',
 ];
 

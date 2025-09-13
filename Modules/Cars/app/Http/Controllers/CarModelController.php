@@ -2,59 +2,75 @@
 
 namespace Modules\Cars\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Response;
-use Modules\Cars\Entities\Lookups\CarModel;
-use Modules\Cars\Entities\Lookups\CarBrand;
+use Modules\Cars\Entities\Lookups\{CarModel, CarBrand, CarType};
 
 class CarModelController extends Controller
 {
     public function index()
     {
-        return response()->json(CarModel::with('type','brand')->get());
+        $items = CarModel::with('brand.type')->orderBy('id')->paginate(15);
+        return view('cars::car-models.index', compact('items'));
+    }
+
+    public function create()
+    {
+        $types = CarType::all();
+        $brands = CarBrand::all();
+        return view('cars::car-models.create', compact('types', 'brands'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'car_type_id' => 'required|exists:car_types,id',
-            'car_brand_id' => 'required|exists:car_brands,id',
-            'name_en' => 'required|string|max:100',
-            'name_ar' => 'required|string|max:100'
+            'car_type_id' => ['required', 'exists:car_types,id'],
+            'car_brand_id' => ['required', 'exists:car_brands,id'],
+            'name_en' => ['required', 'string', 'max:100'],
+            'name_ar' => ['required', 'string', 'max:100'],
         ]);
 
         if (CarBrand::where('id', $data['car_brand_id'])->where('car_type_id', $data['car_type_id'])->doesntExist()) {
-            return response()->json(['message' => 'brand does not belong to type'], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return back()->withErrors(['car_brand_id' => __('cars::models.Brand mismatch')])->withInput();
         }
 
-        $model = CarModel::create($data);
+        CarModel::create($data);
 
-        return response()->json($model, Response::HTTP_CREATED);
+        return redirect()->route('car-models.index')
+            ->with('success', __('cars::models.Created successfully'));
+    }
+
+    public function edit(CarModel $carModel)
+    {
+        $types = CarType::all();
+        $brands = CarBrand::all();
+        return view('cars::car-models.edit', ['item' => $carModel, 'types' => $types, 'brands' => $brands]);
     }
 
     public function update(Request $request, CarModel $carModel)
     {
         $data = $request->validate([
-            'car_type_id' => 'required|exists:car_types,id',
-            'car_brand_id' => 'required|exists:car_brands,id',
-            'name_en' => 'required|string|max:100',
-            'name_ar' => 'required|string|max:100'
+            'car_type_id' => ['required', 'exists:car_types,id'],
+            'car_brand_id' => ['required', 'exists:car_brands,id'],
+            'name_en' => ['required', 'string', 'max:100'],
+            'name_ar' => ['required', 'string', 'max:100'],
         ]);
 
         if (CarBrand::where('id', $data['car_brand_id'])->where('car_type_id', $data['car_type_id'])->doesntExist()) {
-            return response()->json(['message' => 'brand does not belong to type'], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return back()->withErrors(['car_brand_id' => __('cars::models.Brand mismatch')])->withInput();
         }
 
         $carModel->update($data);
 
-        return response()->json($carModel);
+        return redirect()->route('car-models.index')
+            ->with('success', __('cars::models.Updated successfully'));
     }
 
     public function destroy(CarModel $carModel)
     {
         $carModel->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return redirect()->route('car-models.index')
+            ->with('success', __('cars::models.Deleted successfully'));
     }
 }
