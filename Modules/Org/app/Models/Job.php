@@ -13,7 +13,7 @@ class Job extends Model
     protected $table = 'jobs';
 
     protected $fillable = [
-        'name_en', 'name_ar', 'is_active', 'department_id', 'company_id', 'branch_id',
+        'name_en', 'name_ar', 'is_active', 'department_id',
     ];
 
     public function department()
@@ -21,13 +21,5 @@ class Job extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
+    // Relationships to company and branch removed
 }

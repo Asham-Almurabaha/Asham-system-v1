@@ -20,8 +20,6 @@
             <th>#</th>
             <th>@lang('org::jobs.Name (EN)')</th>
             <th>@lang('org::jobs.Name (AR)')</th>
-            <th>@lang('org::jobs.Company')</th>
-            <th>@lang('org::jobs.Branch')</th>
             <th>@lang('org::jobs.Department')</th>
             <th>@lang('org::jobs.Active')</th>
             <th class="text-end">@lang('org::jobs.Actions')</th>
@@ -33,8 +31,6 @@
               <td>{{ $i->id }}</td>
               <td>{{ $i->name_en }}</td>
               <td>{{ $i->name_ar }}</td>
-              <td>{{ optional($i->company)->name_en }}</td>
-              <td>{{ optional($i->branch)->name_en }}</td>
               <td>{{ optional($i->department)->name_en }}</td>
               <td>
                 @if($i->is_active)
@@ -50,7 +46,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="8" class="text-center text-muted">@lang('org::jobs.No data')</td>
+              <td colspan="6" class="text-center text-muted">@lang('org::jobs.No data')</td>
             </tr>
           @endforelse
         </tbody>

@@ -19,14 +19,6 @@
             <div class="form-control-plaintext">{{ $item->name_ar }}</div>
           </div>
           <div class="col-md-4">
-            <label class="form-label">@lang('org::jobs.Company')</label>
-            <div class="form-control-plaintext">{{ optional($item->company)->name_en }}</div>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">@lang('org::jobs.Branch')</label>
-            <div class="form-control-plaintext">{{ optional($item->branch)->name_en }}</div>
-          </div>
-          <div class="col-md-4">
             <label class="form-label">@lang('org::jobs.Department')</label>
             <div class="form-control-plaintext">{{ optional($item->department)->name_en }}</div>
           </div>

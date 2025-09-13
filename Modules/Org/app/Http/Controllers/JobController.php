@@ -5,32 +5,26 @@ namespace Modules\Org\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Org\Models\Job;
-use Modules\Org\Models\Company;
-use Modules\Org\Models\Branch;
 use Modules\Org\Models\Department;
 
 class JobController extends Controller
 {
     public function index()
     {
-        $items = Job::with(['company','branch','department'])->orderBy('id', 'asc')->paginate(15);
+        $items = Job::with('department')->orderBy('id', 'asc')->paginate(15);
         return view('org::jobs.index', compact('items'));
     }
 
     public function create()
     {
-        $companies = Company::orderBy('name_en')->get();
-        $branches = Branch::orderBy('name_en')->get();
         $departments = Department::orderBy('name_en')->get();
-        return view('org::jobs.create', compact('companies','branches','departments'));
+        return view('org::jobs.create', compact('departments'));
     }
 
     public function store(Request $request)
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'company_id' => ['nullable','exists:companies,id'],
-            'branch_id' => ['nullable','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
             'name_en' => ['required','string','max:100','unique:org_jobs,name_en'],
             'name_ar' => ['required','string','max:100','unique:org_jobs,name_ar'],
@@ -49,18 +43,14 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
-        $companies = Company::orderBy('name_en')->get();
-        $branches = Branch::orderBy('name_en')->get();
         $departments = Department::orderBy('name_en')->get();
-        return view('org::jobs.edit', ['item' => $job, 'companies' => $companies, 'branches' => $branches, 'departments' => $departments]);
+        return view('org::jobs.edit', ['item' => $job, 'departments' => $departments]);
     }
 
     public function update(Request $request, Job $job)
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'company_id' => ['nullable','exists:companies,id'],
-            'branch_id' => ['nullable','exists:branches,id'],
             'department_id' => ['nullable','exists:departments,id'],
             'name_en' => ['required','string','max:100','unique:org_jobs,name_en,'.$job->id],
             'name_ar' => ['required','string','max:100','unique:org_jobs,name_ar,'.$job->id],

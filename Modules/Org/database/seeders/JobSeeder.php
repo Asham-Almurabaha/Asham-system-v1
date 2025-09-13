@@ -4,8 +4,6 @@ namespace Modules\Org\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-use Modules\Org\Models\Branch;
-use Modules\Org\Models\Company;
 use Modules\Org\Models\Department;
 use Modules\Org\Models\Job;
 
@@ -17,18 +15,14 @@ class JobSeeder extends Seeder
             return;
         }
 
-        $company = Company::query()->first();
-        $branch = Branch::query()->first();
         $department = Department::query()->first();
 
-        if (!$company || !$branch || !$department) {
+        if (!$department) {
             return;
         }
 
         Job::query()->updateOrCreate(
             [
-                'company_id' => $company->id,
-                'branch_id' => $branch->id,
                 'department_id' => $department->id,
                 'name_en' => 'Manager',
             ],
