@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Modules\Cars\Entities\{CarAssignment, CarDocument};
+use Modules\Cars\Entities\{CarAssignment, CarDocument, CarDelegation};
 use Modules\Cars\Entities\Lookups\{CarBrand, CarColor, CarModel, CarStatus, CarType, CarYear};
 use Modules\Cars\Entities\OilChange;
 use Modules\Cars\Entities\Violation;
@@ -60,9 +60,19 @@ class Car extends Model
         return $this->hasMany(CarDocument::class);
     }
 
+    public function delegations(): HasMany
+    {
+        return $this->hasMany(CarDelegation::class);
+    }
+
     public function currentAssignment(): HasOne
     {
         return $this->hasOne(CarAssignment::class)->whereNull('returned_at');
+    }
+
+    public function currentDelegation(): HasOne
+    {
+        return $this->hasOne(CarDelegation::class)->whereNull('end_date');
     }
 
     public function oilChanges(): HasMany

@@ -31,6 +31,22 @@ class CarAssignment extends Model
                 'car_status_id' => CarStatus::where('name_en', 'assigned')->value('id'),
             ]);
         });
+
+        static::updated(function ($assignment) {
+            if ($assignment->isDirty('returned_at') && $assignment->returned_at !== null) {
+                $assignment->car->update([
+                    'car_status_id' => CarStatus::where('name_en', 'available')->value('id'),
+                ]);
+            }
+        });
+
+        static::deleted(function ($assignment) {
+            if (is_null($assignment->returned_at)) {
+                $assignment->car->update([
+                    'car_status_id' => CarStatus::where('name_en', 'available')->value('id'),
+                ]);
+            }
+        });
     }
 
     public function car(): BelongsTo
