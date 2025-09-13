@@ -6,19 +6,12 @@
   $open    = fn($cond) => $cond ? 'show' : '';
   $coll    = fn($cond) => $cond ? '' : 'collapsed';
 
-  // هل مجموعة الإعدادات مفتوحة؟
-  $settingsOpen = $isPath('*/setting*')
-      || $isRoute('settings.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
-      || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*')
-      || $isRoute('contract_statuses.*')
-      || $isRoute('installment_statuses.*') || $isRoute('installment_types.*')
-      || $isRoute('products.*') || $isRoute('product_entries.*')
-      || $isRoute('bank_cash_accounts.*') || $isRoute('transaction_types.*') || $isRoute('transaction_statuses.*')
-      || $isRoute('categories.*')
-      || $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*')
-      || $isRoute('car-brands.*') || $isRoute('car-models.*') || $isRoute('car-statuses.*')
-      || $isRoute('audit-logs.*')
-      || $isRoute('users.*');
+  // open states for settings groups
+  $generalSettingsOpen = $isRoute('settings.*') || $isRoute('audit-logs.*');
+  $employeeSettingsOpen = $isRoute('users.*') || $isRoute('companies.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*')
+      || $isRoute('nationalities.*') || $isRoute('cities.*') || $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
+  $carSettingsOpen = $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*') || $isRoute('car-brands.*')
+      || $isRoute('car-models.*') || $isRoute('car-statuses.*');
 
   $attendanceOpen = $isRoute('hr.shifts.*') || $isRoute('hr.attendances.*') || $isRoute('hr.overtime.*');
   $carsOpen = $isRoute('cars.*');
@@ -110,29 +103,36 @@
 
   
 
-  {{-- الإعدادات (قابلة للطي) --}}
+  {{-- الإعدادات --}}
   @role('admin')
   <li class="nav-item">
-    <a class="nav-link {{ $coll($settingsOpen) }}"
-       data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#"
-       aria-expanded="{{ $settingsOpen ? 'true' : 'false' }}">
-      <i class="bi bi-gear"></i><span>@lang('sidebar.Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link {{ $coll($generalSettingsOpen) }}" data-bs-target="#general-settings-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $generalSettingsOpen ? 'true' : 'false' }}">
+      <i class="bi bi-gear"></i><span>@lang('sidebar.General Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-
-    <ul id="settings-nav" class="nav-content collapse {{ $open($settingsOpen) }}" data-bs-parent="#sidebar-nav">
-      <li class="nav-heading">@lang('sidebar.General Settings')</li>
+    <ul id="general-settings-nav" class="nav-content collapse {{ $open($generalSettingsOpen) }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ $active($isRoute('settings.*')) }}" href="{{ route('settings.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.General Setting')</span>
         </a>
       </li>
-      <li class="nav-heading">@lang('sidebar.Users and Permissions')</li>
+      <li>
+        <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($employeeSettingsOpen) }}" data-bs-target="#employee-settings-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $employeeSettingsOpen ? 'true' : 'false' }}">
+      <i class="bi bi-people"></i><span>@lang('sidebar.Employee Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="employee-settings-nav" class="nav-content collapse {{ $open($employeeSettingsOpen) }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ $active($isRoute('users.*')) }}" href="{{ route('users.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Assign Roles to Users')</span>
         </a>
       </li>
-      <li class="nav-heading">@lang('sidebar.Basic Data')</li>
       <li>
         <a class="{{ $active($isRoute('companies.*')) }}" href="{{ route('companies.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Companies')</span>
@@ -173,9 +173,22 @@
           <i class="bi bi-circle"></i><span>@lang('sidebar.Work Statuses')</span>
         </a>
       </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link {{ $coll($carSettingsOpen) }}" data-bs-target="#car-settings-nav" data-bs-toggle="collapse" href="#" aria-expanded="{{ $carSettingsOpen ? 'true' : 'false' }}">
+      <i class="bi bi-car-front"></i><span>@lang('sidebar.Car Settings')</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="car-settings-nav" class="nav-content collapse {{ $open($carSettingsOpen) }}" data-bs-parent="#sidebar-nav">
       <li>
         <a class="{{ $active($isRoute('car-years.*')) }}" href="{{ route('car-years.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Car Years')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('car-colors.*')) }}" href="{{ route('car-colors.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Colors')</span>
         </a>
       </li>
       <li>
@@ -194,19 +207,8 @@
         </a>
       </li>
       <li>
-        <a class="{{ $active($isRoute('car-colors.*')) }}" href="{{ route('car-colors.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Car Colors')</span>
-        </a>
-      </li>
-      <li>
         <a class="{{ $active($isRoute('car-statuses.*')) }}" href="{{ route('car-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Car Statuses')</span>
-        </a>
-      </li>
-      <li class="nav-heading">@lang('sidebar.Audit Logs')</li>
-      <li>
-        <a class="{{ $active($isRoute('audit-logs.*')) }}" href="{{ route('audit-logs.index') }}">
-          <i class="bi bi-circle"></i><span>@lang('sidebar.Audit Logs')</span>
         </a>
       </li>
     </ul>
