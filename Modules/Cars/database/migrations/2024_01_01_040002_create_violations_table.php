@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->foreignId('violation_type_id')->constrained('violation_types')->cascadeOnDelete();
             $table->foreignId('violation_payment_status_id')->constrained('violation_payment_statuses')->cascadeOnDelete();
+            $table->string('violation_number')->unique();
             $table->date('violation_date')->nullable();
             $table->decimal('amount', 10, 2)->nullable();
             $table->text('description')->nullable();
