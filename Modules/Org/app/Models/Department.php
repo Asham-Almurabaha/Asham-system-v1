@@ -11,7 +11,7 @@ class Department extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'name_en', 'name_ar', 'is_active', 'company_id', 'branch_id',
+        'name_en', 'name_ar', 'is_active',
     ];
 
     public function jobs()
@@ -19,13 +19,5 @@ class Department extends Model
         return $this->hasMany(Job::class);
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
+    // Relationships to company and branch removed
 }

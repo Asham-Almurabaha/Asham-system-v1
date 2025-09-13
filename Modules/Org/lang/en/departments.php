@@ -1,8 +1,6 @@
 <?php
 return [
     'Departments' => 'Departments',
-    'Company' => 'Company',
-    'Branch' => 'Branch',
     'Name (EN)' => 'Name (EN)',
     'Name (AR)' => 'Name (AR)',
     'Active' => 'Active',

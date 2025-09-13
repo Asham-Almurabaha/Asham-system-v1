@@ -19,14 +19,6 @@
             <div class="form-control-plaintext">{{ $item->name_ar }}</div>
           </div>
           <div class="col-md-6">
-            <label class="form-label">@lang('org::departments.Company')</label>
-            <div class="form-control-plaintext">{{ optional($item->company)->name_en }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('org::departments.Branch')</label>
-            <div class="form-control-plaintext">{{ optional($item->branch)->name_en }}</div>
-          </div>
-          <div class="col-md-6">
             <label class="form-label">@lang('org::departments.Active')</label>
             <div class="form-control-plaintext">{{ $item->is_active ? __('org::departments.Active') : __('org::departments.Inactive') }}</div>
           </div>

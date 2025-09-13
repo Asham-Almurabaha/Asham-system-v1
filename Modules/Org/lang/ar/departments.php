@@ -1,8 +1,6 @@
 <?php
 return [
     'Departments' => 'الأقسام',
-    'Company' => 'الشركة',
-    'Branch' => 'الفرع',
     'Name (EN)' => 'الاسم (إنجليزي)',
     'Name (AR)' => 'الاسم (عربي)',
     'Active' => 'مفعل',

@@ -12,26 +12,6 @@
         <form method="POST" action="{{ route('departments.store') }}" class="row g-3">
           @csrf
           <div class="col-md-6">
-            <label class="form-label">@lang('org::departments.Company')</label>
-            <select name="company_id" class="form-select @error('company_id') is-invalid @enderror">
-              <option value="">--</option>
-              @foreach($companies as $c)
-                <option value="{{ $c->id }}" @selected(old('company_id')==$c->id)>{{ $c->name_en }}</option>
-              @endforeach
-            </select>
-            @error('company_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">@lang('org::departments.Branch')</label>
-            <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror">
-              <option value="">--</option>
-              @foreach($branches as $b)
-                <option value="{{ $b->id }}" @selected(old('branch_id')==$b->id)>{{ $b->name_en }}</option>
-              @endforeach
-            </select>
-            @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-          </div>
-          <div class="col-md-6">
             <label class="form-label">@lang('org::departments.Name (EN)')</label>
             <input type="text" name="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" required>
             @error('name_en') <div class="invalid-feedback">{{ $message }}</div> @enderror

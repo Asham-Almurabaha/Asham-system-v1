@@ -40,8 +40,6 @@ return new class extends Migration {
 
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->nullable()->constrained('companies');
-            $table->foreignId('branch_id')->nullable()->constrained('branches');
             $table->string('name_en');
             $table->string('name_ar');
             $table->boolean('is_active')->default(true);

@@ -5,30 +5,24 @@ namespace Modules\Org\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Org\Models\Department;
-use Modules\Org\Models\Company;
-use Modules\Org\Models\Branch;
 
 class DepartmentController extends Controller
 {
     public function index()
     {
-        $items = Department::with(['company','branch'])->orderBy('id', 'asc')->paginate(15);
+        $items = Department::orderBy('id', 'asc')->paginate(15);
         return view('org::departments.index', compact('items'));
     }
 
     public function create()
     {
-        $companies = Company::orderBy('name_en')->get();
-        $branches = Branch::orderBy('name_en')->get();
-        return view('org::departments.create', compact('companies','branches'));
+        return view('org::departments.create');
     }
 
     public function store(Request $request)
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'company_id' => ['nullable','exists:companies,id'],
-            'branch_id' => ['nullable','exists:branches,id'],
             'name_en' => ['required','string','max:100','unique:departments,name_en'],
             'name_ar' => ['required','string','max:100','unique:departments,name_ar'],
             'is_active' => ['boolean'],
@@ -46,17 +40,13 @@ class DepartmentController extends Controller
 
     public function edit(Department $department)
     {
-        $companies = Company::orderBy('name_en')->get();
-        $branches = Branch::orderBy('name_en')->get();
-        return view('org::departments.edit', ['item' => $department, 'companies' => $companies, 'branches' => $branches]);
+        return view('org::departments.edit', ['item' => $department]);
     }
 
     public function update(Request $request, Department $department)
     {
         $request->merge(['is_active' => $request->boolean('is_active')]);
         $data = $request->validate([
-            'company_id' => ['nullable','exists:companies,id'],
-            'branch_id' => ['nullable','exists:branches,id'],
             'name_en' => ['required','string','max:100','unique:departments,name_en,'.$department->id],
             'name_ar' => ['required','string','max:100','unique:departments,name_ar,'.$department->id],
             'is_active' => ['boolean'],
