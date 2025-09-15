@@ -10,4 +10,5 @@ return [
     'Delete confirm' => 'هل أنت متأكد؟',
     'Delete' => 'حذف',
     'All Statuses' => 'كل الحالات',
+    'Select' => 'اختر',
 ];

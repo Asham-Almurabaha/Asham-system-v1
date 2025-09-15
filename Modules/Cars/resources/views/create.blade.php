@@ -15,10 +15,10 @@
         <x-btn href="{{ route('cars.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('cars::common.Back')</x-btn>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('cars.store') }}" class="row g-3">
+        <form method="POST" action="{{ route('cars.store') }}" enctype="multipart/form-data">
           @csrf
           @include('cars::_form')
-          <div class="col-12 d-flex gap-2">
+          <div class="d-flex gap-2">
             <x-btn variant="outline-success" type="submit" icon="bi bi-check2">@lang('cars::common.Save')</x-btn>
             <x-btn href="{{ route('cars.index') }}" variant="outline-secondary">@lang('cars::common.Cancel')</x-btn>
           </div>

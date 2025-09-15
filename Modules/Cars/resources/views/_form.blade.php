@@ -22,6 +22,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Year')</label>
     <select name="car_year_id" class="form-select @error('car_year_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($years as $year)
         <option value="{{ $year->id }}" @selected(old('car_year_id', $car->car_year_id) == $year->id)>{{ $year->year }}</option>
       @endforeach
@@ -31,6 +32,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Type')</label>
     <select name="car_type_id" class="form-select @error('car_type_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($types as $type)
         <option value="{{ $type->id }}" @selected(old('car_type_id', $car->car_type_id) == $type->id)>{{ $type->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</option>
       @endforeach
@@ -40,6 +42,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Brand')</label>
     <select name="car_brand_id" class="form-select @error('car_brand_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($brands as $brand)
         <option value="{{ $brand->id }}" @selected(old('car_brand_id', $car->car_brand_id) == $brand->id)>{{ $brand->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</option>
       @endforeach
@@ -49,6 +52,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Model')</label>
     <select name="car_model_id" class="form-select @error('car_model_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($models as $model)
         <option value="{{ $model->id }}" @selected(old('car_model_id', $car->car_model_id) == $model->id)>{{ $model->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</option>
       @endforeach
@@ -58,6 +62,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Color')</label>
     <select name="car_color_id" class="form-select @error('car_color_id') is-invalid @enderror">
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($colors as $color)
         <option value="{{ $color->id }}" @selected(old('car_color_id', $car->car_color_id) == $color->id)>{{ $color->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</option>
       @endforeach
@@ -67,6 +72,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Status')</label>
     <select name="car_status_id" class="form-select @error('car_status_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($statuses as $status)
         <option value="{{ $status->id }}" @selected(old('car_status_id', $car->car_status_id) == $status->id)>{{ $status->{app()->getLocale() === 'ar' ? 'name_ar' : 'name_en'} }}</option>
       @endforeach
@@ -76,6 +82,7 @@
   <div class="col-md-4">
     <label class="form-label">@lang('cars::cars.Branch')</label>
     <select name="branch_id" class="form-select @error('branch_id') is-invalid @enderror" required>
+      <option value="" disabled selected>@lang('cars::common.Select')</option>
       @foreach($branches as $branch)
         <option value="{{ $branch->id }}" @selected(old('branch_id', $car->branch_id) == $branch->id)>{{ $branch->name }}</option>
       @endforeach
@@ -91,6 +98,21 @@
     <label class="form-label">@lang('cars::cars.Cost')</label>
     <input type="number" step="0.01" name="cost" value="{{ old('cost', $car->cost) }}" class="form-control @error('cost') is-invalid @enderror">
     @error('cost')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">@lang('cars::cars.Registration File')</label>
+    <input type="file" name="registration_file" class="form-control @error('registration_file') is-invalid @enderror">
+    @error('registration_file')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">@lang('cars::cars.Insurance File')</label>
+    <input type="file" name="insurance_file" class="form-control @error('insurance_file') is-invalid @enderror">
+    @error('insurance_file')<div class="invalid-feedback">{{ $message }}</div>@enderror
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">@lang('cars::cars.Ownership File')</label>
+    <input type="file" name="ownership_file" class="form-control @error('ownership_file') is-invalid @enderror">
+    @error('ownership_file')<div class="invalid-feedback">{{ $message }}</div>@enderror
   </div>
   <div class="col-12">
     <label class="form-label">@lang('cars::cars.Notes')</label>

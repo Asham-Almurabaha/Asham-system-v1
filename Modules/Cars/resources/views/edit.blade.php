@@ -15,7 +15,7 @@
         <x-btn href="{{ route('cars.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">@lang('cars::common.Back')</x-btn>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('cars.update', $car) }}" class="row g-3">
+        <form method="POST" action="{{ route('cars.update', $car) }}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           @include('cars::_form')
