@@ -11,6 +11,7 @@
   $canonical = request()->url();
   $locale    = app()->getLocale();
   $isRtl     = $locale === 'ar';
+  $includeDefaultStyles = $includeDefaultStyles ?? true;
 @endphp
 
 <meta charset="utf-8">
@@ -47,35 +48,37 @@
 {{-- Favicons --}}
 @include('layouts.partials.favicon')
 
-{{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+@if ($includeDefaultStyles)
+  {{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-{{-- Bootstrap & DataTables RTL/LTR --}}
-@if ($isRtl)
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.rtl.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/datatables/css/dataTables.bootstrap5.rtl.min.css') }}" rel="stylesheet">
-@else
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/datatables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+  {{-- Bootstrap & DataTables RTL/LTR --}}
+  @if ($isRtl)
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.rtl.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/datatables/css/dataTables.bootstrap5.rtl.min.css') }}" rel="stylesheet">
+  @else
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/datatables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+  @endif
+
+  {{-- Vendor CSS --}}
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+
+
+  {{-- Template Main CSS --}}
+  @if ($isRtl)
+    <link href="{{ asset('assets/css/style.rtl.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/framework.rtl.css') }}" rel="stylesheet">
+  @else
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/framework.css') }}" rel="stylesheet">
+  @endif
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
 @endif
-
-{{-- Vendor CSS --}}
-<link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-
-
-{{-- Template Main CSS --}}
-@if ($isRtl)
-  <link href="{{ asset('assets/css/style.rtl.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/css/framework.rtl.css') }}" rel="stylesheet">
-@else
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/css/framework.css') }}" rel="stylesheet">
-@endif
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
 
 {{-- مناطق تخصيص إضافية للصفحات --}}
 @stack('css')
