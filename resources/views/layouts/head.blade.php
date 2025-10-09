@@ -45,13 +45,7 @@
 <meta name="twitter:description" content="{{ $desc }}">
 
 {{-- Favicons --}}
-@if ($favicon)
-  <link rel="icon" href="{{ $favicon }}" type="image/x-icon">
-  <link rel="apple-touch-icon" href="{{ $favicon }}">
-@else
-  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-  <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
-@endif
+@include('layouts.partials.favicon')
 
 {{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
