@@ -22,7 +22,22 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'login' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('dashboard', absolute: false));
+    }
+
+    public function test_users_can_authenticate_using_their_name(): void
+    {
+        $user = User::factory()->create([
+            'name' => 'login-user',
+        ]);
+
+        $response = $this->post('/login', [
+            'login' => $user->name,
             'password' => 'password',
         ]);
 
@@ -35,7 +50,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $this->post('/login', [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'wrong-password',
         ]);
 

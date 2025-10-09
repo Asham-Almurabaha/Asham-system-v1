@@ -7,30 +7,29 @@
   <form method="POST" action="{{ route('login') }}" class="row g-3 needs-validation" novalidate>
     @csrf
 
-    {{-- Email --}}
+    {{-- Login --}}
     <div class="col-12">
-      <label for="email" class="form-label">{{ __('auth.fields.email') }}</label>
+      <label for="login" class="form-label">{{ __('auth.fields.login') }}</label>
       <div class="input-group has-validation">
-        <span class="input-group-text" id="emailPrepend">@</span>
-        <input  id="email"
-                type="email"
-                name="email"
-                class="form-control @error('email') is-invalid @enderror"
-                value="{{ old('email') }}"
+        <span class="input-group-text" id="loginPrepend">@</span>
+        <input  id="login"
+                type="text"
+                name="login"
+                class="form-control @error('login') is-invalid @enderror"
+                value="{{ old('login') }}"
                 required
                 dir="ltr"
                 autocomplete="username"
-                inputmode="email"
                 autocapitalize="none"
                 spellcheck="false"
                 autofocus
-                aria-describedby="emailPrepend emailHelp">
-        @error('email')
-          <div class="invalid-feedback d-block" id="emailHelp" aria-live="polite">
+                aria-describedby="loginPrepend loginHelp">
+        @error('login')
+          <div class="invalid-feedback d-block" id="loginHelp" aria-live="polite">
             <strong>{{ $message }}</strong>
           </div>
         @else
-          <div class="invalid-feedback" id="emailHelp">{{ __('auth.validation.email_valid') }}</div>
+          <div class="invalid-feedback" id="loginHelp">{{ __('auth.validation.login_required') }}</div>
         @enderror
       </div>
     </div>

@@ -16,6 +16,7 @@ return [
     ],
 
     'fields' => [
+        'login'                 => 'Email address or username',
         'name'                  => 'Name',
         'email'                 => 'Email Address',
         'phone'                 => 'Phone Number',
@@ -26,6 +27,7 @@ return [
     'validation' => [
         'name_required'      => 'Please enter your name.',
         'email_valid'        => 'Please enter a valid email address.',
+        'login_required'     => 'Please enter your email address or username.',
         'phone_valid'        => 'Please enter a valid phone number.',
         'password_required'  => 'Password is required.',
         'password_min'       => 'Password must be at least 8 characters.',
