@@ -7,12 +7,10 @@
 
   {{-- Favicon --}}
   @php
-    // دعم غياب الإعدادات عند توليد تقارير الطباعة
-    $faviconUrl = $setting?->favicon_url
-                  ?? ($setting?->favicon ? asset('storage/'.$setting->favicon)
-                                         : asset('assets/img/favicon.png'));
+    $printFavicon = $setting?->favicon_url
+                   ?? ($setting?->favicon ? asset('storage/'.$setting->favicon) : null);
   @endphp
-  <link rel="icon" href="{{ $faviconUrl }}">
+  @include('layouts.partials.favicon', ['favicon' => $printFavicon])
 
   {{-- Bootstrap RTL/LTR تلقائي --}}
   @if(app()->getLocale() === 'ar')
