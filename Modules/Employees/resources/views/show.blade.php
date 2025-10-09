@@ -85,6 +85,9 @@
                 @lang('employees::employees.Edit')
               </x-btn>
             @endif
+            <x-btn href="{{ route('employees.destroy', $item) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
+              @lang('employees::employees.Delete')
+            </x-btn>
           </div>
         </div>
       </div>

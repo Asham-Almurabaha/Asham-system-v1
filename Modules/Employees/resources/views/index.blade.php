@@ -38,7 +38,6 @@
             <th>@lang('employees::employees.Branch')</th>
             <th>@lang('employees::employees.Job')</th>
             <th>@lang('employees::employees.Active')</th>
-            <th class="text-end">@lang('employees::employees.Actions')</th>
           </tr>
         </thead>
         <tbody>
@@ -63,18 +62,10 @@
                   <span class="badge bg-secondary-subtle text-secondary border">@lang('employees::employees.Inactive')</span>
                 @endif
               </td>
-              <td class="text-end">
-                <x-btn href="{{ route('employees.edit', $i) }}" size="sm" variant="outline-secondary" icon="bi bi-pencil">
-                  @lang('employees::employees.Edit')
-                </x-btn>
-                <x-btn href="{{ route('employees.destroy', $i) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
-                  @lang('employees::employees.Delete')
-                </x-btn>
-              </td>
             </tr>
           @empty
             <tr>
-              <td colspan="8" class="text-center text-muted">@lang('employees::employees.No data')</td>
+              <td colspan="6" class="text-center text-muted">@lang('employees::employees.No data')</td>
             </tr>
           @endforelse
         </tbody>
