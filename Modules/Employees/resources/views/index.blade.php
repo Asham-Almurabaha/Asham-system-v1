@@ -30,7 +30,16 @@
         <tbody>
           @forelse ($items as $i)
             <tr>
-              <td>{{ $i->worker_number ?? '—' }}</td>
+              <td>
+                @if ($i->worker_number)
+                  <a href="{{ route('employees.show', $i) }}"
+                     class="fw-bold text-dark text-decoration-none hover-link">
+                    {{ $i->worker_number }}
+                  </a>
+                @else
+                  —
+                @endif
+              </td>
               <td>
                 @php
                   $locale = app()->getLocale();
@@ -38,10 +47,7 @@
                   $last = $locale === 'ar' ? $i->last_name_ar : $i->last_name;
                   $fullName = trim(($first ?? '') . ' ' . ($last ?? ''));
                 @endphp
-                <a href="{{ route('employees.show', $i) }}"
-                   class="fw-bold text-dark text-decoration-none hover-link">
-                  {{ $fullName !== '' ? $fullName : __('employees::employees.Employee') }}
-                </a>
+                {{ $fullName !== '' ? $fullName : __('employees::employees.Employee') }}
               </td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name_en) : '' }}</td>
               <td>{{ $i->job ? (app()->getLocale() === 'ar' ? $i->job->name_ar : $i->job->name_en) : '' }}</td>
