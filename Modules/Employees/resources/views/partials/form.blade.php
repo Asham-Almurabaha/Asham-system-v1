@@ -218,14 +218,18 @@
   </div>
 
   {{-- ============================= Actions ============================= --}}
-  <div class="card shadow-sm">
-    <div class="card-body m-1">
+  <div class="card shadow-sm mb-3">
+    <div class="card-body p-20">
       <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" name="is_active" id="is_active" {{ $isActive ? 'checked' : '' }}>
         <label class="form-check-label" for="is_active">@lang('employees::employees.Active')</label>
       </div>
       <div class="d-flex gap-2">
-        <x-btn variant="outline-success" type="submit" @if(!$isEdit) icon="bi bi-check2" @endif>@lang('users.Save')</x-btn>
+        <x-btn
+          variant="outline-success"
+          type="submit"
+          :icon="$isEdit ? null : 'bi bi-check2'"
+        >@lang('users.Save')</x-btn>
         <x-btn href="{{ route('employees.index') }}" variant="outline-secondary">@lang('users.Cancel')</x-btn>
       </div>
     </div>
