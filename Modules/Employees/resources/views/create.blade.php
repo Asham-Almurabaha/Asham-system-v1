@@ -2,7 +2,7 @@
 @section('title', __('employees::employees.Create Employee'))
 @section('content')
 <div class="container py-3">
-  <div class="col-lg-12 mx-auto">
+  <div class="mx-auto">
     <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
       @csrf
 

@@ -52,7 +52,7 @@
 @endphp
 
 <div class="container py-3">
-  <div class="col-12 col-lg-10 mx-auto">
+  <div class="mx-auto">
 
     {{-- Breadcrumbs --}}
     <nav aria-label="breadcrumb" class="mb-3">

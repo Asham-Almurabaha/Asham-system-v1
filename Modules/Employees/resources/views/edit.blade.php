@@ -2,7 +2,7 @@
 @section('title', __('employees::employees.Edit Employee'))
 @section('content')
 <div class="container py-3">
-  <div class="col-lg-8 mx-auto">
+  <div class="mx-auto">
 
     {{-- ============================= Edit Employee ============================= --}}
     <div class="card shadow-sm mb-3">
