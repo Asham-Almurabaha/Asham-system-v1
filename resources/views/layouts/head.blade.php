@@ -64,9 +64,6 @@
 {{-- Vendor CSS --}}
 <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
-{{-- Project utilities and custom styles (placed before template CSS to avoid overriding Bootstrap defaults) --}}
-<link href="{{ asset('assets/css/util.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 
 {{-- Template Main CSS --}}
 @if ($isRtl)
