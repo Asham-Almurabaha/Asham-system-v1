@@ -20,21 +20,8 @@
       <table class="table table-hover align-middle mb-0">
         <thead class="table-light">
           <tr>
-            <th>#</th>
-            <th>
-              @if(app()->getLocale() === 'ar')
-                @lang('employees::employees.First Name (AR)')
-              @else
-                @lang('employees::employees.First Name (EN)')
-              @endif
-            </th>
-            <th>
-              @if(app()->getLocale() === 'ar')
-                @lang('employees::employees.Last Name (AR)')
-              @else
-                @lang('employees::employees.Last Name (EN)')
-              @endif
-            </th>
+            <th>@lang('employees::employees.Worker Number')</th>
+            <th>@lang('employees::employees.Name')</th>
             <th>@lang('employees::employees.Branch')</th>
             <th>@lang('employees::employees.Job')</th>
             <th>@lang('employees::employees.Active')</th>
@@ -43,15 +30,18 @@
         <tbody>
           @forelse ($items as $i)
             <tr>
-              <td>{{ $i->id }}</td>
+              <td>{{ $i->worker_number ?? '—' }}</td>
               <td>
+                @php
+                  $locale = app()->getLocale();
+                  $first = $locale === 'ar' ? $i->first_name_ar : $i->first_name;
+                  $last = $locale === 'ar' ? $i->last_name_ar : $i->last_name;
+                  $fullName = trim(($first ?? '') . ' ' . ($last ?? ''));
+                @endphp
                 <a href="{{ route('employees.show', $i) }}"
                    class="fw-bold text-dark text-decoration-none hover-link">
-                  {{ app()->getLocale() === 'ar' ? $i->first_name_ar : $i->first_name }}
+                  {{ $fullName !== '' ? $fullName : __('employees::employees.Employee') }}
                 </a>
-              </td>
-              <td>
-                {{ app()->getLocale() === 'ar' ? $i->last_name_ar : $i->last_name }}
               </td>
               <td>{{ $i->branch ? (app()->getLocale() === 'ar' ? $i->branch->name_ar : $i->branch->name_en) : '' }}</td>
               <td>{{ $i->job ? (app()->getLocale() === 'ar' ? $i->job->name_ar : $i->job->name_en) : '' }}</td>
@@ -65,7 +55,7 @@
             </tr>
           @empty
             <tr>
-              <td colspan="6" class="text-center text-muted">@lang('employees::employees.No data')</td>
+              <td colspan="5" class="text-center text-muted">@lang('employees::employees.No data')</td>
             </tr>
           @endforelse
         </tbody>

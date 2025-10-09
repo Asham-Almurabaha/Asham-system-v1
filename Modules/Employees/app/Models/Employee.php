@@ -28,6 +28,19 @@ class Employee extends Model
         'is_active' => 'boolean',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $employee) {
+            if (filled($employee->worker_number)) {
+                return;
+            }
+
+            $last = static::query()->max('worker_number');
+            $nextNumeric = $last ? (int) $last + 1 : 10;
+            $employee->worker_number = str_pad((string) $nextNumeric, 4, '0', STR_PAD_LEFT);
+        });
+    }
+
     public function branch()
     {
         return $this->belongsTo(Branch::class);

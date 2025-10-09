@@ -2,10 +2,14 @@
 
 return [
     'Employees' => 'Employees',
+    'Name' => 'Name',
+    'Full Name (EN)' => 'Full Name (EN)',
+    'Full Name (AR)' => 'Full Name (AR)',
     'First Name (EN)' => 'First Name (EN)',
     'First Name (AR)' => 'First Name (AR)',
     'Last Name (EN)' => 'Last Name (EN)',
     'Last Name (AR)' => 'Last Name (AR)',
+    'Worker Number' => 'Worker Number',
     'Email' => 'Email',
     'Phone Numbers' => 'Phone Numbers',
     'Add Phone' => 'Add Phone',

@@ -50,6 +50,9 @@ return new class extends Migration {
 
         if (Schema::hasTable('employees')) {
             Schema::table('employees', function (Blueprint $table) {
+                if (!Schema::hasColumn('employees', 'worker_number')) {
+                    $table->string('worker_number', 10)->unique()->after('id');
+                }
                 if (!Schema::hasColumn('employees', 'company_id')) {
                     $table->foreignId('company_id')->nullable()->constrained('companies');
                     $table->index(['company_id','branch_id']);
@@ -73,6 +76,9 @@ return new class extends Migration {
     {
         if (Schema::hasTable('employees')) {
             Schema::table('employees', function (Blueprint $table) {
+                if (Schema::hasColumn('employees', 'worker_number')) {
+                    $table->dropColumn('worker_number');
+                }
                 if (Schema::hasColumn('employees', 'sponsorship_status_id')) {
                     $table->dropForeign(['sponsorship_status_id']);
                     $table->dropColumn('sponsorship_status_id');

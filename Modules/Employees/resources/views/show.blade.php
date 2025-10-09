@@ -74,7 +74,7 @@
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
           <div class="d-flex align-items-center gap-2">
             <h5 class="mb-0">@lang('employees::employees.View Employee')</h5>
-            <span class="text-muted small">#{{ $item->id }}</span>
+            <span class="text-muted small">#{{ $item->worker_number ?? $item->id }}</span>
           </div>
           <div class="btn-group" role="group" aria-label="Actions">
             <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">
@@ -155,17 +155,14 @@
       </div>
       <div class="card-body">
         <dl class="row mb-0 small">
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.First Name (EN)')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $item->first_name ?? '—' }}</dd>
+          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Worker Number')</dt>
+          <dd class="col-12 col-md-8 col-lg-9">{{ $item->worker_number ?? '—' }}</dd>
 
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.First Name (AR)')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $item->first_name_ar ?? '—' }}</dd>
+          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Full Name (EN)')</dt>
+          <dd class="col-12 col-md-8 col-lg-9">{{ trim(($item->first_name ?? '') . ' ' . ($item->last_name ?? '')) ?: '—' }}</dd>
 
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Last Name (EN)')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $item->last_name ?? '—' }}</dd>
-
-          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Last Name (AR)')</dt>
-          <dd class="col-12 col-md-8 col-lg-9">{{ $item->last_name_ar ?? '—' }}</dd>
+          <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Full Name (AR)')</dt>
+          <dd class="col-12 col-md-8 col-lg-9">{{ trim(($item->first_name_ar ?? '') . ' ' . ($item->last_name_ar ?? '')) ?: '—' }}</dd>
 
           <dt class="col-12 col-md-4 col-lg-3">@lang('employees::employees.Nationality')</dt>
           <dd class="col-12 col-md-8 col-lg-9">{{ $tr($item->nationality) }}</dd>

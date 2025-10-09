@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     private const RESIDENCY_DIR = 'employee-residencies';
     public function index()
     {
-        $items = Employee::with(['branch','job'])->orderBy('id','asc')->paginate(15);
+        $items = Employee::with(['branch','job'])->orderBy('worker_number')->paginate(15);
         return view('employees::index', compact('items'));
     }
 
