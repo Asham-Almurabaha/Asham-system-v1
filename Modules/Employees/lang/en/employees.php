@@ -12,6 +12,7 @@ return [
     'Branch' => 'Branch',
     'Department' => 'Department',
     'Job' => 'Job',
+    'job' => 'Job',
     'Nationality' => 'Nationality',
     'Hire Date' => 'Hire Date',
     'Active' => 'Active',
