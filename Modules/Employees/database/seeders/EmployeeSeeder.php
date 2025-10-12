@@ -4,10 +4,10 @@ namespace Modules\Employees\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Employees\Models\Employee;
-use Modules\Branches\Models\Branch;
-use Modules\Departments\Models\Department;
-use Modules\Titles\Models\Title;
-use Modules\Nationalities\Models\Nationality;
+use Modules\Org\Models\Branch;
+use Modules\Org\Models\Department;
+use Modules\Org\Models\Job;
+use Modules\Org\Models\Nationality;
 
 class EmployeeSeeder extends Seeder
 {
@@ -15,10 +15,10 @@ class EmployeeSeeder extends Seeder
     {
         $branch = Branch::first();
         $department = Department::first();
-        $title = Title::first();
+        $job = Job::first();
         $nationality = Nationality::first();
 
-        if (! $branch || ! $department || ! $title || ! $nationality) {
+        if (! $branch || ! $department || ! $job || ! $nationality) {
             return;
         }
 
@@ -32,7 +32,7 @@ class EmployeeSeeder extends Seeder
                 'hire_date' => '2022-01-10',
                 'branch_id' => $branch->id,
                 'department_id' => $department->id,
-                'title_id' => $title->id,
+                'job_id' => $job->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000001', '0555555555'],
                 'residencies' => [
@@ -54,7 +54,7 @@ class EmployeeSeeder extends Seeder
                 'hire_date' => '2023-03-15',
                 'branch_id' => $branch->id,
                 'department_id' => $department->id,
-                'title_id' => $title->id,
+                'job_id' => $job->id,
                 'nationality_id' => $nationality->id,
                 'phones' => ['0500000002'],
                 'residencies' => [
@@ -70,7 +70,7 @@ class EmployeeSeeder extends Seeder
         ];
 
         foreach ($data as $row) {
-            $phones = $row['phones'];
+            $phones = $row['phones'] ?? [];
             $residencies = $row['residencies'] ?? [];
             unset($row['phones'], $row['residencies']);
             $employee = Employee::firstOrCreate(
