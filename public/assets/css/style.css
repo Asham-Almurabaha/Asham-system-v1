@@ -11,16 +11,12 @@
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
-  --main-font-family: 'Cairo', 'Open Sans', 'Nunito', 'Poppins', sans-serif;
 }
 
 body {
-  font-family: var(--main-font-family);
+  font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
   color: #444444;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -46,11 +42,16 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 20px 30px;
   transition: all 0.3s;
 }
 
+@media (max-width: 1199px) {
+  #main {
+    padding: 20px;
+  }
+}
 
 /*--------------------------------------------------------------
 # Page Title
@@ -98,23 +99,6 @@ h6 {
   visibility: visible;
   opacity: 1;
 }
-
-/*--------------------------------------------------------------
-# message
---------------------------------------------------------------*/
-#message {
-  position: fixed;
-  /* visibility: hidden; */
-  left: 350px;
-  bottom: 15px;
-  margin: 0px;
-  z-index: 99999;
-  width: 550px;
-  border-radius: 4px;
-  transition: all 0.4s;
-}
-
-
 
 /*--------------------------------------------------------------
 # Override some default Bootstrap stylings
@@ -399,7 +383,6 @@ h6 {
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 20px;
-  padding-right: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
 }
@@ -492,35 +475,6 @@ h6 {
 
 .header-nav .nav-profile {
   color: #012970;
-}
-
-/* Ensure visible, well-spaced caret for user dropdown */
-.header-nav .nav-profile.dropdown-toggle::after {
-  margin-left: 0.5rem !important; /* space on the left of caret (LTR) */
-  display: inline-block;
-}
-
-/* ID thumbnail in customers index */
-.id-thumb {
-  object-fit: cover;
-  border-radius: .35rem;
-  border: 1px solid #eaedf1;
-  box-shadow: 0 2px 8px rgba(1, 41, 112, .10);
-}
-
-/* KPI-like card frame to unify card borders */
-.kpi-card,
-.card.card-kpi,
-.card.kpi-card {
-  background: #fff;
-  border: 1px solid #ebeef4;
-  border-radius: 10px;
-  box-shadow: 0 1px 8px rgba(1,41,112,.06);
-}
-
-/* Flatten effects for the table card specifically */
-.table-card-flat {
-  box-shadow: none !important;
 }
 
 .header-nav .nav-profile img {
@@ -803,8 +757,6 @@ h6 {
   background-color: #4154f1;
 }
 
-
-
 /*--------------------------------------------------------------
 # Dashboard
 --------------------------------------------------------------*/
@@ -881,6 +833,53 @@ h6 {
 .dashboard .customers-card .card-icon {
   color: #ff771d;
   background: #ffecdf;
+}
+
+/* Activity */
+.dashboard .activity {
+  font-size: 14px;
+}
+
+.dashboard .activity .activity-item .activite-label {
+  color: #888;
+  position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-width: 64px;
+}
+
+.dashboard .activity .activity-item .activite-label::before {
+  content: "";
+  position: absolute;
+  right: -11px;
+  width: 4px;
+  top: 0;
+  bottom: 0;
+  background-color: #eceefe;
+}
+
+.dashboard .activity .activity-item .activity-badge {
+  margin-top: 3px;
+  z-index: 1;
+  font-size: 11px;
+  line-height: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 3px solid #fff;
+  flex-grow: 0;
+}
+
+.dashboard .activity .activity-item .activity-content {
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+
+.dashboard .activity .activity-item:first-child .activite-label::before {
+  top: 5px;
+}
+
+.dashboard .activity .activity-item:last-child .activity-content {
+  padding-bottom: 0;
 }
 
 /* News & Updates */

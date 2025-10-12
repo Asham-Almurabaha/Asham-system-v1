@@ -42,9 +42,15 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 20px 30px;
     transition: all 0.3s;
+}
+
+@media (max-width: 1199px) {
+    #main {
+    padding: 20px;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -376,7 +382,6 @@ h6 {
     height: 60px;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
     background-color: #fff;
-    padding-left: 20px;
     padding-right: 20px;
     /* Toggle Sidebar Button */
     /* Search Bar */
@@ -469,13 +474,7 @@ h6 {
 }
 
 .header-nav .nav-profile {
-  color: #012970;
-}
-
-/* Ensure visible, well-spaced caret for user dropdown */
-.header-nav .nav-profile.dropdown-toggle::after {
-  margin-left: 0.5rem !important; /* left side of caret (physical) */
-  display: inline-block;
+    color: #012970;
 }
 
 .header-nav .nav-profile img {
@@ -834,6 +833,53 @@ h6 {
 .dashboard .customers-card .card-icon {
     color: #ff771d;
     background: #ffecdf;
+}
+
+/* Activity */
+.dashboard .activity {
+    font-size: 14px;
+}
+
+.dashboard .activity .activity-item .activite-label {
+    color: #888;
+    position: relative;
+    flex-shrink: 0;
+    flex-grow: 0;
+    min-width: 64px;
+}
+
+.dashboard .activity .activity-item .activite-label::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    width: 4px;
+    top: 0;
+    bottom: 0;
+    background-color: #eceefe;
+}
+
+.dashboard .activity .activity-item .activity-badge {
+    margin-top: 3px;
+    z-index: 1;
+    font-size: 11px;
+    line-height: 0;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 3px solid #fff;
+    flex-grow: 0;
+}
+
+.dashboard .activity .activity-item .activity-content {
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.dashboard .activity .activity-item:first-child .activite-label::before {
+    top: 5px;
+}
+
+.dashboard .activity .activity-item:last-child .activity-content {
+    padding-bottom: 0;
 }
 
 /* News & Updates */
