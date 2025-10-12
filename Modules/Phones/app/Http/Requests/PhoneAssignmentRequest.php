@@ -9,10 +9,17 @@ class PhoneAssignmentRequest extends FormRequest
     public function rules(): array
     {
         if ($this->routeIs('phones.assignments.return')) {
-            return [
-                'returned_at' => ['required','date','after_or_equal:assigned_at'],
+            $rules = [
+                'returned_at' => ['required', 'date'],
                 'condition_on_return' => ['required'],
             ];
+
+            $assignment = $this->route('assignment');
+            if ($assignment && $assignment->assigned_at) {
+                $rules['returned_at'][] = 'after_or_equal:' . $assignment->assigned_at->format('Y-m-d H:i:s');
+            }
+
+            return $rules;
         }
         return [
             'employee_id' => ['required','integer'],
