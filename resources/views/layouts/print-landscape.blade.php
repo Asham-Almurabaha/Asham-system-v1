@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+@php
+  $locale         = app()->getLocale();
+  $isRtl          = $locale === 'ar';
+  $sessionAppName = session('app.name');
+  $fallbackBase   = $setting?->name ?? config('app.name','اسم المنشأة');
+  $localizedBase  = $isRtl ? ($setting?->name_ar ?? $fallbackBase) : $fallbackBase;
+  $brandName      = $brandName ?? ($sessionAppName ?: $localizedBase);
+  $logoUrl        = $logoUrl    ?? (!empty($setting?->logo) ? asset('storage/'.$setting->logo) : asset('assets/img/logo.png'));
+  $reportDate     = $reportDate ?? now()->format('d-m-Y');
+@endphp
+<html lang="{{ $locale }}" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
 <head>
   @section('title', __('reports.Report'))
 
@@ -59,19 +69,7 @@
     }
   </style>
 </head>
-@php
-  // إعدادات افتراضية متاحة لكل تقرير
-  $logoUrl    = $logoUrl    ?? (!empty($setting?->logo) ? asset('storage/'.$setting->logo) : asset('assets/img/logo.png'));
-  $brandName  = $brandName  ?? ($setting?->name_ar ?? $setting?->name ?? config('app.name','اسم المنشأة'));
-  $reportDate = $reportDate ?? now()->format('d-m-Y');
-@endphp
 <body>
-  @php
-    $baseName  = $setting?->name ?? ($brandName ?? config('app.name',''));
-    $brandName = app()->getLocale()==='ar'
-        ? ($setting?->name_ar ?? $baseName)
-        : ($setting?->name ?? $baseName);
-  @endphp
   <div class="page shadow-sm">
     {{-- Watermark (يمكن تخصيصها أو إلغاؤها) --}}
     @hasSection('watermark')

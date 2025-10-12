@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+@php
+  $locale        = app()->getLocale();
+  $isAr          = $locale === 'ar';
+  $sessionAppName = session('app.name');
+  $brandBase     = $setting?->name ?? config('app.name', '');
+  $localizedBase = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
+  $brandName     = $sessionAppName ?: $localizedBase;
+@endphp
+
+<html lang="{{ $locale }}" dir="{{ $isAr ? 'rtl' : 'ltr' }}">
 <head>
     @include('layouts.head')
 </head>
 <body>
-
-  @php
-    $isAr = app()->getLocale() === 'ar';
-    $brandBase = $setting?->name ?? config('app.name', '');
-    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
-  @endphp
 
   <main>
     <div class="container">
@@ -26,11 +29,6 @@
                   @else
                     <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
                   @endif
-                  @php
-                    $isAr = app()->getLocale() === 'ar';
-                    $brandBase = $setting?->name ?? config('app.name', '');
-                    $brandName = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
-                  @endphp
                   <span class="d-none d-lg-block ms-2 fw-semibold">
                     {{ $brandName }}
                   </span>

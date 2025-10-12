@@ -1,9 +1,14 @@
 @php
   // دعم غياب الإعدادات بدون أخطاء
-  $logo    = $setting?->logo;
-  $name    = $setting?->name ?? config('app.name', 'اسم الشركة');
-  $homeUrl = url('/');
-  $locale  = app()->getLocale();
+  $logo          = $setting?->logo;
+  $homeUrl       = url('/');
+  $locale        = app()->getLocale();
+  $sessionName   = session('app.name');
+  $fallbackBase  = $setting?->name ?? config('app.name', 'اسم الشركة');
+  $localizedName = $locale === 'ar'
+      ? ($setting?->name_ar ?? $fallbackBase)
+      : $fallbackBase;
+  $displayName        = $sessionName ?: $localizedName;
   $currentLocaleBadge = strtoupper($locale); // AR أو EN
 @endphp
 
@@ -14,7 +19,7 @@
     @else
       <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
     @endif
-    <span class="d-none d-lg-block ms-2 fw-semibold">{{ $locale === 'ar' ? ($setting?->name_ar ?? $name) : $name }}</span>
+    <span class="d-none d-lg-block ms-2 fw-semibold">{{ $displayName }}</span>
   </a>
 
   <button class="btn p-0 border-0 bg-transparent" type="button" aria-label="{{ __('app.toggle_sidebar') }}">

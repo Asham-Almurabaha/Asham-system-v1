@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <head>
+        @php
+            $sessionAppName  = session('app.name');
+            $defaultGuestName = $sessionAppName ?: ($setting?->name ?? config('app.name', 'Laravel'));
+        @endphp
         @unless($__env->hasSection('title'))
-            @section('title', config('app.name', 'Laravel'))
+            @section('title', $defaultGuestName)
         @endunless
 
         @push('styles')
