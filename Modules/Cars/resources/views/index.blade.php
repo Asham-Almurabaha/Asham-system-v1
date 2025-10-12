@@ -59,8 +59,8 @@
               </td>
               <td>{{ optional($car->currentDelegation?->employee)->name }}</td>
               <td>{{ $car->branch?->name }}</td>
-              <td class="text-end">
-                <div class="d-inline-flex gap-1">
+              <td>
+                <div>
                   @can('cars.view')
                     <x-btn href="{{ route('cars.show',$car) }}" size="sm" variant="outline-secondary" icon="bi bi-eye"></x-btn>
                   @endcan
