@@ -25,6 +25,7 @@ return [
     'Not uploaded' => 'غير مرفوع',
     'View Details' => 'عرض التفاصيل',
     'Brand Preview' => 'معاينة العلامة',
+    'Default icon in use' => 'يتم استخدام الأيقونة الافتراضية',
     'Maximum 50 characters' => 'بحد أقصى 50 حرفًا',
     'Logo (PNG/JPG/WEBP/SVG)' => 'الشعار (PNG/JPG/WEBP/SVG)',
     'Limit 4MB' => 'الحد 4 ميجابايت',

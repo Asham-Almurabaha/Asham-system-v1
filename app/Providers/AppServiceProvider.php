@@ -42,46 +42,51 @@ class AppServiceProvider extends ServiceProvider
                 ? ($setting->name_ar ?? $setting->name ?? $fallback)
                 : ($setting->name ?? $setting->name_ar ?? $fallback);
 
+            $customFavicon = $setting?->favicon_url ?: null;
+
+            $defaultPngFavicon = asset('assets/img/favicon.png');
+            $defaultAppleIcon  = asset('assets/img/apple-touch-icon.png');
+
+            $faviconHref = $customFavicon ?? $defaultPngFavicon;
+            $faviconPath = parse_url($faviconHref, PHP_URL_PATH);
+            $extension   = $faviconPath ? pathinfo($faviconPath, PATHINFO_EXTENSION) : null;
+            $extension   = strtolower($extension ?? '');
+
+            $mimeMap = [
+                'ico'  => 'image/x-icon',
+                'png'  => 'image/png',
+                'svg'  => 'image/svg+xml',
+                'gif'  => 'image/gif',
+                'jpg'  => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'webp' => 'image/webp',
+            ];
+
+            $faviconType    = $mimeMap[$extension] ?? 'image/png';
+            $appleTouchHref = $customFavicon && in_array($extension, ['png', 'jpg', 'jpeg', 'webp'], true)
+                ? $customFavicon
+                : $defaultAppleIcon;
+
+            $faviconData = [
+                'href'        => $faviconHref,
+                'type'        => $faviconType,
+                'apple_touch' => $appleTouchHref,
+                'is_custom'   => (bool) $customFavicon,
+                'extension'   => $extension,
+            ];
+
             $view->with('setting', $setting);
             $view->with('appName', $appName);
+            $view->with('appFavicon', $faviconData);
 
             if (!app()->runningInConsole() && app()->bound('session')) {
                 try {
                     $session = session();
 
-                    $customFavicon = $setting?->favicon_url ?: null;
-
-                    $defaultPngFavicon = asset('assets/img/favicon.png');
-                    $defaultAppleIcon  = asset('assets/img/apple-touch-icon.png');
-
-                    $faviconHref = $customFavicon ?? $defaultPngFavicon;
-                    $faviconPath = parse_url($faviconHref, PHP_URL_PATH);
-                    $extension   = $faviconPath ? pathinfo($faviconPath, PATHINFO_EXTENSION) : null;
-                    $extension   = strtolower($extension ?? '');
-
-                    $mimeMap = [
-                        'ico'  => 'image/x-icon',
-                        'png'  => 'image/png',
-                        'svg'  => 'image/svg+xml',
-                        'gif'  => 'image/gif',
-                        'jpg'  => 'image/jpeg',
-                        'jpeg' => 'image/jpeg',
-                        'webp' => 'image/webp',
-                    ];
-
-                    $faviconType    = $mimeMap[$extension] ?? 'image/png';
-                    $appleTouchHref = $customFavicon && in_array($extension, ['png', 'jpg', 'jpeg', 'webp'], true)
-                        ? $customFavicon
-                        : $defaultAppleIcon;
-
                     $session->put([
                         'app.locale'  => $locale,
                         'app.name'    => $appName,
-                        'app.favicon' => [
-                            'href'        => $faviconHref,
-                            'type'        => $faviconType,
-                            'apple_touch' => $appleTouchHref,
-                        ],
+                        'app.favicon' => $faviconData,
                     ]);
                 } catch (\Throwable $exception) {
                     // Ignore session exceptions (e.g. when running from CLI)

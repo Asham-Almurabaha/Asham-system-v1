@@ -13,8 +13,10 @@
 
   @php
     // تجهيز روابط الصور (تعمل سواء عندك accessors أو لأ)
-    $logoUrl    = $setting?->logo_url    ?? ($setting?->logo    ? asset('storage/'.$setting->logo)    : null);
-    $faviconUrl = $setting?->favicon_url ?? ($setting?->favicon ? asset('storage/'.$setting->favicon) : null);
+    $logoUrl          = $setting?->logo_url ?? ($setting?->logo ? asset('storage/'.$setting->logo) : null);
+    $appFaviconData   = $appFavicon ?? [];
+    $faviconUrl       = data_get($appFaviconData, 'href');
+    $faviconIsCustom  = data_get($appFaviconData, 'is_custom', false);
   @endphp
 
   <div class="d-flex align-items-center justify-content-between mb-3">
@@ -116,6 +118,9 @@
                   <div class="ratio ratio-1x1 border rounded bg-light d-flex align-items-center justify-content-center" style="width:64px;">
                     <img src="{{ $faviconUrl }}" alt="@lang('settings::setting.Icon')" class="img-fluid p-1">
                   </div>
+                  @unless($faviconIsCustom)
+                    <div class="text-muted small mt-1">@lang('settings::setting.Default icon in use')</div>
+                  @endunless
                 @else
                   <div class="text-muted fst-italic">@lang('settings::setting.Not uploaded')</div>
                 @endif

@@ -1,14 +1,16 @@
 @php
     $sessionFaviconData = session('app.favicon', []);
+    $sharedFaviconData  = $appFavicon ?? [];
+
     $sessionFavicon     = data_get($sessionFaviconData, 'href');
     $sessionFaviconType = data_get($sessionFaviconData, 'type');
     $sessionAppleTouch  = data_get($sessionFaviconData, 'apple_touch');
 
-    $customFavicon = $favicon ?? null;
+    $sharedFavicon      = data_get($sharedFaviconData, 'href');
+    $sharedFaviconType  = data_get($sharedFaviconData, 'type');
+    $sharedAppleTouch   = data_get($sharedFaviconData, 'apple_touch');
 
-    if (!$customFavicon && $sessionFavicon) {
-        $customFavicon = $sessionFavicon;
-    }
+    $customFavicon = $favicon ?? $sharedFavicon ?? $sessionFavicon ?? null;
 
     if (!$customFavicon) {
         $settingInstance = $setting ?? null;
@@ -50,8 +52,11 @@
         'webp' => 'image/webp',
     ];
 
-    $faviconType      = $sessionFaviconType ?? ($mimeMap[$extension] ?? 'image/png');
-    $appleTouchHref   = $sessionAppleTouch
+    $faviconType      = $sharedFaviconType
+        ?? $sessionFaviconType
+        ?? ($mimeMap[$extension] ?? 'image/png');
+    $appleTouchHref   = $sharedAppleTouch
+        ?? $sessionAppleTouch
         ?: ($customFavicon && in_array($extension, ['png', 'jpg', 'jpeg', 'webp'], true)
             ? $customFavicon
             : $defaultAppleIcon);

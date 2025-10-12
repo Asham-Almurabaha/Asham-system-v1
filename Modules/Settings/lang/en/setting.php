@@ -25,6 +25,7 @@ return [
     'Not uploaded' => 'Not uploaded',
     'View Details' => 'View Details',
     'Brand Preview' => 'Brand Preview',
+    'Default icon in use' => 'Default icon in use',
     'Maximum 50 characters' => 'Maximum 50 characters',
     'Logo (PNG/JPG/WEBP/SVG)' => 'Logo (PNG/JPG/WEBP/SVG)',
     'Limit 4MB' => 'Limit 4MB',

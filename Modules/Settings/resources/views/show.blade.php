@@ -98,6 +98,12 @@
         <div class="card-body mt-2">
           <h6 class="mb-3">@lang('settings::setting.Previews')</h6>
 
+          @php
+            $appFaviconData = $appFavicon ?? [];
+            $faviconPreview = data_get($appFaviconData, 'href');
+            $faviconIsCustom = data_get($appFaviconData, 'is_custom', false);
+          @endphp
+
           {{-- Logo Preview --}}
           <div class="mb-4">
             <div class="d-flex align-items-center justify-content-between mb-2">
@@ -125,12 +131,17 @@
                 <a href="{{ $setting->favicon_url }}" target="_blank" class="small">@lang('settings::setting.Open Original')</a>
               @endif
             </div>
-            @if(!empty($setting->favicon_url))
+            @if(!empty($faviconPreview))
               <div class="d-flex align-items-center gap-3">
                 <div class="border rounded bg-light d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
-                  <img src="{{ $setting->favicon_url }}" alt="@lang('settings::setting.Icon')" class="img-fluid p-1" style="max-height:32px">
+                  <img src="{{ $faviconPreview }}" alt="@lang('settings::setting.Icon')" class="img-fluid p-1" style="max-height:32px">
                 </div>
-                <div class="text-muted small">@lang('settings::setting.Default preview for icon size')</div>
+                <div class="text-muted small">
+                  @lang('settings::setting.Default preview for icon size')
+                  @unless($faviconIsCustom)
+                    — @lang('settings::setting.Default icon in use')
+                  @endunless
+                </div>
               </div>
             @else
               <div class="border rounded p-3 bg-light d-flex align-items-center justify-content-center" style="min-height:64px;">
