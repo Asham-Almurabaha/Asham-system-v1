@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             CarSeeder::class,
             MotorcycleSeeder::class,
             PhoneSeeder::class,
-            // EmployeeSeeder::class,
+            EmployeeSeeder::class,
         ]);
         
         // User::factory(10)->create();
