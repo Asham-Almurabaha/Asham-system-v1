@@ -3,11 +3,15 @@
 namespace Modules\Employees\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use Modules\Settings\Models\Setting;
 
 class EmployeesServiceProvider extends ServiceProvider
 {
@@ -27,6 +31,7 @@ class EmployeesServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->shareFaviconWithViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
     }
 
@@ -160,5 +165,52 @@ class EmployeesServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+
+    protected function shareFaviconWithViews(): void
+    {
+        View::composer($this->nameLower.'::*', function ($view) {
+            $viewData = $view->getData();
+            $sharedData = View::getShared();
+
+            $settingFromView = $viewData['setting'] ?? null;
+            $settingFromShared = $sharedData['setting'] ?? null;
+
+            $setting = $settingFromView ?? $settingFromShared;
+
+            if (!$setting) {
+                try {
+                    if (Schema::hasTable('settings')) {
+                        $setting = Cache::remember('app.settings.row', 3600, fn () => Setting::query()->first());
+                    }
+                } catch (\Throwable $exception) {
+                    $setting = null;
+                }
+            }
+
+            $sessionFavicon = null;
+
+            if (!app()->runningInConsole() && app()->bound('session')) {
+                try {
+                    $sessionFavicon = data_get(session('app.favicon'), 'href');
+                } catch (\Throwable $exception) {
+                    $sessionFavicon = null;
+                }
+            }
+
+            $customFavicon = $sessionFavicon;
+
+            if (!$customFavicon && $setting) {
+                if (!empty($setting->favicon_url)) {
+                    $customFavicon = $setting->favicon_url;
+                } elseif (!empty($setting->favicon)) {
+                    $customFavicon = asset('storage/'.$setting->favicon);
+                }
+            }
+
+            $faviconHref = $customFavicon ?? asset('assets/img/favicon.png');
+
+            $view->with('favicon', $faviconHref);
+        });
     }
 }
