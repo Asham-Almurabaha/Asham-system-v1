@@ -1,29 +1,29 @@
 @php
-  // إعدادات عامة مع التعامل مع غياب السجل
-  $appName   = $setting?->name ?? config('app.name', 'لوحة التحكم');
+  $sessionLocale = session('app.locale');
+  $locale        = $sessionLocale ?: app()->getLocale();
+  $isRtl         = $locale === 'ar';
+  $includeDefaultStyles = $includeDefaultStyles ?? true;
+
+  $defaultName         = config('app.name', 'لوحة التحكم');
+  $localizedSettingName = $locale === 'ar'
+      ? ($setting?->name_ar ?? ($setting?->name ?? $defaultName))
+      : ($setting?->name ?? $defaultName);
+  $sessionAppName      = session('app.name');
+  $appName             = $sessionAppName ?: $localizedSettingName;
+
   $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
   $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
 
-  $favicon   = $setting?->favicon
-              ? asset('storage/'.$setting->favicon)
-              : null;
   $desc      = $setting?->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
   $canonical = request()->url();
-  $locale    = app()->getLocale();
-  $isRtl     = $locale === 'ar';
-  $includeDefaultStyles = $includeDefaultStyles ?? true;
+
+  $faviconFromSession = data_get(session('app.favicon'), 'href');
+  $favicon             = $faviconFromSession
+      ?: ($setting?->favicon ? asset('storage/'.$setting->favicon) : null);
 @endphp
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-@php
-  $appName = app()->getLocale()==='ar'
-      ? ($setting?->name_ar ?? ($setting?->name ?? $appName))
-      : ($setting?->name ?? $appName);
-  $title   = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
-  $desc    = $setting?->owner_name ?? $appName;
-@endphp
 
 <title>{{ $title }}</title>
 

@@ -14,7 +14,7 @@ class LanguageController extends Controller
             abort(404);
         }
 
-        session(['locale' => $locale]);
+        session(['locale' => $locale, 'app.locale' => $locale]);
 
         if (auth()->check() && Schema::hasColumn('users', 'locale')) {
             auth()->user()->forceFill(['locale' => $locale])->save();
