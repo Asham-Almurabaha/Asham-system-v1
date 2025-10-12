@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Modules\Org\Database\Seeders\CitySeeder;
 use Modules\Org\Database\Seeders\NationalitySeeder;
 use Modules\Employees\Database\Seeders\ResidencyStatusSeeder;
+use Modules\Employees\Database\Seeders\SponsorshipStatusSeeder;
 use Modules\Employees\Database\Seeders\WorkStatusSeeder;
 use Modules\Employees\Database\Seeders\EmployeeSeeder;
 use Modules\Org\Database\Seeders\CompanySeeder;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             NationalitySeeder::class,
             ResidencyStatusSeeder::class,
+            SponsorshipStatusSeeder::class,
             WorkStatusSeeder::class,
             CompanySeeder::class,
             BranchSeeder::class,
