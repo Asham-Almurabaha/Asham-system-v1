@@ -76,10 +76,7 @@
             <h5 class="mb-0">@lang('employees::employees.View Employee')</h5>
             <span class="text-muted small">#{{ $item->worker_number ?? $item->id }}</span>
           </div>
-          <div class="btn-group" role="group" aria-label="Actions">
-            <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">
-              @lang('employees::employees.Back')
-            </x-btn>
+          <div>
             @if(Route::has('employees.edit'))
               <x-btn href="{{ route('employees.edit', $item) }}" size="sm" variant="outline-primary" icon="bi bi-pencil-square">
                 @lang('employees::employees.Edit')
@@ -87,6 +84,9 @@
             @endif
             <x-btn href="{{ route('employees.destroy', $item) }}" method="DELETE" size="sm" variant="outline-danger" icon="bi bi-trash" confirm="@lang('employees::employees.Delete confirm')">
               @lang('employees::employees.Delete')
+            </x-btn>
+            <x-btn href="{{ route('employees.index') }}" size="sm" variant="outline-secondary" icon="bi bi-arrow-right-circle">
+              @lang('employees::employees.Back')
             </x-btn>
           </div>
         </div>
