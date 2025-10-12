@@ -14,10 +14,6 @@
         $customFavicon = $setting->favicon_url;
     }
 
-    if (!$customFavicon && !empty($setting?->favicon)) {
-        $customFavicon = asset('storage/' . $setting->favicon);
-    }
-
     $defaultPngFavicon   = asset('assets/img/favicon.png');
     $defaultAppleIcon    = asset('assets/img/apple-touch-icon.png');
 

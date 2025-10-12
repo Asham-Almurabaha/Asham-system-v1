@@ -49,15 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 try {
                     $session = session();
 
-                    $customFavicon = null;
-
-                    if (!$customFavicon && !empty($setting?->favicon_url)) {
-                        $customFavicon = $setting->favicon_url;
-                    }
-
-                    if (!$customFavicon && !empty($setting?->favicon)) {
-                        $customFavicon = asset('storage/' . $setting->favicon);
-                    }
+                    $customFavicon = $setting?->favicon_url ?: null;
 
                     $defaultPngFavicon = asset('assets/img/favicon.png');
                     $defaultAppleIcon  = asset('assets/img/apple-touch-icon.png');

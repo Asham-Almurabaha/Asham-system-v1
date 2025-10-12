@@ -19,7 +19,7 @@
 
   $faviconFromSession = data_get(session('app.favicon'), 'href');
   $favicon             = $faviconFromSession
-      ?: ($setting?->favicon ? asset('storage/'.$setting->favicon) : null);
+      ?: ($setting?->favicon_url ?? null);
 @endphp
 
 <meta charset="utf-8">
