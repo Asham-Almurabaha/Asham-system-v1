@@ -92,7 +92,15 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        $employee->load('phones');
+        $employee->load(
+            'phones',
+            'branch',
+            'department',
+            'job',
+            'nationality',
+            'residencies'
+        );
+
         return view('employees::show', ['item' => $employee]);
     }
 

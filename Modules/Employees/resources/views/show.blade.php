@@ -21,6 +21,14 @@
             : __('employees::employees.Not set');
     };
 
+    // ====== Summary badges (job / department / branch / nationality)
+    $summaryItems = array_values(array_filter([
+        $item->job ? ['icon' => 'bi bi-person-badge', 'text' => $tr($item->job)] : null,
+        $item->department ? ['icon' => 'bi bi-diagram-3', 'text' => $tr($item->department)] : null,
+        $item->branch ? ['icon' => 'bi bi-geo-alt', 'text' => $tr($item->branch)] : null,
+        $item->nationality ? ['icon' => 'bi bi-flag', 'text' => $tr($item->nationality)] : null,
+    ]));
+
     // ====== Avatar
     $hasPhoto = filled($item->photo_url);
     $initials = Str::of(($first ?? ' ') . ' ' . ($last ?? ' '))
@@ -123,25 +131,15 @@
             </div>
 
             <ul class="list-inline text-muted small mt-1 mb-0 d-flex flex-wrap align-items-center gap-2">
-              @if($item->job)
+              @foreach($summaryItems as $index => $entry)
                 <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-person-badge" aria-hidden="true"></i><span>{{ $tr($item->job) }}</span>
+                  <i class="{{ $entry['icon'] }}" aria-hidden="true"></i>
+                  <span>{{ $entry['text'] }}</span>
                 </li>
-                <li class="text-muted">•</li>
-              @endif
-
-              @if($item->department)
-                <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-diagram-3" aria-hidden="true"></i><span>{{ $tr($item->department) }}</span>
-                </li>
-                <li class="text-muted">•</li>
-              @endif
-
-              @if($item->branch)
-                <li class="list-inline-item d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-geo-alt" aria-hidden="true"></i><span>{{ $tr($item->branch) }}</span>
-                </li>
-              @endif
+                @if($index < count($summaryItems) - 1)
+                  <li class="text-muted">•</li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>

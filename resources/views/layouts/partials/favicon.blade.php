@@ -10,8 +10,26 @@
         $customFavicon = $sessionFavicon;
     }
 
-    if (!$customFavicon && !empty($setting?->favicon_url)) {
-        $customFavicon = $setting->favicon_url;
+    if (!$customFavicon) {
+        $settingInstance = $setting ?? null;
+
+        if (!$settingInstance || empty($settingInstance->favicon_url)) {
+            try {
+                if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                    $settingInstance = \Illuminate\Support\Facades\Cache::remember(
+                        'app.setting.latest',
+                        3600,
+                        static fn () => \Modules\Settings\Models\Setting::query()->latest('id')->first()
+                    );
+                }
+            } catch (\Throwable $e) {
+                $settingInstance = null;
+            }
+        }
+
+        if ($settingInstance && !empty($settingInstance->favicon_url)) {
+            $customFavicon = $settingInstance->favicon_url;
+        }
     }
 
     $defaultPngFavicon   = asset('assets/img/favicon.png');
