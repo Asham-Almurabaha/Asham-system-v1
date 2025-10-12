@@ -8,7 +8,7 @@
 
   // open states for settings groups
   $generalSettingsOpen = $isRoute('settings.*') || $isRoute('nationalities.*') || $isRoute('users.*') || $isRoute('companies.*') || $isRoute('cities.*') || $isRoute('branches.*') || $isRoute('departments.*') || $isRoute('jobs.*') || $isRoute('audit-logs.*');
-  $employeeSettingsOpen = $isRoute('residency-statuses.*') || $isRoute('work-statuses.*');
+  $employeeSettingsOpen = $isRoute('residency-statuses.*') || $isRoute('work-statuses.*') || $isRoute('sponsorship-statuses.*');
   $carSettingsOpen = $isRoute('car-years.*') || $isRoute('car-colors.*') || $isRoute('car-types.*') || $isRoute('car-brands.*')
       || $isRoute('car-models.*') || $isRoute('car-statuses.*') || $isRoute('car-document-data-types.*')
       || $isRoute('car-delegation-types.*') || $isRoute('violation-types.*') || $isRoute('violation-payment-statuses.*');
@@ -126,6 +126,11 @@
       <li>
         <a class="{{ $active($isRoute('residency-statuses.*')) }}" href="{{ route('residency-statuses.index') }}">
           <i class="bi bi-circle"></i><span>@lang('sidebar.Residency Statuses')</span>
+        </a>
+      </li>
+      <li>
+        <a class="{{ $active($isRoute('sponsorship-statuses.*')) }}" href="{{ route('sponsorship-statuses.index') }}">
+          <i class="bi bi-circle"></i><span>@lang('sidebar.Sponsorship Statuses')</span>
         </a>
       </li>
       <li>

@@ -23,6 +23,7 @@ return [
     'Nationalities' => 'الجنسيات',
     'Cities' => 'المدن',
     'Residency Statuses' => 'حالات الإقامة',
+    'Sponsorship Statuses' => 'حالات الكفالة',
     'Work Statuses' => 'حالات العمل',
     'Audit Logs' => 'سجل النشاط',
     'Car Settings' => 'إعدادات السيارات',

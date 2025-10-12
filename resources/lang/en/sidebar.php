@@ -23,6 +23,7 @@ return [
     'Nationalities' => 'Nationalities',
     'Cities' => 'Cities',
     'Residency Statuses' => 'Residency Statuses',
+    'Sponsorship Statuses' => 'Sponsorship Statuses',
     'Work Statuses' => 'Work Statuses',
     'Audit Logs' => 'Audit Logs',
     'Car Settings' => 'Car Settings',
