@@ -2,8 +2,8 @@
 <html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <head>
         @php
-            $sessionAppName  = session('app.name');
-            $defaultGuestName = $sessionAppName ?: ($setting?->name ?? config('app.name', 'Laravel'));
+            $defaultGuestName = $appName
+                ?? ($setting?->name ?? ($setting?->name_ar ?? config('app.name', 'Laravel')));
         @endphp
         @unless($__env->hasSection('title'))
             @section('title', $defaultGuestName)
@@ -23,7 +23,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <x-application-logo class="w-20 h-20 text-gray-500" />
                 </a>
             </div>
 

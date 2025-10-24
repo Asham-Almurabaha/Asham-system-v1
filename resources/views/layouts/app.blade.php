@@ -2,10 +2,11 @@
 @php
   $locale        = app()->getLocale();
   $isAr          = $locale === 'ar';
-  $sessionAppName = session('app.name');
-  $brandBase     = $setting?->name ?? config('app.name', '');
-  $localizedBase = $isAr ? ($setting?->name_ar ?? $brandBase) : $brandBase;
-  $brandName     = $sessionAppName ?: $localizedBase;
+  $brandBase     = $isAr
+      ? ($setting?->name_ar ?? ($setting?->name ?? config('app.name', '')))
+      : ($setting?->name ?? ($setting?->name_ar ?? config('app.name', '')));
+  $brandName     = $appName ?? $brandBase;
+  $logoUrl       = $appLogoUrl ?? ($setting?->logo_url ?? asset('assets/img/logo.png'));
 @endphp
 
 <html lang="{{ $locale }}" dir="{{ $isAr ? 'rtl' : 'ltr' }}">
@@ -24,11 +25,7 @@
               {{-- شريط علوي صغير: شعار + تبديل لغة --}}
               <div class="d-flex justify-content-between align-items-center w-100 py-3">
                 <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto text-decoration-none">
-                  @if (!empty($setting?->logo))
-                    <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ __('app.logo') }}" style="height: 40px;">
-                  @else
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
-                  @endif
+                  <img src="{{ $logoUrl }}" alt="{{ $brandName }}" style="height: 40px;" loading="lazy">
                   <span class="d-none d-lg-block ms-2 fw-semibold">
                     {{ $brandName }}
                   </span>

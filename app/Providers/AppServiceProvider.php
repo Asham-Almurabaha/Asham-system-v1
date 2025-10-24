@@ -46,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
 
             $defaultPngFavicon = asset('assets/img/favicon.png');
             $defaultAppleIcon  = asset('assets/img/apple-touch-icon.png');
+            $defaultLogo       = asset('assets/img/logo.png');
 
             $faviconHref = $customFavicon ?? $defaultPngFavicon;
             $faviconPath = parse_url($faviconHref, PHP_URL_PATH);
@@ -75,9 +76,12 @@ class AppServiceProvider extends ServiceProvider
                 'extension'   => $extension,
             ];
 
+            $logoUrl = $setting?->logo_url ?: $defaultLogo;
+
             $view->with('setting', $setting);
             $view->with('appName', $appName);
             $view->with('appFavicon', $faviconData);
+            $view->with('appLogoUrl', $logoUrl);
 
             if (!app()->runningInConsole() && app()->bound('session')) {
                 try {
@@ -87,6 +91,7 @@ class AppServiceProvider extends ServiceProvider
                         'app.locale'  => $locale,
                         'app.name'    => $appName,
                         'app.favicon' => $faviconData,
+                        'app.logo'    => $logoUrl,
                     ]);
                 } catch (\Throwable $exception) {
                     // Ignore session exceptions (e.g. when running from CLI)

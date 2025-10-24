@@ -1,24 +1,18 @@
 @php
   // دعم غياب الإعدادات بدون أخطاء
-  $logo          = $setting?->logo;
   $homeUrl       = url('/');
   $locale        = app()->getLocale();
-  $sessionName   = session('app.name');
-  $fallbackBase  = $setting?->name ?? config('app.name', 'اسم الشركة');
-  $localizedName = $locale === 'ar'
-      ? ($setting?->name_ar ?? $fallbackBase)
-      : $fallbackBase;
-  $displayName        = $sessionName ?: $localizedName;
+  $fallbackName  = $locale === 'ar'
+      ? ($setting?->name_ar ?? ($setting?->name ?? config('app.name', 'اسم الشركة')))
+      : ($setting?->name ?? ($setting?->name_ar ?? config('app.name', 'Company Name')));
+  $displayName        = $appName ?? $fallbackName;
   $currentLocaleBadge = strtoupper($locale); // AR أو EN
+  $logoUrl            = $appLogoUrl ?? ($setting?->logo_url ?? asset('assets/img/logo.png'));
 @endphp
 
 <div class="d-flex align-items-center justify-content-between w-100 pe-3">
   <a href="{{ $homeUrl }}" class="logo d-flex align-items-center text-decoration-none" aria-label="{{ __('app.home') }}">
-    @if ($logo)
-      <img src="{{ asset('storage/'.$logo) }}" alt="{{ __('app.logo') }}" style="height: 40px;">
-    @else
-      <img src="{{ asset('assets/img/logo.png') }}" alt="{{ __('app.logo') }}" style="height: 40px;">
-    @endif
+    <img src="{{ $logoUrl }}" alt="{{ $displayName }}" style="height: 40px;" loading="lazy">
     <span class="d-none d-lg-block ms-2 fw-semibold">{{ $displayName }}</span>
   </a>
 

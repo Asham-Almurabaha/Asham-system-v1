@@ -2,11 +2,11 @@
 @php
   $locale         = app()->getLocale();
   $isRtl          = $locale === 'ar';
-  $sessionAppName = session('app.name');
-  $fallbackBase   = $setting?->name ?? config('app.name','اسم المنشأة');
-  $localizedBase  = $isRtl ? ($setting?->name_ar ?? $fallbackBase) : $fallbackBase;
-  $brandName      = $brandName ?? ($sessionAppName ?: $localizedBase);
-  $logoUrl        = $logoUrl    ?? (!empty($setting?->logo) ? asset('storage/'.$setting->logo) : asset('assets/img/logo.png'));
+  $fallbackBase   = $isRtl
+      ? ($setting?->name_ar ?? ($setting?->name ?? config('app.name','اسم المنشأة')))
+      : ($setting?->name ?? ($setting?->name_ar ?? config('app.name','اسم المنشأة')));
+  $brandName      = $brandName ?? ($appName ?? $fallbackBase);
+  $logoUrl        = $logoUrl    ?? ($appLogoUrl ?? ($setting?->logo_url ?? asset('assets/img/logo.png')));
   $reportDate     = $reportDate ?? now()->format('d-m-Y');
 @endphp
 <html lang="{{ $locale }}" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">

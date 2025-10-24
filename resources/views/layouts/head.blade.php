@@ -1,25 +1,23 @@
 @php
-  $sessionLocale = session('app.locale');
-  $locale        = $sessionLocale ?: app()->getLocale();
-  $isRtl         = $locale === 'ar';
   $includeDefaultStyles = $includeDefaultStyles ?? true;
 
-  $defaultName         = config('app.name', 'لوحة التحكم');
-  $localizedSettingName = $locale === 'ar'
-      ? ($setting?->name_ar ?? ($setting?->name ?? $defaultName))
-      : ($setting?->name ?? $defaultName);
-  $sessionAppName      = session('app.name');
-  $appName             = $sessionAppName ?: $localizedSettingName;
+  $locale    = app()->getLocale();
+  $isRtl     = $locale === 'ar';
 
-  $pageTitle = trim($__env->yieldContent('title'));              // عنوان الصفحة من @section('title')
-  $title     = $pageTitle ? ($appName.' - '.$pageTitle) : $appName;
+  $fallbackName = config('app.name', 'لوحة التحكم');
+  $localizedName = $locale === 'ar'
+      ? ($setting?->name_ar ?? ($setting?->name ?? $fallbackName))
+      : ($setting?->name ?? ($setting?->name_ar ?? $fallbackName));
 
-  $desc      = $setting?->owner_name ?? $appName;                 // وصف بديل من اسم المالك إن وجد
+  $resolvedAppName = $appName ?? $localizedName;
+
+  $pageTitle = trim($__env->yieldContent('title'));
+  $title     = $pageTitle ? ($resolvedAppName.' - '.$pageTitle) : $resolvedAppName;
+
+  $desc      = $setting?->owner_name ?? $resolvedAppName;
   $canonical = request()->url();
 
-  $faviconFromSession = data_get(session('app.favicon'), 'href');
-  $favicon             = $faviconFromSession
-      ?: ($setting?->favicon_url ?? null);
+  $faviconData = $appFavicon ?? session('app.favicon', []);
 @endphp
 
 <meta charset="utf-8">
@@ -36,7 +34,7 @@
 <meta property="og:locale" content="{{ $locale === 'ar' ? 'ar_SA' : 'en_US' }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
-<meta property="og:site_name" content="{{ $appName }}">
+<meta property="og:site_name" content="{{ $resolvedAppName }}">
 <meta property="og:url" content="{{ $canonical }}">
 <meta property="og:type" content="website">
 
@@ -46,7 +44,7 @@
 <meta name="twitter:description" content="{{ $desc }}">
 
 {{-- Favicons --}}
-@include('layouts.partials.favicon')
+@include('layouts.partials.favicon', ['appFavicon' => $faviconData, 'setting' => $setting ?? null])
 
 @if ($includeDefaultStyles)
   {{-- Google Fonts (روابط مباشرة مع دعم عربي محسن) --}}
